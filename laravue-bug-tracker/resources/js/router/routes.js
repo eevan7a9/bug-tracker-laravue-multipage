@@ -4,16 +4,16 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 export default new VueRouter({
-    routes:[
+    routes: [
         {
-            path:'/',
-            name:'home',
-            component: () => import("../pages/Home.vue")
+            path: '/',
+            name: 'bugs',
+            component: () => import("../pages/Bugs.vue")
         },
         {
-            path:'/about',
-            name:'about',
-            component: () => import("../pages/About.vue")
+            path: '/projects',
+            name: 'projects',
+            component: () => import("../pages/Projects.vue")
         },
 
     ]
