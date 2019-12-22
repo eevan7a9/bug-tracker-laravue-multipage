@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="row justify-content-start mt-2 w-100 px-3">
-      <AddBug class="pt-4" />
+    <div class="row justify-content-start w-100 px-3">
+      <AddBug />
     </div>
     <div class="add-form">
       <form></form>

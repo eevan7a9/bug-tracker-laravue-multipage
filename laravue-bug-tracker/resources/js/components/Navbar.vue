@@ -46,10 +46,7 @@
 
 <script>
 export default {
-  name: "navbar",
-  created() {
-    console.log(this.$router.name);
-  }
+  name: "navbar"
 };
 </script>
 
