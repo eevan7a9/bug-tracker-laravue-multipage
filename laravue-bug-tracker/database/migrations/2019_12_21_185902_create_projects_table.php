@@ -17,7 +17,7 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('version');
-            $table->string('type');
+            $table->string('environment');
             $table->string('os');
             $table->text('description');
             $table->date('development_start');

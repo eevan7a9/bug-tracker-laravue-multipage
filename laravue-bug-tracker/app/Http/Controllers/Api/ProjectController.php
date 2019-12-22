@@ -19,7 +19,7 @@ class ProjectController extends Controller
         $validated = $request->validate([
             "name" => "required",
             "version" => "required",
-            "type" => "required",
+            "environment" => "required",
             "os" => "required",
             "description" => "required",
             "started" => "required|date",
@@ -29,7 +29,7 @@ class ProjectController extends Controller
         $project = new Project();
         $project->name = $validated['name'];
         $project->version = $validated['version'];
-        $project->type = $validated['type'];
+        $project->environment = $validated['environment'];
         $project->os = $validated['os'];
         $project->description = $validated['description'];
         $project->development_start = $validated['started'];

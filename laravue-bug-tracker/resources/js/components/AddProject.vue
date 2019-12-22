@@ -58,8 +58,8 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for>Type</label>
-                    <select class="custom-select" v-model="project.type">
+                    <label for>Environment</label>
+                    <select class="custom-select" v-model="project.environment">
                       <option selected>Web</option>
                       <option value="mobile">Mobile</option>
                       <option value="desktop">Desktop</option>
@@ -136,7 +136,7 @@ export default {
           params: {
             name: this.project.name,
             version: this.project.version,
-            type: this.project.type,
+            environment: this.project.environment,
             os: this.project.os,
             description: this.project.description,
             started: this.project.started,
