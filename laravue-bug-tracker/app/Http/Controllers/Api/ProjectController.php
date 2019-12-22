@@ -11,7 +11,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        return response()->json($projects);
+        return response()->json($projects, 200);
     }
 
     public function store(Request $request)
