@@ -261,58 +261,76 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       projects: [],
-      bug: {}
+      bug: {
+        image: ""
+      }
     };
   },
   methods: {
+    onImageChange: function onImageChange(e) {
+      //   console.log(e.target.files[0]);
+      this.bug.image = e.target.files[0];
+    },
     submit: function () {
       var _submit = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var config, result;
+        var formData, result;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                config = {
-                  method: "post",
-                  url: "api_web_session/v1/bugs",
-                  params: {
-                    project_id: this.bug.project,
-                    title: this.bug.title,
-                    description: this.bug.description,
-                    browser: this.bug.browser,
-                    os: this.bug.os,
-                    bug_type: this.bug.type,
-                    severity: this.bug.severity,
-                    priority: this.bug.priority
-                  }
-                };
-                _context.prev = 1;
-                _context.next = 4;
-                return axios(config);
+                // we append our data
+                formData = new FormData();
+                formData.append("title", this.bug.title);
+                formData.append("project_id", this.bug.project);
+                formData.append("description", this.bug.description);
+                formData.append("browser", this.bug.browser);
+                formData.append("os", this.bug.os);
+                formData.append("bug_type", this.bug.type);
+                formData.append("severity", this.bug.severity);
+                formData.append("priority", this.bug.priority);
 
-              case 4:
+                if (this.bug.image) {
+                  formData.append("image", this.bug.image);
+                }
+
+                _context.prev = 10;
+                _context.next = 13;
+                return axios.post("api_web_session/v1/bugs", formData, {
+                  headers: {
+                    Accept: "application/json",
+                    "content-type": "multipart/form-data"
+                  }
+                });
+
+              case 13:
                 result = _context.sent;
-                console.log(result);
-                _context.next = 11;
+                alert("".concat(result.statusText, ",a Bug is successfuly added.")); // console.log(result);
+
+                _context.next = 20;
                 break;
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](1);
-                console.log(_context.t0.response);
+              case 17:
+                _context.prev = 17;
+                _context.t0 = _context["catch"](10);
+                // console.log(error.response);
+                alert(_context.t0);
 
-              case 11:
+              case 20:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 8]]);
+        }, _callee, this, [[10, 17]]);
       }));
 
       function submit() {
@@ -479,6 +497,7 @@ var render = function() {
         _c(
           "form",
           {
+            attrs: { enctype: "multipart/form-data" },
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -1035,7 +1054,8 @@ var render = function() {
                           type: "file",
                           id: "inputGroupFile01",
                           "aria-describedby": "inputGroupFileAddon01"
-                        }
+                        },
+                        on: { change: _vm.onImageChange }
                       }),
                       _vm._v(" "),
                       _c(
@@ -1044,7 +1064,15 @@ var render = function() {
                           staticClass: "custom-file-label",
                           attrs: { for: "inputGroupFile01" }
                         },
-                        [_vm._v("Choose file")]
+                        [
+                          _vm._v(
+                            _vm._s(
+                              _vm.bug.image.name
+                                ? _vm.bug.image.name
+                                : "Choose Image"
+                            )
+                          )
+                        ]
                       )
                     ])
                   ])

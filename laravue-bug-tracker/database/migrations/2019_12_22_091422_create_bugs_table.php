@@ -25,6 +25,8 @@ class CreateBugsTable extends Migration
             $table->string('severity')->nullable();
             $table->string('priority')->nullable();
             $table->string('assigned_to')->nullable();
+            $table->string('image_src')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')

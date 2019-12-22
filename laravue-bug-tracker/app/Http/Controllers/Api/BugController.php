@@ -6,6 +6,7 @@ use App\Bug;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class BugController extends Controller
 {
@@ -37,6 +38,17 @@ class BugController extends Controller
         $bug->bug_type = $validated['bug_type'];
         $bug->severity = $request->severity ? $validated['severity'] : null;
         $bug->priority = $request->priority ? $validated['priority'] : null;
+        // we check if there is an image file
+        if ($request->image) {
+
+            // we validate the image
+            request()->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $bug->image_src = URL::asset('images') . '/' . time() . '.' . $request->image->getClientOriginalExtension();
+            $bug->image = time() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('images'), $bug->image);
+        }
         $bug->save();
 
         return response()->json($bug, 201);

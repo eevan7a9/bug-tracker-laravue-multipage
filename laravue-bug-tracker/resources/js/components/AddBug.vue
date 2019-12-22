@@ -21,7 +21,7 @@
       </span>
     </b-button>
     <b-collapse id="collapse-1" class="mt-2">
-      <form @submit.prevent="submit">
+      <form @submit.prevent="submit" enctype="multipart/form-data">
         <b-card>
           <div class="row">
             <div class="col-md-6">
@@ -211,8 +211,12 @@
                     class="custom-file-input"
                     id="inputGroupFile01"
                     aria-describedby="inputGroupFileAddon01"
+                    @change="onImageChange"
                   />
-                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  <label
+                    class="custom-file-label"
+                    for="inputGroupFile01"
+                  >{{ bug.image.name ? bug.image.name : 'Choose Image' }}</label>
                 </div>
               </div>
             </div>
@@ -247,32 +251,44 @@ export default {
   data() {
     return {
       projects: [],
-      bug: {}
+      bug: {
+        image: ""
+      }
     };
   },
   methods: {
+    onImageChange(e) {
+      //   console.log(e.target.files[0]);
+      this.bug.image = e.target.files[0];
+    },
     async submit() {
-      const config = {
-        method: "post",
-        url: "api_web_session/v1/bugs",
-        params: {
-          project_id: this.bug.project,
-          title: this.bug.title,
-          description: this.bug.description,
-          browser: this.bug.browser,
-          os: this.bug.os,
-          bug_type: this.bug.type,
-          severity: this.bug.severity,
-          priority: this.bug.priority
-        }
-      };
-      try {
-        const result = await axios(config);
-        console.log(result);
-      } catch (error) {
-        console.log(error.response);
+      // we append our data
+      let formData = new FormData();
+
+      formData.append("title", this.bug.title);
+      formData.append("project_id", this.bug.project);
+      formData.append("description", this.bug.description);
+      formData.append("browser", this.bug.browser);
+      formData.append("os", this.bug.os);
+      formData.append("bug_type", this.bug.type);
+      formData.append("severity", this.bug.severity);
+      formData.append("priority", this.bug.priority);
+      if (this.bug.image) {
+        formData.append("image", this.bug.image);
       }
-      //   console.log(this.bug);
+      try {
+        const result = await axios.post("api_web_session/v1/bugs", formData, {
+          headers: {
+            Accept: "application/json",
+            "content-type": "multipart/form-data"
+          }
+        });
+        alert(`${result.statusText},a Bug is successfuly added.`);
+        // console.log(result);
+      } catch (error) {
+        // console.log(error.response);
+        alert(error);
+      }
     }
   },
   async created() {
