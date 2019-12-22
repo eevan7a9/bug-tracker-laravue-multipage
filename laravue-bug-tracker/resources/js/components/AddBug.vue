@@ -251,8 +251,28 @@ export default {
     };
   },
   methods: {
-    submit() {
-      console.log(this.bug);
+    async submit() {
+      const config = {
+        method: "post",
+        url: "api_web_session/v1/bugs",
+        params: {
+          project_id: this.bug.project,
+          title: this.bug.title,
+          description: this.bug.description,
+          browser: this.bug.browser,
+          os: this.bug.os,
+          bug_type: this.bug.type,
+          severity: this.bug.severity,
+          priority: this.bug.priority
+        }
+      };
+      try {
+        const result = await axios(config);
+        console.log(result);
+      } catch (error) {
+        console.log(error.response);
+      }
+      //   console.log(this.bug);
     }
   },
   async created() {

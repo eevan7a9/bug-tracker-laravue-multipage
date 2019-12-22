@@ -269,45 +269,94 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    submit: function submit() {
-      console.log(this.bug);
-    }
+    submit: function () {
+      var _submit = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var config, result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                config = {
+                  method: "post",
+                  url: "api_web_session/v1/bugs",
+                  params: {
+                    project_id: this.bug.project,
+                    title: this.bug.title,
+                    description: this.bug.description,
+                    browser: this.bug.browser,
+                    os: this.bug.os,
+                    bug_type: this.bug.type,
+                    severity: this.bug.severity,
+                    priority: this.bug.priority
+                  }
+                };
+                _context.prev = 1;
+                _context.next = 4;
+                return axios(config);
+
+              case 4:
+                result = _context.sent;
+                console.log(result);
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](1);
+                console.log(_context.t0.response);
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 8]]);
+      }));
+
+      function submit() {
+        return _submit.apply(this, arguments);
+      }
+
+      return submit;
+    }()
   },
   created: function () {
     var _created = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       var config, result;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
               config = {
                 method: "get",
                 url: "api_web_session/v1/projects"
               };
-              _context.prev = 1;
-              _context.next = 4;
+              _context2.prev = 1;
+              _context2.next = 4;
               return axios(config);
 
             case 4:
-              result = _context.sent;
+              result = _context2.sent;
               this.projects = result.data; //   console.log(this.projects);
 
-              _context.next = 11;
+              _context2.next = 11;
               break;
 
             case 8:
-              _context.prev = 8;
-              _context.t0 = _context["catch"](1);
-              alert(_context.t0); //   console.log(error.response);
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](1);
+              alert(_context2.t0); //   console.log(error.response);
 
             case 11:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee, this, [[1, 8]]);
+      }, _callee2, this, [[1, 8]]);
     }));
 
     function created() {

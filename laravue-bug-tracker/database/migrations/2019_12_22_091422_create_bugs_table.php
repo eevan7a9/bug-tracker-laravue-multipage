@@ -22,8 +22,9 @@ class CreateBugsTable extends Migration
             $table->string('browser');
             $table->string('os');
             $table->string('bug_type');
-            $table->string('severity');
-            $table->string('priority');
+            $table->string('severity')->nullable();
+            $table->string('priority')->nullable();
+            $table->string('assigned_to')->nullable();
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')
