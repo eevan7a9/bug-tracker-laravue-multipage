@@ -82834,13 +82834,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     path: '/',
     name: 'bugs',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../pages/Bugs.vue */ "./resources/js/pages/Bugs.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../pages/Bugs.vue */ "./resources/js/pages/Bugs.vue"));
     }
   }, {
     path: '/projects',
     name: 'projects',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../pages/Projects.vue */ "./resources/js/pages/Projects.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../pages/Projects.vue */ "./resources/js/pages/Projects.vue"));
     }
   }]
 }));
