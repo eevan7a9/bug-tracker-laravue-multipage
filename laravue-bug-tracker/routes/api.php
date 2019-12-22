@@ -17,4 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('projects', 'Api\ProjectController@index');
+Route::prefix('v1')->group(function () {
+
+    Route::group(['middleware' => ['auth:web']], function () {
+        Route::get('projects', 'Api\ProjectController@index')->name('projects.all');
+        Route::post('projects', 'Api\ProjectController@store')->name('projects.store');
+    });
+});

@@ -1,5 +1,5 @@
 <template>
-  <form class="mt-5">
+  <form>
     <b-button
       :class="visible ? null : 'collapsed'"
       :aria-expanded="visible ? 'true' : 'false'"
@@ -61,11 +61,11 @@
                     <label for>Type</label>
                     <select class="custom-select" v-model="project.type">
                       <option selected>Web</option>
-                      <option value>Mobile</option>
-                      <option value>Desktop</option>
-                      <option value>Web and Mobile</option>
-                      <option value>Desktop and Mobile</option>
-                      <option value>All</option>
+                      <option value="mobile">Mobile</option>
+                      <option value="desktop">Desktop</option>
+                      <option value="web and mobile">Web and Mobile</option>
+                      <option value="desktop and mobile">Desktop and Mobile</option>
+                      <option value="all">All</option>
                     </select>
                   </div>
                 </div>
@@ -73,19 +73,24 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="os">Operating System</label>
-                  <select class="custom-select" name="os" id="os">
-                    <option>Cross Platform</option>
-                    <option>Mac OS</option>
-                    <option>Windows</option>
-                    <option>Linux</option>
-                    <option>Android</option>
-                    <option>IOS</option>
+                  <select class="custom-select" v-model="project.os" name="os" id="os">
+                    <option value="cross platform">Cross Platform</option>
+                    <option value="mac os">Mac OS</option>
+                    <option value="windows">Windows</option>
+                    <option value="linux">Linux</option>
+                    <option value="android">Android</option>
+                    <option value="ios">IOS</option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                <textarea
+                  class="form-control"
+                  v-model="project.description"
+                  id="description"
+                  rows="3"
+                ></textarea>
               </div>
               <div class="row">
                 <div class="col-md-6">
@@ -124,10 +129,26 @@ export default {
   },
   methods: {
     async publish() {
-      const result = await axios.get(
-        "https://jsonplaceholder.typicode.com/todos/1"
-      );
-      console.log(result);
+      try {
+        const config = {
+          method: "post",
+          url: "api_web_session/v1/projects",
+          params: {
+            name: this.project.name,
+            version: this.project.version,
+            type: this.project.type,
+            os: this.project.os,
+            description: this.project.description,
+            started: this.project.started,
+            released: this.project.released
+          }
+        };
+        const result = await axios(config);
+        console.log(result);
+      } catch (error) {
+        // alert(error);
+        console.log(error.response);
+      }
     }
   }
 };

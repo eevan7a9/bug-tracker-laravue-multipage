@@ -651,8 +651,8 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { staticClass: "row justify-content-start mt-2 w-100 px-3" },
-      [_c("AddBug", { staticClass: "pt-4" })],
+      { staticClass: "row justify-content-start w-100 px-3" },
+      [_c("AddBug")],
       1
     ),
     _vm._v(" "),
