@@ -12,8 +12,8 @@ class BugController extends Controller
 {
     public function index()
     {
-        // $bugs = Bug::all();
-        return response()->json("bugs", 200);
+        $bugs = Bug::orderBy('created_at', 'desc')->get();
+        return response()->json($bugs, 200);
     }
     public function store(Request $request)
     {
