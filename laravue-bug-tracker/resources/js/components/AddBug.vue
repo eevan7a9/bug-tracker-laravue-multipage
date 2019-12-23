@@ -253,64 +253,35 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
       visible: false,
-      projects: [],
       bug: {
         image: ""
       }
     };
   },
+  computed: mapGetters(["projects"]),
   methods: {
+    ...mapActions(["newBug", "getProjects"]),
     onImageChange(e) {
       //   console.log(e.target.files[0]);
       this.bug.image = e.target.files[0];
     },
-    async submit() {
-      // we append our data
-      let formData = new FormData();
-
-      formData.append("title", this.bug.title);
-      formData.append("project_id", this.bug.project);
-      formData.append("description", this.bug.description);
-      formData.append("browser", this.bug.browser);
-      formData.append("os", this.bug.os);
-      formData.append("bug_type", this.bug.type);
-      formData.append("severity", this.bug.severity);
-      formData.append("priority", this.bug.priority);
-      if (this.bug.image) {
-        formData.append("image", this.bug.image);
-      }
-      try {
-        const result = await axios.post("api_web_session/v1/bugs", formData, {
-          headers: {
-            Accept: "application/json",
-            "content-type": "multipart/form-data"
-          }
-        });
-        alert(`${result.statusText},a Bug is successfuly added.`);
-        // console.log(result);
-      } catch (error) {
-        // console.log(error.response);
-        alert(error);
-      }
+    submit() {
+      // submit new bug
+      this.newBug(this.bug).then(() => {
+        //   clear and close form
+        this.bug = {};
+        this.bug.image = "";
+        this.visible = false;
+      });
     }
   },
-  async created() {
-    const config = {
-      method: "get",
-      url: "api_web_session/v1/projects"
-    };
-    try {
-      const result = await axios(config);
-      this.projects = result.data;
-      //   console.log(this.projects);
-    } catch (error) {
-      alert(error);
-      //   console.log(error.response);
-    }
+  created() {
+    this.getProjects();
   }
 };
 </script>

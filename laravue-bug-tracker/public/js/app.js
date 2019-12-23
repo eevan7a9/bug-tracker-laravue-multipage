@@ -84740,10 +84740,9 @@ var actions = {
 
             case 3:
               result = _context.sent;
-              console.log(result);
               commit("setBugs", result.data);
 
-            case 6:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -84756,11 +84755,76 @@ var actions = {
     }
 
     return getBugs;
+  }(),
+  newBug: function () {
+    var _newBug = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2, bug) {
+      var commit, formData, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              // we append our data
+              formData = new FormData();
+              formData.append("title", bug.title);
+              formData.append("project_id", bug.project);
+              formData.append("description", bug.description);
+              formData.append("browser", bug.browser);
+              formData.append("os", bug.os);
+              formData.append("bug_type", bug.type);
+              formData.append("severity", bug.severity);
+              formData.append("priority", bug.priority);
+
+              if (bug.image) {
+                formData.append("image", bug.image);
+              }
+
+              _context2.prev = 11;
+              _context2.next = 14;
+              return axios.post("api_web_session/v1/bugs", formData, {
+                headers: {
+                  Accept: "application/json",
+                  "content-type": "multipart/form-data"
+                }
+              });
+
+            case 14:
+              result = _context2.sent;
+              commit("insertBug", result.data);
+              alert("".concat(result.statusText, ",a Bug is successfuly added.")); // console.log(result);
+
+              _context2.next = 22;
+              break;
+
+            case 19:
+              _context2.prev = 19;
+              _context2.t0 = _context2["catch"](11);
+              // console.log(error.response);
+              alert(_context2.t0);
+
+            case 22:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[11, 19]]);
+    }));
+
+    function newBug(_x2, _x3) {
+      return _newBug.apply(this, arguments);
+    }
+
+    return newBug;
   }()
 };
 var mutations = {
   setBugs: function setBugs(state, bugs) {
     return state.bugs = bugs;
+  },
+  insertBug: function insertBug(state, bug) {
+    return state.bugs.unshift(bug);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

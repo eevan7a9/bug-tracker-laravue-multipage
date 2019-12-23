@@ -9,13 +9,12 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
 //
@@ -271,125 +270,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       visible: false,
-      projects: [],
       bug: {
         image: ""
       }
     };
   },
-  methods: {
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["projects"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["newBug", "getProjects"]), {
     onImageChange: function onImageChange(e) {
       //   console.log(e.target.files[0]);
       this.bug.image = e.target.files[0];
     },
-    submit: function () {
-      var _submit = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var formData, result;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                // we append our data
-                formData = new FormData();
-                formData.append("title", this.bug.title);
-                formData.append("project_id", this.bug.project);
-                formData.append("description", this.bug.description);
-                formData.append("browser", this.bug.browser);
-                formData.append("os", this.bug.os);
-                formData.append("bug_type", this.bug.type);
-                formData.append("severity", this.bug.severity);
-                formData.append("priority", this.bug.priority);
+    submit: function submit() {
+      var _this = this;
 
-                if (this.bug.image) {
-                  formData.append("image", this.bug.image);
-                }
-
-                _context.prev = 10;
-                _context.next = 13;
-                return axios.post("api_web_session/v1/bugs", formData, {
-                  headers: {
-                    Accept: "application/json",
-                    "content-type": "multipart/form-data"
-                  }
-                });
-
-              case 13:
-                result = _context.sent;
-                alert("".concat(result.statusText, ",a Bug is successfuly added.")); // console.log(result);
-
-                _context.next = 20;
-                break;
-
-              case 17:
-                _context.prev = 17;
-                _context.t0 = _context["catch"](10);
-                // console.log(error.response);
-                alert(_context.t0);
-
-              case 20:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this, [[10, 17]]);
-      }));
-
-      function submit() {
-        return _submit.apply(this, arguments);
-      }
-
-      return submit;
-    }()
-  },
-  created: function () {
-    var _created = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var config, result;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              config = {
-                method: "get",
-                url: "api_web_session/v1/projects"
-              };
-              _context2.prev = 1;
-              _context2.next = 4;
-              return axios(config);
-
-            case 4:
-              result = _context2.sent;
-              this.projects = result.data; //   console.log(this.projects);
-
-              _context2.next = 11;
-              break;
-
-            case 8:
-              _context2.prev = 8;
-              _context2.t0 = _context2["catch"](1);
-              alert(_context2.t0); //   console.log(error.response);
-
-            case 11:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2, this, [[1, 8]]);
-    }));
-
-    function created() {
-      return _created.apply(this, arguments);
+      // submit new bug
+      this.newBug(this.bug).then(function () {
+        //   clear and close form
+        _this.bug = {};
+        _this.bug.image = "";
+        _this.visible = false;
+      });
     }
-
-    return created;
-  }()
+  }),
+  created: function created() {
+    this.getProjects();
+  }
 });
 
 /***/ }),
