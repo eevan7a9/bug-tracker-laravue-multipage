@@ -22,6 +22,8 @@ class CreateProjectsTable extends Migration
             $table->text('description');
             $table->date('development_start');
             $table->date('release_date');
+            $table->string('image_src')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

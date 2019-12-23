@@ -138,58 +138,92 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       visible: false,
-      project: {}
+      project: {
+        image: ""
+      }
     };
   },
   methods: {
+    onImageChange: function onImageChange(e) {
+      // we get the image
+      console.log(e.target.files[0]);
+      this.project.image = e.target.files[0];
+    },
     publish: function () {
       var _publish = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var config, result;
+        var formData, result;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                config = {
-                  method: "post",
-                  url: "api_web_session/v1/projects",
-                  params: {
-                    name: this.project.name,
-                    version: this.project.version,
-                    environment: this.project.environment,
-                    os: this.project.os,
-                    description: this.project.description,
-                    started: this.project.started,
-                    released: this.project.released
-                  }
-                };
-                _context.next = 4;
-                return axios(config);
+                // we append our data
+                formData = new FormData();
+                formData.append("name", this.project.name);
+                formData.append("version", this.project.version);
+                formData.append("environment", this.project.environment);
+                formData.append("os", this.project.os);
+                formData.append("description", this.project.description);
+                formData.append("started", this.project.started);
+                formData.append("released", this.project.released);
 
-              case 4:
+                if (this.project.image) {
+                  formData.append("image", this.project.image);
+                }
+
+                _context.prev = 9;
+                _context.next = 12;
+                return axios.post("api_web_session/v1/projects", formData, {
+                  headers: {
+                    Accept: "application/json",
+                    "content-type": "multipart/form-data"
+                  }
+                });
+
+              case 12:
                 result = _context.sent;
+                // const result = await axios(config);
                 console.log(result);
-                _context.next = 11;
+                _context.next = 19;
                 break;
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](0);
+              case 16:
+                _context.prev = 16;
+                _context.t0 = _context["catch"](9);
                 // alert(error);
                 console.log(_context.t0.response);
 
-              case 11:
+              case 19:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[0, 8]]);
+        }, _callee, this, [[9, 16]]);
       }));
 
       function publish() {
@@ -246,7 +280,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "form",
+    "div",
     [
       _c(
         "b-button",
@@ -322,6 +356,7 @@ var render = function() {
             _c(
               "form",
               {
+                attrs: { enctype: "multipart/form-data" },
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
@@ -344,9 +379,10 @@ var render = function() {
                           directives: [
                             {
                               name: "model",
-                              rawName: "v-model",
+                              rawName: "v-model.trim",
                               value: _vm.project.name,
-                              expression: "project.name"
+                              expression: "project.name",
+                              modifiers: { trim: true }
                             }
                           ],
                           staticClass: "form-control",
@@ -361,7 +397,14 @@ var render = function() {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(_vm.project, "name", $event.target.value)
+                              _vm.$set(
+                                _vm.project,
+                                "name",
+                                $event.target.value.trim()
+                              )
+                            },
+                            blur: function($event) {
+                              return _vm.$forceUpdate()
                             }
                           }
                         }),
@@ -387,9 +430,10 @@ var render = function() {
                               directives: [
                                 {
                                   name: "model",
-                                  rawName: "v-model",
+                                  rawName: "v-model.trim",
                                   value: _vm.project.version,
-                                  expression: "project.version"
+                                  expression: "project.version",
+                                  modifiers: { trim: true }
                                 }
                               ],
                               staticClass: "form-control",
@@ -408,8 +452,11 @@ var render = function() {
                                   _vm.$set(
                                     _vm.project,
                                     "version",
-                                    $event.target.value
+                                    $event.target.value.trim()
                                   )
+                                },
+                                blur: function($event) {
+                                  return _vm.$forceUpdate()
                                 }
                               }
                             }),
@@ -671,6 +718,50 @@ var render = function() {
                               "small",
                               { staticClass: "form-text text-muted" },
                               [_vm._v("Date Development Started")]
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6 my-3" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-prepend" }, [
+                            _c(
+                              "span",
+                              {
+                                staticClass: "input-group-text",
+                                attrs: { id: "image-upload" }
+                              },
+                              [_vm._v("Upload")]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "custom-file" }, [
+                            _c("input", {
+                              staticClass: "custom-file-input",
+                              attrs: {
+                                type: "file",
+                                id: "cover-image-upload",
+                                "aria-describedby": "image-upload"
+                              },
+                              on: { change: _vm.onImageChange }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "custom-file-label",
+                                attrs: { for: "cover-image-upload" }
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.project.image
+                                      ? _vm.project.image.name
+                                      : "Cover Image"
+                                  )
+                                )
+                              ]
                             )
                           ])
                         ])

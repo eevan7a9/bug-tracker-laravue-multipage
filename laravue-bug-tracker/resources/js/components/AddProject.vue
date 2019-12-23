@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <div>
     <b-button
       :class="visible ? null : 'collapsed'"
       :aria-expanded="visible ? 'true' : 'false'"
@@ -28,7 +28,7 @@
     </b-button>
     <b-collapse id="collapse-4" v-model="visible" class="mt-2">
       <b-card>
-        <form @submit.prevent="publish">
+        <form @submit.prevent="publish" enctype="multipart/form-data">
           <div class="row d-flex justify-content-center">
             <div class="col-md-8">
               <div class="form-group">
@@ -36,7 +36,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  v-model="project.name"
+                  v-model.trim="project.name"
                   placeholder="Name Generator...justify-content-center"
                 />
                 <small id="helpId" class="form-text text-muted">Name of the Project</small>
@@ -50,7 +50,7 @@
                       class="form-control"
                       name="version"
                       id="version"
-                      v-model="project.version"
+                      v-model.trim="project.version"
                       placeholder="1.0.0"
                     />
                     <small class="form-text text-muted">Version of the Project</small>
@@ -108,6 +108,26 @@
                   </div>
                 </div>
               </div>
+              <div class="col-md-6 my-3">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="image-upload">Upload</span>
+                  </div>
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      class="custom-file-input"
+                      @change="onImageChange"
+                      id="cover-image-upload"
+                      aria-describedby="image-upload"
+                    />
+                    <label
+                      class="custom-file-label"
+                      for="cover-image-upload"
+                    >{{ project.image ? project.image.name : "Cover Image" }}</label>
+                  </div>
+                </div>
+              </div>
               <div class="text-right">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
@@ -116,7 +136,7 @@
         </form>
       </b-card>
     </b-collapse>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -124,30 +144,48 @@ export default {
   data() {
     return {
       visible: false,
-      project: {}
+      project: {
+        image: ""
+      }
     };
   },
   methods: {
+    onImageChange(e) {
+      // we get the image
+      //   console.log(e.target.files[0]);
+      this.project.image = e.target.files[0];
+    },
     async publish() {
+      // we append our data
+      let formData = new FormData();
+
+      formData.append("name", this.project.name);
+      formData.append("version", this.project.version);
+      formData.append("environment", this.project.environment);
+      formData.append("os", this.project.os);
+      formData.append("description", this.project.description);
+      formData.append("started", this.project.started);
+      formData.append("released", this.project.released);
+      if (this.project.image) {
+        formData.append("image", this.project.image);
+      }
+
       try {
-        const config = {
-          method: "post",
-          url: "api_web_session/v1/projects",
-          params: {
-            name: this.project.name,
-            version: this.project.version,
-            environment: this.project.environment,
-            os: this.project.os,
-            description: this.project.description,
-            started: this.project.started,
-            released: this.project.released
+        const result = await axios.post(
+          "api_web_session/v1/projects",
+          formData,
+          {
+            headers: {
+              Accept: "application/json",
+              "content-type": "multipart/form-data"
+            }
           }
-        };
-        const result = await axios(config);
-        console.log(result);
+        );
+        alert(`${result.statusText}, A project is successfuly added.`);
+        // console.log(result);
       } catch (error) {
-        // alert(error);
-        console.log(error.response);
+        alert(error);
+        // console.log(error.response);
       }
     }
   }
