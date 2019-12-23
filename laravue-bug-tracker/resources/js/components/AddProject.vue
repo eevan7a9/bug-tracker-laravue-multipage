@@ -140,6 +140,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -150,43 +151,18 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["addProject"]),
     onImageChange(e) {
       // we get the image
       //   console.log(e.target.files[0]);
       this.project.image = e.target.files[0];
     },
     async publish() {
-      // we append our data
-      let formData = new FormData();
-
-      formData.append("name", this.project.name);
-      formData.append("version", this.project.version);
-      formData.append("environment", this.project.environment);
-      formData.append("os", this.project.os);
-      formData.append("description", this.project.description);
-      formData.append("started", this.project.started);
-      formData.append("released", this.project.released);
-      if (this.project.image) {
-        formData.append("image", this.project.image);
-      }
-
-      try {
-        const result = await axios.post(
-          "api_web_session/v1/projects",
-          formData,
-          {
-            headers: {
-              Accept: "application/json",
-              "content-type": "multipart/form-data"
-            }
-          }
-        );
-        alert(`${result.statusText}, A project is successfuly added.`);
-        // console.log(result);
-      } catch (error) {
-        alert(error);
-        // console.log(error.response);
-      }
+      this.addProject(this.project).then(() => {
+        this.project = {};
+        this.project.image = "";
+        this.visible = false;
+      });
     }
   }
 };

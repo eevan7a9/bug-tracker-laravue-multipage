@@ -84893,11 +84893,74 @@ var actions = {
     }
 
     return getProjects;
+  }(),
+  addProject: function () {
+    var _addProject = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2, project) {
+      var commit, formData, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              // we append our data
+              formData = new FormData();
+              formData.append("name", project.name);
+              formData.append("version", project.version);
+              formData.append("environment", project.environment);
+              formData.append("os", project.os);
+              formData.append("description", project.description);
+              formData.append("started", project.started);
+              formData.append("released", project.released);
+
+              if (project.image) {
+                formData.append("image", project.image);
+              }
+
+              _context2.prev = 10;
+              _context2.next = 13;
+              return axios.post("api_web_session/v1/projects", formData, {
+                headers: {
+                  Accept: "application/json",
+                  "content-type": "multipart/form-data"
+                }
+              });
+
+            case 13:
+              result = _context2.sent;
+              commit("insertProject", result.data);
+              alert("".concat(result.statusText, ", A project is successfuly added.")); // console.log(result);
+
+              _context2.next = 21;
+              break;
+
+            case 18:
+              _context2.prev = 18;
+              _context2.t0 = _context2["catch"](10);
+              alert(_context2.t0); // console.log(error.response);
+
+            case 21:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[10, 18]]);
+    }));
+
+    function addProject(_x2, _x3) {
+      return _addProject.apply(this, arguments);
+    }
+
+    return addProject;
   }()
 };
 var mutations = {
   setProjects: function setProjects(state, projects) {
     return state.projects = projects;
+  },
+  insertProject: function insertProject(state, project) {
+    return state.projects.unshift(project);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
