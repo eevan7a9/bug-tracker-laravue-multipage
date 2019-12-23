@@ -7,7 +7,7 @@
       @click="visible = !visible"
       variant="success"
     >
-      Toggle Collapse
+      New Project
       <span>
         <svg
           xmlns="http://www.w3.org/2000/svg"

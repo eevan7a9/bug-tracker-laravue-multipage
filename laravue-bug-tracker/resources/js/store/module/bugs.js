@@ -8,7 +8,6 @@ const getters = {
 const actions = {
     getBugs: async ({ commit }) => {
         const result = await axios.get("api_web_session/v1/bugs");
-        console.log(result)
         commit("setBugs", result.data);
     }
 };

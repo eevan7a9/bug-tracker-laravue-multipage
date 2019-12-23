@@ -1,6 +1,12 @@
 <template>
   <div class="w-100">
-    <b-button v-b-toggle.collapse-1 variant="success">
+    <b-button
+      :class="visible ? null : 'collapsed'"
+      :aria-expanded="visible ? 'true' : 'false'"
+      aria-controls="collapse-1"
+      @click="visible = !visible"
+      variant="success"
+    >
       New Bug
       <span>
         <svg
@@ -20,7 +26,7 @@
         </svg>
       </span>
     </b-button>
-    <b-collapse id="collapse-1" class="mt-2">
+    <b-collapse id="collapse-1" v-model="visible" class="mt-2">
       <form @submit.prevent="submit" enctype="multipart/form-data">
         <b-card>
           <div class="row">
@@ -250,6 +256,7 @@
 export default {
   data() {
     return {
+      visible: false,
       projects: [],
       bug: {
         image: ""

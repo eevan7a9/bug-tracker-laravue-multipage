@@ -439,7 +439,7 @@ var render = function() {
           }
         },
         [
-          _vm._v("\n    Toggle Collapse\n    "),
+          _vm._v("\n    New Project\n    "),
           _c("span", [
             _c(
               "svg",
