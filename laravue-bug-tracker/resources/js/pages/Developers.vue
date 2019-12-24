@@ -2,16 +2,18 @@
   <div>
     <AddDeveloper />
     <hr />
-    <h1>Table</h1>
+    <TableDataDevelopers />
   </div>
 </template>
 
 <script>
 import AddDeveloper from "../components/AddDeveloper";
+import TableDataDevelopers from "../components/TableDataDevelopers";
 export default {
   name: "projects",
   components: {
-    AddDeveloper
+    AddDeveloper,
+    TableDataDevelopers
   }
 };
 </script>

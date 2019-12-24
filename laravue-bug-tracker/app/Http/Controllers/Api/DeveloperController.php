@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 
 class DeveloperController extends Controller
 {
+    public function index()
+    {
+        $role_name = "developer";
+        $developers = User::whereHas('roles', function ($q) use ($role_name) {
+            $q->where('name', $role_name);
+        })->get();
+
+        return response()->json($developers, 200);
+    }
+
     public function store(Request $request)
     {
         $user = User::where('email', $request->email)->first();
@@ -18,7 +28,7 @@ class DeveloperController extends Controller
         $role = Role::find(2); // get role for developer
         $user->roles()->sync($role); // attach user the role of developer
         $user->roles;
-        return response()->json("Success, " . $user->email . " is now assigned as Developer.", 201);
+        return response()->json($user, 201);
         // return response()->json($user);
     }
 }

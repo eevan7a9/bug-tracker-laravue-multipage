@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
     Route::get('bugs', 'Api\BugController@index')->name('bugs.all');
     Route::get('projects', 'Api\ProjectController@index')->name('projects.all');
+    Route::get('developers', 'Api\DeveloperController@index')->name('developers.all');
 
     Route::group(['middleware' => ['auth:web']], function () {
         Route::post('bugs', 'Api\BugController@store')->name('bugs.store');

@@ -84662,13 +84662,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     path: '/projects',
     name: 'projects',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../pages/Projects.vue */ "./resources/js/pages/Projects.vue"));
+      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../pages/Projects.vue */ "./resources/js/pages/Projects.vue"));
     }
   }, {
     path: '/developers',
     name: 'developers',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../pages/Developers.vue */ "./resources/js/pages/Developers.vue"));
+      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../pages/Developers.vue */ "./resources/js/pages/Developers.vue"));
     }
   }]
 }));
@@ -84871,10 +84871,10 @@ var getters = {
   }
 };
 var actions = {
-  addDeveloper: function () {
-    var _addDeveloper = _asyncToGenerator(
+  getDevelopers: function () {
+    var _getDevelopers = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref, email) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
       var commit, result;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -84883,31 +84883,71 @@ var actions = {
               commit = _ref.commit;
               _context.prev = 1;
               _context.next = 4;
+              return axios.get("api_web_session/v1/developers");
+
+            case 4:
+              result = _context.sent;
+              // console.log(result);
+              commit("setDevelopers", result.data);
+              _context.next = 11;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](1);
+              alert(_context.t0); // console.log(error.response)
+
+            case 11:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[1, 8]]);
+    }));
+
+    function getDevelopers(_x) {
+      return _getDevelopers.apply(this, arguments);
+    }
+
+    return getDevelopers;
+  }(),
+  addDeveloper: function () {
+    var _addDeveloper = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2, email) {
+      var commit, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context2.prev = 1;
+              _context2.next = 4;
               return axios.post("api_web_session/v1/developer", {
                 email: email
               });
 
             case 4:
-              result = _context.sent;
-              commit("insertDeveloper", email);
-              alert(result.data);
-              _context.next = 12;
+              result = _context2.sent;
+              commit("insertDeveloper", result.data);
+              alert("Success, Developer ".concat(result.data.email, " is now added"));
+              _context2.next = 12;
               break;
 
             case 9:
-              _context.prev = 9;
-              _context.t0 = _context["catch"](1);
-              alert(_context.t0.response.data); // console.log(error.response);
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](1);
+              alert(_context2.t0.response.data); // console.log(error.response);
 
             case 12:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee, null, [[1, 9]]);
+      }, _callee2, null, [[1, 9]]);
     }));
 
-    function addDeveloper(_x, _x2) {
+    function addDeveloper(_x2, _x3) {
       return _addDeveloper.apply(this, arguments);
     }
 
@@ -84915,6 +84955,9 @@ var actions = {
   }()
 };
 var mutations = {
+  setDevelopers: function setDevelopers(state, developers) {
+    return state.developers = developers;
+  },
   insertDeveloper: function insertDeveloper(state, developer) {
     return state.developers.unshift(developer);
   }
