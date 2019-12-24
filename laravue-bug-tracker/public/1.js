@@ -165,6 +165,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -892,10 +908,44 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-primary",
+                            staticClass: "btn btn-primary btn-lg",
                             attrs: { type: "submit" }
                           },
-                          [_vm._v("Submit")]
+                          [
+                            _vm._v(
+                              "\n                Submit\n                "
+                            ),
+                            _c(
+                              "svg",
+                              {
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  width: "24",
+                                  height: "24",
+                                  viewBox: "0 0 24 24",
+                                  fill: "none",
+                                  stroke: "currentColor",
+                                  "stroke-width": "2",
+                                  "stroke-linecap": "round",
+                                  "stroke-linejoin": "round"
+                                }
+                              },
+                              [
+                                _c("line", {
+                                  attrs: {
+                                    x1: "22",
+                                    y1: "2",
+                                    x2: "11",
+                                    y2: "13"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("polygon", {
+                                  attrs: { points: "22 2 15 22 11 13 2 9 22 2" }
+                                })
+                              ]
+                            )
+                          ]
                         )
                       ])
                     ])

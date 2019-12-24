@@ -84664,6 +84664,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     component: function component() {
       return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../pages/Projects.vue */ "./resources/js/pages/Projects.vue"));
     }
+  }, {
+    path: '/developers',
+    name: 'developers',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../pages/Developers.vue */ "./resources/js/pages/Developers.vue"));
+    }
   }]
 }));
 
@@ -84683,6 +84689,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _module_projects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./module/projects */ "./resources/js/store/module/projects.js");
 /* harmony import */ var _module_bugs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/bugs */ "./resources/js/store/module/bugs.js");
+/* harmony import */ var _module_developers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./module/developers */ "./resources/js/store/module/developers.js");
+
 
 
 
@@ -84692,7 +84700,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     projects: _module_projects__WEBPACK_IMPORTED_MODULE_2__["default"],
-    bugs: _module_bugs__WEBPACK_IMPORTED_MODULE_3__["default"]
+    bugs: _module_bugs__WEBPACK_IMPORTED_MODULE_3__["default"],
+    developers: _module_developers__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 }));
 
@@ -84825,6 +84834,89 @@ var mutations = {
   },
   insertBug: function insertBug(state, bug) {
     return state.bugs.unshift(bug);
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/module/developers.js":
+/*!*************************************************!*\
+  !*** ./resources/js/store/module/developers.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var state = {
+  developers: []
+};
+var getters = {
+  developers: function developers(state) {
+    return state.developers;
+  }
+};
+var actions = {
+  addDeveloper: function () {
+    var _addDeveloper = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref, email) {
+      var commit, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              _context.prev = 1;
+              _context.next = 4;
+              return axios.post("api_web_session/v1/developer", {
+                email: email
+              });
+
+            case 4:
+              result = _context.sent;
+              commit("insertDeveloper", email);
+              alert(result.data);
+              _context.next = 12;
+              break;
+
+            case 9:
+              _context.prev = 9;
+              _context.t0 = _context["catch"](1);
+              alert(_context.t0.response.data); // console.log(error.response);
+
+            case 12:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[1, 9]]);
+    }));
+
+    function addDeveloper(_x, _x2) {
+      return _addDeveloper.apply(this, arguments);
+    }
+
+    return addDeveloper;
+  }()
+};
+var mutations = {
+  insertDeveloper: function insertDeveloper(state, developer) {
+    return state.developers.unshift(developer);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

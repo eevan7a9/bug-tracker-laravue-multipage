@@ -30,18 +30,21 @@
       <b-card>
         <div class="row justify-content-center">
           <div class="col-sm-8">
-            <div class="form-group">
-              <label for="developer">User's E-mail address</label>
-              <input
-                type="text"
-                class="form-control"
-                name="developer"
-                id="developer"
-                placeholder="people@email.com"
-              />
-              <small class="form-text text-muted">To be assign as Developer</small>
-            </div>
-            <button class="btn btn-primary float-right">Add</button>
+            <form @submit.prevent="submit">
+              <div class="form-group">
+                <label for="developer">User's E-mail address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="developer"
+                  v-model="email"
+                  placeholder="people@email.com"
+                  required
+                />
+                <small class="form-text text-muted">To be assign as Developer</small>
+              </div>
+              <button class="btn btn-primary float-right" type="submit">Add</button>
+            </form>
           </div>
         </div>
       </b-card>
@@ -50,14 +53,23 @@
 </template>
 
 <script>
-// import { mapActions } from "vuex";
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      visible: false
+      visible: false,
+      email: ""
     };
   },
-  methods: {}
+  methods: {
+    ...mapActions(["addDeveloper"]),
+    submit() {
+      this.addDeveloper(this.email).then(() => {
+        this.email = "";
+        this.visible = false;
+      });
+    }
+  }
 };
 </script>
 
