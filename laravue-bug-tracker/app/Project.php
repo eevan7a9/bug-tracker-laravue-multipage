@@ -15,4 +15,9 @@ class Project extends Model
         'development_start',
         'release_date',
     ];
+
+    public function bugs()
+    {
+        return $this->hasMany(Bug::class);
+    }
 }

@@ -12,7 +12,7 @@ class BugController extends Controller
 {
     public function index()
     {
-        $bugs = Bug::orderBy('created_at', 'desc')->get();
+        $bugs = Bug::with('project')->orderBy('created_at', 'desc')->get();
         return response()->json($bugs, 200);
     }
     public function store(Request $request)
@@ -50,7 +50,7 @@ class BugController extends Controller
             $request->image->move(public_path('images'), $bug->image);
         }
         $bug->save();
-
+        $bug->project; // we want to return the bug with the project where the bug belongsTo
         return response()->json($bug, 201);
     }
 }
