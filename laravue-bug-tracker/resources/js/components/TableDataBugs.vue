@@ -10,7 +10,7 @@
             <th scope="col">Browser</th>
             <th scope="col">OS</th>
             <th scope="col">Severity</th>
-            <th scope="col">Priority</th>
+            <th scope="col">Assigned</th>
             <th scope="col">Created at</th>
           </tr>
         </thead>
@@ -22,7 +22,7 @@
             <td>{{ bug.browser }}</td>
             <td>{{ bug.os }}</td>
             <td>{{ bug.severity }}</td>
-            <td>{{ bug.priority }}</td>
+            <td>{{ bug.assigned_to.email }}</td>
             <td>{{ bug.created_at }}</td>
           </tr>
         </tbody>

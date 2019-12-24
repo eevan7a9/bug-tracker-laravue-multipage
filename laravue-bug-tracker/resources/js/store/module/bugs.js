@@ -7,8 +7,14 @@ const getters = {
 };
 const actions = {
     getBugs: async ({ commit }) => {
-        const result = await axios.get("api_web_session/v1/bugs");
-        commit("setBugs", result.data);
+        try {
+            const result = await axios.get("api_web_session/v1/bugs");
+            commit("setBugs", result.data);
+            // console.log(result);
+        } catch (error) {
+            alert(error);
+            // console.log(error.response);
+        }
     },
     newBug: async ({ commit }, bug) => {
         // we append our data
