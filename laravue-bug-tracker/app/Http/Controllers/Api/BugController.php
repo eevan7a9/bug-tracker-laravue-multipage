@@ -12,7 +12,7 @@ class BugController extends Controller
 {
     public function index()
     {
-        $bugs = Bug::with('project')->orderBy('created_at', 'desc')->get();
+        $bugs = Bug::with('project')->with('assignedTo')->orderBy('created_at', 'desc')->get();
         return response()->json($bugs, 200);
     }
     public function store(Request $request)

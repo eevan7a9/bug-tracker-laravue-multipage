@@ -12,7 +12,7 @@ class DeveloperController extends Controller
     public function index()
     {
         $role_name = "developer";
-        $developers = User::whereHas('roles', function ($q) use ($role_name) {
+        $developers = User::with('bugsAssigned')->whereHas('roles', function ($q) use ($role_name) {
             $q->where('name', $role_name);
         })->get();
 
