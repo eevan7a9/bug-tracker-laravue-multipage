@@ -84793,23 +84793,23 @@ var actions = {
             case 14:
               result = _context2.sent;
               commit("insertBug", result.data);
-              alert("".concat(result.statusText, ",a Bug is successfuly added.")); // console.log(result);
-
-              _context2.next = 22;
+              alert("".concat(result.statusText, ",a Bug is successfuly added."));
+              console.log(result);
+              _context2.next = 23;
               break;
 
-            case 19:
-              _context2.prev = 19;
+            case 20:
+              _context2.prev = 20;
               _context2.t0 = _context2["catch"](11);
               // console.log(error.response);
               alert(_context2.t0);
 
-            case 22:
+            case 23:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[11, 19]]);
+      }, _callee2, null, [[11, 20]]);
     }));
 
     function newBug(_x2, _x3) {

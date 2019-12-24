@@ -8,7 +8,7 @@
             <th scope="col">Name</th>
             <th scope="col">Project</th>
             <th scope="col">Browser</th>
-            <th scope="col">Operasting System</th>
+            <th scope="col">OS</th>
             <th scope="col">Severity</th>
             <th scope="col">Priority</th>
             <th scope="col">Created at</th>
@@ -18,7 +18,7 @@
           <tr v-for="(bug, index) in bugs" :key="index">
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ bug.title }}</td>
-            <td>{{ bug.project_id }}</td>
+            <td>{{ bug.project.name }}</td>
             <td>{{ bug.browser }}</td>
             <td>{{ bug.os }}</td>
             <td>{{ bug.severity }}</td>
