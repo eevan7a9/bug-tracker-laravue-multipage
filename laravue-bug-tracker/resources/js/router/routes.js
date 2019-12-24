@@ -15,6 +15,11 @@ export default new VueRouter({
             name: 'projects',
             component: () => import("../pages/Projects.vue")
         },
+        {
+            path: '/developers',
+            name: 'developers',
+            component: () => import("../pages/Developers.vue")
+        },
 
     ]
 });
