@@ -24,7 +24,7 @@ class CreateBugsTable extends Migration
             $table->string('bug_type');
             $table->string('severity')->nullable();
             $table->string('priority')->nullable();
-            $table->string('assigned_to')->nullable();
+            $table->unsignedBigInteger('assigned_to')->nullable();
             $table->string('image_src')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
@@ -37,6 +37,11 @@ class CreateBugsTable extends Migration
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->foreign('assigned_to')->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
         });
     }
 

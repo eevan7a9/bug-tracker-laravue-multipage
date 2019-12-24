@@ -40,4 +40,18 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class)->withTimestamps();
     }
+    /**
+     * the Bugs this user have reported
+     */
+    public function bugsAdded()
+    {
+        return $this->hasMany(Bug::class, 'user_id', 'id');
+    }
+    /**
+     * the Bugs this user have assigned to
+     */
+    public function bugsAssigned()
+    {
+        return $this->hasMany(Bug::class, 'assigned_to', 'id');
+    }
 }
