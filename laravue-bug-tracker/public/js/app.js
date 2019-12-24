@@ -84744,19 +84744,28 @@ var actions = {
           switch (_context.prev = _context.next) {
             case 0:
               commit = _ref.commit;
-              _context.next = 3;
+              _context.prev = 1;
+              _context.next = 4;
               return axios.get("api_web_session/v1/bugs");
 
-            case 3:
+            case 4:
               result = _context.sent;
-              commit("setBugs", result.data);
+              commit("setBugs", result.data); // console.log(result);
 
-            case 5:
+              _context.next = 11;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](1);
+              alert(_context.t0); // console.log(error.response);
+
+            case 11:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, null, [[1, 8]]);
     }));
 
     function getBugs(_x) {

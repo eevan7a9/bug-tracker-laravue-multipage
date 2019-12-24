@@ -7,6 +7,7 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Bugs Assigned</th>
             <th scope="col">Joined</th>
           </tr>
         </thead>
@@ -15,6 +16,7 @@
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ developer.name }}</td>
             <td>{{ developer.email }}</td>
+            <td>{{ developer.bugs_assigned.length }}</td>
             <td>{{ developer.created_at }}</td>
           </tr>
         </tbody>

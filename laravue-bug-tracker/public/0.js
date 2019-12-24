@@ -1316,7 +1316,7 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(bug.severity))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(bug.priority))]),
+              _c("td", [_vm._v(_vm._s(bug.assigned_to.email))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(bug.created_at))])
             ])
@@ -1349,7 +1349,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Severity")]),
           _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Priority")]),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Assigned")]),
           _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Created at")])
         ])

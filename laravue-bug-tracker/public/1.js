@@ -132,6 +132,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -424,6 +426,8 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(developer.email))]),
               _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(developer.bugs_assigned.length))]),
+              _vm._v(" "),
               _c("td", [_vm._v(_vm._s(developer.created_at))])
             ])
           }),
@@ -448,6 +452,8 @@ var staticRenderFns = [
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
           _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
+          _vm._v(" "),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Bugs Assigned")]),
           _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Joined")])
         ])
