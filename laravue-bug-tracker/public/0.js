@@ -1316,7 +1316,11 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(bug.severity))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(bug.assigned_to.email))]),
+              _c("td", [
+                _vm._v(
+                  _vm._s(bug.assigned_to ? bug.assigned_to.email : "Unassigned")
+                )
+              ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(bug.created_at))])
             ])

@@ -22,7 +22,7 @@
             <td>{{ bug.browser }}</td>
             <td>{{ bug.os }}</td>
             <td>{{ bug.severity }}</td>
-            <td>{{ bug.assigned_to.email }}</td>
+            <td>{{ bug.assigned_to ? bug.assigned_to.email: "Unassigned" }}</td>
             <td>{{ bug.created_at }}</td>
           </tr>
         </tbody>
