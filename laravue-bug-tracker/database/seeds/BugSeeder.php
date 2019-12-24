@@ -29,7 +29,7 @@ class BugSeeder extends Seeder
         DB::table('bugs')->insert([
             "title" => "Not Responding checkout",
             "project_id" => "2",
-            "user_id" => "1",
+            "user_id" => "2",
             "description" => "when trying to cancel, After checking out the books the screen crashed",
             "browser" => "Opera",
             "os" => "Windows 8",
