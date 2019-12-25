@@ -84794,13 +84794,14 @@ var actions = {
               formData.append("bug_type", bug.type);
               formData.append("severity", bug.severity);
               formData.append("priority", bug.priority);
+              formData.append("developer", bug.developer);
 
               if (bug.image) {
                 formData.append("image", bug.image);
               }
 
-              _context2.prev = 11;
-              _context2.next = 14;
+              _context2.prev = 12;
+              _context2.next = 15;
               return axios.post("api_web_session/v1/bugs", formData, {
                 headers: {
                   Accept: "application/json",
@@ -84808,26 +84809,26 @@ var actions = {
                 }
               });
 
-            case 14:
+            case 15:
               result = _context2.sent;
               commit("insertBug", result.data);
               alert("".concat(result.statusText, ",a Bug is successfuly added.")); // console.log(result);
 
-              _context2.next = 22;
+              _context2.next = 23;
               break;
 
-            case 19:
-              _context2.prev = 19;
-              _context2.t0 = _context2["catch"](11);
+            case 20:
+              _context2.prev = 20;
+              _context2.t0 = _context2["catch"](12);
               // console.log(error.response);
               alert(_context2.t0);
 
-            case 22:
+            case 23:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[11, 19]]);
+      }, _callee2, null, [[12, 20]]);
     }));
 
     function newBug(_x2, _x3) {

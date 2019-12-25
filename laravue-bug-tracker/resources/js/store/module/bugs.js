@@ -28,6 +28,7 @@ const actions = {
         formData.append("bug_type", bug.type);
         formData.append("severity", bug.severity);
         formData.append("priority", bug.priority);
+        formData.append("developer", bug.developer);
         if (bug.image) {
             formData.append("image", bug.image);
         }

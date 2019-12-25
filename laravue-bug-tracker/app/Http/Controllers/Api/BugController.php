@@ -26,6 +26,7 @@ class BugController extends Controller
             "bug_type" => "required",
             "severity" => "string",
             "priority" => "string",
+            "developer" => "numeric",
         ]);
 
         $bug = new Bug();
@@ -36,8 +37,10 @@ class BugController extends Controller
         $bug->browser = $validated['browser'];
         $bug->os = $validated['os'];
         $bug->bug_type = $validated['bug_type'];
-        $bug->severity = $request->severity ? $validated['severity'] : null;
-        $bug->priority = $request->priority ? $validated['priority'] : null;
+        $bug->severity = $validated['severity'] === "undefined" ? "undefined" : $validated['severity'];
+        $bug->priority = $validated['priority'] === "undefined" ? "undefined" : $validated['priority'];
+        $bug->assigned_to = $validated['developer'] ? $validated["developer"] : null;
+
         // we check if there is an image file
         if ($request->image) {
 
@@ -50,7 +53,9 @@ class BugController extends Controller
             $request->image->move(public_path('images'), $bug->image);
         }
         $bug->save();
-        $bug->project; // we want to return the bug with the project where the bug belongsTo
+        $bug->project; // return the bug with the project the bug belongsTo
+        $bug->assignedTo; // return the bug with the developer the assigned to the bug
+
         return response()->json($bug, 201);
     }
 }

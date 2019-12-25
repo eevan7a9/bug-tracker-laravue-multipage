@@ -279,18 +279,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       visible: false,
       bug: {
-        image: ""
+        developer: 0,
+        image: null
       }
     };
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["projects"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["newBug", "getProjects"]), {
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["projects", "developers"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["newBug", "getProjects", "getDevelopers"]), {
     onImageChange: function onImageChange(e) {
       //   console.log(e.target.files[0]);
       this.bug.image = e.target.files[0];
@@ -302,13 +313,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.newBug(this.bug).then(function () {
         //   clear and close form
         _this.bug = {};
-        _this.bug.image = "";
+        _this.bug.image = null;
+        _this.bug.developer = 0;
+
+        _this.$refs["imageUpload"].reset(); // this.$refs.imageUpload.value = null; // we clear the value of upload image
+
+
         _this.visible = false;
       });
     }
   }),
   created: function created() {
-    this.getProjects();
+    var _this2 = this;
+
+    this.getProjects().then(function () {
+      _this2.getDevelopers();
+    });
   }
 });
 
@@ -1147,74 +1167,55 @@ var render = function() {
                                   }
                                 }
                               },
-                              [
-                                _c("option", { attrs: { value: "1x" } }, [
-                                  _vm._v("Naruto")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "2x" } }, [
-                                  _vm._v("Sakura")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "3x" } }, [
-                                  _vm._v("Sasuke")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "4x" } }, [
-                                  _vm._v("Luffy")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "5x" } }, [
-                                  _vm._v("Nami")
-                                ])
-                              ]
+                              _vm._l(_vm.developers, function(
+                                developer,
+                                index
+                              ) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: index,
+                                    domProps: { value: developer.id }
+                                  },
+                                  [_vm._v(_vm._s(developer.email))]
+                                )
+                              }),
+                              0
                             )
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6 mt-5" }, [
-                          _c("div", { staticClass: "input-group" }, [
-                            _c("div", { staticClass: "input-group-prepend" }, [
-                              _c(
-                                "span",
-                                {
-                                  staticClass: "input-group-text",
-                                  attrs: { id: "inputGroupFileAddon01" }
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6 mt-5" },
+                          [
+                            _c("b-form-file", {
+                              ref: "imageUpload",
+                              attrs: {
+                                placeholder:
+                                  "Choose a Image or drop it here...",
+                                "drop-placeholder": "Drop file here..."
+                              },
+                              model: {
+                                value: _vm.bug.image,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.bug, "image", $$v)
                                 },
-                                [_vm._v("Upload")]
-                              )
-                            ]),
+                                expression: "bug.image"
+                              }
+                            }),
                             _vm._v(" "),
-                            _c("div", { staticClass: "custom-file" }, [
-                              _c("input", {
-                                staticClass: "custom-file-input",
-                                attrs: {
-                                  type: "file",
-                                  id: "inputGroupFile01",
-                                  "aria-describedby": "inputGroupFileAddon01"
-                                },
-                                on: { change: _vm.onImageChange }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "custom-file-label",
-                                  attrs: { for: "inputGroupFile01" }
-                                },
-                                [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm.bug.image.name
-                                        ? _vm.bug.image.name
-                                        : "Choose Image"
-                                    )
+                            _c("div", { staticClass: "mt-3" }, [
+                              _vm._v(
+                                "Screen Shot: " +
+                                  _vm._s(
+                                    _vm.bug.image ? _vm.bug.image.name : ""
                                   )
-                                ]
                               )
                             ])
-                          ])
-                        ])
+                          ],
+                          1
+                        )
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "text-right my-2" }, [

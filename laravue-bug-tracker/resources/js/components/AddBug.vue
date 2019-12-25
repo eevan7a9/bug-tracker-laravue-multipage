@@ -205,16 +205,20 @@
                       name="assigned"
                       id="assigned"
                     >
-                      <option value="1x">Naruto</option>
-                      <option value="2x">Sakura</option>
+                      <option
+                        v-for="(developer, index) in developers"
+                        :key="index"
+                        :value="developer.id"
+                      >{{ developer.email }}</option>
+                      <!-- <option value="2x">Sakura</option>
                       <option value="3x">Sasuke</option>
                       <option value="4x">Luffy</option>
-                      <option value="5x">Nami</option>
+                      <option value="5x">Nami</option>-->
                     </select>
                   </div>
                 </div>
                 <div class="col-md-6 mt-5">
-                  <div class="input-group">
+                  <!-- <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                     </div>
@@ -222,16 +226,22 @@
                       <input
                         type="file"
                         class="custom-file-input"
-                        id="inputGroupFile01"
-                        aria-describedby="inputGroupFileAddon01"
                         @change="onImageChange"
+                        ref="imageUpload"
                       />
                       <label
                         class="custom-file-label"
-                        for="inputGroupFile01"
-                      >{{ bug.image.name ? bug.image.name : 'Choose Image' }}</label>
+                      >{{ bug.image ? bug.image.name : 'Choose Image' }}</label>
                     </div>
-                  </div>
+                  </div>-->
+                  <!-- Styled -->
+                  <b-form-file
+                    v-model="bug.image"
+                    ref="imageUpload"
+                    placeholder="Choose a Image or drop it here..."
+                    drop-placeholder="Drop file here..."
+                  ></b-form-file>
+                  <div class="mt-3">Screen Shot: {{ bug.image ? bug.image.name : '' }}</div>
                 </div>
               </div>
               <div class="text-right my-2">
@@ -268,13 +278,14 @@ export default {
     return {
       visible: false,
       bug: {
-        image: ""
+        developer: 0,
+        image: null
       }
     };
   },
-  computed: mapGetters(["projects"]),
+  computed: mapGetters(["projects", "developers"]),
   methods: {
-    ...mapActions(["newBug", "getProjects"]),
+    ...mapActions(["newBug", "getProjects", "getDevelopers"]),
     onImageChange(e) {
       //   console.log(e.target.files[0]);
       this.bug.image = e.target.files[0];
@@ -284,13 +295,18 @@ export default {
       this.newBug(this.bug).then(() => {
         //   clear and close form
         this.bug = {};
-        this.bug.image = "";
+        this.bug.image = null;
+        this.bug.developer = 0;
+        this.$refs["imageUpload"].reset();
+        // this.$refs.imageUpload.value = null; // we clear the value of upload image
         this.visible = false;
       });
     }
   },
   created() {
-    this.getProjects();
+    this.getProjects().then(() => {
+      this.getDevelopers();
+    });
   }
 };
 </script>
