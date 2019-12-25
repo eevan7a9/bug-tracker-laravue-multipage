@@ -84897,22 +84897,22 @@ var actions = {
 
             case 4:
               result = _context.sent;
-              // console.log(result);
+              console.log(result);
               commit("setDevelopers", result.data);
-              _context.next = 11;
+              _context.next = 12;
               break;
 
-            case 8:
-              _context.prev = 8;
+            case 9:
+              _context.prev = 9;
               _context.t0 = _context["catch"](1);
               alert(_context.t0); // console.log(error.response)
 
-            case 11:
+            case 12:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 8]]);
+      }, _callee, null, [[1, 9]]);
     }));
 
     function getDevelopers(_x) {

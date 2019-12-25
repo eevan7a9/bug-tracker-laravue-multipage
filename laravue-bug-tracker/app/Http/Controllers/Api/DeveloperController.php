@@ -21,7 +21,7 @@ class DeveloperController extends Controller
 
     public function store(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::with('bugsAssigned')->where('email', $request->email)->first();
         if (!$user) {
             return response()->json("Cannot find user.", 400);
         }
