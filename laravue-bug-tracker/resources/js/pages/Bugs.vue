@@ -1,21 +1,32 @@
 <template>
   <div>
-    <div class="row justify-content-start w-100 px-3">
-      <AddBug />
+    <div v-show="hideDetails">
+      <div class="row justify-content-start w-100 px-3">
+        <AddBug />
+      </div>
+      <hr />
+      <TableDataBugs @toggleDetails="hideDetails=false" />
     </div>
     <hr />
-    <TableDataBugs />
+    <DetailsBug @toggleDetails="hideDetails=true" v-show="!hideDetails" />
   </div>
 </template>
 
 <script>
 import AddBug from "../components/AddBug";
 import TableDataBugs from "../components/TableDataBugs";
+import DetailsBug from "../components/DetailsBug";
 export default {
   name: "bugs",
   components: {
     AddBug,
-    TableDataBugs
+    TableDataBugs,
+    DetailsBug
+  },
+  data() {
+    return {
+      hideDetails: true
+    };
   }
 };
 </script>

@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(bug, index) in bugs" :key="index">
+          <tr v-for="(bug, index) in bugs" :key="index" @click="$emit('toggleDetails')">
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ bug.title }}</td>
             <td>{{ bug.project.name }}</td>
