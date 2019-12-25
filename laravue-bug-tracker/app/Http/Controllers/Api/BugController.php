@@ -58,4 +58,10 @@ class BugController extends Controller
 
         return response()->json($bug, 201);
     }
+
+    public function show($id)
+    {
+        $bug = Bug::with('project')->with('assignedTo')->findOrFail($id);
+        return response()->json($bug, 200);
+    }
 }

@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(bug, index) in bugs" :key="index" @click="$emit('toggleDetails')">
+          <tr v-for="(bug, index) in bugs" :key="index" @click="showDetails(bug.id)">
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ bug.title }}</td>
             <td>{{ bug.project.name }}</td>
@@ -36,7 +36,12 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   computed: mapGetters(["bugs"]),
   methods: {
-    ...mapActions(["getBugs"])
+    ...mapActions(["getBugs", "getBugDetails"]),
+    showDetails(id) {
+      this.getBugDetails(id).then(() => {
+        this.$emit("toggleDetails");
+      });
+    }
   },
   created() {
     this.getBugs();
@@ -52,5 +57,8 @@ export default {
 #tableHead {
   top: 0 !important;
   position: sticky !important;
+}
+table tr {
+  cursor: pointer;
 }
 </style>

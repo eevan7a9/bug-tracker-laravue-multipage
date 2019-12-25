@@ -84726,11 +84726,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 // axios already imported at app.js
 var state = {
-  bugs: []
+  bugs: [],
+  bug_details: {
+    project: {},
+    assigned_to: {}
+  }
 };
 var getters = {
   bugs: function bugs(state) {
     return state.bugs;
+  },
+  bug_details: function bug_details(state) {
+    return state.bug_details;
   }
 };
 var actions = {
@@ -84836,7 +84843,52 @@ var actions = {
     }
 
     return newBug;
-  }()
+  }(),
+  getBugDetails: function () {
+    var _getBugDetails = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, id) {
+      var commit, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.prev = 1;
+              _context3.next = 4;
+              return axios.get("api_web_session/v1/bugs/".concat(id));
+
+            case 4:
+              result = _context3.sent;
+              // console.log(result);
+              commit("setBugDetails", result.data);
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+              alert(_context3.t0); // console.log(error.response);
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 8]]);
+    }));
+
+    function getBugDetails(_x4, _x5) {
+      return _getBugDetails.apply(this, arguments);
+    }
+
+    return getBugDetails;
+  }(),
+  clearBugDetails: function clearBugDetails(_ref4) {
+    var commit = _ref4.commit;
+    // console.log("remove...");
+    commit("removeBugDetails");
+  }
 };
 var mutations = {
   setBugs: function setBugs(state, bugs) {
@@ -84844,6 +84896,15 @@ var mutations = {
   },
   insertBug: function insertBug(state, bug) {
     return state.bugs.unshift(bug);
+  },
+  setBugDetails: function setBugDetails(state, bug_details) {
+    return state.bug_details = bug_details;
+  },
+  removeBugDetails: function removeBugDetails(state) {
+    return state.bug_details = {
+      project: {},
+      assigned_to: {}
+    };
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
