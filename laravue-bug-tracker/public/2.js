@@ -170,24 +170,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       visible: false,
       project: {
-        image: ""
+        image: null
       }
     };
   },
@@ -209,7 +198,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 this.addProject(this.project).then(function () {
                   _this.project = {};
-                  _this.project.image = "";
+                  _this.project.image = null;
+
+                  _this.$refs["imageUpload"].reset();
+
                   _this.visible = false;
                 });
 
@@ -860,49 +852,38 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6 my-3" }, [
-                        _c("div", { staticClass: "input-group" }, [
-                          _c("div", { staticClass: "input-group-prepend" }, [
-                            _c(
-                              "span",
-                              {
-                                staticClass: "input-group-text",
-                                attrs: { id: "image-upload" }
+                      _c(
+                        "div",
+                        { staticClass: "col-md-6 my-3" },
+                        [
+                          _c("b-form-file", {
+                            ref: "imageUpload",
+                            attrs: {
+                              placeholder: "Choose a Image or drop it here...",
+                              "drop-placeholder": "Drop file here..."
+                            },
+                            model: {
+                              value: _vm.project.image,
+                              callback: function($$v) {
+                                _vm.$set(_vm.project, "image", $$v)
                               },
-                              [_vm._v("Upload")]
-                            )
-                          ]),
+                              expression: "project.image"
+                            }
+                          }),
                           _vm._v(" "),
-                          _c("div", { staticClass: "custom-file" }, [
-                            _c("input", {
-                              staticClass: "custom-file-input",
-                              attrs: {
-                                type: "file",
-                                id: "cover-image-upload",
-                                "aria-describedby": "image-upload"
-                              },
-                              on: { change: _vm.onImageChange }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass: "custom-file-label",
-                                attrs: { for: "cover-image-upload" }
-                              },
-                              [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm.project.image
-                                      ? _vm.project.image.name
-                                      : "Cover Image"
-                                  )
+                          _c("div", { staticClass: "mt-3" }, [
+                            _vm._v(
+                              "Screen Shot: " +
+                                _vm._s(
+                                  _vm.project.image
+                                    ? _vm.project.image.name
+                                    : ""
                                 )
-                              ]
                             )
                           ])
-                        ])
-                      ]),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "text-right" }, [
                         _c(

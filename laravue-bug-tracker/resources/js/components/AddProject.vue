@@ -109,24 +109,13 @@
                 </div>
               </div>
               <div class="col-md-6 my-3">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="image-upload">Upload</span>
-                  </div>
-                  <div class="custom-file">
-                    <input
-                      type="file"
-                      class="custom-file-input"
-                      @change="onImageChange"
-                      id="cover-image-upload"
-                      aria-describedby="image-upload"
-                    />
-                    <label
-                      class="custom-file-label"
-                      for="cover-image-upload"
-                    >{{ project.image ? project.image.name : "Cover Image" }}</label>
-                  </div>
-                </div>
+                <b-form-file
+                  v-model="project.image"
+                  ref="imageUpload"
+                  placeholder="Choose a Image or drop it here..."
+                  drop-placeholder="Drop file here..."
+                ></b-form-file>
+                <div class="mt-3">Screen Shot: {{ project.image ? project.image.name : '' }}</div>
               </div>
               <div class="text-right">
                 <button type="submit" class="btn btn-primary btn-lg">
@@ -162,7 +151,7 @@ export default {
     return {
       visible: false,
       project: {
-        image: ""
+        image: null
       }
     };
   },
@@ -176,7 +165,8 @@ export default {
     async publish() {
       this.addProject(this.project).then(() => {
         this.project = {};
-        this.project.image = "";
+        this.project.image = null;
+        this.$refs["imageUpload"].reset();
         this.visible = false;
       });
     }

@@ -210,31 +210,10 @@
                         :key="index"
                         :value="developer.id"
                       >{{ developer.email }}</option>
-                      <!-- <option value="2x">Sakura</option>
-                      <option value="3x">Sasuke</option>
-                      <option value="4x">Luffy</option>
-                      <option value="5x">Nami</option>-->
                     </select>
                   </div>
                 </div>
                 <div class="col-md-6 mt-5">
-                  <!-- <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                    </div>
-                    <div class="custom-file">
-                      <input
-                        type="file"
-                        class="custom-file-input"
-                        @change="onImageChange"
-                        ref="imageUpload"
-                      />
-                      <label
-                        class="custom-file-label"
-                      >{{ bug.image ? bug.image.name : 'Choose Image' }}</label>
-                    </div>
-                  </div>-->
-                  <!-- Styled -->
                   <b-form-file
                     v-model="bug.image"
                     ref="imageUpload"
