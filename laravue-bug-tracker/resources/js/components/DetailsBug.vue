@@ -7,30 +7,32 @@
       <div class="card-body">
         <div class="row justify-content-center">
           <div class="col-md-10">
-            <b-button
-              :class="visible_screenshot ? null : 'collapsed'"
-              :aria-expanded="visible_screenshot ? 'true' : 'false'"
-              aria-controls="collapse-4"
-              variant="outline-primary"
-              @click="visible_screenshot = !visible_screenshot"
-            >
-              Show Screenshot
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+            <div class="text-center">
+              <b-button
+                :class="visible_screenshot ? null : 'collapsed'"
+                :aria-expanded="visible_screenshot ? 'true' : 'false'"
+                aria-controls="collapse-4"
+                variant="outline-primary"
+                @click="visible_screenshot = !visible_screenshot"
               >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-            </b-button>
+                Show Screenshot
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+              </b-button>
+            </div>
             <b-collapse id="collapse-4" v-model="visible_screenshot" class="mt-2">
               <b-card>
                 <div class="image-container text-center w-100">
@@ -38,7 +40,7 @@
                 </div>
               </b-card>
             </b-collapse>
-            <h4 class="card-title py-2 text-left">{{ bug_details.title }}</h4>
+            <h4 class="card-title py-2 text-left font-weight-bold">{{ bug_details.title }}</h4>
             <div class="d-flex justify-content-md-between align-content-center">
               <h5 class="py-2 font-weight-bold">
                 <small>Project Name :</small>
@@ -57,6 +59,7 @@
               <div class="col-md-4 text-center">
                 <b-card
                   bg-variant="light"
+                  border-variant="primary"
                   header-bg-variant="primary"
                   header-text-variant="white"
                   text-variant="dark"
@@ -73,6 +76,7 @@
               <div class="col-md-4 text-center">
                 <b-card
                   bg-variant="light"
+                  border-variant="primary"
                   header-bg-variant="primary"
                   header-text-variant="white"
                   text-variant="dark"
@@ -89,6 +93,7 @@
               <div class="col-md-4 text-center">
                 <b-card
                   bg-variant="light"
+                  border-variant="primary"
                   header-bg-variant="primary"
                   header-text-variant="white"
                   text-variant="dark"
@@ -111,6 +116,7 @@
               <div class="col-md-4 text-center">
                 <b-card
                   bg-variant="light"
+                  border-variant="primary"
                   header-bg-variant="primary"
                   header-text-variant="white"
                   text-variant="dark"
@@ -127,10 +133,11 @@
               <div class="col-md-4 text-center">
                 <b-card
                   bg-variant="light"
+                  border-variant="primary"
                   header-bg-variant="primary"
                   header-text-variant="white"
                   text-variant="dark"
-                  header="Os"
+                  header="OS"
                   class="text-center"
                 >
                   <b-card-text>
@@ -143,6 +150,7 @@
               <div class="col-md-4 text-center">
                 <b-card
                   bg-variant="light"
+                  border-variant="primary"
                   header-bg-variant="primary"
                   header-text-variant="white"
                   text-variant="dark"
@@ -160,7 +168,10 @@
           </div>
         </div>
       </div>
-      <div class="card-footer text-muted text-right">Footer</div>
+      <div class="card-footer d-flex justify-content-between align-items-center">
+        <div>Added By: {{ bug_details.added_by.email }}</div>
+        <div>options</div>
+      </div>
     </div>
   </div>
 </template>

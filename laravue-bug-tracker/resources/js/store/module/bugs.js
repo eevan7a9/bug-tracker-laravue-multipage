@@ -3,7 +3,8 @@ const state = {
     bugs: [],
     bug_details: {
         project: {},
-        assigned_to: {}
+        assigned_to: {},
+        added_by: {}
     }
 };
 const getters = {
@@ -78,7 +79,8 @@ const mutations = {
     removeBugDetails: state =>
         (state.bug_details = {
             project: {},
-            assigned_to: {}
+            assigned_to: {},
+            added_by: {}
         })
 };
 

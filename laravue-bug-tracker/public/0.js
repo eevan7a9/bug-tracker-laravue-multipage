@@ -496,6 +496,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1563,57 +1574,68 @@ var render = function() {
             { staticClass: "col-md-10" },
             [
               _c(
-                "b-button",
-                {
-                  class: _vm.visible_screenshot ? null : "collapsed",
-                  attrs: {
-                    "aria-expanded": _vm.visible_screenshot ? "true" : "false",
-                    "aria-controls": "collapse-4",
-                    variant: "outline-primary"
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.visible_screenshot = !_vm.visible_screenshot
-                    }
-                  }
-                },
+                "div",
+                { staticClass: "text-center" },
                 [
-                  _vm._v("\n            Show Screenshot\n            "),
                   _c(
-                    "svg",
+                    "b-button",
                     {
+                      class: _vm.visible_screenshot ? null : "collapsed",
                       attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        width: "24",
-                        height: "24",
-                        viewBox: "0 0 24 24",
-                        fill: "none",
-                        stroke: "currentColor",
-                        "stroke-width": "2",
-                        "stroke-linecap": "round",
-                        "stroke-linejoin": "round"
+                        "aria-expanded": _vm.visible_screenshot
+                          ? "true"
+                          : "false",
+                        "aria-controls": "collapse-4",
+                        variant: "outline-primary"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.visible_screenshot = !_vm.visible_screenshot
+                        }
                       }
                     },
                     [
-                      _c("rect", {
-                        attrs: {
-                          x: "3",
-                          y: "3",
-                          width: "18",
-                          height: "18",
-                          rx: "2",
-                          ry: "2"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("circle", {
-                        attrs: { cx: "8.5", cy: "8.5", r: "1.5" }
-                      }),
-                      _vm._v(" "),
-                      _c("polyline", { attrs: { points: "21 15 16 10 5 21" } })
+                      _vm._v("\n              Show Screenshot\n              "),
+                      _c(
+                        "svg",
+                        {
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            width: "24",
+                            height: "24",
+                            viewBox: "0 0 24 24",
+                            fill: "none",
+                            stroke: "currentColor",
+                            "stroke-width": "2",
+                            "stroke-linecap": "round",
+                            "stroke-linejoin": "round"
+                          }
+                        },
+                        [
+                          _c("rect", {
+                            attrs: {
+                              x: "3",
+                              y: "3",
+                              width: "18",
+                              height: "18",
+                              rx: "2",
+                              ry: "2"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("circle", {
+                            attrs: { cx: "8.5", cy: "8.5", r: "1.5" }
+                          }),
+                          _vm._v(" "),
+                          _c("polyline", {
+                            attrs: { points: "21 15 16 10 5 21" }
+                          })
+                        ]
+                      )
                     ]
                   )
-                ]
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
@@ -1648,9 +1670,11 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("h4", { staticClass: "card-title py-2 text-left" }, [
-                _vm._v(_vm._s(_vm.bug_details.title))
-              ]),
+              _c(
+                "h4",
+                { staticClass: "card-title py-2 text-left font-weight-bold" },
+                [_vm._v(_vm._s(_vm.bug_details.title))]
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -1695,6 +1719,7 @@ var render = function() {
                         staticClass: "text-center",
                         attrs: {
                           "bg-variant": "light",
+                          "border-variant": "primary",
                           "header-bg-variant": "primary",
                           "header-text-variant": "white",
                           "text-variant": "dark",
@@ -1726,6 +1751,7 @@ var render = function() {
                         staticClass: "text-center",
                         attrs: {
                           "bg-variant": "light",
+                          "border-variant": "primary",
                           "header-bg-variant": "primary",
                           "header-text-variant": "white",
                           "text-variant": "dark",
@@ -1757,6 +1783,7 @@ var render = function() {
                         staticClass: "text-center",
                         attrs: {
                           "bg-variant": "light",
+                          "border-variant": "primary",
                           "header-bg-variant": "primary",
                           "header-text-variant": "white",
                           "text-variant": "dark",
@@ -1794,6 +1821,7 @@ var render = function() {
                         staticClass: "text-center",
                         attrs: {
                           "bg-variant": "light",
+                          "border-variant": "primary",
                           "header-bg-variant": "primary",
                           "header-text-variant": "white",
                           "text-variant": "dark",
@@ -1825,10 +1853,11 @@ var render = function() {
                         staticClass: "text-center",
                         attrs: {
                           "bg-variant": "light",
+                          "border-variant": "primary",
                           "header-bg-variant": "primary",
                           "header-text-variant": "white",
                           "text-variant": "dark",
-                          header: "Os"
+                          header: "OS"
                         }
                       },
                       [
@@ -1856,6 +1885,7 @@ var render = function() {
                         staticClass: "text-center",
                         attrs: {
                           "bg-variant": "light",
+                          "border-variant": "primary",
                           "header-bg-variant": "primary",
                           "header-text-variant": "white",
                           "text-variant": "dark",
@@ -1883,9 +1913,20 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-footer text-muted text-right" }, [
-        _vm._v("Footer")
-      ])
+      _c(
+        "div",
+        {
+          staticClass:
+            "card-footer d-flex justify-content-between align-items-center"
+        },
+        [
+          _c("div", [
+            _vm._v("Added By: " + _vm._s(_vm.bug_details.added_by.email))
+          ]),
+          _vm._v(" "),
+          _c("div", [_vm._v("options")])
+        ]
+      )
     ])
   ])
 }

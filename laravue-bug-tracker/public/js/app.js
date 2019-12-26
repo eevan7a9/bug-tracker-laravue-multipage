@@ -84729,7 +84729,8 @@ var state = {
   bugs: [],
   bug_details: {
     project: {},
-    assigned_to: {}
+    assigned_to: {},
+    added_by: {}
   }
 };
 var getters = {
@@ -84860,22 +84861,22 @@ var actions = {
 
             case 4:
               result = _context3.sent;
-              // console.log(result);
+              console.log(result);
               commit("setBugDetails", result.data);
-              _context3.next = 11;
+              _context3.next = 12;
               break;
 
-            case 8:
-              _context3.prev = 8;
+            case 9:
+              _context3.prev = 9;
               _context3.t0 = _context3["catch"](1);
               alert(_context3.t0); // console.log(error.response);
 
-            case 11:
+            case 12:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 8]]);
+      }, _callee3, null, [[1, 9]]);
     }));
 
     function getBugDetails(_x4, _x5) {
@@ -84903,7 +84904,8 @@ var mutations = {
   removeBugDetails: function removeBugDetails(state) {
     return state.bug_details = {
       project: {},
-      assigned_to: {}
+      assigned_to: {},
+      added_by: {}
     };
   }
 };
