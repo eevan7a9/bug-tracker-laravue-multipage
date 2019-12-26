@@ -1,10 +1,13 @@
 // axios is already imported at app.js
 const state = {
     projects: [],
-    project_details: {}
+    project_details: {
+        bugs: []
+    }
 }
 const getters = {
-    projects: state => state.projects
+    projects: state => state.projects,
+    project_details: state => state.project_details
 }
 const actions = {
     getProjects: async ({ commit }) => {
@@ -48,10 +51,11 @@ const actions = {
     getProjectDetails: async ({ commit }, id) => {
         try {
             const result = await axios.get(`api_web_session/v1/projects/${id}`);
-            console.log(result);
-            commit("setProjectDetails", id);
+            // console.log(result);
+            commit("setProjectDetails", result.data);
         } catch (error) {
-
+            alert(error);
+            // console.log(error.response);
         }
     }
 }

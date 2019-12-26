@@ -233,6 +233,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -240,7 +241,111 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      visible_screenshot: false
+    };
+  },
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["project_details"]),
+  methods: {
+    hideDetails: function hideDetails() {
+      this.$emit("toggleDetails");
+    }
+  }
+});
 
 /***/ }),
 
@@ -353,6 +458,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AddProject__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/AddProject */ "./resources/js/components/AddProject.vue");
 /* harmony import */ var _components_TableDataProject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/TableDataProject */ "./resources/js/components/TableDataProject.vue");
 /* harmony import */ var _components_DetailsProject__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/DetailsProject */ "./resources/js/components/DetailsProject.vue");
+//
 //
 //
 //
@@ -1004,19 +1110,232 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.$emit("toggleDetails")
-          }
-        }
-      },
-      [_vm._v("back")]
-    ),
-    _vm._v(" "),
-    _c("h1", [_vm._v("Product Table")])
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-secondary",
+            on: { click: _vm.hideDetails }
+          },
+          [_vm._v("Back")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c(
+            "div",
+            { staticClass: "col-md-10" },
+            [
+              _c(
+                "div",
+                { staticClass: "text-center" },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      class: _vm.visible_screenshot ? null : "collapsed",
+                      attrs: {
+                        "aria-expanded": _vm.visible_screenshot
+                          ? "true"
+                          : "false",
+                        "aria-controls": "collapse-4",
+                        variant: "outline-primary"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.visible_screenshot = !_vm.visible_screenshot
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n              Show Screenshot\n              "),
+                      _c(
+                        "svg",
+                        {
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            width: "24",
+                            height: "24",
+                            viewBox: "0 0 24 24",
+                            fill: "none",
+                            stroke: "currentColor",
+                            "stroke-width": "2",
+                            "stroke-linecap": "round",
+                            "stroke-linejoin": "round"
+                          }
+                        },
+                        [
+                          _c("rect", {
+                            attrs: {
+                              x: "3",
+                              y: "3",
+                              width: "18",
+                              height: "18",
+                              rx: "2",
+                              ry: "2"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("circle", {
+                            attrs: { cx: "8.5", cy: "8.5", r: "1.5" }
+                          }),
+                          _vm._v(" "),
+                          _c("polyline", {
+                            attrs: { points: "21 15 16 10 5 21" }
+                          })
+                        ]
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  staticClass: "mt-2",
+                  attrs: { id: "collapse-4" },
+                  model: {
+                    value: _vm.visible_screenshot,
+                    callback: function($$v) {
+                      _vm.visible_screenshot = $$v
+                    },
+                    expression: "visible_screenshot"
+                  }
+                },
+                [
+                  _c("b-card", [
+                    _c(
+                      "div",
+                      { staticClass: "image-container text-center w-100" },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src: "https://via.placeholder.com/450",
+                            alt: ""
+                          }
+                        })
+                      ]
+                    )
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("h5", { staticClass: "font-weight-bold mt-5" }, [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.project_details.name) +
+                    "\n            "
+                ),
+                _c("small", [
+                  _vm._v("version : " + _vm._s(_vm.project_details.version))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _c("small", [_vm._v("Development Started:")]),
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.project_details.development_start) +
+                    " |\n            "
+                ),
+                _c("small", [_vm._v("Released at:")]),
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.project_details.release_date) +
+                    "\n          "
+                )
+              ]),
+              _vm._v(" "),
+              _c("label", { staticClass: "mt-3" }, [_vm._v("Description :")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card p-3 bg-light" }, [
+                _c("p", { staticClass: "card-text bg-light" }, [
+                  _vm._v(_vm._s(_vm.project_details.description))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row mt-3" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-md-6 text-center" },
+                  [
+                    _c(
+                      "b-card",
+                      {
+                        staticClass: "text-center",
+                        attrs: {
+                          "bg-variant": "light",
+                          "border-variant": "primary",
+                          "header-bg-variant": "primary",
+                          "header-text-variant": "white",
+                          "text-variant": "dark",
+                          header: "Environment"
+                        }
+                      },
+                      [
+                        _c("b-card-text", [
+                          _c(
+                            "span",
+                            { staticClass: "font-weight-bold text-capitalize" },
+                            [_vm._v(_vm._s(_vm.project_details.environment))]
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-md-6 text-center" },
+                  [
+                    _c(
+                      "b-card",
+                      {
+                        staticClass: "text-center",
+                        attrs: {
+                          "bg-variant": "light",
+                          "border-variant": "primary",
+                          "header-bg-variant": "primary",
+                          "header-text-variant": "white",
+                          "text-variant": "dark",
+                          header: "Operating System"
+                        }
+                      },
+                      [
+                        _c("b-card-text", [
+                          _c(
+                            "span",
+                            { staticClass: "font-weight-bold text-capitalize" },
+                            [_vm._v(_vm._s(_vm.project_details.os))]
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-footer text-left" }, [
+        _c("div", [
+          _vm._v("Added at: " + _vm._s(_vm.project_details.created_at))
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -1140,20 +1459,22 @@ var render = function() {
     [
       _c(
         "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.hideDetails,
+              expression: "hideDetails"
+            }
+          ]
+        },
         [
           _c("AddProject"),
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
           _c("TableDataProject", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.hideDetails,
-                expression: "hideDetails"
-              }
-            ],
             on: {
               toggleDetails: function($event) {
                 _vm.hideDetails = false
@@ -1163,6 +1484,8 @@ var render = function() {
         ],
         1
       ),
+      _vm._v(" "),
+      _c("hr"),
       _vm._v(" "),
       _c("DetailsProject", {
         directives: [

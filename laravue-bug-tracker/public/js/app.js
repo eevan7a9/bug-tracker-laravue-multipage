@@ -84861,22 +84861,22 @@ var actions = {
 
             case 4:
               result = _context3.sent;
-              console.log(result);
+              // console.log(result);
               commit("setBugDetails", result.data);
-              _context3.next = 12;
+              _context3.next = 11;
               break;
 
-            case 9:
-              _context3.prev = 9;
+            case 8:
+              _context3.prev = 8;
               _context3.t0 = _context3["catch"](1);
               alert(_context3.t0); // console.log(error.response);
 
-            case 12:
+            case 11:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 9]]);
+      }, _callee3, null, [[1, 8]]);
     }));
 
     function getBugDetails(_x4, _x5) {
@@ -85064,11 +85064,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 // axios is already imported at app.js
 var state = {
   projects: [],
-  project_details: {}
+  project_details: {
+    bugs: []
+  }
 };
 var getters = {
   projects: function projects(state) {
     return state.projects;
+  },
+  project_details: function project_details(state) {
+    return state.project_details;
   }
 };
 var actions = {
@@ -85179,21 +85184,22 @@ var actions = {
 
             case 4:
               result = _context3.sent;
-              console.log(result);
-              commit("setProjectDetails", id);
+              // console.log(result);
+              commit("setProjectDetails", result.data);
               _context3.next = 11;
               break;
 
-            case 9:
-              _context3.prev = 9;
+            case 8:
+              _context3.prev = 8;
               _context3.t0 = _context3["catch"](1);
+              alert(_context3.t0); // console.log(error.response);
 
             case 11:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 9]]);
+      }, _callee3, null, [[1, 8]]);
     }));
 
     function getProjectDetails(_x4, _x5) {

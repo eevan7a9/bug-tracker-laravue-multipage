@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div>
+    <div v-show="hideDetails">
       <AddProject />
       <hr />
-      <TableDataProject @toggleDetails="hideDetails=false" v-show="hideDetails" />
+      <TableDataProject @toggleDetails="hideDetails=false" />
     </div>
+    <hr />
     <DetailsProject @toggleDetails="hideDetails=true" v-show="!hideDetails" />
   </div>
 </template>
