@@ -507,6 +507,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -650,7 +653,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.image-container[data-v-bdd06f06] {\n  height: 400px;\n}\nimg[data-v-bdd06f06] {\n  max-width: 100%;\n  height: 100%;\n}\n", ""]);
+exports.push([module.i, "\nimg[data-v-bdd06f06] {\n  max-width: 100%;\n  height: 100%;\n}\n", ""]);
 
 // exports
 
@@ -1653,18 +1656,14 @@ var render = function() {
                 },
                 [
                   _c("b-card", [
-                    _c(
-                      "div",
-                      { staticClass: "image-container text-center w-100" },
-                      [
-                        _c("img", {
-                          attrs: {
-                            src: "https://via.placeholder.com/750",
-                            alt: ""
-                          }
-                        })
-                      ]
-                    )
+                    _c("div", { staticClass: "text-center w-100" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "https://via.placeholder.com/750",
+                          alt: ""
+                        }
+                      })
+                    ])
                   ])
                 ],
                 1
@@ -1672,9 +1671,19 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "h4",
-                { staticClass: "card-title py-2 text-left font-weight-bold" },
+                {
+                  staticClass: "card-title py-2 mt-5 text-left font-weight-bold"
+                },
                 [_vm._v(_vm._s(_vm.bug_details.title))]
               ),
+              _vm._v(" "),
+              _c("label", [_vm._v("Description :")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card p-3 bg-light mb-4" }, [
+                _c("p", { staticClass: "card-text bg-light" }, [
+                  _vm._v(_vm._s(_vm.bug_details.description))
+                ])
+              ]),
               _vm._v(" "),
               _c(
                 "div",
@@ -1683,16 +1692,23 @@ var render = function() {
                     "d-flex justify-content-md-between align-content-center"
                 },
                 [
-                  _c("h5", { staticClass: "py-2 font-weight-bold" }, [
-                    _c("small", [_vm._v("Project Name :")]),
-                    _vm._v(" "),
+                  _c("h5", { staticClass: "py-1 font-weight-bold" }, [
                     _c("span", { staticClass: "text-capitalize" }, [
-                      _vm._v(_vm._s(_vm.bug_details.project.name))
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.bug_details.project.name) +
+                          "\n                "
+                      ),
+                      _c("small", [
+                        _vm._v(
+                          "version : " + _vm._s(_vm.bug_details.project.version)
+                        )
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("h5", { staticClass: "py-2" }, [
-                    _c("small", [_vm._v("Issued at :")]),
+                  _c("h6", { staticClass: "py-1" }, [
+                    _c("span", [_vm._v("Issued at :")]),
                     _vm._v(
                       "\n              " +
                         _vm._s(_vm.bug_details.created_at) +
@@ -1701,12 +1717,6 @@ var render = function() {
                   ])
                 ]
               ),
-              _vm._v(" "),
-              _c("div", { staticClass: "card p-3 bg-light mt-3" }, [
-                _c("p", { staticClass: "card-text bg-light" }, [
-                  _vm._v(_vm._s(_vm.bug_details.description))
-                ])
-              ]),
               _vm._v(" "),
               _c("div", { staticClass: "row mt-3" }, [
                 _c(
@@ -1857,7 +1867,7 @@ var render = function() {
                           "header-bg-variant": "primary",
                           "header-text-variant": "white",
                           "text-variant": "dark",
-                          header: "OS"
+                          header: "Operating System"
                         }
                       },
                       [

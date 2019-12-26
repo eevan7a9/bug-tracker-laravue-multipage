@@ -35,26 +35,29 @@
             </div>
             <b-collapse id="collapse-4" v-model="visible_screenshot" class="mt-2">
               <b-card>
-                <div class="image-container text-center w-100">
+                <div class="text-center w-100">
                   <img src="https://via.placeholder.com/750" alt />
                 </div>
               </b-card>
             </b-collapse>
-            <h4 class="card-title py-2 text-left font-weight-bold">{{ bug_details.title }}</h4>
-            <div class="d-flex justify-content-md-between align-content-center">
-              <h5 class="py-2 font-weight-bold">
-                <small>Project Name :</small>
-                <span class="text-capitalize">{{ bug_details.project.name }}</span>
-              </h5>
-              <h5 class="py-2">
-                <small>Issued at :</small>
-                {{ bug_details.created_at }}
-              </h5>
-            </div>
-
-            <div class="card p-3 bg-light mt-3">
+            <h4 class="card-title py-2 mt-5 text-left font-weight-bold">{{ bug_details.title }}</h4>
+            <label>Description :</label>
+            <div class="card p-3 bg-light mb-4">
               <p class="card-text bg-light">{{ bug_details.description }}</p>
             </div>
+            <div class="d-flex justify-content-md-between align-content-center">
+              <h5 class="py-1 font-weight-bold">
+                <span class="text-capitalize">
+                  {{ bug_details.project.name }}
+                  <small>version : {{ bug_details.project.version }}</small>
+                </span>
+              </h5>
+              <h6 class="py-1">
+                <span>Issued at :</span>
+                {{ bug_details.created_at }}
+              </h6>
+            </div>
+
             <div class="row mt-3">
               <div class="col-md-4 text-center">
                 <b-card
@@ -137,7 +140,7 @@
                   header-bg-variant="primary"
                   header-text-variant="white"
                   text-variant="dark"
-                  header="OS"
+                  header="Operating System"
                   class="text-center"
                 >
                   <b-card-text>
@@ -196,9 +199,6 @@ export default {
 </script>
 
 <style scoped>
-.image-container {
-  height: 400px;
-}
 img {
   max-width: 100%;
   height: 100%;

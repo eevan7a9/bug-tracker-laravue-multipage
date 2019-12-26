@@ -85207,7 +85207,11 @@ var actions = {
     }
 
     return getProjectDetails;
-  }()
+  }(),
+  clearProjectDetails: function clearProjectDetails(_ref4) {
+    var commit = _ref4.commit;
+    commit("removeProjectDetails");
+  }
 };
 var mutations = {
   setProjects: function setProjects(state, projects) {
@@ -85218,6 +85222,11 @@ var mutations = {
   },
   setProjectDetails: function setProjectDetails(state, project) {
     return state.project_details = project;
+  },
+  removeProjectDetails: function removeProjectDetails(state) {
+    return state.project_details = {
+      bugs: []
+    };
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
