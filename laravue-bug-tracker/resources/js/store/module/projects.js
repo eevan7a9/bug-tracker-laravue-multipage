@@ -57,12 +57,16 @@ const actions = {
             alert(error);
             // console.log(error.response);
         }
+    },
+    clearProjectDetails: ({ commit }) => {
+        commit("removeProjectDetails");
     }
 }
 const mutations = {
     setProjects: (state, projects) => state.projects = projects,
     insertProject: (state, project) => state.projects.unshift(project),
-    setProjectDetails: (state, project) => state.project_details = project
+    setProjectDetails: (state, project) => state.project_details = project,
+    removeProjectDetails: state => state.project_details = { bugs: [] }
 }
 
 export default {

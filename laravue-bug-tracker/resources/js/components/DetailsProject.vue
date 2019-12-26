@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -106,7 +106,9 @@ export default {
   },
   computed: mapGetters(["project_details"]),
   methods: {
+    ...mapActions(["clearProjectDetails"]),
     hideDetails() {
+      this.clearProjectDetails();
       this.$emit("toggleDetails");
     }
   }
