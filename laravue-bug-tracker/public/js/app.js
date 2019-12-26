@@ -84662,13 +84662,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     path: '/projects',
     name: 'projects',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../pages/Projects.vue */ "./resources/js/pages/Projects.vue"));
+      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../pages/Projects.vue */ "./resources/js/pages/Projects.vue"));
     }
   }, {
     path: '/developers',
     name: 'developers',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../pages/Developers.vue */ "./resources/js/pages/Developers.vue"));
+      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../pages/Developers.vue */ "./resources/js/pages/Developers.vue"));
     }
   }]
 }));
@@ -85061,7 +85061,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 // axios is already imported at app.js
 var state = {
-  projects: []
+  projects: [],
+  project_details: {}
 };
 var getters = {
   projects: function projects(state) {
@@ -85159,6 +85160,45 @@ var actions = {
     }
 
     return addProject;
+  }(),
+  getProjectDetails: function () {
+    var _getProjectDetails = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, id) {
+      var commit, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.prev = 1;
+              _context3.next = 4;
+              return axios.get("api_web_session/v1/projects/".concat(id));
+
+            case 4:
+              result = _context3.sent;
+              console.log(result);
+              commit("setProjectDetails", id);
+              _context3.next = 11;
+              break;
+
+            case 9:
+              _context3.prev = 9;
+              _context3.t0 = _context3["catch"](1);
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 9]]);
+    }));
+
+    function getProjectDetails(_x4, _x5) {
+      return _getProjectDetails.apply(this, arguments);
+    }
+
+    return getProjectDetails;
   }()
 };
 var mutations = {
@@ -85167,6 +85207,9 @@ var mutations = {
   },
   insertProject: function insertProject(state, project) {
     return state.projects.unshift(project);
+  },
+  setProjectDetails: function setProjectDetails(state, project) {
+    return state.project_details = project;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

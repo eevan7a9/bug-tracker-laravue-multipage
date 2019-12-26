@@ -21,6 +21,7 @@ Route::prefix('v1')->group(function () {
     Route::get('bugs', 'Api\BugController@index')->name('bugs.all');
     Route::get('bugs/{id}', 'Api\BugController@show')->name('bugs.show');
     Route::get('projects', 'Api\ProjectController@index')->name('projects.all');
+    Route::get('projects/{id}', 'Api\ProjectController@show')->name('project.show');
     Route::get('developers', 'Api\DeveloperController@index')->name('developers.all');
 
     Route::group(['middleware' => ['auth:web']], function () {

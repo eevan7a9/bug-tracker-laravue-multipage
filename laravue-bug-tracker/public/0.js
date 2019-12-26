@@ -393,8 +393,116 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      visible_screenshot: false
+    };
+  },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["bug_details"]),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["clearBugDetails"]), {
     hideDetails: function hideDetails() {
@@ -1440,116 +1548,338 @@ var render = function() {
       _c("div", { staticClass: "card-header" }, [
         _c(
           "button",
-          { staticClass: "btn btn-primary", on: { click: _vm.hideDetails } },
+          {
+            staticClass: "btn btn-outline-secondary",
+            on: { click: _vm.hideDetails }
+          },
           [_vm._v("Back")]
         )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
-        _vm._m(0),
-        _vm._v(" "),
         _c("div", { staticClass: "row justify-content-center" }, [
-          _c("div", { staticClass: "col-md-8" }, [
-            _c("h4", { staticClass: "card-title py-2 text-center" }, [
-              _vm._v(_vm._s(_vm.bug_details.title))
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "d-flex justify-content-md-between align-content-center"
-              },
-              [
-                _c("h5", { staticClass: "py-2 font-weight-bold" }, [
-                  _c("small", [_vm._v("Project Name :")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-capitalize" }, [
-                    _vm._v(_vm._s(_vm.bug_details.project.name))
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("h5", { staticClass: "py-2" }, [
-                  _c("small", [_vm._v("Issued at :")]),
-                  _vm._v(
-                    "\n              " +
-                      _vm._s(_vm.bug_details.created_at) +
-                      "\n            "
+          _c(
+            "div",
+            { staticClass: "col-md-10" },
+            [
+              _c(
+                "b-button",
+                {
+                  class: _vm.visible_screenshot ? null : "collapsed",
+                  attrs: {
+                    "aria-expanded": _vm.visible_screenshot ? "true" : "false",
+                    "aria-controls": "collapse-4",
+                    variant: "outline-primary"
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.visible_screenshot = !_vm.visible_screenshot
+                    }
+                  }
+                },
+                [
+                  _vm._v("\n            Show Screenshot\n            "),
+                  _c(
+                    "svg",
+                    {
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        stroke: "currentColor",
+                        "stroke-width": "2",
+                        "stroke-linecap": "round",
+                        "stroke-linejoin": "round"
+                      }
+                    },
+                    [
+                      _c("rect", {
+                        attrs: {
+                          x: "3",
+                          y: "3",
+                          width: "18",
+                          height: "18",
+                          rx: "2",
+                          ry: "2"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("circle", {
+                        attrs: { cx: "8.5", cy: "8.5", r: "1.5" }
+                      }),
+                      _vm._v(" "),
+                      _c("polyline", { attrs: { points: "21 15 16 10 5 21" } })
+                    ]
                   )
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "card p-3 bg-light" }, [
-              _c("p", { staticClass: "card-text bg-light" }, [
-                _vm._v(_vm._s(_vm.bug_details.description))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-4 text-center" }, [
-                _c("p", { staticClass: "mt-3 mb-0 text-capitalize" }, [
-                  _vm._v(_vm._s(_vm.bug_details.severity))
-                ]),
-                _vm._v(" "),
-                _c("small", { staticClass: "text-danger" }, [
-                  _vm._v("Severity")
-                ])
-              ]),
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-4 text-center" }, [
-                _c("p", { staticClass: "mt-3 mb-0 text-capitalize" }, [
-                  _vm._v(_vm._s(_vm.bug_details.priority))
-                ]),
-                _vm._v(" "),
-                _c("small", { staticClass: "text-success" }, [
-                  _vm._v("Priority")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4 text-center" }, [
-                _c("p", { staticClass: "mt-3 mb-0 text-capitalize" }, [
-                  _vm._v(
-                    _vm._s(
-                      _vm.bug_details.assigned_to
-                        ? _vm.bug_details.assigned_to.email
-                        : "Unassigned"
+              _c(
+                "b-collapse",
+                {
+                  staticClass: "mt-2",
+                  attrs: { id: "collapse-4" },
+                  model: {
+                    value: _vm.visible_screenshot,
+                    callback: function($$v) {
+                      _vm.visible_screenshot = $$v
+                    },
+                    expression: "visible_screenshot"
+                  }
+                },
+                [
+                  _c("b-card", [
+                    _c(
+                      "div",
+                      { staticClass: "image-container text-center w-100" },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src: "https://via.placeholder.com/750",
+                            alt: ""
+                          }
+                        })
+                      ]
                     )
-                  )
-                ]),
-                _vm._v(" "),
-                _c("small", { staticClass: "text-primary" }, [
-                  _vm._v("Assigned To")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "card-title py-2 text-left" }, [
+                _vm._v(_vm._s(_vm.bug_details.title))
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "d-flex justify-content-md-between align-content-center"
+                },
+                [
+                  _c("h5", { staticClass: "py-2 font-weight-bold" }, [
+                    _c("small", [_vm._v("Project Name :")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "text-capitalize" }, [
+                      _vm._v(_vm._s(_vm.bug_details.project.name))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "py-2" }, [
+                    _c("small", [_vm._v("Issued at :")]),
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(_vm.bug_details.created_at) +
+                        "\n            "
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "card p-3 bg-light mt-3" }, [
+                _c("p", { staticClass: "card-text bg-light" }, [
+                  _vm._v(_vm._s(_vm.bug_details.description))
                 ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-4 text-center" }, [
-                _c("h5", { staticClass: "mt-3 mb-0 font-weight-bold" }, [
-                  _vm._v(_vm._s(_vm.bug_details.browser))
-                ]),
-                _vm._v(" "),
-                _c("small", [_vm._v("Browser")])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-4 text-center" }, [
-                _c("h5", { staticClass: "mt-3 mb-0 font-weight-bold" }, [
-                  _vm._v(_vm._s(_vm.bug_details.os))
-                ]),
+              _c("div", { staticClass: "row mt-3" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-md-4 text-center" },
+                  [
+                    _c(
+                      "b-card",
+                      {
+                        staticClass: "text-center",
+                        attrs: {
+                          "bg-variant": "light",
+                          "header-bg-variant": "primary",
+                          "header-text-variant": "white",
+                          "text-variant": "dark",
+                          header: "Severity"
+                        }
+                      },
+                      [
+                        _c("b-card-text", [
+                          _c(
+                            "span",
+                            { staticClass: "font-weight-bold text-capitalize" },
+                            [_vm._v(_vm._s(_vm.bug_details.severity))]
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
                 _vm._v(" "),
-                _c("small", [_vm._v("Operating System")])
+                _c(
+                  "div",
+                  { staticClass: "col-md-4 text-center" },
+                  [
+                    _c(
+                      "b-card",
+                      {
+                        staticClass: "text-center",
+                        attrs: {
+                          "bg-variant": "light",
+                          "header-bg-variant": "primary",
+                          "header-text-variant": "white",
+                          "text-variant": "dark",
+                          header: "Priority"
+                        }
+                      },
+                      [
+                        _c("b-card-text", [
+                          _c(
+                            "span",
+                            { staticClass: "font-weight-bold text-capitalize" },
+                            [_vm._v(_vm._s(_vm.bug_details.priority))]
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-md-4 text-center" },
+                  [
+                    _c(
+                      "b-card",
+                      {
+                        staticClass: "text-center",
+                        attrs: {
+                          "bg-variant": "light",
+                          "header-bg-variant": "primary",
+                          "header-text-variant": "white",
+                          "text-variant": "dark",
+                          header: "Assigned To"
+                        }
+                      },
+                      [
+                        _c("b-card-text", [
+                          _c("span", { staticClass: "font-weight-bold" }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm.bug_details.assigned_to
+                                  ? _vm.bug_details.assigned_to.email
+                                  : "Unassigned"
+                              )
+                            )
+                          ])
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-4 text-center" }, [
-                _c("h5", { staticClass: "mt-3 mb-0 font-weight-bold" }, [
-                  _vm._v(_vm._s(_vm.bug_details.bug_type))
-                ]),
+              _c("div", { staticClass: "row mt-3" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-md-4 text-center" },
+                  [
+                    _c(
+                      "b-card",
+                      {
+                        staticClass: "text-center",
+                        attrs: {
+                          "bg-variant": "light",
+                          "header-bg-variant": "primary",
+                          "header-text-variant": "white",
+                          "text-variant": "dark",
+                          header: "Browser"
+                        }
+                      },
+                      [
+                        _c("b-card-text", [
+                          _c(
+                            "span",
+                            { staticClass: "font-weight-bold text-capitalize" },
+                            [_vm._v(_vm._s(_vm.bug_details.browser))]
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
                 _vm._v(" "),
-                _c("small", [_vm._v("Bug Type")])
+                _c(
+                  "div",
+                  { staticClass: "col-md-4 text-center" },
+                  [
+                    _c(
+                      "b-card",
+                      {
+                        staticClass: "text-center",
+                        attrs: {
+                          "bg-variant": "light",
+                          "header-bg-variant": "primary",
+                          "header-text-variant": "white",
+                          "text-variant": "dark",
+                          header: "Os"
+                        }
+                      },
+                      [
+                        _c("b-card-text", [
+                          _c(
+                            "span",
+                            { staticClass: "font-weight-bold text-capitalize" },
+                            [_vm._v(_vm._s(_vm.bug_details.os))]
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-md-4 text-center" },
+                  [
+                    _c(
+                      "b-card",
+                      {
+                        staticClass: "text-center",
+                        attrs: {
+                          "bg-variant": "light",
+                          "header-bg-variant": "primary",
+                          "header-text-variant": "white",
+                          "text-variant": "dark",
+                          header: "Bug Type"
+                        }
+                      },
+                      [
+                        _c("b-card-text", [
+                          _c(
+                            "span",
+                            { staticClass: "font-weight-bold text-capitalize" },
+                            [_vm._v(_vm._s(_vm.bug_details.bug_type))]
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
               ])
-            ])
-          ])
+            ],
+            1
+          )
         ])
       ]),
       _vm._v(" "),
@@ -1559,16 +1889,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "image-container text-center w-100" }, [
-      _c("img", { attrs: { src: "https://via.placeholder.com/450", alt: "" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

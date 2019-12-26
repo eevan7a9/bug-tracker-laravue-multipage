@@ -14,7 +14,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(project, index) in projects" :key="index">
+          <tr v-for="(project, index) in projects" :key="index" @click="showDetails(project.id)">
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ project.name }}</td>
             <td>{{ project.version }}</td>
@@ -36,7 +36,12 @@ export default {
   },
   computed: mapGetters(["projects"]),
   methods: {
-    ...mapActions(["getProjects"])
+    ...mapActions(["getProjects", "getProjectDetails"]),
+    showDetails(id) {
+      this.getProjectDetails(id).then(() => {
+        this.$emit("toggleDetails");
+      });
+    }
   },
   async created() {
     this.getProjects();
@@ -51,5 +56,8 @@ export default {
 #tableHead {
   top: 0 !important;
   position: sticky !important;
+}
+tr {
+  cursor: pointer;
 }
 </style>

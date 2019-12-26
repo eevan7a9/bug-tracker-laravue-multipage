@@ -1,6 +1,7 @@
 // axios is already imported at app.js
 const state = {
-    projects: []
+    projects: [],
+    project_details: {}
 }
 const getters = {
     projects: state => state.projects
@@ -43,11 +44,21 @@ const actions = {
             alert(error);
             // console.log(error.response);
         }
+    },
+    getProjectDetails: async ({ commit }, id) => {
+        try {
+            const result = await axios.get(`api_web_session/v1/projects/${id}`);
+            console.log(result);
+            commit("setProjectDetails", id);
+        } catch (error) {
+
+        }
     }
 }
 const mutations = {
     setProjects: (state, projects) => state.projects = projects,
-    insertProject: (state, project) => state.projects.unshift(project)
+    insertProject: (state, project) => state.projects.unshift(project),
+    setProjectDetails: (state, project) => state.project_details = project
 }
 
 export default {
