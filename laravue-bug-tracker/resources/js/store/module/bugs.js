@@ -100,7 +100,6 @@ const actions = {
                 }
             );
             commit("setBugDetails", result.data);
-            console.log(result)
             alert(`${result.statusText},a Bug is successfuly edited.`);
             // console.log(result);
         } catch (error) {

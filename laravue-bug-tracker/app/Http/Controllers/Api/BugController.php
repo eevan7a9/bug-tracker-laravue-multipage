@@ -6,6 +6,7 @@ use App\Bug;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
 
 class BugController extends Controller
@@ -98,11 +99,18 @@ class BugController extends Controller
             request()->validate([
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
+
+            // If validation is correct we delete the old image
+            if (file_exists(public_path('images/' . $bug->image))) {
+                File::delete(public_path('images/' . $bug->image));
+                // unlink(public_path('images/' . $product->image));
+            }
+
             $bug->image_src = URL::asset('images') . '/' . time() . '.' . $request->image->getClientOriginalExtension();
             $bug->image = time() . '.' . $request->image->getClientOriginalExtension();
             $request->image->move(public_path('images'), $bug->image);
         }
-        $bug->save();
+        $bug->update();
         $bug->project; // return the bug with the project the bug belongsTo
         $bug->assignedTo; // return the bug with the developer the assigned to the bug
         $bug->addedBy;

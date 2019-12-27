@@ -84928,24 +84928,23 @@ var actions = {
             case 16:
               result = _context4.sent;
               commit("setBugDetails", result.data);
-              console.log(result);
               alert("".concat(result.statusText, ",a Bug is successfuly edited.")); // console.log(result);
 
-              _context4.next = 25;
+              _context4.next = 24;
               break;
 
-            case 22:
-              _context4.prev = 22;
+            case 21:
+              _context4.prev = 21;
               _context4.t0 = _context4["catch"](13);
               // console.log(error.response);
               alert(_context4.t0);
 
-            case 25:
+            case 24:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[13, 22]]);
+      }, _callee4, null, [[13, 21]]);
     }));
 
     function editBugDetails(_x6, _x7) {

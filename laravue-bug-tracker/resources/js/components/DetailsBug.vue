@@ -36,7 +36,10 @@
             <b-collapse id="collapse-4" v-model="visible_screenshot" class="mt-2">
               <b-card>
                 <div class="text-center w-100">
-                  <img src="https://via.placeholder.com/750" alt />
+                  <img
+                    :src="bug_details.image_src ?  bug_details.image_src : 'https://via.placeholder.com/750'"
+                    alt="Screenshot"
+                  />
                 </div>
               </b-card>
             </b-collapse>

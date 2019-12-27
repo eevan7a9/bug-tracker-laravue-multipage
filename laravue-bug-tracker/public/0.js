@@ -501,6 +501,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2075,8 +2078,10 @@ var render = function() {
                     _c("div", { staticClass: "text-center w-100" }, [
                       _c("img", {
                         attrs: {
-                          src: "https://via.placeholder.com/750",
-                          alt: ""
+                          src: _vm.bug_details.image_src
+                            ? _vm.bug_details.image_src
+                            : "https://via.placeholder.com/750",
+                          alt: "Screenshot"
                         }
                       })
                     ])
