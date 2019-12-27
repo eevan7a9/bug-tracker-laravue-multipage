@@ -1,12 +1,15 @@
 <template>
   <div>
-    <div v-show="hideDetails">
+    <div v-if="hideDetails">
       <AddProject />
       <hr />
       <TableDataProject @toggleDetails="hideDetails=false" />
     </div>
-    <hr />
-    <DetailsProject @toggleDetails="hideDetails=true" v-show="!hideDetails" />
+    <div v-if="!hideDetails">
+      <EditProject />
+      <hr />
+      <DetailsProject @toggleDetails="hideDetails=true" />
+    </div>
   </div>
 </template>
 
@@ -14,12 +17,14 @@
 import AddProject from "../components/AddProject";
 import TableDataProject from "../components/TableDataProject";
 import DetailsProject from "../components/DetailsProject";
+import EditProject from "../components/EditProject";
 export default {
   name: "projects",
   components: {
     TableDataProject,
     AddProject,
-    DetailsProject
+    DetailsProject,
+    EditProject
   },
   data() {
     return {

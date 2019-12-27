@@ -85274,7 +85274,54 @@ var actions = {
   clearProjectDetails: function clearProjectDetails(_ref4) {
     var commit = _ref4.commit;
     commit("removeProjectDetails");
-  }
+  },
+  editProjectDetails: function () {
+    var _editProjectDetails = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref5, _ref6) {
+      var commit, project, id, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref5.commit;
+              project = _ref6.project, id = _ref6.id;
+              _context4.prev = 2;
+              _context4.next = 5;
+              return axios.post("api_web_session/v1/projects/".concat(id), project, {
+                headers: {
+                  Accept: "application/json",
+                  "content-type": "multipart/form-data"
+                }
+              });
+
+            case 5:
+              result = _context4.sent;
+              commit("setProjectDetails", result.data);
+              alert("A project is successfuly Edited."); // console.log(result);
+
+              _context4.next = 13;
+              break;
+
+            case 10:
+              _context4.prev = 10;
+              _context4.t0 = _context4["catch"](2);
+              alert(_context4.t0); // console.log(error.response);
+
+            case 13:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[2, 10]]);
+    }));
+
+    function editProjectDetails(_x6, _x7) {
+      return _editProjectDetails.apply(this, arguments);
+    }
+
+    return editProjectDetails;
+  }()
 };
 var mutations = {
   setProjects: function setProjects(state, projects) {

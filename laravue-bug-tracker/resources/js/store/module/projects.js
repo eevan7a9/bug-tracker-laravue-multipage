@@ -60,6 +60,26 @@ const actions = {
     },
     clearProjectDetails: ({ commit }) => {
         commit("removeProjectDetails");
+    },
+    editProjectDetails: async ({ commit }, { project, id }) => {
+        try {
+            const result = await axios.post(
+                `api_web_session/v1/projects/${id}`,
+                project,
+                {
+                    headers: {
+                        Accept: "application/json",
+                        "content-type": "multipart/form-data"
+                    }
+                }
+            );
+            commit("setProjectDetails", result.data);
+            alert(`A project is successfuly Edited.`);
+            // console.log(result);
+        } catch (error) {
+            alert(error);
+            // console.log(error.response);
+        }
     }
 }
 const mutations = {

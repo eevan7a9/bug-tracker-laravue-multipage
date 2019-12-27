@@ -36,7 +36,10 @@
             <b-collapse id="collapse-4" v-model="visible_screenshot" class="mt-2">
               <b-card>
                 <div class="image-container text-center w-100">
-                  <img src="https://via.placeholder.com/450" alt />
+                  <img
+                    :src="project_details.image_src ?  project_details.image_src : 'https://via.placeholder.com/750'"
+                    alt="Cover image"
+                  />
                 </div>
               </b-card>
             </b-collapse>
@@ -116,4 +119,8 @@ export default {
 </script>
 
 <style scoped>
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
 </style>
