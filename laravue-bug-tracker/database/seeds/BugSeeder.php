@@ -22,6 +22,7 @@ class BugSeeder extends Seeder
             "bug_type" => "New Feature",
             "severity" => "mid",
             "priority" => "high",
+            "assigned_to" => "4",
             "created_at" => "2019-12-22 22:49:07",
             "updated_at" => now(),
         ]);
@@ -36,6 +37,22 @@ class BugSeeder extends Seeder
             "bug_type" => "Functional Bugs",
             "severity" => "low",
             "priority" => "high",
+            "assigned_to" => "5",
+            "created_at" => "2019-12-22 22:49:07",
+            "updated_at" => now(),
+        ]);
+
+        DB::table('bugs')->insert([
+            "title" => "Error 500, when editing a Survey Answer",
+            "project_id" => "2",
+            "user_id" => "2",
+            "description" => "Survey question have wrong choices, After editing and clicking \"save\" error 500 show",
+            "browser" => "Opera",
+            "os" => "Windows 8",
+            "bug_type" => "Functional Bugs",
+            "severity" => "low",
+            "priority" => "high",
+            "assigned_to" => "5",
             "created_at" => "2019-12-22 22:49:07",
             "updated_at" => now(),
         ]);
