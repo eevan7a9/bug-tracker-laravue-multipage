@@ -26,6 +26,7 @@
         </tbody>
       </table>
     </div>
+    <p class="text-muted">Click the Project to see more.</p>
   </div>
 </template>
 <script>

@@ -28,6 +28,7 @@
         </tbody>
       </table>
     </div>
+    <p class="text-muted">Click the Bug to see more.</p>
   </div>
 </template>
 

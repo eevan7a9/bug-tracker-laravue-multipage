@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="card">
-      <div class="card-header">
-        <button class="btn btn-outline-secondary" @click="hideDetails">Back</button>
+    <div class="card border-primary">
+      <div class="card-header border-primary">
+        <button class="btn btn-outline-primary" @click="hideDetails">Back</button>
       </div>
       <div class="card-body">
         <div class="row justify-content-center">
@@ -89,7 +89,7 @@
           </div>
         </div>
       </div>
-      <div class="card-footer text-left">
+      <div class="card-footer border-primary text-left">
         <div>Added at: {{ project_details.created_at }}</div>
       </div>
     </div>

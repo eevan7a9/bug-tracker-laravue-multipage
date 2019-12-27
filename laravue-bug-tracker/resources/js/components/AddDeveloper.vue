@@ -27,12 +27,17 @@
       </span>
     </b-button>
     <b-collapse id="collapse-3" v-model="visible" class="mt-2">
-      <b-card>
+      <b-card
+        header="Adding a new Developer..."
+        header-text-variant="white"
+        header-tag="header"
+        header-bg-variant="primary"
+      >
         <div class="row justify-content-center">
           <div class="col-sm-8">
             <form @submit.prevent="submit">
               <div class="form-group">
-                <label for="developer">User's E-mail address</label>
+                <label for="developer" class="font-weight-bold">User's E-mail address</label>
                 <input
                   type="email"
                   class="form-control"

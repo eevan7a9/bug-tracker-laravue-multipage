@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="card">
-      <div class="card-header">
-        <button class="btn btn-outline-secondary" @click="hideDetails">Back</button>
+    <div class="card border-primary">
+      <div class="card-header border-primary">
+        <button class="btn btn-outline-primary" @click="hideDetails">Back</button>
       </div>
       <div class="card-body">
         <div class="row justify-content-center">
@@ -73,8 +73,6 @@
                     <span class="font-weight-bold text-capitalize">{{ bug_details.severity }}</span>
                   </b-card-text>
                 </b-card>
-                <!-- <p class="mt-3 mb-0 text-capitalize">{{ bug_details.severity }}</p>
-                <small class="text-danger">Severity</small>-->
               </div>
               <div class="col-md-4 text-center">
                 <b-card
@@ -90,8 +88,6 @@
                     <span class="font-weight-bold text-capitalize">{{ bug_details.priority }}</span>
                   </b-card-text>
                 </b-card>
-                <!-- <p class="mt-3 mb-0 text-capitalize">{{ bug_details.priority }}</p>
-                <small class="text-success">Priority</small>-->
               </div>
               <div class="col-md-4 text-center">
                 <b-card
@@ -109,10 +105,6 @@
                     >{{ bug_details.assigned_to ? bug_details.assigned_to.email : "Unassigned" }}</span>
                   </b-card-text>
                 </b-card>
-                <!-- <p
-                  class="mt-3 mb-0 text-capitalize"
-                >{{ bug_details.assigned_to ? bug_details.assigned_to.email : "Unassigned" }}</p>
-                <small class="text-primary">Assigned To</small>-->
               </div>
             </div>
             <div class="row mt-3">
@@ -130,8 +122,6 @@
                     <span class="font-weight-bold text-capitalize">{{ bug_details.browser }}</span>
                   </b-card-text>
                 </b-card>
-                <!-- <h5 class="mt-3 mb-0 font-weight-bold">{{ bug_details.browser }}</h5>
-                <small>Browser</small>-->
               </div>
               <div class="col-md-4 text-center">
                 <b-card
@@ -147,8 +137,6 @@
                     <span class="font-weight-bold text-capitalize">{{ bug_details.os }}</span>
                   </b-card-text>
                 </b-card>
-                <!-- <h5 class="mt-3 mb-0 font-weight-bold">{{ bug_details.os }}</h5>
-                <small>Operating System</small>-->
               </div>
               <div class="col-md-4 text-center">
                 <b-card
@@ -164,14 +152,12 @@
                     <span class="font-weight-bold text-capitalize">{{ bug_details.bug_type }}</span>
                   </b-card-text>
                 </b-card>
-                <!-- <h5 class="mt-3 mb-0 font-weight-bold">{{ bug_details.bug_type }}</h5>
-                <small>Bug Type</small>-->
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="card-footer d-flex justify-content-between align-items-center">
+      <div class="card-footer border-primary d-flex justify-content-between align-items-center">
         <div>Added By: {{ bug_details.added_by.email }}</div>
         <div>options</div>
       </div>

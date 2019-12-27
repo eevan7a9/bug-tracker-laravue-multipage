@@ -170,6 +170,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -380,6 +385,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -633,128 +639,230 @@ var render = function() {
           }
         },
         [
-          _c("b-card", [
-            _c(
-              "form",
-              {
-                attrs: { enctype: "multipart/form-data" },
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.publish($event)
+          _c(
+            "b-card",
+            {
+              attrs: {
+                header: "Adding a new Projects...",
+                "header-text-variant": "white",
+                "header-tag": "header",
+                "header-bg-variant": "primary"
+              }
+            },
+            [
+              _c(
+                "form",
+                {
+                  attrs: { enctype: "multipart/form-data" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.publish($event)
+                    }
                   }
-                }
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "row d-flex justify-content-center" },
-                  [
-                    _c("div", { staticClass: "col-md-8" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "name" } }, [
-                          _vm._v("Name")
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "row d-flex justify-content-center" },
+                    [
+                      _c("div", { staticClass: "col-md-8" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "font-weight-bold",
+                              attrs: { for: "name" }
+                            },
+                            [_vm._v("Name")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model.trim",
+                                value: _vm.project.name,
+                                expression: "project.name",
+                                modifiers: { trim: true }
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              placeholder:
+                                "Name Generator...justify-content-center"
+                            },
+                            domProps: { value: _vm.project.name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.project,
+                                  "name",
+                                  $event.target.value.trim()
+                                )
+                              },
+                              blur: function($event) {
+                                return _vm.$forceUpdate()
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "small",
+                            {
+                              staticClass: "form-text text-muted",
+                              attrs: { id: "helpId" }
+                            },
+                            [_vm._v("Name of the Project")]
+                          )
                         ]),
                         _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.project.name,
-                              expression: "project.name",
-                              modifiers: { trim: true }
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            placeholder:
-                              "Name Generator...justify-content-center"
-                          },
-                          domProps: { value: _vm.project.name },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.project,
-                                "name",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function($event) {
-                              return _vm.$forceUpdate()
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "small",
-                          {
-                            staticClass: "form-text text-muted",
-                            attrs: { id: "helpId" }
-                          },
-                          [_vm._v("Name of the Project")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "form-group" }, [
-                            _c("label", { attrs: { for: "version" } }, [
-                              _vm._v("Version")
-                            ]),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
                                 {
-                                  name: "model",
-                                  rawName: "v-model.trim",
-                                  value: _vm.project.version,
-                                  expression: "project.version",
-                                  modifiers: { trim: true }
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                name: "version",
-                                id: "version",
-                                placeholder: "1.0.0"
-                              },
-                              domProps: { value: _vm.project.version },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.project,
-                                    "version",
-                                    $event.target.value.trim()
-                                  )
+                                  staticClass: "font-weight-bold",
+                                  attrs: { for: "version" }
                                 },
-                                blur: function($event) {
-                                  return _vm.$forceUpdate()
+                                [_vm._v("Version")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model.trim",
+                                    value: _vm.project.version,
+                                    expression: "project.version",
+                                    modifiers: { trim: true }
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "version",
+                                  id: "version",
+                                  placeholder: "1.0.0"
+                                },
+                                domProps: { value: _vm.project.version },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.project,
+                                      "version",
+                                      $event.target.value.trim()
+                                    )
+                                  },
+                                  blur: function($event) {
+                                    return _vm.$forceUpdate()
+                                  }
                                 }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "small",
-                              { staticClass: "form-text text-muted" },
-                              [_vm._v("Version of the Project")]
-                            )
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "form-text text-muted" },
+                                [_vm._v("Version of the Project")]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", { staticClass: "font-weight-bold" }, [
+                                _vm._v("Environment")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.project.environment,
+                                      expression: "project.environment"
+                                    }
+                                  ],
+                                  staticClass: "custom-select",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.project,
+                                        "environment",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { selected: "" } }, [
+                                    _vm._v("Web")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "mobile" } }, [
+                                    _vm._v("Mobile")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "desktop" } },
+                                    [_vm._v("Desktop")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "web and mobile" } },
+                                    [_vm._v("Web and Mobile")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "desktop and mobile" } },
+                                    [_vm._v("Desktop and Mobile")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "all" } }, [
+                                    _vm._v("All")
+                                  ])
+                                ]
+                              )
+                            ])
                           ])
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-6" }, [
                           _c("div", { staticClass: "form-group" }, [
-                            _c("label", { attrs: { for: "" } }, [
-                              _vm._v("Environment")
-                            ]),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "os" }
+                              },
+                              [_vm._v("Operating System")]
+                            ),
                             _vm._v(" "),
                             _c(
                               "select",
@@ -763,11 +871,12 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.project.environment,
-                                    expression: "project.environment"
+                                    value: _vm.project.os,
+                                    expression: "project.os"
                                   }
                                 ],
                                 staticClass: "custom-select",
+                                attrs: { name: "os", id: "os" },
                                 on: {
                                   change: function($event) {
                                     var $$selectedVal = Array.prototype.filter
@@ -781,7 +890,7 @@ var render = function() {
                                       })
                                     _vm.$set(
                                       _vm.project,
-                                      "environment",
+                                      "os",
                                       $event.target.multiple
                                         ? $$selectedVal
                                         : $$selectedVal[0]
@@ -790,303 +899,242 @@ var render = function() {
                                 }
                               },
                               [
-                                _c("option", { attrs: { selected: "" } }, [
-                                  _vm._v("Web")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "mobile" } }, [
-                                  _vm._v("Mobile")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "desktop" } }, [
-                                  _vm._v("Desktop")
-                                ]),
-                                _vm._v(" "),
                                 _c(
                                   "option",
-                                  { attrs: { value: "web and mobile" } },
-                                  [_vm._v("Web and Mobile")]
+                                  { attrs: { value: "cross platform" } },
+                                  [_vm._v("Cross Platform")]
                                 ),
                                 _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "desktop and mobile" } },
-                                  [_vm._v("Desktop and Mobile")]
-                                ),
+                                _c("option", { attrs: { value: "mac os" } }, [
+                                  _vm._v("Mac OS")
+                                ]),
                                 _vm._v(" "),
-                                _c("option", { attrs: { value: "all" } }, [
-                                  _vm._v("All")
+                                _c("option", { attrs: { value: "windows" } }, [
+                                  _vm._v("Windows")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "linux" } }, [
+                                  _vm._v("Linux")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "android" } }, [
+                                  _vm._v("Android")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "ios" } }, [
+                                  _vm._v("IOS")
                                 ])
                               ]
                             )
                           ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                        ]),
+                        _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("label", { attrs: { for: "os" } }, [
-                            _vm._v("Operating System")
+                          _c(
+                            "label",
+                            {
+                              staticClass: "font-weight-bold",
+                              attrs: { for: "description" }
+                            },
+                            [_vm._v("Description")]
+                          ),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.project.description,
+                                expression: "project.description"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { id: "description", rows: "3" },
+                            domProps: { value: _vm.project.description },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.project,
+                                  "description",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", { staticClass: "font-weight-bold" }, [
+                                _vm._v("Development Date")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.project.started,
+                                    expression: "project.started"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { type: "date" },
+                                domProps: { value: _vm.project.started },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.project,
+                                      "started",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "form-text text-muted" },
+                                [_vm._v("Date Development Started")]
+                              )
+                            ])
                           ]),
                           _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.project.os,
-                                  expression: "project.os"
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", { staticClass: "font-weight-bold" }, [
+                                _vm._v("Released Dated")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.project.released,
+                                    expression: "project.released"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { type: "date" },
+                                domProps: { value: _vm.project.released },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.project,
+                                      "released",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              ],
-                              staticClass: "custom-select",
-                              attrs: { name: "os", id: "os" },
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.project,
-                                    "os",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "form-text text-muted" },
+                                [_vm._v("Date Development Started")]
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6 my-3" },
+                          [
+                            _c("b-form-file", {
+                              ref: "imageUpload",
+                              attrs: {
+                                placeholder:
+                                  "Choose a Image or drop it here...",
+                                "drop-placeholder": "Drop file here..."
+                              },
+                              model: {
+                                value: _vm.project.image,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.project, "image", $$v)
+                                },
+                                expression: "project.image"
                               }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mt-3" }, [
+                              _vm._v(
+                                "Screen Shot: " +
+                                  _vm._s(
+                                    _vm.project.image
+                                      ? _vm.project.image.name
+                                      : ""
+                                  )
+                              )
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text-right" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary btn-lg",
+                              attrs: { type: "submit" }
                             },
                             [
-                              _c(
-                                "option",
-                                { attrs: { value: "cross platform" } },
-                                [_vm._v("Cross Platform")]
+                              _vm._v(
+                                "\n                Submit\n                "
                               ),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "mac os" } }, [
-                                _vm._v("Mac OS")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "windows" } }, [
-                                _vm._v("Windows")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "linux" } }, [
-                                _vm._v("Linux")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "android" } }, [
-                                _vm._v("Android")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "ios" } }, [
-                                _vm._v("IOS")
-                              ])
+                              _c(
+                                "svg",
+                                {
+                                  attrs: {
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    width: "24",
+                                    height: "24",
+                                    viewBox: "0 0 24 24",
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    "stroke-width": "2",
+                                    "stroke-linecap": "round",
+                                    "stroke-linejoin": "round"
+                                  }
+                                },
+                                [
+                                  _c("line", {
+                                    attrs: {
+                                      x1: "22",
+                                      y1: "2",
+                                      x2: "11",
+                                      y2: "13"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("polygon", {
+                                    attrs: {
+                                      points: "22 2 15 22 11 13 2 9 22 2"
+                                    }
+                                  })
+                                ]
+                              )
                             ]
                           )
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "description" } }, [
-                          _vm._v("Description")
-                        ]),
-                        _vm._v(" "),
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.project.description,
-                              expression: "project.description"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { id: "description", rows: "3" },
-                          domProps: { value: _vm.project.description },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.project,
-                                "description",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "form-group" }, [
-                            _c("label", [_vm._v("Development Date")]),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.project.started,
-                                  expression: "project.started"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "date" },
-                              domProps: { value: _vm.project.started },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.project,
-                                    "started",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "small",
-                              { staticClass: "form-text text-muted" },
-                              [_vm._v("Date Development Started")]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "form-group" }, [
-                            _c("label", [_vm._v("Released Dated")]),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.project.released,
-                                  expression: "project.released"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "date" },
-                              domProps: { value: _vm.project.released },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.project,
-                                    "released",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "small",
-                              { staticClass: "form-text text-muted" },
-                              [_vm._v("Date Development Started")]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-md-6 my-3" },
-                        [
-                          _c("b-form-file", {
-                            ref: "imageUpload",
-                            attrs: {
-                              placeholder: "Choose a Image or drop it here...",
-                              "drop-placeholder": "Drop file here..."
-                            },
-                            model: {
-                              value: _vm.project.image,
-                              callback: function($$v) {
-                                _vm.$set(_vm.project, "image", $$v)
-                              },
-                              expression: "project.image"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "mt-3" }, [
-                            _vm._v(
-                              "Screen Shot: " +
-                                _vm._s(
-                                  _vm.project.image
-                                    ? _vm.project.image.name
-                                    : ""
-                                )
-                            )
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "text-right" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary btn-lg",
-                            attrs: { type: "submit" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                Submit\n                "
-                            ),
-                            _c(
-                              "svg",
-                              {
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  width: "24",
-                                  height: "24",
-                                  viewBox: "0 0 24 24",
-                                  fill: "none",
-                                  stroke: "currentColor",
-                                  "stroke-width": "2",
-                                  "stroke-linecap": "round",
-                                  "stroke-linejoin": "round"
-                                }
-                              },
-                              [
-                                _c("line", {
-                                  attrs: {
-                                    x1: "22",
-                                    y1: "2",
-                                    x2: "11",
-                                    y2: "13"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("polygon", {
-                                  attrs: { points: "22 2 15 22 11 13 2 9 22 2" }
-                                })
-                              ]
-                            )
-                          ]
-                        )
                       ])
-                    ])
-                  ]
-                )
-              ]
-            )
-          ])
+                    ]
+                  )
+                ]
+              )
+            ]
+          )
         ],
         1
       )
@@ -1117,12 +1165,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header" }, [
+    _c("div", { staticClass: "card border-primary" }, [
+      _c("div", { staticClass: "card-header border-primary" }, [
         _c(
           "button",
           {
-            staticClass: "btn btn-outline-secondary",
+            staticClass: "btn btn-outline-primary",
             on: { click: _vm.hideDetails }
           },
           [_vm._v("Back")]
@@ -1337,7 +1385,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-footer text-left" }, [
+      _c("div", { staticClass: "card-footer border-primary text-left" }, [
         _c("div", [
           _vm._v("Added at: " + _vm._s(_vm.project_details.created_at))
         ])
@@ -1407,6 +1455,10 @@ var render = function() {
           0
         )
       ])
+    ]),
+    _vm._v(" "),
+    _c("p", { staticClass: "text-muted" }, [
+      _vm._v("Click the Project to see more.")
     ])
   ])
 }

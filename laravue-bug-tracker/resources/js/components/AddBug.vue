@@ -28,13 +28,18 @@
     </b-button>
     <b-collapse id="collapse-1" v-model="visible" class="mt-2">
       <form @submit.prevent="submit" enctype="multipart/form-data">
-        <b-card>
+        <b-card
+          header="Adding a new Bug..."
+          header-text-variant="white"
+          header-tag="header"
+          header-bg-variant="primary"
+        >
           <div class="row d-flex justify-content-center">
             <div class="col-md-8">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="title">Bug Title</label>
+                    <label for="title" class="font-weight-bold">Bug Title</label>
                     <input
                       type="text"
                       class="form-control"
@@ -48,7 +53,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="project">Project Name</label>
+                    <label for="project" class="font-weight-bold">Project Name</label>
                     <select class="form-control" v-model="bug.project" name="project" id="project">
                       <option
                         v-for="project in projects"
@@ -61,7 +66,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="description">Bug Description</label>
+                <label for="description" class="font-weight-bold">Bug Description</label>
                 <textarea
                   class="form-control"
                   v-model="bug.description"
@@ -73,7 +78,7 @@
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="browser">Browser</label>
+                    <label for="browser" class="font-weight-bold">Browser</label>
                     <select class="form-control" v-model="bug.browser" name="browser" id="browser">
                       <option>Chrome</option>
                       <option>Firefox</option>
@@ -86,7 +91,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="operating_system">Operating System</label>
+                    <label for="operating_system" class="font-weight-bold">Operating System</label>
                     <select
                       class="form-control"
                       v-model="bug.os"
@@ -103,7 +108,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="type">Bug Type</label>
+                    <label for="type" class="font-weight-bold">Bug Type</label>
                     <select class="form-control" v-model="bug.type" name="type" id="type">
                       <option>New Feature</option>
                       <option>Frontend/Design</option>
@@ -116,7 +121,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="radio-container">
-                    <label>Priority</label>
+                    <label class="font-weight-bold">Priority</label>
                     <div class="form-check">
                       <label class="form-check-label">
                         <input
@@ -157,7 +162,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="radio-container">
-                    <label>Severity</label>
+                    <label class="font-weight-bold">Severity</label>
                     <div class="form-check">
                       <label class="form-check-label">
                         <input
@@ -198,7 +203,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="assigned">Assigned To :</label>
+                    <label for="assigned" class="font-weight-bold">Assigned To :</label>
                     <select
                       class="form-control"
                       v-model="bug.developer"

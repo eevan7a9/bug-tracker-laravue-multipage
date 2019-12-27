@@ -27,12 +27,17 @@
       </span>
     </b-button>
     <b-collapse id="collapse-4" v-model="visible" class="mt-2">
-      <b-card>
+      <b-card
+        header="Adding a new Projects..."
+        header-text-variant="white"
+        header-tag="header"
+        header-bg-variant="primary"
+      >
         <form @submit.prevent="publish" enctype="multipart/form-data">
           <div class="row d-flex justify-content-center">
             <div class="col-md-8">
               <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name" class="font-weight-bold">Name</label>
                 <input
                   type="text"
                   class="form-control"
@@ -44,7 +49,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="version">Version</label>
+                    <label for="version" class="font-weight-bold">Version</label>
                     <input
                       type="text"
                       class="form-control"
@@ -58,7 +63,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for>Environment</label>
+                    <label class="font-weight-bold">Environment</label>
                     <select class="custom-select" v-model="project.environment">
                       <option selected>Web</option>
                       <option value="mobile">Mobile</option>
@@ -72,7 +77,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="os">Operating System</label>
+                  <label for="os" class="font-weight-bold">Operating System</label>
                   <select class="custom-select" v-model="project.os" name="os" id="os">
                     <option value="cross platform">Cross Platform</option>
                     <option value="mac os">Mac OS</option>
@@ -84,7 +89,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="description">Description</label>
+                <label for="description" class="font-weight-bold">Description</label>
                 <textarea
                   class="form-control"
                   v-model="project.description"
@@ -95,14 +100,14 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label>Development Date</label>
+                    <label class="font-weight-bold">Development Date</label>
                     <input type="date" class="form-control" v-model="project.started" />
                     <small class="form-text text-muted">Date Development Started</small>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label>Released Dated</label>
+                    <label class="font-weight-bold">Released Dated</label>
                     <input type="date" class="form-control" v-model="project.released" />
                     <small class="form-text text-muted">Date Development Started</small>
                   </div>
