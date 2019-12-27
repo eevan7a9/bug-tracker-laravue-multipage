@@ -801,26 +801,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["projects", "developers", "bug_details"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["newBug", "getProjects", "getDevelopers"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["editBugDetails", "getProjects", "getDevelopers"]), {
     onImageChange: function onImageChange(e) {
       //   console.log(e.target.files[0]);
       this.bug.image = e.target.files[0];
     },
     update: function update() {
-      //   // submit new bug
-      //   this.newBug(this.bug).then(() => {
-      //     //   clear and close form
-      //     this.bug = {};
-      //     this.bug.image = null;
-      //     this.bug.developer = 0;
-      //     this.$refs["imageUpload"].reset();
-      //     // this.$refs.imageUpload.value = null; // we clear the value of upload image
-      //     this.visible = false;
-      //   });
-      console.log(this.bug);
+      var _this = this;
+
+      // submit new bug
+      this.editBugDetails(this.bug).then(function () {
+        //   clear and close form
+        _this.bug = {};
+        _this.bug.image = null;
+        _this.bug.developer = 0;
+
+        _this.$refs["imageUpload"].reset();
+
+        _this.visible = false;
+      });
     }
   }),
   mounted: function mounted() {
+    this.bug.id = this.bug_details.id;
     this.bug.title = this.bug_details.title;
     this.bug.project = this.bug_details.project.id;
     this.bug.description = this.bug_details.description;
@@ -832,11 +835,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.bug.developer = this.bug_details.assigned_to.id;
   },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     if (this.projects.length == 0 && this.developers.length == 0) {
       this.getProjects().then(function () {
-        _this.getDevelopers();
+        _this2.getDevelopers();
       });
     }
   }

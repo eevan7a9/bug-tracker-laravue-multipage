@@ -266,26 +266,25 @@ export default {
   },
   computed: mapGetters(["projects", "developers", "bug_details"]),
   methods: {
-    ...mapActions(["newBug", "getProjects", "getDevelopers"]),
+    ...mapActions(["editBugDetails", "getProjects", "getDevelopers"]),
     onImageChange(e) {
       //   console.log(e.target.files[0]);
       this.bug.image = e.target.files[0];
     },
     update() {
-      //   // submit new bug
-      //   this.newBug(this.bug).then(() => {
-      //     //   clear and close form
-      //     this.bug = {};
-      //     this.bug.image = null;
-      //     this.bug.developer = 0;
-      //     this.$refs["imageUpload"].reset();
-      //     // this.$refs.imageUpload.value = null; // we clear the value of upload image
-      //     this.visible = false;
-      //   });
-      console.log(this.bug);
+      // submit new bug
+      this.editBugDetails(this.bug).then(() => {
+        //   clear and close form
+        this.bug = {};
+        this.bug.image = null;
+        this.bug.developer = 0;
+        this.$refs["imageUpload"].reset();
+        this.visible = false;
+      });
     }
   },
   mounted() {
+    this.bug.id = this.bug_details.id;
     this.bug.title = this.bug_details.title;
     this.bug.project = this.bug_details.project.id;
     this.bug.description = this.bug_details.description;

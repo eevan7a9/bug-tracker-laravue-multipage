@@ -26,6 +26,8 @@ Route::prefix('v1')->group(function () {
 
     Route::group(['middleware' => ['auth:web']], function () {
         Route::post('bugs', 'Api\BugController@store')->name('bugs.store');
+        Route::post('bugs/{id}', 'Api\BugController@update')->name('bugs.update');
+
         Route::post('projects', 'Api\ProjectController@store')->name('projects.store');
         Route::post('developer', 'Api\DeveloperController@store')->name('developer.store');
 

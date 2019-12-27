@@ -84889,7 +84889,71 @@ var actions = {
     var commit = _ref4.commit;
     // console.log("remove...");
     commit("removeBugDetails");
-  }
+  },
+  editBugDetails: function () {
+    var _editBugDetails = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref5, bug) {
+      var commit, formData, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref5.commit;
+              formData = new FormData();
+              formData.append("id", bug.id);
+              formData.append("title", bug.title);
+              formData.append("project_id", bug.project);
+              formData.append("description", bug.description);
+              formData.append("browser", bug.browser);
+              formData.append("os", bug.os);
+              formData.append("bug_type", bug.type);
+              formData.append("severity", bug.severity);
+              formData.append("priority", bug.priority);
+              formData.append("developer", bug.developer);
+
+              if (bug.image) {
+                formData.append("image", bug.image);
+              }
+
+              _context4.prev = 13;
+              _context4.next = 16;
+              return axios.post("api_web_session/v1/bugs/".concat(bug.id), formData, {
+                headers: {
+                  Accept: "application/json",
+                  "content-type": "multipart/form-data"
+                }
+              });
+
+            case 16:
+              result = _context4.sent;
+              commit("setBugDetails", result.data);
+              console.log(result);
+              alert("".concat(result.statusText, ",a Bug is successfuly edited.")); // console.log(result);
+
+              _context4.next = 25;
+              break;
+
+            case 22:
+              _context4.prev = 22;
+              _context4.t0 = _context4["catch"](13);
+              // console.log(error.response);
+              alert(_context4.t0);
+
+            case 25:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[13, 22]]);
+    }));
+
+    function editBugDetails(_x6, _x7) {
+      return _editBugDetails.apply(this, arguments);
+    }
+
+    return editBugDetails;
+  }()
 };
 var mutations = {
   setBugs: function setBugs(state, bugs) {

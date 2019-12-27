@@ -70,7 +70,44 @@ const actions = {
     clearBugDetails: ({ commit }) => {
         // console.log("remove...");
         commit("removeBugDetails");
-    }
+    },
+    editBugDetails: async ({ commit }, bug) => {
+
+        let formData = new FormData();
+
+        formData.append("id", bug.id);
+        formData.append("title", bug.title);
+        formData.append("project_id", bug.project);
+        formData.append("description", bug.description);
+        formData.append("browser", bug.browser);
+        formData.append("os", bug.os);
+        formData.append("bug_type", bug.type);
+        formData.append("severity", bug.severity);
+        formData.append("priority", bug.priority);
+        formData.append("developer", bug.developer);
+        if (bug.image) {
+            formData.append("image", bug.image);
+        }
+        try {
+            const result = await axios.post(
+                `api_web_session/v1/bugs/${bug.id}`,
+                formData,
+                {
+                    headers: {
+                        Accept: "application/json",
+                        "content-type": "multipart/form-data"
+                    }
+                }
+            );
+            commit("setBugDetails", result.data);
+            console.log(result)
+            alert(`${result.statusText},a Bug is successfuly edited.`);
+            // console.log(result);
+        } catch (error) {
+            // console.log(error.response);
+            alert(error);
+        }
+    },
 };
 const mutations = {
     setBugs: (state, bugs) => (state.bugs = bugs),
@@ -81,7 +118,7 @@ const mutations = {
             project: {},
             assigned_to: {},
             added_by: {}
-        })
+        }),
 };
 
 export default {
