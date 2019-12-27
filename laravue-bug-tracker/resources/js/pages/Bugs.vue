@@ -1,14 +1,15 @@
 <template>
   <div>
-    <div v-show="hideDetails">
-      <div class="row justify-content-start w-100 px-3">
-        <AddBug />
-      </div>
+    <div v-if="hideDetails">
+      <AddBug />
       <hr />
       <TableDataBugs @toggleDetails="hideDetails=false" />
     </div>
-    <hr />
-    <DetailsBug @toggleDetails="hideDetails=true" v-show="!hideDetails" />
+    <div v-if="!hideDetails">
+      <EditBug />
+      <hr />
+      <DetailsBug @toggleDetails="hideDetails=true" />
+    </div>
   </div>
 </template>
 
@@ -16,12 +17,14 @@
 import AddBug from "../components/AddBug";
 import TableDataBugs from "../components/TableDataBugs";
 import DetailsBug from "../components/DetailsBug";
+import EditBug from "../components/EditBug";
 export default {
   name: "bugs",
   components: {
     AddBug,
     TableDataBugs,
-    DetailsBug
+    DetailsBug,
+    EditBug
   },
   data() {
     return {
