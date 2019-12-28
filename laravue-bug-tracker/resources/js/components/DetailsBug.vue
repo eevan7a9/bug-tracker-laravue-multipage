@@ -132,6 +132,7 @@
                 {{ bug_details.is_fixed != 1 ? 'Active' : 'Fixed' }}
                 <button
                   class="btn btn-primary"
+                  @click="changeStatus"
                   v-if="!bug_details.is_fixed"
                 >
                   <svg
@@ -180,6 +181,27 @@ export default {
     hideDetails() {
       this.clearBugDetails();
       this.$emit("toggleDetails");
+    },
+    changeStatus() {
+      this.$swal
+        .fire({
+          title: "The bug is fixed?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Bug is Fixed"
+        })
+        .then(result => {
+          if (result.value) {
+            this.$swal.fire(
+              "Fixed!",
+              'This Bug is now set as "Fixed"',
+              "success"
+            );
+          }
+        });
     }
   }
 };
