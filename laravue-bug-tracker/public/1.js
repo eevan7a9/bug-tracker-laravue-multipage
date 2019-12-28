@@ -175,6 +175,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -326,26 +327,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -380,6 +361,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -907,34 +889,36 @@ var render = function() {
           }
         },
         [
+          _c("hr"),
+          _vm._v(" "),
           _c(
-            "b-card",
+            "form",
             {
-              attrs: {
-                header: "Adding a new Projects...",
-                "header-text-variant": "white",
-                "header-tag": "header",
-                "header-bg-variant": "primary"
+              attrs: { enctype: "multipart/form-data" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.publish($event)
+                }
               }
             },
             [
-              _c(
-                "form",
-                {
-                  attrs: { enctype: "multipart/form-data" },
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.publish($event)
-                    }
-                  }
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "row d-flex justify-content-center" },
-                    [
-                      _c("div", { staticClass: "col-md-8" }, [
+              _c("div", { staticClass: "row d-flex justify-content-center" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-md-10" },
+                  [
+                    _c(
+                      "b-card",
+                      {
+                        attrs: {
+                          header: "Adding a new Projects...",
+                          "header-text-variant": "white",
+                          "header-tag": "header",
+                          "header-bg-variant": "primary"
+                        }
+                      },
+                      [
                         _c("div", { staticClass: "form-group" }, [
                           _c(
                             "label",
@@ -1396,15 +1380,15 @@ var render = function() {
                             ]
                           )
                         ])
-                      ])
-                    ]
-                  )
-                ]
-              )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
             ]
           )
-        ],
-        1
+        ]
       )
     ],
     1
@@ -1432,232 +1416,195 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "card border-primary" }, [
-      _c("div", { staticClass: "card-header border-primary" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-outline-primary",
-            on: { click: _vm.hideDetails }
-          },
-          [_vm._v("Back")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "row justify-content-center" }, [
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "col-md-10" }, [
+      _c("div", { staticClass: "card border-primary" }, [
+        _c("div", { staticClass: "card-header border-primary" }, [
           _c(
-            "div",
-            { staticClass: "col-md-10" },
-            [
-              _c(
-                "div",
-                { staticClass: "text-center" },
-                [
-                  _c(
-                    "b-button",
-                    {
-                      class: _vm.visible_screenshot ? null : "collapsed",
-                      attrs: {
-                        "aria-expanded": _vm.visible_screenshot
-                          ? "true"
-                          : "false",
-                        "aria-controls": "collapse-4",
-                        variant: "outline-primary"
-                      },
-                      on: {
-                        click: function($event) {
-                          _vm.visible_screenshot = !_vm.visible_screenshot
-                        }
+            "button",
+            {
+              staticClass: "btn btn-outline-primary",
+              on: { click: _vm.hideDetails }
+            },
+            [_vm._v("Back")]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          [
+            _c(
+              "div",
+              { staticClass: "text-center" },
+              [
+                _c(
+                  "b-button",
+                  {
+                    class: _vm.visible_screenshot ? null : "collapsed",
+                    attrs: {
+                      "aria-expanded": _vm.visible_screenshot
+                        ? "true"
+                        : "false",
+                      "aria-controls": "collapse-4",
+                      variant: "outline-primary"
+                    },
+                    on: {
+                      click: function($event) {
+                        _vm.visible_screenshot = !_vm.visible_screenshot
                       }
-                    },
-                    [
-                      _vm._v("\n              Show Screenshot\n              "),
-                      _c(
-                        "svg",
-                        {
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            width: "24",
-                            height: "24",
-                            viewBox: "0 0 24 24",
-                            fill: "none",
-                            stroke: "currentColor",
-                            "stroke-width": "2",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        },
-                        [
-                          _c("rect", {
-                            attrs: {
-                              x: "3",
-                              y: "3",
-                              width: "18",
-                              height: "18",
-                              rx: "2",
-                              ry: "2"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("circle", {
-                            attrs: { cx: "8.5", cy: "8.5", r: "1.5" }
-                          }),
-                          _vm._v(" "),
-                          _c("polyline", {
-                            attrs: { points: "21 15 16 10 5 21" }
-                          })
-                        ]
-                      )
-                    ]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-collapse",
-                {
-                  staticClass: "mt-2",
-                  attrs: { id: "collapse-4" },
-                  model: {
-                    value: _vm.visible_screenshot,
-                    callback: function($$v) {
-                      _vm.visible_screenshot = $$v
-                    },
-                    expression: "visible_screenshot"
-                  }
-                },
-                [
-                  _c("b-card", [
+                    }
+                  },
+                  [
+                    _vm._v("\n            Show Screenshot\n            "),
                     _c(
-                      "div",
-                      { staticClass: "image-container text-center w-100" },
+                      "svg",
+                      {
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          width: "24",
+                          height: "24",
+                          viewBox: "0 0 24 24",
+                          fill: "none",
+                          stroke: "currentColor",
+                          "stroke-width": "2",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
+                        }
+                      },
                       [
-                        _c("img", {
+                        _c("rect", {
                           attrs: {
-                            src: _vm.project_details.image_src
-                              ? _vm.project_details.image_src
-                              : "https://via.placeholder.com/750",
-                            alt: "Cover image"
+                            x: "3",
+                            y: "3",
+                            width: "18",
+                            height: "18",
+                            rx: "2",
+                            ry: "2"
                           }
+                        }),
+                        _vm._v(" "),
+                        _c("circle", {
+                          attrs: { cx: "8.5", cy: "8.5", r: "1.5" }
+                        }),
+                        _vm._v(" "),
+                        _c("polyline", {
+                          attrs: { points: "21 15 16 10 5 21" }
                         })
                       ]
                     )
-                  ])
-                ],
-                1
+                  ]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-collapse",
+              {
+                staticClass: "mt-2",
+                attrs: { id: "collapse-4" },
+                model: {
+                  value: _vm.visible_screenshot,
+                  callback: function($$v) {
+                    _vm.visible_screenshot = $$v
+                  },
+                  expression: "visible_screenshot"
+                }
+              },
+              [
+                _c("b-card", [
+                  _c(
+                    "div",
+                    { staticClass: "image-container text-center w-100" },
+                    [
+                      _c("img", {
+                        attrs: {
+                          src: _vm.project_details.image_src
+                            ? _vm.project_details.image_src
+                            : "https://via.placeholder.com/750",
+                          alt: "Cover image"
+                        }
+                      })
+                    ]
+                  )
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("h5", { staticClass: "font-weight-bold mt-5" }, [
+              _vm._v(
+                "\n          " +
+                  _vm._s(_vm.project_details.name) +
+                  "\n          "
               ),
-              _vm._v(" "),
-              _c("h5", { staticClass: "font-weight-bold mt-5" }, [
-                _vm._v(
-                  "\n            " +
-                    _vm._s(_vm.project_details.name) +
-                    "\n            "
-                ),
-                _c("small", [
-                  _vm._v("version : " + _vm._s(_vm.project_details.version))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _c("small", [_vm._v("Development Started:")]),
-                _vm._v(
-                  "\n            " +
-                    _vm._s(_vm.project_details.development_start) +
-                    " |\n            "
-                ),
-                _c("small", [_vm._v("Released at:")]),
-                _vm._v(
-                  "\n            " +
-                    _vm._s(_vm.project_details.release_date) +
-                    "\n          "
-                )
-              ]),
-              _vm._v(" "),
-              _c("label", { staticClass: "mt-3" }, [_vm._v("Description :")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card p-3 bg-light" }, [
-                _c("p", { staticClass: "card-text bg-light" }, [
-                  _vm._v(_vm._s(_vm.project_details.description))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mt-3" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-6 text-center" },
-                  [
-                    _c(
-                      "b-card",
-                      {
-                        staticClass: "text-center",
-                        attrs: {
-                          "bg-variant": "light",
-                          "border-variant": "primary",
-                          "header-bg-variant": "primary",
-                          "header-text-variant": "white",
-                          "text-variant": "dark",
-                          header: "Environment"
-                        }
-                      },
-                      [
-                        _c("b-card-text", [
-                          _c(
-                            "span",
-                            { staticClass: "font-weight-bold text-capitalize" },
-                            [_vm._v(_vm._s(_vm.project_details.environment))]
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-6 text-center" },
-                  [
-                    _c(
-                      "b-card",
-                      {
-                        staticClass: "text-center",
-                        attrs: {
-                          "bg-variant": "light",
-                          "border-variant": "primary",
-                          "header-bg-variant": "primary",
-                          "header-text-variant": "white",
-                          "text-variant": "dark",
-                          header: "Operating System"
-                        }
-                      },
-                      [
-                        _c("b-card-text", [
-                          _c(
-                            "span",
-                            { staticClass: "font-weight-bold text-capitalize" },
-                            [_vm._v(_vm._s(_vm.project_details.os))]
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
+              _c("small", [
+                _vm._v("version : " + _vm._s(_vm.project_details.version))
               ])
-            ],
-            1
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-footer border-primary text-left" }, [
-        _c("div", [
-          _vm._v("Added at: " + _vm._s(_vm.project_details.created_at))
+            ]),
+            _vm._v(" "),
+            _c("label", { staticClass: "mt-3 font-weight-bold" }, [
+              _vm._v("Description :")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card p-3 bg-light" }, [
+              _c("p", { staticClass: "card-text bg-light" }, [
+                _vm._v(_vm._s(_vm.project_details.description))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row mt-3" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("label", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Development Started")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card bg-light p-2" }, [
+                  _vm._v(_vm._s(_vm.project_details.development_start))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("label", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Released At")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card bg-light p-2" }, [
+                  _vm._v(_vm._s(_vm.project_details.release_date))
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row mt-3" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("label", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Environment")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card bg-light p-2" }, [
+                  _vm._v(_vm._s(_vm.project_details.environment))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("label", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Operating System")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card bg-light p-2" }, [
+                  _vm._v(_vm._s(_vm.project_details.os))
+                ])
+              ])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer border-primary text-left" }, [
+          _c("div", [
+            _vm._v("Added at: " + _vm._s(_vm.project_details.created_at))
+          ])
         ])
       ])
     ])
@@ -1752,6 +1699,8 @@ var render = function() {
           }
         },
         [
+          _c("hr"),
+          _vm._v(" "),
           _c(
             "form",
             {
@@ -1764,22 +1713,22 @@ var render = function() {
               }
             },
             [
-              _c(
-                "b-card",
-                {
-                  attrs: {
-                    header: "Editing a Project...",
-                    "header-text-variant": "white",
-                    "header-tag": "header",
-                    "header-bg-variant": "primary"
-                  }
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "row d-flex justify-content-center" },
-                    [
-                      _c("div", { staticClass: "col-md-8" }, [
+              _c("div", { staticClass: "row d-flex justify-content-center" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-md-10" },
+                  [
+                    _c(
+                      "b-card",
+                      {
+                        attrs: {
+                          header: "Editing a Project...",
+                          "header-text-variant": "white",
+                          "header-tag": "header",
+                          "header-bg-variant": "primary"
+                        }
+                      },
+                      [
                         _c("div", { staticClass: "form-group" }, [
                           _c(
                             "label",
@@ -2243,13 +2192,13 @@ var render = function() {
                             ]
                           )
                         ])
-                      ])
-                    ]
-                  )
-                ]
-              )
-            ],
-            1
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
           )
         ]
       )

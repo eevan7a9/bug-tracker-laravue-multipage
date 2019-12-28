@@ -273,6 +273,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -470,40 +472,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -538,6 +506,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -1083,7 +1052,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-100" },
     [
       _c(
         "b-button",
@@ -1144,7 +1112,6 @@ var render = function() {
       _c(
         "b-collapse",
         {
-          staticClass: "mt-2",
           attrs: { id: "collapse-1" },
           model: {
             value: _vm.visible,
@@ -1155,799 +1122,753 @@ var render = function() {
           }
         },
         [
-          _c(
-            "form",
-            {
-              attrs: { enctype: "multipart/form-data" },
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.submit($event)
-                }
-              }
-            },
-            [
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c("div", { staticClass: "col-md-10" }, [
               _c(
-                "b-card",
+                "form",
                 {
-                  attrs: {
-                    header: "Adding a new Bug...",
-                    "header-text-variant": "white",
-                    "header-tag": "header",
-                    "header-bg-variant": "primary"
+                  attrs: { enctype: "multipart/form-data" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.submit($event)
+                    }
                   }
                 },
                 [
                   _c(
-                    "div",
-                    { staticClass: "row d-flex justify-content-center" },
+                    "b-card",
+                    {
+                      attrs: {
+                        header: "Adding a new Bug...",
+                        "header-text-variant": "white",
+                        "header-tag": "header",
+                        "header-bg-variant": "primary"
+                      }
+                    },
                     [
-                      _c("div", { staticClass: "col-md-8" }, [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "title" }
+                              },
+                              [_vm._v("Bug Title")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
                                 {
-                                  staticClass: "font-weight-bold",
-                                  attrs: { for: "title" }
-                                },
-                                [_vm._v("Bug Title")]
-                              ),
-                              _vm._v(" "),
-                              _c("input", {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.bug.title,
+                                  expression: "bug.title"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "title",
+                                "aria-describedby": "helpId",
+                                placeholder: "Navbar error"
+                              },
+                              domProps: { value: _vm.bug.title },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.bug,
+                                    "title",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "small",
+                              {
+                                staticClass: "form-text text-muted",
+                                attrs: { id: "helpId" }
+                              },
+                              [_vm._v("name that describe the bug")]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "project" }
+                              },
+                              [_vm._v("Project Name")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.bug.title,
-                                    expression: "bug.title"
+                                    value: _vm.bug.project,
+                                    expression: "bug.project"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "project", id: "project" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.bug,
+                                      "project",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              _vm._l(_vm.projects, function(project) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: project.id,
+                                    domProps: { value: project.id }
+                                  },
+                                  [_vm._v(_vm._s(project.name))]
+                                )
+                              }),
+                              0
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "font-weight-bold",
+                            attrs: { for: "description" }
+                          },
+                          [_vm._v("Bug Description")]
+                        ),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.bug.description,
+                              expression: "bug.description"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            name: "description",
+                            id: "description",
+                            rows: "3"
+                          },
+                          domProps: { value: _vm.bug.description },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.bug,
+                                "description",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "browser" }
+                              },
+                              [_vm._v("Browser")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.bug.browser,
+                                    expression: "bug.browser"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "browser", id: "browser" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.bug,
+                                      "browser",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", [_vm._v("Chrome")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Firefox")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Opera")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Edge")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Safari")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Internet Explorer")])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "operating_system" }
+                              },
+                              [_vm._v("Operating System")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.bug.os,
+                                    expression: "bug.os"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
-                                  type: "text",
-                                  name: "title",
-                                  "aria-describedby": "helpId",
-                                  placeholder: "Navbar error"
+                                  name: "operating_system",
+                                  id: "operating_system"
                                 },
-                                domProps: { value: _vm.bug.title },
                                 on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
                                     _vm.$set(
                                       _vm.bug,
-                                      "title",
-                                      $event.target.value
+                                      "os",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
                                     )
                                   }
                                 }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "small",
-                                {
-                                  staticClass: "form-text text-muted",
-                                  attrs: { id: "helpId" }
-                                },
-                                [_vm._v("name that describe the bug")]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "font-weight-bold",
-                                  attrs: { for: "project" }
-                                },
-                                [_vm._v("Project Name")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
+                              },
+                              [
+                                _c("option", [_vm._v("Mac Os")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Windows 10")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Windows 8")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Linux (Debian/Ubuntu)")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Linux (Manjaro)")])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "type" }
+                              },
+                              [_vm._v("Bug Type")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.bug.type,
+                                    expression: "bug.type"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "type", id: "type" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.bug,
+                                      "type",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", [_vm._v("New Feature")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Frontend/Design")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Functional Bugs")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Api")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Handling Error")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Control Flow")])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "radio-container" }, [
+                            _c("label", { staticClass: "font-weight-bold" }, [
+                              _vm._v("Priority")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
                                   directives: [
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.bug.project,
-                                      expression: "bug.project"
+                                      value: _vm.bug.priority,
+                                      expression: "bug.priority"
                                     }
                                   ],
-                                  staticClass: "form-control",
-                                  attrs: { name: "project", id: "project" },
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "radio",
+                                    id: "high",
+                                    value: "high"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.bug.priority, "high")
+                                  },
                                   on: {
                                     change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
+                                      return _vm.$set(
                                         _vm.bug,
-                                        "project",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
+                                        "priority",
+                                        "high"
                                       )
                                     }
                                   }
-                                },
-                                _vm._l(_vm.projects, function(project) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: project.id,
-                                      domProps: { value: project.id }
-                                    },
-                                    [_vm._v(_vm._s(project.name))]
-                                  )
                                 }),
-                                0
-                              )
+                                _vm._v(
+                                  "\n                      High\n                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.bug.priority,
+                                      expression: "bug.priority"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "radio",
+                                    id: "mid",
+                                    value: "mid"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.bug.priority, "mid")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$set(
+                                        _vm.bug,
+                                        "priority",
+                                        "mid"
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                      Mid\n                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.bug.priority,
+                                      expression: "bug.priority"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "radio",
+                                    id: "low",
+                                    value: "low"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.bug.priority, "low")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$set(
+                                        _vm.bug,
+                                        "priority",
+                                        "low"
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                      Low\n                    "
+                                )
+                              ])
                             ])
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "font-weight-bold",
-                              attrs: { for: "description" }
-                            },
-                            [_vm._v("Bug Description")]
-                          ),
-                          _vm._v(" "),
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.bug.description,
-                                expression: "bug.description"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              name: "description",
-                              id: "description",
-                              rows: "3"
-                            },
-                            domProps: { value: _vm.bug.description },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.bug,
-                                  "description",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "font-weight-bold",
-                                  attrs: { for: "browser" }
-                                },
-                                [_vm._v("Browser")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "radio-container" }, [
+                            _c("label", { staticClass: "font-weight-bold" }, [
+                              _vm._v("Severity")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
                                   directives: [
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.bug.browser,
-                                      expression: "bug.browser"
+                                      value: _vm.bug.severity,
+                                      expression: "bug.severity"
                                     }
                                   ],
-                                  staticClass: "form-control",
-                                  attrs: { name: "browser", id: "browser" },
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.bug,
-                                        "browser",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("option", [_vm._v("Chrome")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Firefox")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Opera")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Edge")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Safari")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Internet Explorer")])
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "font-weight-bold",
-                                  attrs: { for: "operating_system" }
-                                },
-                                [_vm._v("Operating System")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.bug.os,
-                                      expression: "bug.os"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
+                                  staticClass: "form-check-input",
                                   attrs: {
-                                    name: "operating_system",
-                                    id: "operating_system"
+                                    type: "radio",
+                                    id: "high",
+                                    value: "high"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.bug.severity, "high")
                                   },
                                   on: {
                                     change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
+                                      return _vm.$set(
                                         _vm.bug,
-                                        "os",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
+                                        "severity",
+                                        "high"
                                       )
                                     }
                                   }
-                                },
-                                [
-                                  _c("option", [_vm._v("Mac Os")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Windows 10")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Windows 8")]),
-                                  _vm._v(" "),
-                                  _c("option", [
-                                    _vm._v("Linux (Debian/Ubuntu)")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Linux (Manjaro)")])
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "font-weight-bold",
-                                  attrs: { for: "type" }
-                                },
-                                [_vm._v("Bug Type")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.bug.type,
-                                      expression: "bug.type"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { name: "type", id: "type" },
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.bug,
-                                        "type",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("option", [_vm._v("New Feature")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Frontend/Design")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Functional Bugs")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Api")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Handling Error")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Control Flow")])
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "radio-container" }, [
-                              _c("label", { staticClass: "font-weight-bold" }, [
-                                _vm._v("Priority")
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-check" }, [
-                                _c(
-                                  "label",
-                                  { staticClass: "form-check-label" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.bug.priority,
-                                          expression: "bug.priority"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        type: "radio",
-                                        id: "high",
-                                        value: "high"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(
-                                          _vm.bug.priority,
-                                          "high"
-                                        )
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.bug,
-                                            "priority",
-                                            "high"
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                      High\n                    "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-check" }, [
-                                _c(
-                                  "label",
-                                  { staticClass: "form-check-label" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.bug.priority,
-                                          expression: "bug.priority"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        type: "radio",
-                                        id: "mid",
-                                        value: "mid"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(_vm.bug.priority, "mid")
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.bug,
-                                            "priority",
-                                            "mid"
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                      Mid\n                    "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-check" }, [
-                                _c(
-                                  "label",
-                                  { staticClass: "form-check-label" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.bug.priority,
-                                          expression: "bug.priority"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        type: "radio",
-                                        id: "low",
-                                        value: "low"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(_vm.bug.priority, "low")
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.bug,
-                                            "priority",
-                                            "low"
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                      Low\n                    "
-                                    )
-                                  ]
-                                )
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "radio-container" }, [
-                              _c("label", { staticClass: "font-weight-bold" }, [
-                                _vm._v("Severity")
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-check" }, [
-                                _c(
-                                  "label",
-                                  { staticClass: "form-check-label" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.bug.severity,
-                                          expression: "bug.severity"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        type: "radio",
-                                        id: "high",
-                                        value: "high"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(
-                                          _vm.bug.severity,
-                                          "high"
-                                        )
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.bug,
-                                            "severity",
-                                            "high"
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                      High\n                    "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-check" }, [
-                                _c(
-                                  "label",
-                                  { staticClass: "form-check-label" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.bug.severity,
-                                          expression: "bug.severity"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        type: "radio",
-                                        id: "mid",
-                                        value: "mid"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(_vm.bug.severity, "mid")
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.bug,
-                                            "severity",
-                                            "mid"
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                      Mid\n                    "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-check" }, [
-                                _c(
-                                  "label",
-                                  { staticClass: "form-check-label" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.bug.severity,
-                                          expression: "bug.severity"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        type: "radio",
-                                        id: "low",
-                                        value: "low"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(_vm.bug.severity, "low")
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.bug,
-                                            "severity",
-                                            "low"
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                      Low\n                    "
-                                    )
-                                  ]
-                                )
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "font-weight-bold",
-                                  attrs: { for: "assigned" }
-                                },
-                                [_vm._v("Assigned To :")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.bug.developer,
-                                      expression: "bug.developer"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { name: "assigned", id: "assigned" },
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.bug,
-                                        "developer",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                _vm._l(_vm.developers, function(
-                                  developer,
-                                  index
-                                ) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: index,
-                                      domProps: { value: developer.id }
-                                    },
-                                    [_vm._v(_vm._s(developer.email))]
-                                  )
                                 }),
-                                0
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-md-6 mt-5" },
-                            [
-                              _c("b-form-file", {
-                                ref: "imageUpload",
-                                attrs: {
-                                  placeholder:
-                                    "Choose a Image or drop it here...",
-                                  "drop-placeholder": "Drop file here..."
-                                },
-                                model: {
-                                  value: _vm.bug.image,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.bug, "image", $$v)
-                                  },
-                                  expression: "bug.image"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "mt-3" }, [
                                 _vm._v(
-                                  "Screen Shot: " +
-                                    _vm._s(
-                                      _vm.bug.image ? _vm.bug.image.name : ""
-                                    )
+                                  "\n                      High\n                    "
                                 )
                               ])
-                            ],
-                            1
-                          )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.bug.severity,
+                                      expression: "bug.severity"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "radio",
+                                    id: "mid",
+                                    value: "mid"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.bug.severity, "mid")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$set(
+                                        _vm.bug,
+                                        "severity",
+                                        "mid"
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                      Mid\n                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.bug.severity,
+                                      expression: "bug.severity"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "radio",
+                                    id: "low",
+                                    value: "low"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.bug.severity, "low")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$set(
+                                        _vm.bug,
+                                        "severity",
+                                        "low"
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                      Low\n                    "
+                                )
+                              ])
+                            ])
+                          ])
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "text-right my-2" }, [
-                          _c(
-                            "button",
-                            { staticClass: "btn btn-primary btn-lg" },
-                            [
-                              _vm._v(
-                                "\n                Submit\n                "
-                              ),
-                              _c(
-                                "svg",
-                                {
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    width: "24",
-                                    height: "24",
-                                    viewBox: "0 0 24 24",
-                                    fill: "none",
-                                    stroke: "currentColor",
-                                    "stroke-width": "2",
-                                    "stroke-linecap": "round",
-                                    "stroke-linejoin": "round"
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "assigned" }
+                              },
+                              [_vm._v("Assigned To :")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.bug.developer,
+                                    expression: "bug.developer"
                                   }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "assigned", id: "assigned" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.bug,
+                                      "developer",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              _vm._l(_vm.developers, function(
+                                developer,
+                                index
+                              ) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: index,
+                                    domProps: { value: developer.id }
+                                  },
+                                  [_vm._v(_vm._s(developer.email))]
+                                )
+                              }),
+                              0
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6 mt-5" },
+                          [
+                            _c("b-form-file", {
+                              ref: "imageUpload",
+                              attrs: {
+                                placeholder:
+                                  "Choose a Image or drop it here...",
+                                "drop-placeholder": "Drop file here..."
+                              },
+                              model: {
+                                value: _vm.bug.image,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.bug, "image", $$v)
                                 },
-                                [
-                                  _c("line", {
-                                    attrs: {
-                                      x1: "22",
-                                      y1: "2",
-                                      x2: "11",
-                                      y2: "13"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("polygon", {
-                                    attrs: {
-                                      points: "22 2 15 22 11 13 2 9 22 2"
-                                    }
-                                  })
-                                ]
+                                expression: "bug.image"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mt-3" }, [
+                              _vm._v(
+                                "Screen Shot: " +
+                                  _vm._s(
+                                    _vm.bug.image ? _vm.bug.image.name : ""
+                                  )
                               )
-                            ]
-                          )
-                        ])
+                            ])
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "text-right my-2" }, [
+                        _c(
+                          "button",
+                          { staticClass: "btn btn-primary btn-lg" },
+                          [
+                            _vm._v(
+                              "\n                Submit\n                "
+                            ),
+                            _c(
+                              "svg",
+                              {
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  width: "24",
+                                  height: "24",
+                                  viewBox: "0 0 24 24",
+                                  fill: "none",
+                                  stroke: "currentColor",
+                                  "stroke-width": "2",
+                                  "stroke-linecap": "round",
+                                  "stroke-linejoin": "round"
+                                }
+                              },
+                              [
+                                _c("line", {
+                                  attrs: {
+                                    x1: "22",
+                                    y1: "2",
+                                    x2: "11",
+                                    y2: "13"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("polygon", {
+                                  attrs: { points: "22 2 15 22 11 13 2 9 22 2" }
+                                })
+                              ]
+                            )
+                          ]
+                        )
                       ])
                     ]
                   )
-                ]
+                ],
+                1
               )
-            ],
-            1
-          )
+            ])
+          ])
         ]
       )
     ],
@@ -1976,388 +1897,322 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "card border-primary" }, [
-      _c("div", { staticClass: "card-header border-primary" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-outline-primary",
-            on: { click: _vm.hideDetails }
-          },
-          [_vm._v("Back")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "row justify-content-center" }, [
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "col-md-10" }, [
+      _c("div", { staticClass: "card border-primary" }, [
+        _c("div", { staticClass: "card-header border-primary" }, [
           _c(
-            "div",
-            { staticClass: "col-md-10" },
-            [
+            "button",
+            {
+              staticClass: "btn btn-outline-primary",
+              on: { click: _vm.hideDetails }
+            },
+            [_vm._v("Back")]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          [
+            _c(
+              "div",
+              { staticClass: "text-center" },
+              [
+                _c(
+                  "b-button",
+                  {
+                    class: _vm.visible_screenshot ? null : "collapsed",
+                    attrs: {
+                      "aria-expanded": _vm.visible_screenshot
+                        ? "true"
+                        : "false",
+                      "aria-controls": "collapse-4",
+                      variant: "outline-primary"
+                    },
+                    on: {
+                      click: function($event) {
+                        _vm.visible_screenshot = !_vm.visible_screenshot
+                      }
+                    }
+                  },
+                  [
+                    _vm._v("\n            Show Screenshot\n            "),
+                    _c(
+                      "svg",
+                      {
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          width: "24",
+                          height: "24",
+                          viewBox: "0 0 24 24",
+                          fill: "none",
+                          stroke: "currentColor",
+                          "stroke-width": "2",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
+                        }
+                      },
+                      [
+                        _c("rect", {
+                          attrs: {
+                            x: "3",
+                            y: "3",
+                            width: "18",
+                            height: "18",
+                            rx: "2",
+                            ry: "2"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("circle", {
+                          attrs: { cx: "8.5", cy: "8.5", r: "1.5" }
+                        }),
+                        _vm._v(" "),
+                        _c("polyline", {
+                          attrs: { points: "21 15 16 10 5 21" }
+                        })
+                      ]
+                    )
+                  ]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-collapse",
+              {
+                staticClass: "mt-2",
+                attrs: { id: "collapse-4" },
+                model: {
+                  value: _vm.visible_screenshot,
+                  callback: function($$v) {
+                    _vm.visible_screenshot = $$v
+                  },
+                  expression: "visible_screenshot"
+                }
+              },
+              [
+                _c("b-card", [
+                  _c("div", { staticClass: "text-center w-100" }, [
+                    _c("img", {
+                      attrs: {
+                        src: _vm.bug_details.image_src
+                          ? _vm.bug_details.image_src
+                          : "https://via.placeholder.com/750",
+                        alt: "Screenshot"
+                      }
+                    })
+                  ])
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "h4",
+              {
+                staticClass: "card-title py-2 mt-5 text-left font-weight-bold"
+              },
+              [_vm._v(_vm._s(_vm.bug_details.title))]
+            ),
+            _vm._v(" "),
+            _c("label", { staticClass: "font-weight-bold" }, [
+              _vm._v("Description :")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card p-3 bg-light mb-1" }, [
+              _c("p", { staticClass: "card-text bg-light" }, [
+                _vm._v(_vm._s(_vm.bug_details.description))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("h6", { staticClass: "py-1 text-right" }, [
+              _c("span", { staticClass: "font-weight-bold" }, [
+                _vm._v("Issued at :")
+              ]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(_vm.bug_details.created_at) +
+                  "\n        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-8" }, [
+                _c("label", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Project Name :")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card bg-light p-2" }, [
+                  _vm._v(_vm._s(_vm.bug_details.project.name))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Version :")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card bg-light p-2" }, [
+                  _vm._v(_vm._s(_vm.bug_details.project.version))
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row mt-3" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Browser :")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card bg-light p-2" }, [
+                  _vm._v(_vm._s(_vm.bug_details.browser))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Operating System :")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card bg-light p-2" }, [
+                  _vm._v(_vm._s(_vm.bug_details.os))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Bug Type :")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card bg-light p-2" }, [
+                  _vm._v(_vm._s(_vm.bug_details.bug_type))
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row mt-3" }, [
               _c(
                 "div",
-                { staticClass: "text-center" },
+                { staticClass: "col-md-4 text-center" },
                 [
                   _c(
-                    "b-button",
+                    "b-card",
                     {
-                      class: _vm.visible_screenshot ? null : "collapsed",
+                      staticClass: "text-center",
                       attrs: {
-                        "aria-expanded": _vm.visible_screenshot
-                          ? "true"
-                          : "false",
-                        "aria-controls": "collapse-4",
-                        variant: "outline-primary"
-                      },
-                      on: {
-                        click: function($event) {
-                          _vm.visible_screenshot = !_vm.visible_screenshot
-                        }
+                        "bg-variant": "light",
+                        "border-variant": "primary",
+                        "header-bg-variant": "primary",
+                        "header-text-variant": "white",
+                        "text-variant": "dark",
+                        header: "Severity"
                       }
                     },
                     [
-                      _vm._v("\n              Show Screenshot\n              "),
-                      _c(
-                        "svg",
-                        {
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            width: "24",
-                            height: "24",
-                            viewBox: "0 0 24 24",
-                            fill: "none",
-                            stroke: "currentColor",
-                            "stroke-width": "2",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        },
-                        [
-                          _c("rect", {
-                            attrs: {
-                              x: "3",
-                              y: "3",
-                              width: "18",
-                              height: "18",
-                              rx: "2",
-                              ry: "2"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("circle", {
-                            attrs: { cx: "8.5", cy: "8.5", r: "1.5" }
-                          }),
-                          _vm._v(" "),
-                          _c("polyline", {
-                            attrs: { points: "21 15 16 10 5 21" }
-                          })
-                        ]
-                      )
-                    ]
+                      _c("b-card-text", [
+                        _c(
+                          "span",
+                          { staticClass: "font-weight-bold text-capitalize" },
+                          [_vm._v(_vm._s(_vm.bug_details.severity))]
+                        )
+                      ])
+                    ],
+                    1
                   )
                 ],
                 1
               ),
               _vm._v(" "),
               _c(
-                "b-collapse",
-                {
-                  staticClass: "mt-2",
-                  attrs: { id: "collapse-4" },
-                  model: {
-                    value: _vm.visible_screenshot,
-                    callback: function($$v) {
-                      _vm.visible_screenshot = $$v
-                    },
-                    expression: "visible_screenshot"
-                  }
-                },
+                "div",
+                { staticClass: "col-md-4 text-center" },
                 [
-                  _c("b-card", [
-                    _c("div", { staticClass: "text-center w-100" }, [
-                      _c("img", {
-                        attrs: {
-                          src: _vm.bug_details.image_src
-                            ? _vm.bug_details.image_src
-                            : "https://via.placeholder.com/750",
-                          alt: "Screenshot"
-                        }
-                      })
-                    ])
-                  ])
+                  _c(
+                    "b-card",
+                    {
+                      staticClass: "text-center",
+                      attrs: {
+                        "bg-variant": "light",
+                        "border-variant": "primary",
+                        "header-bg-variant": "primary",
+                        "header-text-variant": "white",
+                        "text-variant": "dark",
+                        header: "Priority"
+                      }
+                    },
+                    [
+                      _c("b-card-text", [
+                        _c(
+                          "span",
+                          { staticClass: "font-weight-bold text-capitalize" },
+                          [_vm._v(_vm._s(_vm.bug_details.priority))]
+                        )
+                      ])
+                    ],
+                    1
+                  )
                 ],
                 1
               ),
               _vm._v(" "),
               _c(
-                "h4",
-                {
-                  staticClass: "card-title py-2 mt-5 text-left font-weight-bold"
-                },
-                [_vm._v(_vm._s(_vm.bug_details.title))]
-              ),
-              _vm._v(" "),
-              _c("label", [_vm._v("Description :")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card p-3 bg-light mb-4" }, [
-                _c("p", { staticClass: "card-text bg-light" }, [
-                  _vm._v(_vm._s(_vm.bug_details.description))
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
                 "div",
-                {
-                  staticClass:
-                    "d-flex justify-content-md-between align-content-center"
-                },
+                { staticClass: "col-md-4 text-center" },
                 [
-                  _c("h5", { staticClass: "py-1 font-weight-bold" }, [
-                    _c("span", { staticClass: "text-capitalize" }, [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.bug_details.project.name) +
-                          "\n                "
-                      ),
-                      _c("small", [
-                        _vm._v(
-                          "version : " + _vm._s(_vm.bug_details.project.version)
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "py-1" }, [
-                    _c("span", [_vm._v("Issued at :")]),
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(_vm.bug_details.created_at) +
-                        "\n            "
-                    )
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mt-3" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-4 text-center" },
-                  [
-                    _c(
-                      "b-card",
-                      {
-                        staticClass: "text-center",
-                        attrs: {
-                          "bg-variant": "light",
-                          "border-variant": "primary",
-                          "header-bg-variant": "primary",
-                          "header-text-variant": "white",
-                          "text-variant": "dark",
-                          header: "Severity"
-                        }
-                      },
-                      [
-                        _c("b-card-text", [
-                          _c(
-                            "span",
-                            { staticClass: "font-weight-bold text-capitalize" },
-                            [_vm._v(_vm._s(_vm.bug_details.severity))]
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-4 text-center" },
-                  [
-                    _c(
-                      "b-card",
-                      {
-                        staticClass: "text-center",
-                        attrs: {
-                          "bg-variant": "light",
-                          "border-variant": "primary",
-                          "header-bg-variant": "primary",
-                          "header-text-variant": "white",
-                          "text-variant": "dark",
-                          header: "Priority"
-                        }
-                      },
-                      [
-                        _c("b-card-text", [
-                          _c(
-                            "span",
-                            { staticClass: "font-weight-bold text-capitalize" },
-                            [_vm._v(_vm._s(_vm.bug_details.priority))]
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-4 text-center" },
-                  [
-                    _c(
-                      "b-card",
-                      {
-                        staticClass: "text-center",
-                        attrs: {
-                          "bg-variant": "light",
-                          "border-variant": "primary",
-                          "header-bg-variant": "primary",
-                          "header-text-variant": "white",
-                          "text-variant": "dark",
-                          header: "Assigned To"
-                        }
-                      },
-                      [
-                        _c("b-card-text", [
-                          _c("span", { staticClass: "font-weight-bold" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm.bug_details.assigned_to
-                                  ? _vm.bug_details.assigned_to.email
-                                  : "Unassigned"
-                              )
+                  _c(
+                    "b-card",
+                    {
+                      staticClass: "text-center",
+                      attrs: {
+                        "bg-variant": "light",
+                        "border-variant": "primary",
+                        "header-bg-variant": "primary",
+                        "header-text-variant": "white",
+                        "text-variant": "dark",
+                        header: "Assigned To"
+                      }
+                    },
+                    [
+                      _c("b-card-text", [
+                        _c("span", { staticClass: "font-weight-bold" }, [
+                          _vm._v(
+                            _vm._s(
+                              _vm.bug_details.assigned_to
+                                ? _vm.bug_details.assigned_to.email
+                                : "Unassigned"
                             )
-                          ])
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mt-3" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-4 text-center" },
-                  [
-                    _c(
-                      "b-card",
-                      {
-                        staticClass: "text-center",
-                        attrs: {
-                          "bg-variant": "light",
-                          "border-variant": "primary",
-                          "header-bg-variant": "primary",
-                          "header-text-variant": "white",
-                          "text-variant": "dark",
-                          header: "Browser"
-                        }
-                      },
-                      [
-                        _c("b-card-text", [
-                          _c(
-                            "span",
-                            { staticClass: "font-weight-bold text-capitalize" },
-                            [_vm._v(_vm._s(_vm.bug_details.browser))]
                           )
                         ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-4 text-center" },
-                  [
-                    _c(
-                      "b-card",
-                      {
-                        staticClass: "text-center",
-                        attrs: {
-                          "bg-variant": "light",
-                          "border-variant": "primary",
-                          "header-bg-variant": "primary",
-                          "header-text-variant": "white",
-                          "text-variant": "dark",
-                          header: "Operating System"
-                        }
-                      },
-                      [
-                        _c("b-card-text", [
-                          _c(
-                            "span",
-                            { staticClass: "font-weight-bold text-capitalize" },
-                            [_vm._v(_vm._s(_vm.bug_details.os))]
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-4 text-center" },
-                  [
-                    _c(
-                      "b-card",
-                      {
-                        staticClass: "text-center",
-                        attrs: {
-                          "bg-variant": "light",
-                          "border-variant": "primary",
-                          "header-bg-variant": "primary",
-                          "header-text-variant": "white",
-                          "text-variant": "dark",
-                          header: "Bug Type"
-                        }
-                      },
-                      [
-                        _c("b-card-text", [
-                          _c(
-                            "span",
-                            { staticClass: "font-weight-bold text-capitalize" },
-                            [_vm._v(_vm._s(_vm.bug_details.bug_type))]
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ])
-            ],
-            1
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "card-footer border-primary d-flex justify-content-between align-items-center"
-        },
-        [
-          _c("div", [
-            _vm._v("Added By: " + _vm._s(_vm.bug_details.added_by.email))
-          ]),
-          _vm._v(" "),
-          _c("div", [_vm._v("options")])
-        ]
-      )
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "card-footer border-primary d-flex justify-content-between align-items-center"
+          },
+          [
+            _c("div", [
+              _vm._v("Added By: " + _vm._s(_vm.bug_details.added_by.email))
+            ]),
+            _vm._v(" "),
+            _c("div", [_vm._v("options")])
+          ]
+        )
+      ])
     ])
   ])
 }
@@ -2439,7 +2294,7 @@ var render = function() {
       _c(
         "b-collapse",
         {
-          staticClass: "mt-2",
+          staticClass: "mt-3",
           attrs: { id: "collapse-4" },
           model: {
             value: _vm.visible,
@@ -2450,795 +2305,751 @@ var render = function() {
           }
         },
         [
-          _c(
-            "form",
-            {
-              attrs: { enctype: "multipart/form-data" },
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.update($event)
-                }
-              }
-            },
-            [
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c("div", { staticClass: "col-md-10" }, [
               _c(
-                "b-card",
+                "form",
                 {
-                  attrs: {
-                    header: "Editing a Bug...",
-                    "header-text-variant": "white",
-                    "header-tag": "header",
-                    "header-bg-variant": "primary"
+                  attrs: { enctype: "multipart/form-data" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.update($event)
+                    }
                   }
                 },
                 [
                   _c(
-                    "div",
-                    { staticClass: "row d-flex justify-content-center" },
+                    "b-card",
+                    {
+                      attrs: {
+                        header: "Editing a Bug...",
+                        "header-text-variant": "white",
+                        "header-tag": "header",
+                        "header-bg-variant": "primary"
+                      }
+                    },
                     [
-                      _c("div", { staticClass: "col-md-8" }, [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "title" }
+                              },
+                              [_vm._v("Bug Title")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
                                 {
-                                  staticClass: "font-weight-bold",
-                                  attrs: { for: "title" }
-                                },
-                                [_vm._v("Bug Title")]
-                              ),
-                              _vm._v(" "),
-                              _c("input", {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.bug.title,
+                                  expression: "bug.title"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "title",
+                                "aria-describedby": "helpId",
+                                placeholder: "Navbar error"
+                              },
+                              domProps: { value: _vm.bug.title },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.bug,
+                                    "title",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "small",
+                              {
+                                staticClass: "form-text text-muted",
+                                attrs: { id: "helpId" }
+                              },
+                              [_vm._v("name that describe the bug")]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "project" }
+                              },
+                              [_vm._v("Project Name")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.bug.title,
-                                    expression: "bug.title"
+                                    value: _vm.bug.project,
+                                    expression: "bug.project"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "project", id: "project" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.bug,
+                                      "project",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              _vm._l(_vm.projects, function(project) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: project.id,
+                                    domProps: { value: project.id }
+                                  },
+                                  [_vm._v(_vm._s(project.name))]
+                                )
+                              }),
+                              0
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "font-weight-bold",
+                            attrs: { for: "description" }
+                          },
+                          [_vm._v("Bug Description")]
+                        ),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.bug.description,
+                              expression: "bug.description"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            name: "description",
+                            id: "description",
+                            rows: "3"
+                          },
+                          domProps: { value: _vm.bug.description },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.bug,
+                                "description",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "browser" }
+                              },
+                              [_vm._v("Browser")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.bug.browser,
+                                    expression: "bug.browser"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "browser", id: "browser" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.bug,
+                                      "browser",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", [_vm._v("Chrome")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Firefox")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Opera")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Edge")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Safari")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Internet Explorer")])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "operating_system" }
+                              },
+                              [_vm._v("Operating System")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.bug.os,
+                                    expression: "bug.os"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
-                                  type: "text",
-                                  name: "title",
-                                  "aria-describedby": "helpId",
-                                  placeholder: "Navbar error"
+                                  name: "operating_system",
+                                  id: "operating_system"
                                 },
-                                domProps: { value: _vm.bug.title },
                                 on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
                                     _vm.$set(
                                       _vm.bug,
-                                      "title",
-                                      $event.target.value
+                                      "os",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
                                     )
                                   }
                                 }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "small",
-                                {
-                                  staticClass: "form-text text-muted",
-                                  attrs: { id: "helpId" }
-                                },
-                                [_vm._v("name that describe the bug")]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "font-weight-bold",
-                                  attrs: { for: "project" }
-                                },
-                                [_vm._v("Project Name")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
+                              },
+                              [
+                                _c("option", [_vm._v("Mac Os")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Windows 10")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Windows 8")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Linux (Debian/Ubuntu)")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Linux (Manjaro)")])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "type" }
+                              },
+                              [_vm._v("Bug Type")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.bug.type,
+                                    expression: "bug.type"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "type", id: "type" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.bug,
+                                      "type",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", [_vm._v("New Feature")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Frontend/Design")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Functional Bugs")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Api")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Handling Error")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Control Flow")])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "radio-container" }, [
+                            _c("label", { staticClass: "font-weight-bold" }, [
+                              _vm._v("Priority")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
                                   directives: [
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.bug.project,
-                                      expression: "bug.project"
+                                      value: _vm.bug.priority,
+                                      expression: "bug.priority"
                                     }
                                   ],
-                                  staticClass: "form-control",
-                                  attrs: { name: "project", id: "project" },
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "radio",
+                                    name: "priority",
+                                    value: "high"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.bug.priority, "high")
+                                  },
                                   on: {
                                     change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
+                                      return _vm.$set(
                                         _vm.bug,
-                                        "project",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
+                                        "priority",
+                                        "high"
                                       )
                                     }
                                   }
-                                },
-                                _vm._l(_vm.projects, function(project) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: project.id,
-                                      domProps: { value: project.id }
-                                    },
-                                    [_vm._v(_vm._s(project.name))]
-                                  )
                                 }),
-                                0
-                              )
+                                _vm._v(
+                                  "\n                      High\n                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.bug.priority,
+                                      expression: "bug.priority"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "radio",
+                                    name: "priority",
+                                    value: "mid"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.bug.priority, "mid")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$set(
+                                        _vm.bug,
+                                        "priority",
+                                        "mid"
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                      Mid\n                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.bug.priority,
+                                      expression: "bug.priority"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "radio",
+                                    name: "priority",
+                                    value: "low"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.bug.priority, "low")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$set(
+                                        _vm.bug,
+                                        "priority",
+                                        "low"
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                      Low\n                    "
+                                )
+                              ])
                             ])
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "font-weight-bold",
-                              attrs: { for: "description" }
-                            },
-                            [_vm._v("Bug Description")]
-                          ),
-                          _vm._v(" "),
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.bug.description,
-                                expression: "bug.description"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              name: "description",
-                              id: "description",
-                              rows: "3"
-                            },
-                            domProps: { value: _vm.bug.description },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.bug,
-                                  "description",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "font-weight-bold",
-                                  attrs: { for: "browser" }
-                                },
-                                [_vm._v("Browser")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "radio-container" }, [
+                            _c("label", { staticClass: "font-weight-bold" }, [
+                              _vm._v("Severity")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
                                   directives: [
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.bug.browser,
-                                      expression: "bug.browser"
+                                      value: _vm.bug.severity,
+                                      expression: "bug.severity"
                                     }
                                   ],
-                                  staticClass: "form-control",
-                                  attrs: { name: "browser", id: "browser" },
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.bug,
-                                        "browser",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("option", [_vm._v("Chrome")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Firefox")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Opera")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Edge")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Safari")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Internet Explorer")])
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "font-weight-bold",
-                                  attrs: { for: "operating_system" }
-                                },
-                                [_vm._v("Operating System")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.bug.os,
-                                      expression: "bug.os"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
+                                  staticClass: "form-check-input",
                                   attrs: {
-                                    name: "operating_system",
-                                    id: "operating_system"
+                                    type: "radio",
+                                    name: "severity",
+                                    value: "high"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.bug.severity, "high")
                                   },
                                   on: {
                                     change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
+                                      return _vm.$set(
                                         _vm.bug,
-                                        "os",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
+                                        "severity",
+                                        "high"
                                       )
                                     }
                                   }
-                                },
-                                [
-                                  _c("option", [_vm._v("Mac Os")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Windows 10")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Windows 8")]),
-                                  _vm._v(" "),
-                                  _c("option", [
-                                    _vm._v("Linux (Debian/Ubuntu)")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Linux (Manjaro)")])
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "font-weight-bold",
-                                  attrs: { for: "type" }
-                                },
-                                [_vm._v("Bug Type")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.bug.type,
-                                      expression: "bug.type"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { name: "type", id: "type" },
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.bug,
-                                        "type",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("option", [_vm._v("New Feature")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Frontend/Design")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Functional Bugs")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Api")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Handling Error")]),
-                                  _vm._v(" "),
-                                  _c("option", [_vm._v("Control Flow")])
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "radio-container" }, [
-                              _c("label", { staticClass: "font-weight-bold" }, [
-                                _vm._v("Priority")
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-check" }, [
-                                _c(
-                                  "label",
-                                  { staticClass: "form-check-label" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.bug.priority,
-                                          expression: "bug.priority"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        type: "radio",
-                                        name: "priority",
-                                        value: "high"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(
-                                          _vm.bug.priority,
-                                          "high"
-                                        )
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.bug,
-                                            "priority",
-                                            "high"
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                      High\n                    "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-check" }, [
-                                _c(
-                                  "label",
-                                  { staticClass: "form-check-label" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.bug.priority,
-                                          expression: "bug.priority"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        type: "radio",
-                                        name: "priority",
-                                        value: "mid"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(_vm.bug.priority, "mid")
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.bug,
-                                            "priority",
-                                            "mid"
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                      Mid\n                    "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-check" }, [
-                                _c(
-                                  "label",
-                                  { staticClass: "form-check-label" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.bug.priority,
-                                          expression: "bug.priority"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        type: "radio",
-                                        name: "priority",
-                                        value: "low"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(_vm.bug.priority, "low")
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.bug,
-                                            "priority",
-                                            "low"
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                      Low\n                    "
-                                    )
-                                  ]
-                                )
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "radio-container" }, [
-                              _c("label", { staticClass: "font-weight-bold" }, [
-                                _vm._v("Severity")
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-check" }, [
-                                _c(
-                                  "label",
-                                  { staticClass: "form-check-label" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.bug.severity,
-                                          expression: "bug.severity"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        type: "radio",
-                                        name: "severity",
-                                        value: "high"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(
-                                          _vm.bug.severity,
-                                          "high"
-                                        )
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.bug,
-                                            "severity",
-                                            "high"
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                      High\n                    "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-check" }, [
-                                _c(
-                                  "label",
-                                  { staticClass: "form-check-label" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.bug.severity,
-                                          expression: "bug.severity"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        type: "radio",
-                                        name: "severity",
-                                        value: "mid"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(_vm.bug.severity, "mid")
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.bug,
-                                            "severity",
-                                            "mid"
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                      Mid\n                    "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-check" }, [
-                                _c(
-                                  "label",
-                                  { staticClass: "form-check-label" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.bug.severity,
-                                          expression: "bug.severity"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        type: "radio",
-                                        name: "severity",
-                                        value: "low"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(_vm.bug.severity, "low")
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.bug,
-                                            "severity",
-                                            "low"
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                      Low\n                    "
-                                    )
-                                  ]
-                                )
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "font-weight-bold",
-                                  attrs: { for: "assigned" }
-                                },
-                                [_vm._v("Assigned To :")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.bug.developer,
-                                      expression: "bug.developer"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { name: "assigned", id: "assigned" },
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.bug,
-                                        "developer",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                _vm._l(_vm.developers, function(
-                                  developer,
-                                  index
-                                ) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: index,
-                                      domProps: { value: developer.id }
-                                    },
-                                    [_vm._v(_vm._s(developer.email))]
-                                  )
                                 }),
-                                0
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-md-6 mt-5" },
-                            [
-                              _c("b-form-file", {
-                                ref: "imageUpload",
-                                attrs: {
-                                  placeholder:
-                                    "Choose a Image or drop it here...",
-                                  "drop-placeholder": "Drop file here..."
-                                },
-                                model: {
-                                  value: _vm.bug.image,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.bug, "image", $$v)
-                                  },
-                                  expression: "bug.image"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "mt-3" }, [
                                 _vm._v(
-                                  "Screen Shot: " +
-                                    _vm._s(
-                                      _vm.bug.image ? _vm.bug.image.name : ""
-                                    )
+                                  "\n                      High\n                    "
                                 )
                               ])
-                            ],
-                            1
-                          )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.bug.severity,
+                                      expression: "bug.severity"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "radio",
+                                    name: "severity",
+                                    value: "mid"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.bug.severity, "mid")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$set(
+                                        _vm.bug,
+                                        "severity",
+                                        "mid"
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                      Mid\n                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.bug.severity,
+                                      expression: "bug.severity"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "radio",
+                                    name: "severity",
+                                    value: "low"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.bug.severity, "low")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$set(
+                                        _vm.bug,
+                                        "severity",
+                                        "low"
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                      Low\n                    "
+                                )
+                              ])
+                            ])
+                          ])
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "text-right my-2" }, [
-                          _c(
-                            "button",
-                            { staticClass: "btn btn-primary btn-lg" },
-                            [
-                              _vm._v(
-                                "\n                Update\n                "
-                              ),
-                              _c(
-                                "svg",
-                                {
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    width: "24",
-                                    height: "24",
-                                    viewBox: "0 0 24 24",
-                                    fill: "none",
-                                    stroke: "currentColor",
-                                    "stroke-width": "2",
-                                    "stroke-linecap": "round",
-                                    "stroke-linejoin": "round"
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "assigned" }
+                              },
+                              [_vm._v("Assigned To :")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.bug.developer,
+                                    expression: "bug.developer"
                                   }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "assigned", id: "assigned" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.bug,
+                                      "developer",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              _vm._l(_vm.developers, function(
+                                developer,
+                                index
+                              ) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: index,
+                                    domProps: { value: developer.id }
+                                  },
+                                  [_vm._v(_vm._s(developer.email))]
+                                )
+                              }),
+                              0
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6 mt-5" },
+                          [
+                            _c("b-form-file", {
+                              ref: "imageUpload",
+                              attrs: {
+                                placeholder:
+                                  "Choose a Image or drop it here...",
+                                "drop-placeholder": "Drop file here..."
+                              },
+                              model: {
+                                value: _vm.bug.image,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.bug, "image", $$v)
                                 },
-                                [
-                                  _c("polyline", {
-                                    attrs: { points: "9 11 12 14 22 4" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("path", {
-                                    attrs: {
-                                      d:
-                                        "M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
-                                    }
-                                  })
-                                ]
+                                expression: "bug.image"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mt-3" }, [
+                              _vm._v(
+                                "Screen Shot: " +
+                                  _vm._s(
+                                    _vm.bug.image ? _vm.bug.image.name : ""
+                                  )
                               )
-                            ]
-                          )
-                        ])
+                            ])
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "text-right my-2" }, [
+                        _c(
+                          "button",
+                          { staticClass: "btn btn-primary btn-lg" },
+                          [
+                            _vm._v(
+                              "\n                Update\n                "
+                            ),
+                            _c(
+                              "svg",
+                              {
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  width: "24",
+                                  height: "24",
+                                  viewBox: "0 0 24 24",
+                                  fill: "none",
+                                  stroke: "currentColor",
+                                  "stroke-width": "2",
+                                  "stroke-linecap": "round",
+                                  "stroke-linejoin": "round"
+                                }
+                              },
+                              [
+                                _c("polyline", {
+                                  attrs: { points: "9 11 12 14 22 4" }
+                                }),
+                                _vm._v(" "),
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
                       ])
                     ]
                   )
-                ]
+                ],
+                1
               )
-            ],
-            1
-          )
+            ])
+          ])
         ]
       )
     ],

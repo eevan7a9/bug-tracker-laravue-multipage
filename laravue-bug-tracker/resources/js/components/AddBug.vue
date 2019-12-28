@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100">
+  <div>
     <b-button
       :class="visible ? null : 'collapsed'"
       :aria-expanded="visible ? 'true' : 'false'"
@@ -26,16 +26,18 @@
         </svg>
       </span>
     </b-button>
-    <b-collapse id="collapse-1" v-model="visible" class="mt-2">
-      <form @submit.prevent="submit" enctype="multipart/form-data">
-        <b-card
-          header="Adding a new Bug..."
-          header-text-variant="white"
-          header-tag="header"
-          header-bg-variant="primary"
-        >
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-8">
+
+    <b-collapse id="collapse-1" v-model="visible">
+      <hr />
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <form @submit.prevent="submit" enctype="multipart/form-data">
+            <b-card
+              header="Adding a new Bug..."
+              header-text-variant="white"
+              header-tag="header"
+              header-bg-variant="primary"
+            >
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
@@ -247,10 +249,10 @@
                   </svg>
                 </button>
               </div>
-            </div>
-          </div>
-        </b-card>
-      </form>
+            </b-card>
+          </form>
+        </div>
+      </div>
     </b-collapse>
   </div>
 </template>

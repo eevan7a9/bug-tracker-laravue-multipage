@@ -27,22 +27,23 @@
       </span>
     </b-button>
     <b-collapse id="collapse-4" v-model="visible" class="mt-2">
-      <b-card
-        header="Adding a new Projects..."
-        header-text-variant="white"
-        header-tag="header"
-        header-bg-variant="primary"
-      >
-        <form @submit.prevent="publish" enctype="multipart/form-data">
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-8">
+      <hr />
+      <form @submit.prevent="publish" enctype="multipart/form-data">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-10">
+            <b-card
+              header="Adding a new Projects..."
+              header-text-variant="white"
+              header-tag="header"
+              header-bg-variant="primary"
+            >
               <div class="form-group">
                 <label for="name" class="font-weight-bold">Name</label>
                 <input
                   type="text"
                   class="form-control"
                   v-model.trim="project.name"
-                  placeholder="Name Generator...justify-content-center"
+                  placeholder="Name Generator...Weather app..."
                 />
                 <small id="helpId" class="form-text text-muted">Name of the Project</small>
               </div>
@@ -141,10 +142,10 @@
                   </svg>
                 </button>
               </div>
-            </div>
+            </b-card>
           </div>
-        </form>
-      </b-card>
+        </div>
+      </form>
     </b-collapse>
   </div>
 </template>

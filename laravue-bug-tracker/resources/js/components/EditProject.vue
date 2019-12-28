@@ -24,15 +24,16 @@
       </svg>
     </b-button>
     <b-collapse id="collapse-4" v-model="visible" class="mt-2">
+      <hr />
       <form @submit.prevent="update" enctype="multipart/form-data">
-        <b-card
-          header="Editing a Project..."
-          header-text-variant="white"
-          header-tag="header"
-          header-bg-variant="primary"
-        >
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-8">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-10">
+            <b-card
+              header="Editing a Project..."
+              header-text-variant="white"
+              header-tag="header"
+              header-bg-variant="primary"
+            >
               <div class="form-group">
                 <label for="name" class="font-weight-bold">Name</label>
                 <input
@@ -140,9 +141,9 @@
                   </svg>
                 </button>
               </div>
-            </div>
+            </b-card>
           </div>
-        </b-card>
+        </div>
       </form>
     </b-collapse>
   </div>
