@@ -31,4 +31,9 @@ class DeveloperController extends Controller
         return response()->json($user, 201);
         // return response()->json($user);
     }
+    public function show($id)
+    {
+        $developer = User::with('bugsAssigned')->with('roles')->findOrFail($id);
+        return response()->json($developer, 200);
+    }
 }

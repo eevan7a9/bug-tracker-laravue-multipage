@@ -18,18 +18,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
+
     Route::get('bugs', 'Api\BugController@index')->name('bugs.all');
     Route::get('bugs/{id}', 'Api\BugController@show')->name('bugs.show');
+
     Route::get('projects', 'Api\ProjectController@index')->name('projects.all');
     Route::get('projects/{id}', 'Api\ProjectController@show')->name('project.show');
+
     Route::get('developers', 'Api\DeveloperController@index')->name('developers.all');
+    Route::get('developers/{id}', 'Api\DeveloperController@show')->name('developers.show');
 
     Route::group(['middleware' => ['auth:web']], function () {
         Route::post('bugs', 'Api\BugController@store')->name('bugs.store');
         Route::post('bugs/{id}', 'Api\BugController@update')->name('bugs.update');
 
         Route::post('projects', 'Api\ProjectController@store')->name('projects.store');
-        Route::post('projects/{id}', 'Api\ProjectController@update')->name('projects.update');
+        Route::post('projects/{id}', 'Api\ProjectCodntroller@update')->name('projects.update');
 
         Route::post('developer', 'Api\DeveloperController@store')->name('developer.store');
 

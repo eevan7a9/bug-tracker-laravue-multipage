@@ -84999,11 +84999,15 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var state = {
-  developers: []
+  developers: [],
+  developer_details: {}
 };
 var getters = {
   developers: function developers(state) {
     return state.developers;
+  },
+  developer_details: function developer_details(state) {
+    return state.developer_details;
   }
 };
 var actions = {
@@ -85088,6 +85092,46 @@ var actions = {
     }
 
     return addDeveloper;
+  }(),
+  getDeveloperDetails: function () {
+    var _getDeveloperDetails = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, id) {
+      var commit, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.prev = 1;
+              _context3.next = 4;
+              return axios.get("api_web_session/v1/developers/".concat(id));
+
+            case 4:
+              result = _context3.sent;
+              // console.log(result);
+              commit("setDeveloperDetails", result.data);
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+              alert(_context3.t0); // console.log(error.response);
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 8]]);
+    }));
+
+    function getDeveloperDetails(_x4, _x5) {
+      return _getDeveloperDetails.apply(this, arguments);
+    }
+
+    return getDeveloperDetails;
   }()
 };
 var mutations = {
@@ -85096,6 +85140,9 @@ var mutations = {
   },
   insertDeveloper: function insertDeveloper(state, developer) {
     return state.developers.unshift(developer);
+  },
+  setDeveloperDetails: function setDeveloperDetails(state, developer) {
+    return state.developer_details = developer;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

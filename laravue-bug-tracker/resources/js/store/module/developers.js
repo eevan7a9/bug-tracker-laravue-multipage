@@ -1,8 +1,10 @@
 const state = {
-    developers: []
+    developers: [],
+    developer_details: {}
 }
 const getters = {
-    developers: state => state.developers
+    developers: state => state.developers,
+    developer_details: state => state.developer_details
 }
 const actions = {
     getDevelopers: async ({ commit }) => {
@@ -26,11 +28,22 @@ const actions = {
             alert(error.response.data);
             // console.log(error.response);
         }
+    },
+    getDeveloperDetails: async ({ commit }, id) => {
+        try {
+            const result = await axios.get(`api_web_session/v1/developers/${id}`);
+            // console.log(result);
+            commit("setDeveloperDetails", result.data);
+        } catch (error) {
+            alert(error);
+            // console.log(error.response);
+        }
     }
 }
 const mutations = {
     setDevelopers: (state, developers) => state.developers = developers,
-    insertDeveloper: (state, developer) => state.developers.unshift(developer)
+    insertDeveloper: (state, developer) => state.developers.unshift(developer),
+    setDeveloperDetails: (state, developer) => state.developer_details = developer
 }
 
 export default {
