@@ -33,7 +33,7 @@ Route::prefix('v1')->group(function () {
         Route::post('bugs/{id}', 'Api\BugController@update')->name('bugs.update');
 
         Route::post('projects', 'Api\ProjectController@store')->name('projects.store');
-        Route::post('projects/{id}', 'Api\ProjectCodntroller@update')->name('projects.update');
+        Route::post('projects/{id}', 'Api\ProjectController@update')->name('projects.update');
 
         Route::post('developer', 'Api\DeveloperController@store')->name('developer.store');
 

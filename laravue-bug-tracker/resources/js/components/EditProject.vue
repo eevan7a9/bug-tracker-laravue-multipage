@@ -181,7 +181,11 @@ export default {
       if (this.project.cover_image) {
         formData.append("image", this.project.cover_image);
       }
-      this.editProjectDetails({ project: formData, id: this.project.id });
+      this.editProjectDetails({ project: formData, id: this.project.id }).then(
+        () => {
+          this.visible = false;
+        }
+      );
     }
   },
   mounted() {

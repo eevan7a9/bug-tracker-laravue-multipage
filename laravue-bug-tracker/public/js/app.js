@@ -85347,15 +85347,16 @@ var actions = {
               commit("setProjectDetails", result.data);
               alert("A project is successfuly Edited."); // console.log(result);
 
-              _context4.next = 13;
+              _context4.next = 14;
               break;
 
             case 10:
               _context4.prev = 10;
               _context4.t0 = _context4["catch"](2);
-              alert(_context4.t0); // console.log(error.response);
+              alert(_context4.t0);
+              console.log(_context4.t0.response);
 
-            case 13:
+            case 14:
             case "end":
               return _context4.stop();
           }

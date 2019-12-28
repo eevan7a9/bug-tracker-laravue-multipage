@@ -529,6 +529,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.project.cover_image = e.target.files[0];
     },
     update: function update() {
+      var _this = this;
+
       var formData = new FormData();
       formData.append("id", this.project.id);
       formData.append("name", this.project.name);
@@ -546,6 +548,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.editProjectDetails({
         project: formData,
         id: this.project.id
+      }).then(function () {
+        _this.visible = false;
       });
     }
   }),
@@ -942,8 +946,7 @@ var render = function() {
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
-                              placeholder:
-                                "Name Generator...justify-content-center"
+                              placeholder: "Name Generator...Weather app..."
                             },
                             domProps: { value: _vm.project.name },
                             on: {
