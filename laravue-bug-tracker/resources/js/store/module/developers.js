@@ -23,7 +23,7 @@ const actions = {
                 email: email
             });
             commit("insertDeveloper", result.data);
-            alert(`Success, Developer ${result.data.email} is now added`);
+            // alert(`Success, Developer ${result.data.email} is now added`);
         } catch (error) {
             alert(error.response.data);
             // console.log(error.response);

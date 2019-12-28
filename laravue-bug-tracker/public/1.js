@@ -203,6 +203,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 this.addProject(this.project).then(function () {
+                  _this.$swal.fire("Project Added!", "Success, A project is successfuly added", "success");
+
                   _this.project = {};
                   _this.project.image = null;
 
@@ -549,6 +551,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         project: formData,
         id: this.project.id
       }).then(function () {
+        _this.$swal.fire("Project Edited!", "A project is successfuly Edited", "success");
+
         _this.visible = false;
       });
     }

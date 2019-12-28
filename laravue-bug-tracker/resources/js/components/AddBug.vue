@@ -279,6 +279,7 @@ export default {
     submit() {
       // submit new bug
       this.newBug(this.bug).then(() => {
+        this.$swal.fire("New Bug", "Success new Bug is added", "success");
         //   clear and close form
         this.bug = {};
         this.bug.image = null;

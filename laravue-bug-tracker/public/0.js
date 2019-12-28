@@ -297,7 +297,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       // submit new bug
       this.newBug(this.bug).then(function () {
-        //   clear and close form
+        _this.$swal.fire("New Bug", "Success new Bug is added", "success"); //   clear and close form
+
+
         _this.bug = {};
         _this.bug.image = null;
         _this.bug.developer = 0;
@@ -835,7 +837,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       // submit new bug
       this.editBugDetails(this.bug).then(function () {
-        //   clear and close form
+        _this.$swal.fire("Updated!", "Success, Bug is now updated", "success"); //   clear and close form
+
+
         _this.bug = {};
         _this.bug.image = null;
         _this.bug.developer = 0;
@@ -2376,7 +2380,7 @@ var render = function() {
           }
         },
         [
-          _vm._v("\n    Edit Bug\n    "),
+          _vm._v("\n    Update Bug\n    "),
           _c(
             "svg",
             {

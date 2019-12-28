@@ -50,7 +50,7 @@ const actions = {
                 }
             );
             commit("insertBug", result.data);
-            alert(`${result.statusText},a Bug is successfuly added.`);
+            // alert(`${result.statusText},a Bug is successfuly added.`);
             // console.log(result);
         } catch (error) {
             // console.log(error.response);
@@ -100,7 +100,7 @@ const actions = {
                 }
             );
             commit("setBugDetails", result.data);
-            alert(`${result.statusText},a Bug is successfuly edited.`);
+            // alert(`${result.statusText},a Bug is successfuly edited.`);
             // console.log(result);
         } catch (error) {
             console.log(error.response);

@@ -87853,24 +87853,24 @@ var actions = {
 
             case 15:
               result = _context2.sent;
-              commit("insertBug", result.data);
-              alert("".concat(result.statusText, ",a Bug is successfuly added.")); // console.log(result);
+              commit("insertBug", result.data); // alert(`${result.statusText},a Bug is successfuly added.`);
+              // console.log(result);
 
-              _context2.next = 23;
+              _context2.next = 22;
               break;
 
-            case 20:
-              _context2.prev = 20;
+            case 19:
+              _context2.prev = 19;
               _context2.t0 = _context2["catch"](12);
               // console.log(error.response);
               alert(_context2.t0);
 
-            case 23:
+            case 22:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[12, 20]]);
+      }, _callee2, null, [[12, 19]]);
     }));
 
     function newBug(_x2, _x3) {
@@ -87961,24 +87961,24 @@ var actions = {
 
             case 16:
               result = _context4.sent;
-              commit("setBugDetails", result.data);
-              alert("".concat(result.statusText, ",a Bug is successfuly edited.")); // console.log(result);
+              commit("setBugDetails", result.data); // alert(`${result.statusText},a Bug is successfuly edited.`);
+              // console.log(result);
 
-              _context4.next = 25;
+              _context4.next = 24;
               break;
 
-            case 21:
-              _context4.prev = 21;
+            case 20:
+              _context4.prev = 20;
               _context4.t0 = _context4["catch"](13);
               console.log(_context4.t0.response);
               alert(_context4.t0);
 
-            case 25:
+            case 24:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[13, 21]]);
+      }, _callee4, null, [[13, 20]]);
     }));
 
     function editBugDetails(_x6, _x7) {
@@ -88146,22 +88146,22 @@ var actions = {
 
             case 4:
               result = _context2.sent;
-              commit("insertDeveloper", result.data);
-              alert("Success, Developer ".concat(result.data.email, " is now added"));
-              _context2.next = 12;
+              commit("insertDeveloper", result.data); // alert(`Success, Developer ${result.data.email} is now added`);
+
+              _context2.next = 11;
               break;
 
-            case 9:
-              _context2.prev = 9;
+            case 8:
+              _context2.prev = 8;
               _context2.t0 = _context2["catch"](1);
               alert(_context2.t0.response.data); // console.log(error.response);
 
-            case 12:
+            case 11:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[1, 9]]);
+      }, _callee2, null, [[1, 8]]);
     }));
 
     function addDeveloper(_x2, _x3) {
@@ -88330,23 +88330,23 @@ var actions = {
 
             case 13:
               result = _context2.sent;
-              commit("insertProject", result.data);
-              alert("".concat(result.statusText, ", A project is successfuly added.")); // console.log(result);
+              commit("insertProject", result.data); // alert(`${result.statusText}, A project is successfuly added.`);
+              // console.log(result);
 
-              _context2.next = 21;
+              _context2.next = 20;
               break;
 
-            case 18:
-              _context2.prev = 18;
+            case 17:
+              _context2.prev = 17;
               _context2.t0 = _context2["catch"](10);
               alert(_context2.t0); // console.log(error.response);
 
-            case 21:
+            case 20:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[10, 18]]);
+      }, _callee2, null, [[10, 17]]);
     }));
 
     function addProject(_x2, _x3) {
@@ -88421,23 +88421,23 @@ var actions = {
 
             case 5:
               result = _context4.sent;
-              commit("setProjectDetails", result.data);
-              alert("A project is successfuly Edited."); // console.log(result);
+              commit("setProjectDetails", result.data); // alert(`A project is successfuly Edited.`);
+              // console.log(result);
 
-              _context4.next = 13;
+              _context4.next = 12;
               break;
 
-            case 10:
-              _context4.prev = 10;
+            case 9:
+              _context4.prev = 9;
               _context4.t0 = _context4["catch"](2);
               alert(_context4.t0); // console.log(error.response);
 
-            case 13:
+            case 12:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[2, 10]]);
+      }, _callee4, null, [[2, 9]]);
     }));
 
     function editProjectDetails(_x6, _x7) {

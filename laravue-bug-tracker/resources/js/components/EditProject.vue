@@ -183,6 +183,11 @@ export default {
       }
       this.editProjectDetails({ project: formData, id: this.project.id }).then(
         () => {
+          this.$swal.fire(
+            "Project Edited!",
+            "A project is successfuly Edited",
+            "success"
+          );
           this.visible = false;
         }
       );

@@ -88,6 +88,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       this.addDeveloper(this.email).then(function () {
+        _this.$swal.fire("Developer Added!", "Success, we have new developer", "success");
+
         _this.email = "";
         _this.visible = false;
       });

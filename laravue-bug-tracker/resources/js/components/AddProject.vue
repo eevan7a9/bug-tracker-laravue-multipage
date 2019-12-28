@@ -170,6 +170,11 @@ export default {
     },
     async publish() {
       this.addProject(this.project).then(() => {
+        this.$swal.fire(
+          "Project Added!",
+          "Success, A project is successfuly added",
+          "success"
+        );
         this.project = {};
         this.project.image = null;
         this.$refs["imageUpload"].reset();

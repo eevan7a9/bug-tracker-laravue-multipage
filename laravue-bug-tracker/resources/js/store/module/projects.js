@@ -41,7 +41,7 @@ const actions = {
                 }
             );
             commit("insertProject", result.data);
-            alert(`${result.statusText}, A project is successfuly added.`);
+            // alert(`${result.statusText}, A project is successfuly added.`);
             // console.log(result);
         } catch (error) {
             alert(error);
@@ -74,7 +74,7 @@ const actions = {
                 }
             );
             commit("setProjectDetails", result.data);
-            alert(`A project is successfuly Edited.`);
+            // alert(`A project is successfuly Edited.`);
             // console.log(result);
         } catch (error) {
             alert(error);

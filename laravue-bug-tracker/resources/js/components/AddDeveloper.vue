@@ -70,6 +70,11 @@ export default {
     ...mapActions(["addDeveloper"]),
     submit() {
       this.addDeveloper(this.email).then(() => {
+        this.$swal.fire(
+          "Developer Added!",
+          "Success, we have new developer",
+          "success"
+        );
         this.email = "";
         this.visible = false;
       });

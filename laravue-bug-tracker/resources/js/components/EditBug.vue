@@ -7,7 +7,7 @@
       @click="visible = !visible"
       variant="primary"
     >
-      Edit Bug
+      Update Bug
       <svg
         width="24"
         height="24"
@@ -275,6 +275,7 @@ export default {
     update() {
       // submit new bug
       this.editBugDetails(this.bug).then(() => {
+        this.$swal.fire("Updated!", "Success, Bug is now updated", "success");
         //   clear and close form
         this.bug = {};
         this.bug.image = null;
