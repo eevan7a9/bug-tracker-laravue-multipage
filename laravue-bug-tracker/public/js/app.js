@@ -87986,6 +87986,49 @@ var actions = {
     }
 
     return editBugDetails;
+  }(),
+  changeBugStatus: function () {
+    var _changeBugStatus = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref6, id) {
+      var commit, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              commit = _ref6.commit;
+              _context5.prev = 1;
+              _context5.next = 4;
+              return axios.post("api_web_session/v1/bugs/status/".concat(id), {
+                id: id
+              });
+
+            case 4:
+              result = _context5.sent;
+              console.log(result);
+              commit("setBugDetails", result.data);
+              _context5.next = 12;
+              break;
+
+            case 9:
+              _context5.prev = 9;
+              _context5.t0 = _context5["catch"](1);
+              // console.log(error);
+              alert(_context5.t0);
+
+            case 12:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[1, 9]]);
+    }));
+
+    function changeBugStatus(_x8, _x9) {
+      return _changeBugStatus.apply(this, arguments);
+    }
+
+    return changeBugStatus;
   }()
 };
 var mutations = {

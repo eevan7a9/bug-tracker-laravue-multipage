@@ -107,6 +107,18 @@ const actions = {
             alert(error);
         }
     },
+    changeBugStatus: async ({ commit }, id) => {
+        try {
+            const result = await axios.post(`api_web_session/v1/bugs/status/${id}`, {
+                id: id
+            });
+            // console.log(result)
+            commit("setBugDetails", result.data);
+        } catch (error) {
+            // console.log(error);
+            alert(error)
+        }
+    }
 };
 const mutations = {
     setBugs: (state, bugs) => (state.bugs = bugs),

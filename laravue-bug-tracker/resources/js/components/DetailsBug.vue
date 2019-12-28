@@ -177,7 +177,7 @@ export default {
   },
   computed: mapGetters(["bug_details"]),
   methods: {
-    ...mapActions(["clearBugDetails"]),
+    ...mapActions(["clearBugDetails", "changeBugStatus"]),
     hideDetails() {
       this.clearBugDetails();
       this.$emit("toggleDetails");
@@ -195,11 +195,13 @@ export default {
         })
         .then(result => {
           if (result.value) {
-            this.$swal.fire(
-              "Fixed!",
-              'This Bug is now set as "Fixed"',
-              "success"
-            );
+            this.changeBugStatus(this.bug_details.id).then(() => {
+              this.$swal.fire(
+                "Fixed!",
+                'This Bug is now set as "Fixed"',
+                "success"
+              );
+            });
           }
         });
     }

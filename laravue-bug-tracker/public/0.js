@@ -513,7 +513,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["bug_details"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["clearBugDetails"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["clearBugDetails", "changeBugStatus"]), {
     hideDetails: function hideDetails() {
       this.clearBugDetails();
       this.$emit("toggleDetails");
@@ -531,7 +531,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         confirmButtonText: "Bug is Fixed"
       }).then(function (result) {
         if (result.value) {
-          _this.$swal.fire("Fixed!", 'This Bug is now set as "Fixed"', "success");
+          _this.changeBugStatus(_this.bug_details.id).then(function () {
+            _this.$swal.fire("Fixed!", 'This Bug is now set as "Fixed"', "success");
+          });
         }
       });
     }

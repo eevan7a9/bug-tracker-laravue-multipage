@@ -116,4 +116,12 @@ class BugController extends Controller
         $bug->addedBy;
         return response()->json($bug, 201);
     }
+    public function changeStatus($id)
+    {
+        $bug = Bug::with('project')->with('addedBy')->with('assignedTo')->findOrFail($id);
+        $bug->is_fixed = !$bug->is_fixed;
+        $bug->update();
+        $bug->fixed_at = now();
+        return response()->json($bug, 201);
+    }
 }
