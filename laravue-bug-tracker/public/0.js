@@ -856,7 +856,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.bug.type = this.bug_details.bug_type;
     this.bug.severity = this.bug_details.severity;
     this.bug.priority = this.bug_details.priority;
-    this.bug.developer = this.bug_details.assigned_to ? this.bug_details.assigned_to.id : "";
+    this.bug_details.assigned_to ? this.bug.developer = this.bug_details.assigned_to.id : null;
   },
   created: function created() {
     var _this2 = this;

@@ -120,8 +120,10 @@ class BugController extends Controller
     {
         $bug = Bug::with('project')->with('addedBy')->with('assignedTo')->findOrFail($id);
         $bug->is_fixed = !$bug->is_fixed;
+        $bug->fixed_at = date('Y-m-d H:i:s');
+
         $bug->update();
-        $bug->fixed_at = now();
+
         return response()->json($bug, 201);
     }
 }

@@ -103,7 +103,7 @@ const actions = {
             alert(`${result.statusText},a Bug is successfuly edited.`);
             // console.log(result);
         } catch (error) {
-            // console.log(error.response);
+            console.log(error.response);
             alert(error);
         }
     },
