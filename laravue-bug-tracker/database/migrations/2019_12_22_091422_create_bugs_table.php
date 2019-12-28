@@ -27,6 +27,8 @@ class CreateBugsTable extends Migration
             $table->unsignedBigInteger('assigned_to')->nullable();
             $table->string('image_src')->nullable();
             $table->string('image')->nullable();
+            $table->boolean('is_fixed')->nullable();
+            $table->date('fixed_at')->nullable();
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')

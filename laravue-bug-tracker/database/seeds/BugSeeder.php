@@ -23,6 +23,8 @@ class BugSeeder extends Seeder
             "severity" => "mid",
             "priority" => "high",
             "assigned_to" => "4",
+            "is_fixed" => 1,
+            "fixed_at" => now(),
             "created_at" => "2019-12-22 22:49:07",
             "updated_at" => now(),
         ]);
@@ -38,6 +40,8 @@ class BugSeeder extends Seeder
             "severity" => "low",
             "priority" => "high",
             "assigned_to" => "5",
+            "is_fixed" => 0,
+            "fixed_at" => null,
             "created_at" => "2019-12-22 22:49:07",
             "updated_at" => now(),
         ]);
@@ -53,7 +57,26 @@ class BugSeeder extends Seeder
             "severity" => "low",
             "priority" => "high",
             "assigned_to" => "5",
+            "is_fixed" => 0,
+            "fixed_at" => null,
             "created_at" => "2019-12-22 22:49:07",
+            "updated_at" => now(),
+        ]);
+
+        DB::table('bugs')->insert([
+            "title" => "Infinit loading after unliking and liking a post",
+            "project_id" => "1",
+            "user_id" => "1",
+            "description" => "When toggle to unlike a post and like it again mouse cursor becomes loading Infinitly",
+            "browser" => "Opera",
+            "os" => "Windows 10",
+            "bug_type" => "Functional Bugs",
+            "severity" => "undefined",
+            "priority" => "undefined",
+            "assigned_to" => null,
+            "is_fixed" => 0,
+            "fixed_at" => null,
+            "created_at" => now(),
             "updated_at" => now(),
         ]);
 
