@@ -459,10 +459,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$swal.fire({
         title: "Remove this comment?",
         text: "You won't be able to revert this!",
-        icon: "warning",
+        type: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
         confirmButtonText: "Delete"
       }).then(function (result) {
         if (result.value) {
@@ -688,7 +688,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$swal.fire({
         title: "The bug is fixed?",
         text: "You won't be able to revert this!",
-        icon: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
