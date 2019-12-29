@@ -14,7 +14,7 @@ class RoleSeeder extends Seeder
     {
         DB::table('roles')->insert([
             "id" => 1,
-            "name" => "customer",
+            "name" => "tester",
             "created_at" => now(),
             "updated_at" => now(),
         ]);
