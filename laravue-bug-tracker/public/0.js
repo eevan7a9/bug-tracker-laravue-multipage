@@ -322,6 +322,55 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CommentsBug.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CommentsBug.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddCommentBug__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddCommentBug */ "./resources/js/components/AddCommentBug.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    AddCommentBug: _AddCommentBug__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      comments: [{
+        id: 1,
+        user: "user1",
+        message: "Lorem, mur a adipisicing elit. Rem, dolor."
+      }, {
+        id: 2,
+        user: "user2",
+        message: "Lorem,r adipisicing elit. Rem, dolor."
+      }]
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DetailsBug.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DetailsBug.vue?vue&type=script&lang=js& ***!
@@ -331,7 +380,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _CommentsBug__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CommentsBug */ "./resources/js/components/CommentsBug.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -507,15 +557,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    CommentsBug: _CommentsBug__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       visible_screenshot: false
     };
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["bug_details"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["clearBugDetails", "changeBugStatus"]), {
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["bug_details"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(["clearBugDetails", "changeBugStatus"]), {
     hideDetails: function hideDetails() {
       this.clearBugDetails();
       this.$emit("toggleDetails");
@@ -1938,6 +1994,109 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddCommentBug.vue?vue&type=template&id=f654308a&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AddCommentBug.vue?vue&type=template&id=f654308a& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card border-primary mt-3" }, [
+      _c("div", { staticClass: "card-header border-primary bg-primary" }, [
+        _c("h4", { staticClass: "text-light" }, [_vm._v("Add Comment :")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c("textarea", {
+          staticClass: "form-control",
+          attrs: { name: "message" }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-right" }, [
+          _c("button", { staticClass: "btn btn-primary mt-2" }, [
+            _vm._v("Submit")
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CommentsBug.vue?vue&type=template&id=6dd4fec5&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CommentsBug.vue?vue&type=template&id=6dd4fec5& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c(
+      "div",
+      { staticClass: "col-md-8" },
+      [
+        _c("AddCommentBug"),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("h1", { staticClass: "mt-3 font-weight-bold" }, [
+          _vm._v("Comments :")
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.comments, function(comment) {
+          return _c(
+            "div",
+            { key: comment.id, staticClass: "card border-secondary mt-3" },
+            [
+              _c("div", { staticClass: "card-header border-secondary" }, [
+                _c("h5", [_vm._v(_vm._s(comment.user))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("p", [_vm._v(_vm._s(comment.message))])
+              ])
+            ]
+          )
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DetailsBug.vue?vue&type=template&id=bdd06f06&scoped=true&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DetailsBug.vue?vue&type=template&id=bdd06f06&scoped=true& ***!
@@ -1953,391 +2112,400 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row justify-content-center" }, [
-    _c("div", { staticClass: "col-md-10" }, [
-      _c("div", { staticClass: "card border-primary" }, [
-        _c("div", { staticClass: "card-header border-primary" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-primary",
-              on: { click: _vm.hideDetails }
-            },
-            [_vm._v("Back")]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "card-body" },
-          [
+  return _c(
+    "div",
+    { staticClass: "row justify-content-center" },
+    [
+      _c("div", { staticClass: "col-md-10" }, [
+        _c("div", { staticClass: "card border-primary" }, [
+          _c("div", { staticClass: "card-header border-primary" }, [
             _c(
-              "div",
-              { staticClass: "text-center" },
-              [
-                _c(
-                  "b-button",
-                  {
-                    class: _vm.visible_screenshot ? null : "collapsed",
-                    attrs: {
-                      "aria-expanded": _vm.visible_screenshot
-                        ? "true"
-                        : "false",
-                      "aria-controls": "collapse-4",
-                      variant: "outline-primary"
-                    },
-                    on: {
-                      click: function($event) {
-                        _vm.visible_screenshot = !_vm.visible_screenshot
+              "button",
+              {
+                staticClass: "btn btn-outline-primary",
+                on: { click: _vm.hideDetails }
+              },
+              [_vm._v("Back")]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _c(
+                "div",
+                { staticClass: "text-center" },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      class: _vm.visible_screenshot ? null : "collapsed",
+                      attrs: {
+                        "aria-expanded": _vm.visible_screenshot
+                          ? "true"
+                          : "false",
+                        "aria-controls": "collapse-4",
+                        variant: "outline-primary"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.visible_screenshot = !_vm.visible_screenshot
+                        }
                       }
-                    }
-                  },
-                  [
-                    _vm._v("\n            Show Screenshot\n            "),
-                    _c(
-                      "svg",
-                      {
+                    },
+                    [
+                      _vm._v("\n            Show Screenshot\n            "),
+                      _c(
+                        "svg",
+                        {
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            width: "24",
+                            height: "24",
+                            viewBox: "0 0 24 24",
+                            fill: "none",
+                            stroke: "currentColor",
+                            "stroke-width": "2",
+                            "stroke-linecap": "round",
+                            "stroke-linejoin": "round"
+                          }
+                        },
+                        [
+                          _c("rect", {
+                            attrs: {
+                              x: "3",
+                              y: "3",
+                              width: "18",
+                              height: "18",
+                              rx: "2",
+                              ry: "2"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("circle", {
+                            attrs: { cx: "8.5", cy: "8.5", r: "1.5" }
+                          }),
+                          _vm._v(" "),
+                          _c("polyline", {
+                            attrs: { points: "21 15 16 10 5 21" }
+                          })
+                        ]
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  staticClass: "mt-2",
+                  attrs: { id: "collapse-4" },
+                  model: {
+                    value: _vm.visible_screenshot,
+                    callback: function($$v) {
+                      _vm.visible_screenshot = $$v
+                    },
+                    expression: "visible_screenshot"
+                  }
+                },
+                [
+                  _c("b-card", [
+                    _c("div", { staticClass: "text-center w-100" }, [
+                      _c("img", {
                         attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          width: "24",
-                          height: "24",
-                          viewBox: "0 0 24 24",
-                          fill: "none",
-                          stroke: "currentColor",
-                          "stroke-width": "2",
-                          "stroke-linecap": "round",
-                          "stroke-linejoin": "round"
+                          src: _vm.bug_details.image_src
+                            ? _vm.bug_details.image_src
+                            : "https://via.placeholder.com/750",
+                          alt: "Screenshot"
+                        }
+                      })
+                    ])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "h4",
+                {
+                  staticClass: "card-title py-2 mt-5 text-left font-weight-bold"
+                },
+                [_vm._v(_vm._s(_vm.bug_details.title))]
+              ),
+              _vm._v(" "),
+              _c("label", { staticClass: "font-weight-bold" }, [
+                _vm._v("Description :")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card p-3 bg-light mb-1" }, [
+                _c("p", { staticClass: "card-text bg-light" }, [
+                  _vm._v(_vm._s(_vm.bug_details.description))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("h6", { staticClass: "py-1 text-right" }, [
+                _c("span", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Issued at :")
+                ]),
+                _vm._v(
+                  "\n          " +
+                    _vm._s(_vm.bug_details.created_at) +
+                    "\n        "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-8" }, [
+                  _c("label", { staticClass: "font-weight-bold" }, [
+                    _vm._v("Project Name :")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card bg-light p-2" }, [
+                    _vm._v(_vm._s(_vm.bug_details.project.name))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("label", { staticClass: "font-weight-bold" }, [
+                    _vm._v("Version :")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card bg-light p-2" }, [
+                    _vm._v(_vm._s(_vm.bug_details.project.version))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row mt-3" }, [
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("label", { staticClass: "font-weight-bold" }, [
+                    _vm._v("Browser :")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card bg-light p-2" }, [
+                    _vm._v(_vm._s(_vm.bug_details.browser))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("label", { staticClass: "font-weight-bold" }, [
+                    _vm._v("Operating System :")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card bg-light p-2" }, [
+                    _vm._v(_vm._s(_vm.bug_details.os))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("label", { staticClass: "font-weight-bold" }, [
+                    _vm._v("Bug Type :")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card bg-light p-2" }, [
+                    _vm._v(_vm._s(_vm.bug_details.bug_type))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row mt-3" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-md-4 text-center" },
+                  [
+                    _c(
+                      "b-card",
+                      {
+                        staticClass: "text-center",
+                        attrs: {
+                          "bg-variant": "light",
+                          "border-variant": "primary",
+                          "header-bg-variant": "primary",
+                          "header-text-variant": "white",
+                          "text-variant": "dark",
+                          header: "Severity"
                         }
                       },
                       [
-                        _c("rect", {
-                          attrs: {
-                            x: "3",
-                            y: "3",
-                            width: "18",
-                            height: "18",
-                            rx: "2",
-                            ry: "2"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("circle", {
-                          attrs: { cx: "8.5", cy: "8.5", r: "1.5" }
-                        }),
-                        _vm._v(" "),
-                        _c("polyline", {
-                          attrs: { points: "21 15 16 10 5 21" }
-                        })
-                      ]
-                    )
-                  ]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "b-collapse",
-              {
-                staticClass: "mt-2",
-                attrs: { id: "collapse-4" },
-                model: {
-                  value: _vm.visible_screenshot,
-                  callback: function($$v) {
-                    _vm.visible_screenshot = $$v
-                  },
-                  expression: "visible_screenshot"
-                }
-              },
-              [
-                _c("b-card", [
-                  _c("div", { staticClass: "text-center w-100" }, [
-                    _c("img", {
-                      attrs: {
-                        src: _vm.bug_details.image_src
-                          ? _vm.bug_details.image_src
-                          : "https://via.placeholder.com/750",
-                        alt: "Screenshot"
-                      }
-                    })
-                  ])
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "h4",
-              {
-                staticClass: "card-title py-2 mt-5 text-left font-weight-bold"
-              },
-              [_vm._v(_vm._s(_vm.bug_details.title))]
-            ),
-            _vm._v(" "),
-            _c("label", { staticClass: "font-weight-bold" }, [
-              _vm._v("Description :")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card p-3 bg-light mb-1" }, [
-              _c("p", { staticClass: "card-text bg-light" }, [
-                _vm._v(_vm._s(_vm.bug_details.description))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("h6", { staticClass: "py-1 text-right" }, [
-              _c("span", { staticClass: "font-weight-bold" }, [
-                _vm._v("Issued at :")
-              ]),
-              _vm._v(
-                "\n          " +
-                  _vm._s(_vm.bug_details.created_at) +
-                  "\n        "
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-8" }, [
-                _c("label", { staticClass: "font-weight-bold" }, [
-                  _vm._v("Project Name :")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card bg-light p-2" }, [
-                  _vm._v(_vm._s(_vm.bug_details.project.name))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { staticClass: "font-weight-bold" }, [
-                  _vm._v("Version :")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card bg-light p-2" }, [
-                  _vm._v(_vm._s(_vm.bug_details.project.version))
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row mt-3" }, [
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { staticClass: "font-weight-bold" }, [
-                  _vm._v("Browser :")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card bg-light p-2" }, [
-                  _vm._v(_vm._s(_vm.bug_details.browser))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { staticClass: "font-weight-bold" }, [
-                  _vm._v("Operating System :")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card bg-light p-2" }, [
-                  _vm._v(_vm._s(_vm.bug_details.os))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { staticClass: "font-weight-bold" }, [
-                  _vm._v("Bug Type :")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card bg-light p-2" }, [
-                  _vm._v(_vm._s(_vm.bug_details.bug_type))
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row mt-3" }, [
-              _c(
-                "div",
-                { staticClass: "col-md-4 text-center" },
-                [
-                  _c(
-                    "b-card",
-                    {
-                      staticClass: "text-center",
-                      attrs: {
-                        "bg-variant": "light",
-                        "border-variant": "primary",
-                        "header-bg-variant": "primary",
-                        "header-text-variant": "white",
-                        "text-variant": "dark",
-                        header: "Severity"
-                      }
-                    },
-                    [
-                      _c("b-card-text", [
-                        _c(
-                          "span",
-                          { staticClass: "font-weight-bold text-capitalize" },
-                          [_vm._v(_vm._s(_vm.bug_details.severity))]
-                        )
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-md-4 text-center" },
-                [
-                  _c(
-                    "b-card",
-                    {
-                      staticClass: "text-center",
-                      attrs: {
-                        "bg-variant": "light",
-                        "border-variant": "primary",
-                        "header-bg-variant": "primary",
-                        "header-text-variant": "white",
-                        "text-variant": "dark",
-                        header: "Priority"
-                      }
-                    },
-                    [
-                      _c("b-card-text", [
-                        _c(
-                          "span",
-                          { staticClass: "font-weight-bold text-capitalize" },
-                          [_vm._v(_vm._s(_vm.bug_details.priority))]
-                        )
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-md-4 text-center" },
-                [
-                  _c(
-                    "b-card",
-                    {
-                      staticClass: "text-center",
-                      attrs: {
-                        "bg-variant": "light",
-                        "border-variant": "primary",
-                        "header-bg-variant": "primary",
-                        "header-text-variant": "white",
-                        "text-variant": "dark",
-                        header: "Assigned To"
-                      }
-                    },
-                    [
-                      _c("b-card-text", [
-                        _c("span", { staticClass: "font-weight-bold" }, [
-                          _vm._v(
-                            _vm._s(
-                              _vm.bug_details.assigned_to
-                                ? _vm.bug_details.assigned_to.email
-                                : "Unassigned"
-                            )
+                        _c("b-card-text", [
+                          _c(
+                            "span",
+                            { staticClass: "font-weight-bold text-capitalize" },
+                            [_vm._v(_vm._s(_vm.bug_details.severity))]
                           )
                         ])
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4 mt-3" }, [
-                _c("label", { staticClass: "font-weight-bold mt-2" }, [
-                  _vm._v("Status")
-                ]),
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
-                  {
-                    staticClass:
-                      "card bg-light font-weight-bold d-flex flex-row justify-content-between align-items-center",
-                    class: _vm.bug_details.is_fixed
-                      ? "text-success  p-2"
-                      : "text-danger pl-2"
-                  },
+                  { staticClass: "col-md-4 text-center" },
                   [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(
-                          _vm.bug_details.is_fixed != 1 ? "Active" : "Fixed"
-                        ) +
-                        "\n              "
-                    ),
-                    !_vm.bug_details.is_fixed
-                      ? _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary",
-                            on: { click: _vm.changeStatus }
-                          },
-                          [
-                            _c(
-                              "svg",
-                              {
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  width: "24",
-                                  height: "24",
-                                  viewBox: "0 0 24 24",
-                                  fill: "none",
-                                  stroke: "currentColor",
-                                  "stroke-width": "2",
-                                  "stroke-linecap": "round",
-                                  "stroke-linejoin": "round"
-                                }
-                              },
-                              [
-                                _c("circle", {
-                                  attrs: { cx: "12", cy: "12", r: "3" }
-                                }),
-                                _vm._v(" "),
-                                _c("path", {
-                                  attrs: {
-                                    d:
-                                      "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
-                                  }
-                                })
-                              ]
-                            )
-                          ]
-                        )
-                      : _vm._e()
-                  ]
+                    _c(
+                      "b-card",
+                      {
+                        staticClass: "text-center",
+                        attrs: {
+                          "bg-variant": "light",
+                          "border-variant": "primary",
+                          "header-bg-variant": "primary",
+                          "header-text-variant": "white",
+                          "text-variant": "dark",
+                          header: "Priority"
+                        }
+                      },
+                      [
+                        _c("b-card-text", [
+                          _c(
+                            "span",
+                            { staticClass: "font-weight-bold text-capitalize" },
+                            [_vm._v(_vm._s(_vm.bug_details.priority))]
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
                 ),
                 _vm._v(" "),
-                _vm.bug_details.is_fixed
-                  ? _c("small", [_vm._v(_vm._s(_vm.bug_details.fixed_at))])
-                  : _vm._e()
+                _c(
+                  "div",
+                  { staticClass: "col-md-4 text-center" },
+                  [
+                    _c(
+                      "b-card",
+                      {
+                        staticClass: "text-center",
+                        attrs: {
+                          "bg-variant": "light",
+                          "border-variant": "primary",
+                          "header-bg-variant": "primary",
+                          "header-text-variant": "white",
+                          "text-variant": "dark",
+                          header: "Assigned To"
+                        }
+                      },
+                      [
+                        _c("b-card-text", [
+                          _c("span", { staticClass: "font-weight-bold" }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm.bug_details.assigned_to
+                                  ? _vm.bug_details.assigned_to.email
+                                  : "Unassigned"
+                              )
+                            )
+                          ])
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4 mt-3" }, [
+                  _c("label", { staticClass: "font-weight-bold mt-2" }, [
+                    _vm._v("Status")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "card bg-light font-weight-bold d-flex flex-row justify-content-between align-items-center",
+                      class: _vm.bug_details.is_fixed
+                        ? "text-success  p-2"
+                        : "text-danger pl-2"
+                    },
+                    [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(
+                            _vm.bug_details.is_fixed != 1 ? "Active" : "Fixed"
+                          ) +
+                          "\n              "
+                      ),
+                      !_vm.bug_details.is_fixed
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: { click: _vm.changeStatus }
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  attrs: {
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    width: "24",
+                                    height: "24",
+                                    viewBox: "0 0 24 24",
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    "stroke-width": "2",
+                                    "stroke-linecap": "round",
+                                    "stroke-linejoin": "round"
+                                  }
+                                },
+                                [
+                                  _c("circle", {
+                                    attrs: { cx: "12", cy: "12", r: "3" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("path", {
+                                    attrs: {
+                                      d:
+                                        "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+                                    }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.bug_details.is_fixed
+                    ? _c("small", [_vm._v(_vm._s(_vm.bug_details.fixed_at))])
+                    : _vm._e()
+                ])
               ])
-            ])
-          ],
-          1
-        ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "card-footer border-primary d-flex justify-content-between align-items-center"
+            },
+            [
+              _c("div", [
+                _vm._v("Added By: " + _vm._s(_vm.bug_details.added_by.email))
+              ])
+            ]
+          )
+        ]),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "card-footer border-primary d-flex justify-content-between align-items-center"
-          },
-          [
-            _c("div", [
-              _vm._v("Added By: " + _vm._s(_vm.bug_details.added_by.email))
-            ])
-          ]
-        )
-      ])
-    ])
-  ])
+        _c("hr")
+      ]),
+      _vm._v(" "),
+      _c("CommentsBug", { staticClass: "w-100" })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -3420,6 +3588,128 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddBug_vue_vue_type_template_id_0c4baa84_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddBug_vue_vue_type_template_id_0c4baa84_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/AddCommentBug.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/AddCommentBug.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddCommentBug_vue_vue_type_template_id_f654308a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddCommentBug.vue?vue&type=template&id=f654308a& */ "./resources/js/components/AddCommentBug.vue?vue&type=template&id=f654308a&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _AddCommentBug_vue_vue_type_template_id_f654308a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddCommentBug_vue_vue_type_template_id_f654308a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AddCommentBug.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/AddCommentBug.vue?vue&type=template&id=f654308a&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/AddCommentBug.vue?vue&type=template&id=f654308a& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddCommentBug_vue_vue_type_template_id_f654308a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AddCommentBug.vue?vue&type=template&id=f654308a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddCommentBug.vue?vue&type=template&id=f654308a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddCommentBug_vue_vue_type_template_id_f654308a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddCommentBug_vue_vue_type_template_id_f654308a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/CommentsBug.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/CommentsBug.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CommentsBug_vue_vue_type_template_id_6dd4fec5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CommentsBug.vue?vue&type=template&id=6dd4fec5& */ "./resources/js/components/CommentsBug.vue?vue&type=template&id=6dd4fec5&");
+/* harmony import */ var _CommentsBug_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CommentsBug.vue?vue&type=script&lang=js& */ "./resources/js/components/CommentsBug.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CommentsBug_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CommentsBug_vue_vue_type_template_id_6dd4fec5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CommentsBug_vue_vue_type_template_id_6dd4fec5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CommentsBug.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/CommentsBug.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/CommentsBug.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CommentsBug_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CommentsBug.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CommentsBug.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CommentsBug_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/CommentsBug.vue?vue&type=template&id=6dd4fec5&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/CommentsBug.vue?vue&type=template&id=6dd4fec5& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CommentsBug_vue_vue_type_template_id_6dd4fec5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CommentsBug.vue?vue&type=template&id=6dd4fec5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CommentsBug.vue?vue&type=template&id=6dd4fec5&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CommentsBug_vue_vue_type_template_id_6dd4fec5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CommentsBug_vue_vue_type_template_id_6dd4fec5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

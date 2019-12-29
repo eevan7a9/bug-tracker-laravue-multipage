@@ -163,13 +163,19 @@
           <!-- <div>options</div> -->
         </div>
       </div>
+      <hr />
     </div>
+    <CommentsBug class="w-100" />
   </div>
 </template>
 
 <script>
+import CommentsBug from "./CommentsBug";
 import { mapGetters, mapActions } from "vuex";
 export default {
+  components: {
+    CommentsBug
+  },
   data() {
     return {
       visible_screenshot: false
