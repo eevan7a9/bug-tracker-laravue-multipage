@@ -13,10 +13,11 @@ class BugSeeder extends Seeder
     public function run()
     {
         DB::table('bugs')->insert([
+            "id" => 1,
             "title" => "Navbar not responding",
-            "project_id" => "1",
+            "project_id" => "2",
             "user_id" => "1",
-            "description" => "Navbar not responding after buing is complete",
+            "description" => "Navbar not responding after borrowing is complete",
             "browser" => "Firefox",
             "os" => "Mac Os",
             "bug_type" => "New Feature",
@@ -30,8 +31,9 @@ class BugSeeder extends Seeder
         ]);
 
         DB::table('bugs')->insert([
+            "id" => 2,
             "title" => "Not Responding checkout",
-            "project_id" => "2",
+            "project_id" => "1",
             "user_id" => "2",
             "description" => "when trying to cancel, After checking out the books the screen crashed",
             "browser" => "Opera",
@@ -47,8 +49,9 @@ class BugSeeder extends Seeder
         ]);
 
         DB::table('bugs')->insert([
+            "id" => 3,
             "title" => "Error 500, when editing a Survey Answer",
-            "project_id" => "2",
+            "project_id" => "4",
             "user_id" => "2",
             "description" => "Survey question have wrong choices, After editing and clicking \"save\" error 500 show",
             "browser" => "Opera",
@@ -64,11 +67,12 @@ class BugSeeder extends Seeder
         ]);
 
         DB::table('bugs')->insert([
+            "id" => 4,
             "title" => "Infinit loading after unliking and liking a post",
-            "project_id" => "1",
+            "project_id" => "3",
             "user_id" => "1",
             "description" => "When toggle to unlike a post and like it again mouse cursor becomes loading Infinitly",
-            "browser" => "Opera",
+            "browser" => "Safari",
             "os" => "Windows 10",
             "bug_type" => "Functional Bugs",
             "severity" => "undefined",
@@ -78,6 +82,60 @@ class BugSeeder extends Seeder
             "fixed_at" => null,
             "created_at" => now(),
             "updated_at" => now(),
+        ]);
+
+        DB::table('bugs')->insert([
+            "id" => 5,
+            "title" => "Checking out not redirecting to checkout page",
+            "project_id" => "3",
+            "user_id" => "1",
+            "description" => "After buying and selecting products and making sure the cart is not empty, checking out is not working",
+            "browser" => "Opera",
+            "os" => "Windows 10",
+            "bug_type" => "Functional Bugs",
+            "severity" => "high",
+            "priority" => "high",
+            "assigned_to" => "4",
+            "is_fixed" => 1,
+            "fixed_at" => "2019-11-23",
+            "created_at" => "2019-11-22 22:49:07",
+            "updated_at" => "2019-11-23 1:49:07",
+        ]);
+
+        DB::table('bugs')->insert([
+            "id" => 6,
+            "title" => "Checking out not redirecting to checkout page",
+            "project_id" => "3",
+            "user_id" => "1",
+            "description" => "After buying and selecting products and making sure the cart is not empty, checking out is not working",
+            "browser" => "Opera",
+            "os" => "Windows 10",
+            "bug_type" => "Functional Bugs",
+            "severity" => "high",
+            "priority" => "high",
+            "assigned_to" => "4",
+            "is_fixed" => 1,
+            "fixed_at" => "2019-11-23",
+            "created_at" => "2019-11-22 22:49:07",
+            "updated_at" => "2019-11-23 1:49:07",
+        ]);
+
+        DB::table('bugs')->insert([
+            "id" => 7,
+            "title" => "Submit comment is not responding after Editing 2nd time",
+            "project_id" => "3",
+            "user_id" => "1",
+            "description" => "Editing the comment and submit comment works on the first try, but when editing for 2ndtime submit button not responding",
+            "browser" => "Firefox",
+            "os" => "Windows 8",
+            "bug_type" => "Functional Bugs",
+            "severity" => "high",
+            "priority" => "mid",
+            "assigned_to" => "6",
+            "is_fixed" => 1,
+            "fixed_at" => "2019-12-15",
+            "created_at" => "2019-11-13 04:55:45",
+            "updated_at" => "2019-12-15 1:49:07",
         ]);
 
     }
