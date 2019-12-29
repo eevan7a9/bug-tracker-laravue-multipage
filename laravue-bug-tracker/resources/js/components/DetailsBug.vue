@@ -165,7 +165,7 @@
       </div>
       <hr />
     </div>
-    <CommentsBug class="w-100" />
+    <CommentsBug :comments="bug_details.comments" :bug_id="bug_details.id" class="w-100" />
   </div>
 </template>
 

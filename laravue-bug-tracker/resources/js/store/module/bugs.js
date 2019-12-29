@@ -4,7 +4,8 @@ const state = {
     bug_details: {
         project: {},
         assigned_to: {},
-        added_by: {}
+        added_by: {},
+        comments: []
     }
 };
 const getters = {
@@ -60,7 +61,7 @@ const actions = {
     getBugDetails: async ({ commit }, id) => {
         try {
             const result = await axios.get(`api_web_session/v1/bugs/${id}`);
-            // console.log(result);
+            console.log(result);
             commit("setBugDetails", result.data);
         } catch (error) {
             alert(error);
@@ -118,6 +119,18 @@ const actions = {
             // console.log(error);
             alert(error)
         }
+    },
+    addBugComment: async ({ commit }, comment) => {
+        try {
+            const result = await axios.post('api_web_session/v1/comments', {
+                bug_id: comment.bug_id,
+                message: comment.message
+            });
+            console.log(result);
+            commit("insertBugComment", result.data);
+        } catch (error) {
+            console.log(error.response);
+        }
     }
 };
 const mutations = {
@@ -128,8 +141,11 @@ const mutations = {
         (state.bug_details = {
             project: {},
             assigned_to: {},
-            added_by: {}
+            added_by: {},
+            comments: [],
         }),
+    insertBugComment: (state, comment) => state.bug_details.comments.unshift(comment)
+
 };
 
 export default {

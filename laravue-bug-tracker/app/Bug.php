@@ -24,4 +24,12 @@ class Bug extends Model
     {
         return $this->belongsTo(User::class, 'assigned_to', 'id');
     }
+    /**
+     *  the Comment this bug have
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 }

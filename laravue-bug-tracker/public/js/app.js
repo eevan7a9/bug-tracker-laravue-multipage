@@ -87764,7 +87764,8 @@ var state = {
   bug_details: {
     project: {},
     assigned_to: {},
-    added_by: {}
+    added_by: {},
+    comments: []
   }
 };
 var getters = {
@@ -87895,22 +87896,22 @@ var actions = {
 
             case 4:
               result = _context3.sent;
-              // console.log(result);
+              console.log(result);
               commit("setBugDetails", result.data);
-              _context3.next = 11;
+              _context3.next = 12;
               break;
 
-            case 8:
-              _context3.prev = 8;
+            case 9:
+              _context3.prev = 9;
               _context3.t0 = _context3["catch"](1);
               alert(_context3.t0); // console.log(error.response);
 
-            case 11:
+            case 12:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 8]]);
+      }, _callee3, null, [[1, 9]]);
     }));
 
     function getBugDetails(_x4, _x5) {
@@ -88029,6 +88030,49 @@ var actions = {
     }
 
     return changeBugStatus;
+  }(),
+  addBugComment: function () {
+    var _addBugComment = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(_ref7, comment) {
+      var commit, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              commit = _ref7.commit;
+              _context6.prev = 1;
+              _context6.next = 4;
+              return axios.post('api_web_session/v1/comments', {
+                bug_id: comment.bug_id,
+                message: comment.message
+              });
+
+            case 4:
+              result = _context6.sent;
+              console.log(result);
+              commit("insertBugComment", result.data);
+              _context6.next = 12;
+              break;
+
+            case 9:
+              _context6.prev = 9;
+              _context6.t0 = _context6["catch"](1);
+              console.log(_context6.t0.response);
+
+            case 12:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6, null, [[1, 9]]);
+    }));
+
+    function addBugComment(_x10, _x11) {
+      return _addBugComment.apply(this, arguments);
+    }
+
+    return addBugComment;
   }()
 };
 var mutations = {
@@ -88045,8 +88089,12 @@ var mutations = {
     return state.bug_details = {
       project: {},
       assigned_to: {},
-      added_by: {}
+      added_by: {},
+      comments: []
     };
+  },
+  insertBugComment: function insertBugComment(state, comment) {
+    return state.bug_details.comments.unshift(comment);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

@@ -54,4 +54,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Bug::class, 'assigned_to', 'id');
     }
+    /**
+     * the Comments this user made on a Bug
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

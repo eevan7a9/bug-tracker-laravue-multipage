@@ -62,7 +62,7 @@ class BugController extends Controller
 
     public function show($id)
     {
-        $bug = Bug::with('project')->with('addedBy')->with('assignedTo')->findOrFail($id);
+        $bug = Bug::with('project')->with('addedBy')->with('assignedTo')->with('comments.user')->findOrFail($id);
         return response()->json($bug, 200);
     }
 
@@ -116,9 +116,10 @@ class BugController extends Controller
         $bug->addedBy;
         return response()->json($bug, 201);
     }
+
     public function changeStatus($id)
     {
-        $bug = Bug::with('project')->with('addedBy')->with('assignedTo')->findOrFail($id);
+        $bug = Bug::with('project')->with('addedBy')->with('assignedTo')->with('comments.user')->findOrFail($id);
         $bug->is_fixed = !$bug->is_fixed;
         $bug->fixed_at = date('Y-m-d H:i:s');
 
