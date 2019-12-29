@@ -61,7 +61,7 @@ const actions = {
     getBugDetails: async ({ commit }, id) => {
         try {
             const result = await axios.get(`api_web_session/v1/bugs/${id}`);
-            console.log(result);
+            // console.log(result);
             commit("setBugDetails", result.data);
         } catch (error) {
             alert(error);
@@ -101,7 +101,6 @@ const actions = {
                 }
             );
             commit("setBugDetails", result.data);
-            // alert(`${result.statusText},a Bug is successfuly edited.`);
             // console.log(result);
         } catch (error) {
             console.log(error.response);
@@ -126,10 +125,21 @@ const actions = {
                 bug_id: comment.bug_id,
                 message: comment.message
             });
-            console.log(result);
+            // console.log(result);
             commit("insertBugComment", result.data);
         } catch (error) {
-            console.log(error.response);
+            alert(error);
+            // console.log(error.response);
+        }
+    },
+    deleteBugComment: async ({ commit }, id) => {
+        try {
+            const result = await axios.delete(`api_web_session/v1/comments/${id}`);
+            // console.log(result);
+            commit("removeBugComment", id);
+        } catch (error) {
+            alert(error);
+            // console.log(error.response);
         }
     }
 };
@@ -144,7 +154,8 @@ const mutations = {
             added_by: {},
             comments: [],
         }),
-    insertBugComment: (state, comment) => state.bug_details.comments.unshift(comment)
+    insertBugComment: (state, comment) => state.bug_details.comments.unshift(comment),
+    removeBugComment: (state, id) => state.bug_details.comments = state.bug_details.comments.filter((comment) => comment.id != id)
 
 };
 

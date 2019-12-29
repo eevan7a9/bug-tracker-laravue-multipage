@@ -5,8 +5,28 @@
       <hr />
       <h1 class="mt-3 font-weight-bold">Comments :</h1>
       <div class="card border-secondary mt-3" v-for="comment in comments" :key="comment.id">
-        <div class="card-header border-secondary">
+        <div class="card-header border-secondary d-flex justify-content-between align-items-center">
           <h5>{{comment.user.email }}</h5>
+          <button class="btn btn-danger" @click="removeComment(comment.id)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="3 6 5 6 21 6" />
+              <path
+                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+              />
+              <line x1="10" y1="11" x2="10" y2="17" />
+              <line x1="14" y1="11" x2="14" y2="17" />
+            </svg>
+          </button>
         </div>
         <div class="card-body">
           <p>{{comment.message}}</p>
@@ -23,6 +43,7 @@
 </template>
 <script>
 import AddCommentBug from "./AddCommentBug";
+import { mapActions } from "vuex";
 export default {
   components: {
     AddCommentBug
@@ -32,20 +53,33 @@ export default {
     bug_id: Number
   },
   data() {
-    return {
-      commentser: [
-        {
-          id: 1,
-          user: "user1",
-          message: "Lorem, mur a adipisicing elit. Rem, dolor."
-        },
-        {
-          id: 2,
-          user: "user2",
-          message: "Lorem,r adipisicing elit. Rem, dolor."
-        }
-      ]
-    };
+    return {};
+  },
+  methods: {
+    ...mapActions(["deleteBugComment"]),
+    removeComment(id) {
+      this.$swal
+        .fire({
+          title: "Remove this comment?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Delete"
+        })
+        .then(result => {
+          if (result.value) {
+            this.deleteBugComment(id).then(() => {
+              this.$swal.fire(
+                "Success!",
+                "The comment is now Deleted.",
+                "success"
+              );
+            });
+          }
+        });
+    }
   }
 };
 </script>

@@ -87896,22 +87896,22 @@ var actions = {
 
             case 4:
               result = _context3.sent;
-              console.log(result);
+              // console.log(result);
               commit("setBugDetails", result.data);
-              _context3.next = 12;
+              _context3.next = 11;
               break;
 
-            case 9:
-              _context3.prev = 9;
+            case 8:
+              _context3.prev = 8;
               _context3.t0 = _context3["catch"](1);
               alert(_context3.t0); // console.log(error.response);
 
-            case 12:
+            case 11:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 9]]);
+      }, _callee3, null, [[1, 8]]);
     }));
 
     function getBugDetails(_x4, _x5) {
@@ -87962,8 +87962,7 @@ var actions = {
 
             case 16:
               result = _context4.sent;
-              commit("setBugDetails", result.data); // alert(`${result.statusText},a Bug is successfuly edited.`);
-              // console.log(result);
+              commit("setBugDetails", result.data); // console.log(result);
 
               _context4.next = 24;
               break;
@@ -88050,22 +88049,22 @@ var actions = {
 
             case 4:
               result = _context6.sent;
-              console.log(result);
+              // console.log(result);
               commit("insertBugComment", result.data);
-              _context6.next = 12;
+              _context6.next = 11;
               break;
 
-            case 9:
-              _context6.prev = 9;
+            case 8:
+              _context6.prev = 8;
               _context6.t0 = _context6["catch"](1);
-              console.log(_context6.t0.response);
+              alert(_context6.t0); // console.log(error.response);
 
-            case 12:
+            case 11:
             case "end":
               return _context6.stop();
           }
         }
-      }, _callee6, null, [[1, 9]]);
+      }, _callee6, null, [[1, 8]]);
     }));
 
     function addBugComment(_x10, _x11) {
@@ -88073,6 +88072,46 @@ var actions = {
     }
 
     return addBugComment;
+  }(),
+  deleteBugComment: function () {
+    var _deleteBugComment = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref8, id) {
+      var commit, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              commit = _ref8.commit;
+              _context7.prev = 1;
+              _context7.next = 4;
+              return axios["delete"]("api_web_session/v1/comments/".concat(id));
+
+            case 4:
+              result = _context7.sent;
+              // console.log(result);
+              commit("removeBugComment", id);
+              _context7.next = 11;
+              break;
+
+            case 8:
+              _context7.prev = 8;
+              _context7.t0 = _context7["catch"](1);
+              alert(_context7.t0); // console.log(error.response);
+
+            case 11:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7, null, [[1, 8]]);
+    }));
+
+    function deleteBugComment(_x12, _x13) {
+      return _deleteBugComment.apply(this, arguments);
+    }
+
+    return deleteBugComment;
   }()
 };
 var mutations = {
@@ -88095,6 +88134,11 @@ var mutations = {
   },
   insertBugComment: function insertBugComment(state, comment) {
     return state.bug_details.comments.unshift(comment);
+  },
+  removeBugComment: function removeBugComment(state, id) {
+    return state.bug_details.comments = state.bug_details.comments.filter(function (comment) {
+      return comment.id != id;
+    });
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

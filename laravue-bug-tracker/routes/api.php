@@ -39,5 +39,7 @@ Route::prefix('v1')->group(function () {
         Route::post('developer', 'Api\DeveloperController@store')->name('developer.store');
 
         Route::post('comments', 'Api\CommentController@store')->name('comment.store');
+        Route::delete('comments/{id}', 'Api\CommentController@destroy')->name('comment.destroy');
+
     });
 });

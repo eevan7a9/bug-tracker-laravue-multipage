@@ -389,6 +389,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddCommentBug__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddCommentBug */ "./resources/js/components/AddCommentBug.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -413,6 +440,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AddCommentBug: _AddCommentBug__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -422,18 +450,29 @@ __webpack_require__.r(__webpack_exports__);
     bug_id: Number
   },
   data: function data() {
-    return {
-      commentser: [{
-        id: 1,
-        user: "user1",
-        message: "Lorem, mur a adipisicing elit. Rem, dolor."
-      }, {
-        id: 2,
-        user: "user2",
-        message: "Lorem,r adipisicing elit. Rem, dolor."
-      }]
-    };
-  }
+    return {};
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(["deleteBugComment"]), {
+    removeComment: function removeComment(id) {
+      var _this = this;
+
+      this.$swal.fire({
+        title: "Remove this comment?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Delete"
+      }).then(function (result) {
+        if (result.value) {
+          _this.deleteBugComment(id).then(function () {
+            _this.$swal.fire("Success!", "The comment is now Deleted.", "success");
+          });
+        }
+      });
+    }
+  })
 });
 
 /***/ }),
@@ -2225,9 +2264,64 @@ var render = function() {
             "div",
             { key: comment.id, staticClass: "card border-secondary mt-3" },
             [
-              _c("div", { staticClass: "card-header border-secondary" }, [
-                _c("h5", [_vm._v(_vm._s(comment.user.email))])
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "card-header border-secondary d-flex justify-content-between align-items-center"
+                },
+                [
+                  _c("h5", [_vm._v(_vm._s(comment.user.email))]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.removeComment(comment.id)
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            width: "18",
+                            height: "18",
+                            viewBox: "0 0 24 24",
+                            fill: "none",
+                            stroke: "currentColor",
+                            "stroke-width": "2",
+                            "stroke-linecap": "round",
+                            "stroke-linejoin": "round"
+                          }
+                        },
+                        [
+                          _c("polyline", { attrs: { points: "3 6 5 6 21 6" } }),
+                          _vm._v(" "),
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("line", {
+                            attrs: { x1: "10", y1: "11", x2: "10", y2: "17" }
+                          }),
+                          _vm._v(" "),
+                          _c("line", {
+                            attrs: { x1: "14", y1: "11", x2: "14", y2: "17" }
+                          })
+                        ]
+                      )
+                    ]
+                  )
+                ]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("p", [_vm._v(_vm._s(comment.message))])
