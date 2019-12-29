@@ -7,7 +7,7 @@
         <title>Laravel</title>
         <!-- Styles -->
         <style>
-            @import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+           @import url('https://fonts.googleapis.com/css?family=Anton|Roboto+Condensed&display=swap');
             html, body {
                 background-color: #fff;
                 color: #636b6f;
@@ -18,7 +18,8 @@
             }
 
             .full-height {
-                height: 100vh;
+                background-image: linear-gradient(to left bottom, #00bdff, #83c4fd, #b5cdf6, #d4d8ee, #e7e7e7);
+                height: 100%;
             }
 
             .flex-center {
@@ -48,18 +49,18 @@
             }
 
             .links > a {
-                color: #225f91;
+                color: aliceblue;
                 padding: 0 25px;
                 font-size: 20px;
                 font-weight: 600;
                 letter-spacing: 3px;
                 text-decoration: none;
                 text-transform: uppercase;
-                                font-family: 'Anton', sans-serif;
+                font-family: 'Roboto Condensed', sans-serif;
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                /* margin-bottom: 30px; */
                 height: 100%;
                 width: 100%;
                 display: flex;
@@ -69,7 +70,7 @@
             }
             img.showcase-image{
                 width: 80%;
-                height: 80%;
+                height: 500px;
             }
             h1.showcase-title{
                 position: absolute;
@@ -77,20 +78,38 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
                 font-family: 'Anton', sans-serif;
-                color: #68a6f7;
+                color: #809ead;
                 padding-left: 50px;
                 width: 100%;
                 font-size: 130px;
-                text-shadow: 5px -5px #1c4f79, 1px -2px #3490dc, -6px 10px #1e5480, 2px 0px #3490dc;
+                text-shadow: 5px -5px #0c2233, 1px -2px #3490dc, -6px 10px #000101, 2px 0px #3490dc;
             }
             h1.showcase-title .bug{
+                /* -webkit-animation: color-change 1.5s infinite;
+                -moz-animation: color-change 1.5s infinite;
+                -o-animation: color-change 1.5s infinite;
+                -ms-animation: color-change 1.5s infinite;
+                animation: color-change 1.5s infinite; */
+            }
+            img.bug{
+                height: 200px;
+                width: 171px;
+                margin-right: -50px;
+                margin-bottom: -50px;
+            }
+            span.bug-container{
+                background: white;
+                display: inline-block;
+                width: 200px;
+                border-radius: 100%;
+                margin-right: -50px;
+                margin-bottom: -50px;
                 -webkit-animation: color-change 1.5s infinite;
                 -moz-animation: color-change 1.5s infinite;
                 -o-animation: color-change 1.5s infinite;
                 -ms-animation: color-change 1.5s infinite;
                 animation: color-change 1.5s infinite;
             }
-
             @media (max-width: 800px){
                 img.showcase-image{
                     width: 100%;
@@ -102,29 +121,29 @@
                 }
             }
             @-webkit-keyframes color-change {
-                0% { color: aliceblue; }
-                50% { color: #68a6f7; }
-                100% { color: aliceblue; }
+                0% { background-color: aliceblue; }
+                50% { background-color: transparent; }
+                100% { background-color: aliceblue; }
             }
             @-moz-keyframes color-change {
-                0% { color: aliceblue; }
-                50% { color: #68a6f7; }
-                100% { color: aliceblue; }
+                0% { background-color: aliceblue; }
+                50% { background-color: transparent; }
+                100% { background-color: aliceblue; }
             }
             @-ms-keyframes color-change {
-                0% { color: aliceblue; }
-                50% { color: #68a6f7; }
-                100% { color: aliceblue; }
+                0% { background-color: aliceblue; }
+                50% { background-color: transparent; }
+                100% { background-color: aliceblue; }
             }
             @-o-keyframes color-change {
-                0% { color: aliceblue; }
-                50% { color: #68a6f7; }
-                100% { color: aliceblue; }
+                0% { background-color: aliceblue; }
+                50% { background-color: transparent; }
+                100% { background-color: aliceblue; }
             }
             @keyframes color-change {
-                0% { color: aliceblue; }
-                50% { color: #68a6f7; }
-                100% { color: aliceblue; }
+                0% { background-color: aliceblue; }
+                50% { background-color: transparent; }
+                100% { background-color: aliceblue; }
             }
         </style>
     </head>
@@ -147,7 +166,7 @@
             <div class="content">
                 <div class="title m-b-md">
                     <img class="showcase-image" src="{{ url("/asset_images/bug_fixed.svg") }}" alt="" srcset="">
-                    <h1 class="showcase-title"><span class="bug">BUG</span> Tracker</h1>
+                    <h1 class="showcase-title"><span class="bug-container"><img class="bug" src="{{ url("/asset_images/bug_cartoon.png") }}"/></span> Tracker</h1>
                 </div>
             </div>
         </div>
