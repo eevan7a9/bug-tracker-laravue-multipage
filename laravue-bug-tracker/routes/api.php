@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,7 @@ Route::prefix('v1')->group(function () {
     Route::get('testers/{id}', 'Api\TesterController@show')->name('testers.show');
 
     Route::group(['middleware' => ['auth:web']], function () {
-        Route::post('bugs', 'Api\BugController@store')->name('bugs.store');
+        Route::post('bugs', 'Api\BugController@store')->middleware('role:tester,admin')->name('bugs.store');
         Route::post('bugs/{id}', 'Api\BugController@update')->name('bugs.update');
         Route::post('bugs/status/{id}', 'Api\BugController@changeStatus')->name('bugs.changeStatus');
 
@@ -45,6 +46,12 @@ Route::prefix('v1')->group(function () {
 
         Route::post('comments', 'Api\CommentController@store')->name('comment.store');
         Route::delete('comments/{id}', 'Api\CommentController@destroy')->name('comment.destroy');
+
+        Route::get('user', function () {
+            $user = Auth::user();
+            $user->roles;
+            return response()->json($user, 200);
+        });
 
     });
 });
