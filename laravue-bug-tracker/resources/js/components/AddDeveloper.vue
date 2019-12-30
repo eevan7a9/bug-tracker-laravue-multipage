@@ -69,15 +69,23 @@ export default {
   methods: {
     ...mapActions(["addDeveloper"]),
     submit() {
-      this.addDeveloper(this.email).then(() => {
-        this.$swal.fire(
-          "Developer Added!",
-          "Success, we have new developer",
-          "success"
-        );
-        this.email = "";
-        this.visible = false;
-      });
+      this.addDeveloper(this.email)
+        .then(res => {
+          this.$swal.fire(
+            "Developer Added!",
+            "Success, we have new developer",
+            "success"
+          );
+          this.email = "";
+          this.visible = false;
+        })
+        .catch(() => {
+          this.$swal.fire(
+            "Unknown Email!",
+            "Failed, unregistered E-mail.",
+            "error"
+          );
+        });
     }
   }
 };
