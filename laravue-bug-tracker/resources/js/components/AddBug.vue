@@ -4,8 +4,8 @@
       :class="visible ? null : 'collapsed'"
       :aria-expanded="visible ? 'true' : 'false'"
       aria-controls="collapse-1"
-      @click="visible = !visible"
-      variant="success"
+      @click="visibleForm"
+      :variant="user.developer ? 'secondary' : 'success'"
     >
       New Bug
       <span>
@@ -269,25 +269,36 @@ export default {
       }
     };
   },
-  computed: mapGetters(["projects", "developers"]),
+  computed: mapGetters(["projects", "developers", "user"]),
   methods: {
     ...mapActions(["newBug", "getProjects", "getDevelopers"]),
+    visibleForm() {
+      if (this.user.developer) {
+        this.$swal.fire("Not Allowed", "Only Admin & Testers", "error");
+      } else {
+        this.visible = !this.visible;
+      }
+    },
     onImageChange(e) {
       //   console.log(e.target.files[0]);
       this.bug.image = e.target.files[0];
     },
     submit() {
       // submit new bug
-      this.newBug(this.bug).then(() => {
-        this.$swal.fire("New Bug", "Success new Bug is added", "success");
-        //   clear and close form
-        this.bug = {};
-        this.bug.image = null;
-        this.bug.developer = 0;
-        this.$refs["imageUpload"].reset();
-        // this.$refs.imageUpload.value = null; // we clear the value of upload image
-        this.visible = false;
-      });
+      this.newBug(this.bug)
+        .then(() => {
+          this.$swal.fire("New Bug", "Success new Bug is added", "success");
+          //   clear and close form
+          this.bug = {};
+          this.bug.image = null;
+          this.bug.developer = 0;
+          this.$refs["imageUpload"].reset();
+          // this.$refs.imageUpload.value = null; // we clear the value of upload image
+          this.visible = false;
+        })
+        .catch(() => {
+          this.$swal.fire("Not Allowed", "Only Admin and Tester", "error");
+        });
     }
   },
   async created() {
@@ -302,4 +313,7 @@ export default {
 </script>
 
 <style scoped>
+button.btn-secondary {
+  cursor: not-allowed !important;
+}
 </style>

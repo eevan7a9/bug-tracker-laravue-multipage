@@ -7,10 +7,17 @@
 
 <script>
 import Navbar from "./Navbar";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "App",
   components: {
     Navbar
+  },
+  methods: {
+    ...mapActions(["getUser"])
+  },
+  async created() {
+    this.getUser();
   }
 };
 </script>

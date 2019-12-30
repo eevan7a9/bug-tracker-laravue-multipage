@@ -54,8 +54,8 @@ const actions = {
             // alert(`${result.statusText},a Bug is successfuly added.`);
             // console.log(result);
         } catch (error) {
-            // console.log(error.response);
-            alert(error);
+            console.log(error.response);
+            throw error
         }
     },
     getBugDetails: async ({ commit }, id) => {

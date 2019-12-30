@@ -4,6 +4,7 @@ import projects from "./module/projects";
 import bugs from "./module/bugs";
 import developers from "./module/developers";
 import testers from "./module/testers";
+import user from "./module/user";
 // axios already imported at app.js
 
 Vue.use(Vuex)
@@ -13,6 +14,7 @@ export default new Vuex.Store({
         projects,
         bugs,
         developers,
-        testers
+        testers,
+        user
     }
 })
