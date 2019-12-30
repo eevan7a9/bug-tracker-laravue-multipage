@@ -88196,22 +88196,22 @@ var actions = {
 
             case 4:
               result = _context.sent;
-              // console.log(result);
+              console.log(result);
               commit("setDevelopers", result.data);
-              _context.next = 11;
+              _context.next = 12;
               break;
 
-            case 8:
-              _context.prev = 8;
+            case 9:
+              _context.prev = 9;
               _context.t0 = _context["catch"](1);
               alert(_context.t0); // console.log(error.response)
 
-            case 11:
+            case 12:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 8]]);
+      }, _callee, null, [[1, 9]]);
     }));
 
     function getDevelopers(_x) {
@@ -88238,22 +88238,20 @@ var actions = {
 
             case 4:
               result = _context2.sent;
-              commit("insertDeveloper", result.data); // alert(`Success, Developer ${result.data.email} is now added`);
+              commit("insertDeveloper", result.data);
+              return _context2.abrupt("return", "Developer ".concat(result.data.email, " is now added"));
 
-              _context2.next = 11;
-              break;
-
-            case 8:
-              _context2.prev = 8;
+            case 9:
+              _context2.prev = 9;
               _context2.t0 = _context2["catch"](1);
-              alert(_context2.t0.response.data); // console.log(error.response);
+              throw _context2.t0;
 
-            case 11:
+            case 12:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[1, 8]]);
+      }, _callee2, null, [[1, 9]]);
     }));
 
     function addDeveloper(_x2, _x3) {
@@ -88371,9 +88369,10 @@ var actions = {
 
             case 3:
               result = _context.sent;
+              console.log(result);
               commit("setProjects", result.data);
 
-            case 5:
+            case 6:
             case "end":
               return _context.stop();
           }

@@ -40,8 +40,10 @@ export default {
       });
     }
   },
-  async created() {
-    this.getProjects();
+  created() {
+    if (this.projects.length < 1) {
+      this.getProjects();
+    }
   }
 };
 </script>

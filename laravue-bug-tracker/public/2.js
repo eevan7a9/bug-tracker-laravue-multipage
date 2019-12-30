@@ -87,11 +87,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submit: function submit() {
       var _this = this;
 
-      this.addDeveloper(this.email).then(function () {
+      this.addDeveloper(this.email).then(function (res) {
         _this.$swal.fire("Developer Added!", "Success, we have new developer", "success");
 
         _this.email = "";
         _this.visible = false;
+      })["catch"](function () {
+        _this.$swal.fire("Unknown Email!", "Failed, unregistered E-mail.", "error");
       });
     }
   })
@@ -218,7 +220,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   created: function created() {
-    this.getDevelopers();
+    if (this.developers.length < 1) {
+      this.getDevelopers();
+    }
   }
 });
 

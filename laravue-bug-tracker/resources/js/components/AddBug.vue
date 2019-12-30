@@ -290,10 +290,13 @@ export default {
       });
     }
   },
-  created() {
-    this.getProjects().then(() => {
-      this.getDevelopers();
-    });
+  async created() {
+    if (this.projects.length < 1) {
+      await this.getProjects();
+    }
+    if (this.developers.length < 1) {
+      await this.getDevelopers();
+    }
   }
 };
 </script>

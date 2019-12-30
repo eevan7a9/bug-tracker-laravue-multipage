@@ -45,7 +45,9 @@ export default {
     }
   },
   created() {
-    this.getDevelopers();
+    if (this.developers.length < 1) {
+      this.getDevelopers();
+    }
   }
 };
 </script>
