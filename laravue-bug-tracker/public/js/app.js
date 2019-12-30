@@ -2038,6 +2038,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "navbar"
 });
@@ -71173,6 +71176,19 @@ var render = function() {
               1
             ),
             _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/testers" } },
+                  [_vm._v("TESTERS")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
             _vm._m(1)
           ])
         ]
@@ -87704,6 +87720,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     component: function component() {
       return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../pages/Developers.vue */ "./resources/js/pages/Developers.vue"));
     }
+  }, {
+    path: '/testers',
+    name: 'testers',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../pages/Testers.vue */ "./resources/js/pages/Testers.vue"));
+    }
   }]
 }));
 
@@ -87724,6 +87746,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _module_projects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./module/projects */ "./resources/js/store/module/projects.js");
 /* harmony import */ var _module_bugs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/bugs */ "./resources/js/store/module/bugs.js");
 /* harmony import */ var _module_developers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./module/developers */ "./resources/js/store/module/developers.js");
+/* harmony import */ var _module_testers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./module/testers */ "./resources/js/store/module/testers.js");
+
 
 
 
@@ -87735,7 +87759,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   modules: {
     projects: _module_projects__WEBPACK_IMPORTED_MODULE_2__["default"],
     bugs: _module_bugs__WEBPACK_IMPORTED_MODULE_3__["default"],
-    developers: _module_developers__WEBPACK_IMPORTED_MODULE_4__["default"]
+    developers: _module_developers__WEBPACK_IMPORTED_MODULE_4__["default"],
+    testers: _module_testers__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 }));
 
@@ -88276,22 +88301,22 @@ var actions = {
 
             case 4:
               result = _context3.sent;
-              console.log(result);
+              // console.log(result);
               commit("setDeveloperDetails", result.data);
-              _context3.next = 12;
+              _context3.next = 11;
               break;
 
-            case 9:
-              _context3.prev = 9;
+            case 8:
+              _context3.prev = 8;
               _context3.t0 = _context3["catch"](1);
               alert(_context3.t0); // console.log(error.response);
 
-            case 12:
+            case 11:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 9]]);
+      }, _callee3, null, [[1, 8]]);
     }));
 
     function getDeveloperDetails(_x4, _x5) {
@@ -88551,6 +88576,177 @@ var mutations = {
     return state.project_details = {
       bugs: []
     };
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/module/testers.js":
+/*!**********************************************!*\
+  !*** ./resources/js/store/module/testers.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var state = {
+  testers: [],
+  tester_details: {}
+};
+var getters = {
+  testers: function testers(state) {
+    return state.testers;
+  },
+  tester_details: function tester_details(state) {
+    return state.tester_details;
+  }
+};
+var actions = {
+  getTesters: function () {
+    var _getTesters = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
+      var commit, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              _context.prev = 1;
+              _context.next = 4;
+              return axios.get("api_web_session/v1/testers");
+
+            case 4:
+              result = _context.sent;
+              // console.log(result);
+              commit("setTesters", result.data);
+              _context.next = 11;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](1);
+              alert(_context.t0); // console.log(error.response)
+
+            case 11:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[1, 8]]);
+    }));
+
+    function getTesters(_x) {
+      return _getTesters.apply(this, arguments);
+    }
+
+    return getTesters;
+  }(),
+  addTester: function () {
+    var _addTester = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2, email) {
+      var commit, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context2.prev = 1;
+              _context2.next = 4;
+              return axios.post("api_web_session/v1/testers", {
+                email: email
+              });
+
+            case 4:
+              result = _context2.sent;
+              commit("insertTester", result.data);
+              return _context2.abrupt("return", "Tester ".concat(result.data.email, " is now added"));
+
+            case 9:
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](1);
+              throw _context2.t0;
+
+            case 12:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 9]]);
+    }));
+
+    function addTester(_x2, _x3) {
+      return _addTester.apply(this, arguments);
+    }
+
+    return addTester;
+  }(),
+  getTesterDetails: function () {
+    var _getTesterDetails = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, id) {
+      var commit, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.prev = 1;
+              _context3.next = 4;
+              return axios.get("api_web_session/v1/testers/".concat(id));
+
+            case 4:
+              result = _context3.sent;
+              // console.log(result);
+              commit("setTesterDetails", result.data);
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+              alert(_context3.t0); // console.log(error.response);
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 8]]);
+    }));
+
+    function getTesterDetails(_x4, _x5) {
+      return _getTesterDetails.apply(this, arguments);
+    }
+
+    return getTesterDetails;
+  }()
+};
+var mutations = {
+  setTesters: function setTesters(state, testers) {
+    return state.testers = testers;
+  },
+  insertTester: function insertTester(state, tester) {
+    return state.testers.unshift(tester);
+  },
+  setTesterDetails: function setTesterDetails(state, tester) {
+    return state.tester_details = tester;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

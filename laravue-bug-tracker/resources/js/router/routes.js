@@ -20,6 +20,10 @@ export default new VueRouter({
             name: 'developers',
             component: () => import("../pages/Developers.vue")
         },
-
+        {
+            path: '/testers',
+            name: 'testers',
+            component: () => import("../pages/Testers.vue")
+        },
     ]
 });

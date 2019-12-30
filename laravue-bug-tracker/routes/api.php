@@ -28,6 +28,9 @@ Route::prefix('v1')->group(function () {
     Route::get('developers', 'Api\DeveloperController@index')->name('developers.all');
     Route::get('developers/{id}', 'Api\DeveloperController@show')->name('developers.show');
 
+    Route::get('testers', 'Api\TesterController@index')->name('testers.all');
+    Route::get('testers/{id}', 'Api\TesterController@show')->name('testers.show');
+
     Route::group(['middleware' => ['auth:web']], function () {
         Route::post('bugs', 'Api\BugController@store')->name('bugs.store');
         Route::post('bugs/{id}', 'Api\BugController@update')->name('bugs.update');
@@ -37,6 +40,8 @@ Route::prefix('v1')->group(function () {
         Route::post('projects/{id}', 'Api\ProjectController@update')->name('projects.update');
 
         Route::post('developer', 'Api\DeveloperController@store')->name('developer.store');
+
+        Route::post('testers', 'Api\TesterController@store')->name('testers.store');
 
         Route::post('comments', 'Api\CommentController@store')->name('comment.store');
         Route::delete('comments/{id}', 'Api\CommentController@destroy')->name('comment.destroy');
