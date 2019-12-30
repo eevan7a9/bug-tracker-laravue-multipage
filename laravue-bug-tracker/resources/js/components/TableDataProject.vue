@@ -8,8 +8,6 @@
             <th scope="col">Name</th>
             <th scope="col">Version</th>
             <th scope="col">Environment</th>
-            <th scope="col">Operasting System</th>
-            <th scope="col">Development Started</th>
             <th scope="col">Released at</th>
           </tr>
         </thead>
@@ -19,8 +17,6 @@
             <td>{{ project.name }}</td>
             <td>{{ project.version }}</td>
             <td>{{ project.environment }}</td>
-            <td>{{ project.os }}</td>
-            <td>{{ project.development_start }}</td>
             <td>{{ project.release_date }}</td>
           </tr>
         </tbody>

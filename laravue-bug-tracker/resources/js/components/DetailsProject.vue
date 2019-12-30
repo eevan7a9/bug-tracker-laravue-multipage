@@ -69,6 +69,36 @@
               <label class="font-weight-bold">Operating System</label>
               <div class="card bg-light p-2">{{ project_details.os }}</div>
             </div>
+            <div class="col-md-6 mt-3">
+              <b-card
+                bg-variant="light"
+                border-variant="danger"
+                header-bg-variant="danger"
+                header-text-variant="white"
+                text-variant="dark"
+                header="Total Reported Bugs"
+                class="text-center"
+              >
+                <b-card-text>
+                  <span class="font-weight-bold">{{ project_details.bugs.length }}</span>
+                </b-card-text>
+              </b-card>
+            </div>
+            <div class="col-md-6 mt-3">
+              <b-card
+                bg-variant="light"
+                border-variant="success"
+                header-bg-variant="success"
+                header-text-variant="white"
+                text-variant="dark"
+                header="Total Fixed Bugs"
+                class="text-center"
+              >
+                <b-card-text>
+                  <span class="font-weight-bold">{{ project_details.bugs | getFixedBugs }}</span>
+                </b-card-text>
+              </b-card>
+            </div>
           </div>
         </div>
         <div class="card-footer border-primary text-left">
@@ -88,6 +118,15 @@ export default {
     };
   },
   computed: mapGetters(["project_details"]),
+  filters: {
+    getFixedBugs: function(bugs) {
+      if (bugs.length < 1) {
+        return 0;
+      }
+      const fixed = bugs.filter(bug => bug.is_fixed == 1);
+      return fixed.length;
+    }
+  },
   methods: {
     ...mapActions(["clearProjectDetails"]),
     hideDetails() {

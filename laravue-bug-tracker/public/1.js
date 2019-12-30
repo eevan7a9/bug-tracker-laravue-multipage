@@ -329,6 +329,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -337,6 +367,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["project_details"]),
+  filters: {
+    getFixedBugs: function getFixedBugs(bugs) {
+      if (bugs.length < 1) {
+        return 0;
+      }
+
+      var fixed = bugs.filter(function (bug) {
+        return bug.is_fixed == 1;
+      });
+      return fixed.length;
+    }
+  },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["clearProjectDetails"]), {
     hideDetails: function hideDetails() {
       this.clearProjectDetails();
@@ -588,10 +630,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
 //
 //
 //
@@ -1602,7 +1640,71 @@ var render = function() {
                 _c("div", { staticClass: "card bg-light p-2" }, [
                   _vm._v(_vm._s(_vm.project_details.os))
                 ])
-              ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-6 mt-3" },
+                [
+                  _c(
+                    "b-card",
+                    {
+                      staticClass: "text-center",
+                      attrs: {
+                        "bg-variant": "light",
+                        "border-variant": "danger",
+                        "header-bg-variant": "danger",
+                        "header-text-variant": "white",
+                        "text-variant": "dark",
+                        header: "Total Reported Bugs"
+                      }
+                    },
+                    [
+                      _c("b-card-text", [
+                        _c("span", { staticClass: "font-weight-bold" }, [
+                          _vm._v(_vm._s(_vm.project_details.bugs.length))
+                        ])
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-6 mt-3" },
+                [
+                  _c(
+                    "b-card",
+                    {
+                      staticClass: "text-center",
+                      attrs: {
+                        "bg-variant": "light",
+                        "border-variant": "success",
+                        "header-bg-variant": "success",
+                        "header-text-variant": "white",
+                        "text-variant": "dark",
+                        header: "Total Fixed Bugs"
+                      }
+                    },
+                    [
+                      _c("b-card-text", [
+                        _c("span", { staticClass: "font-weight-bold" }, [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("getFixedBugs")(_vm.project_details.bugs)
+                            )
+                          )
+                        ])
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ])
           ],
           1
@@ -2264,10 +2366,6 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(project.environment))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(project.os))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(project.development_start))]),
-                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(project.release_date))])
               ]
             )
@@ -2299,12 +2397,6 @@ var staticRenderFns = [
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Version")]),
           _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Environment")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Operasting System")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [
-            _vm._v("Development Started")
-          ]),
           _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Released at")])
         ])
