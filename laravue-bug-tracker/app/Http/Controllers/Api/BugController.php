@@ -80,7 +80,7 @@ class BugController extends Controller
             "developer" => "numeric",
         ]);
 
-        $bug = Bug::findOrFail($id);
+        $bug = Bug::with('project')->with('addedBy')->with('assignedTo')->with('comments.user')->findOrFail($id);
         $bug->title = $validated['title'];
         $bug->project_id = $validated['project_id'];
         $bug->user_id = Auth::user()->id;
@@ -111,9 +111,6 @@ class BugController extends Controller
             $request->image->move(public_path('images'), $bug->image);
         }
         $bug->update();
-        $bug->project; // return the bug with the project the bug belongsTo
-        $bug->assignedTo; // return the bug with the developer the assigned to the bug
-        $bug->addedBy;
         return response()->json($bug, 201);
     }
 

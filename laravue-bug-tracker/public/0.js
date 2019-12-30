@@ -1002,9 +1002,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.$swal.fire("Updated!", "Success, Bug is now updated", "success"); //   clear and close form
 
 
-        _this.bug = {};
         _this.bug.image = null;
-        _this.bug.developer = 0;
 
         _this.$refs["imageUpload"].reset();
 

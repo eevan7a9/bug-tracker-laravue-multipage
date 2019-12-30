@@ -277,9 +277,7 @@ export default {
       this.editBugDetails(this.bug).then(() => {
         this.$swal.fire("Updated!", "Success, Bug is now updated", "success");
         //   clear and close form
-        this.bug = {};
         this.bug.image = null;
-        this.bug.developer = 0;
         this.$refs["imageUpload"].reset();
         this.visible = false;
       });
