@@ -359,6 +359,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -375,6 +390,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       var fixed = bugs.filter(function (bug) {
         return bug.is_fixed == 1;
+      });
+      return fixed.length;
+    },
+    getPendingBugs: function getPendingBugs(bugs) {
+      if (bugs.length < 1) {
+        return 0;
+      }
+
+      var fixed = bugs.filter(function (bug) {
+        return bug.is_fixed != 1;
       });
       return fixed.length;
     }
@@ -1617,7 +1642,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "col-md-6 mt-3" },
+                { staticClass: "col-md-4 mt-3" },
                 [
                   _c(
                     "b-card",
@@ -1625,8 +1650,8 @@ var render = function() {
                       staticClass: "text-center",
                       attrs: {
                         "bg-variant": "light",
-                        "border-variant": "danger",
-                        "header-bg-variant": "danger",
+                        "border-variant": "primary",
+                        "header-bg-variant": "primary",
                         "header-text-variant": "white",
                         "text-variant": "dark",
                         header: "Total Reported Bugs"
@@ -1647,7 +1672,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "col-md-6 mt-3" },
+                { staticClass: "col-md-4 mt-3" },
                 [
                   _c(
                     "b-card",
@@ -1668,6 +1693,40 @@ var render = function() {
                           _vm._v(
                             _vm._s(
                               _vm._f("getFixedBugs")(_vm.project_details.bugs)
+                            )
+                          )
+                        ])
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-4 mt-3" },
+                [
+                  _c(
+                    "b-card",
+                    {
+                      staticClass: "text-center",
+                      attrs: {
+                        "bg-variant": "light",
+                        "border-variant": "danger",
+                        "header-bg-variant": "danger",
+                        "header-text-variant": "white",
+                        "text-variant": "dark",
+                        header: "Total Pending Bugs"
+                      }
+                    },
+                    [
+                      _c("b-card-text", [
+                        _c("span", { staticClass: "font-weight-bold" }, [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("getPendingBugs")(_vm.project_details.bugs)
                             )
                           )
                         ])

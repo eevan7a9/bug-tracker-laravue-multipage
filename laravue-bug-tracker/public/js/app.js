@@ -88196,22 +88196,22 @@ var actions = {
 
             case 4:
               result = _context.sent;
-              console.log(result);
+              // console.log(result);
               commit("setDevelopers", result.data);
-              _context.next = 12;
+              _context.next = 11;
               break;
 
-            case 9:
-              _context.prev = 9;
+            case 8:
+              _context.prev = 8;
               _context.t0 = _context["catch"](1);
               alert(_context.t0); // console.log(error.response)
 
-            case 12:
+            case 11:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 9]]);
+      }, _callee, null, [[1, 8]]);
     }));
 
     function getDevelopers(_x) {
@@ -88276,22 +88276,22 @@ var actions = {
 
             case 4:
               result = _context3.sent;
-              // console.log(result);
+              console.log(result);
               commit("setDeveloperDetails", result.data);
-              _context3.next = 11;
+              _context3.next = 12;
               break;
 
-            case 8:
-              _context3.prev = 8;
+            case 9:
+              _context3.prev = 9;
               _context3.t0 = _context3["catch"](1);
               alert(_context3.t0); // console.log(error.response);
 
-            case 11:
+            case 12:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 8]]);
+      }, _callee3, null, [[1, 9]]);
     }));
 
     function getDeveloperDetails(_x4, _x5) {
@@ -88369,10 +88369,9 @@ var actions = {
 
             case 3:
               result = _context.sent;
-              console.log(result);
               commit("setProjects", result.data);
 
-            case 6:
+            case 5:
             case "end":
               return _context.stop();
           }

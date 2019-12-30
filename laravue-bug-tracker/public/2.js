@@ -150,9 +150,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["developer_details"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["developer_details"]),
+  filters: {
+    getFixedBugs: function getFixedBugs(bugs) {
+      if (bugs.length < 1) {
+        return 0;
+      }
+
+      var fixed = bugs.filter(function (bug) {
+        return bug.is_fixed == 1;
+      });
+      return fixed.length;
+    },
+    getPendingBugs: function getPendingBugs(bugs) {
+      if (bugs.length < 1) {
+        return 0;
+      }
+
+      var fixed = bugs.filter(function (bug) {
+        return bug.is_fixed != 1;
+      });
+      return fixed.length;
+    }
+  }
 });
 
 /***/ }),
@@ -579,7 +650,111 @@ var render = function() {
               _c("div", { staticClass: "card bg-light p-2" }, [
                 _vm._v(_vm._s(_vm.developer_details.created_at))
               ])
-            ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-md-4 mt-3" },
+              [
+                _c(
+                  "b-card",
+                  {
+                    staticClass: "text-center",
+                    attrs: {
+                      "bg-variant": "light",
+                      "border-variant": "primary",
+                      "header-bg-variant": "primary",
+                      "header-text-variant": "white",
+                      "text-variant": "dark",
+                      header: "Total Bugs Assigned"
+                    }
+                  },
+                  [
+                    _c("b-card-text", [
+                      _c("span", { staticClass: "font-weight-bold" }, [
+                        _vm._v(
+                          _vm._s(_vm.developer_details.bugs_assigned.length)
+                        )
+                      ])
+                    ])
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-md-4 mt-3" },
+              [
+                _c(
+                  "b-card",
+                  {
+                    staticClass: "text-center",
+                    attrs: {
+                      "bg-variant": "light",
+                      "border-variant": "success",
+                      "header-bg-variant": "success",
+                      "header-text-variant": "white",
+                      "text-variant": "dark",
+                      header: "Total Bugs Fixed"
+                    }
+                  },
+                  [
+                    _c("b-card-text", [
+                      _c("span", { staticClass: "font-weight-bold" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("getFixedBugs")(
+                              _vm.developer_details.bugs_assigned
+                            )
+                          )
+                        )
+                      ])
+                    ])
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-md-4 mt-3" },
+              [
+                _c(
+                  "b-card",
+                  {
+                    staticClass: "text-center",
+                    attrs: {
+                      "bg-variant": "light",
+                      "border-variant": "danger",
+                      "header-bg-variant": "danger",
+                      "header-text-variant": "white",
+                      "text-variant": "dark",
+                      header: "Total Bugs Pending"
+                    }
+                  },
+                  [
+                    _c("b-card-text", [
+                      _c("span", { staticClass: "font-weight-bold" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("getPendingBugs")(
+                              _vm.developer_details.bugs_assigned
+                            )
+                          )
+                        )
+                      ])
+                    ])
+                  ],
+                  1
+                )
+              ],
+              1
+            )
           ])
         ]),
         _vm._v(" "),

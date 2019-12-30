@@ -69,11 +69,11 @@
               <label class="font-weight-bold">Operating System</label>
               <div class="card bg-light p-2">{{ project_details.os }}</div>
             </div>
-            <div class="col-md-6 mt-3">
+            <div class="col-md-4 mt-3">
               <b-card
                 bg-variant="light"
-                border-variant="danger"
-                header-bg-variant="danger"
+                border-variant="primary"
+                header-bg-variant="primary"
                 header-text-variant="white"
                 text-variant="dark"
                 header="Total Reported Bugs"
@@ -84,7 +84,7 @@
                 </b-card-text>
               </b-card>
             </div>
-            <div class="col-md-6 mt-3">
+            <div class="col-md-4 mt-3">
               <b-card
                 bg-variant="light"
                 border-variant="success"
@@ -96,6 +96,21 @@
               >
                 <b-card-text>
                   <span class="font-weight-bold">{{ project_details.bugs | getFixedBugs }}</span>
+                </b-card-text>
+              </b-card>
+            </div>
+            <div class="col-md-4 mt-3">
+              <b-card
+                bg-variant="light"
+                border-variant="danger"
+                header-bg-variant="danger"
+                header-text-variant="white"
+                text-variant="dark"
+                header="Total Pending Bugs"
+                class="text-center"
+              >
+                <b-card-text>
+                  <span class="font-weight-bold">{{ project_details.bugs | getPendingBugs }}</span>
                 </b-card-text>
               </b-card>
             </div>
@@ -124,6 +139,13 @@ export default {
         return 0;
       }
       const fixed = bugs.filter(bug => bug.is_fixed == 1);
+      return fixed.length;
+    },
+    getPendingBugs: function(bugs) {
+      if (bugs.length < 1) {
+        return 0;
+      }
+      const fixed = bugs.filter(bug => bug.is_fixed != 1);
       return fixed.length;
     }
   },
