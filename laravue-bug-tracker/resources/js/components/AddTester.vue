@@ -1,11 +1,12 @@
 <template>
   <div>
+    <p class="text-danger mb-0" v-if="restriction">*Admin only</p>
     <b-button
       :class="visible ? null : 'collapsed'"
       :aria-expanded="visible ? 'true' : 'false'"
       aria-controls="collapse-3"
-      @click="visible = !visible"
-      variant="success"
+      @click="visibleForm"
+      :variant="!user.admin ? 'secondary' : 'success'"
     >
       New Tester
       <span>
@@ -58,16 +59,28 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
       visible: false,
+      restriction: false,
       email: ""
     };
   },
+  computed: {
+    ...mapGetters(["user"])
+  },
   methods: {
     ...mapActions(["addTester"]),
+    visibleForm() {
+      if (this.user.admin) {
+        this.visible = !this.visible;
+      } else {
+        this.restriction = true;
+        this.$swal.fire("Not Allowed", "Only Admin is allowed", "error");
+      }
+    },
     submit() {
       this.addTester(this.email)
         .then(res => {
@@ -86,6 +99,8 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
+<style scoped>
+button.btn-secondary {
+  cursor: not-allowed !important;
+}
 </style>

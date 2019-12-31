@@ -34,7 +34,7 @@
                 header-bg-variant="primary"
                 header-text-variant="white"
                 text-variant="dark"
-                header="Total Bugs Added"
+                header="Total Bugs Reported"
                 class="text-center"
               >
                 <b-card-text>

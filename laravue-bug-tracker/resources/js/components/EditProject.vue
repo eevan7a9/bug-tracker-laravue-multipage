@@ -1,11 +1,12 @@
 <template>
   <div>
+    <p class="text-danger mb-0" v-if="restriction">*Admin & Developer only</p>
     <b-button
       :class="visible ? null : 'collapsed'"
       :aria-expanded="visible ? 'true' : 'false'"
       aria-controls="collapse-4"
-      @click="visible = !visible"
-      variant="primary"
+      @click="visibleForm"
+      :variant="!user.admin && !user.developer ? 'secondary' : 'success'"
     >
       Edit Project
       <svg
@@ -155,14 +156,23 @@ export default {
   data() {
     return {
       visible: false,
+      restriction: false,
       project: {
         image: null
       }
     };
   },
-  computed: mapGetters(["project_details"]),
+  computed: mapGetters(["project_details", "user"]),
   methods: {
     ...mapActions(["editProjectDetails"]),
+    visibleForm() {
+      if (this.user.admin || this.user.developer) {
+        this.visible = !this.visible;
+      } else {
+        this.restriction = true;
+        this.$swal.fire("Not Allowed", "Only Admin & Developer", "error");
+      }
+    },
     onImageChange(e) {
       //   console.log(e.target.files[0]);
       this.project.cover_image = e.target.files[0];
@@ -198,5 +208,8 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
+button.btn-secondary {
+  cursor: not-allowed !important;
+}
 </style>

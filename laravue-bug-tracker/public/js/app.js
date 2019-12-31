@@ -88082,8 +88082,7 @@ var actions = {
             case 8:
               _context5.prev = 8;
               _context5.t0 = _context5["catch"](1);
-              // console.log(error);
-              alert(_context5.t0);
+              throw _context5.t0;
 
             case 11:
             case "end":

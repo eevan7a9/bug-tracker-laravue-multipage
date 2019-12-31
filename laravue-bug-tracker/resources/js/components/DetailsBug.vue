@@ -181,7 +181,7 @@ export default {
       visible_screenshot: false
     };
   },
-  computed: mapGetters(["bug_details"]),
+  computed: mapGetters(["bug_details", "user"]),
   methods: {
     ...mapActions(["clearBugDetails", "changeBugStatus"]),
     hideDetails() {
@@ -189,27 +189,31 @@ export default {
       this.$emit("toggleDetails");
     },
     changeStatus() {
-      this.$swal
-        .fire({
-          title: "The bug is fixed?",
-          text: "You won't be able to revert this!",
-          type: "question",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Bug is Fixed"
-        })
-        .then(result => {
-          if (result.value) {
-            this.changeBugStatus(this.bug_details.id).then(() => {
-              this.$swal.fire(
-                "Fixed!",
-                'This Bug is now set as "Fixed"',
-                "success"
-              );
-            });
-          }
-        });
+      if (this.user.admin || this.user.developer) {
+        this.$swal
+          .fire({
+            title: "The bug is fixed?",
+            text: "You won't be able to revert this!",
+            type: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Bug is Fixed"
+          })
+          .then(result => {
+            if (result.value) {
+              this.changeBugStatus(this.bug_details.id).then(() => {
+                this.$swal.fire(
+                  "Fixed!",
+                  'This Bug is now set as "Fixed"',
+                  "success"
+                );
+              });
+            }
+          });
+      } else {
+        this.$swal.fire("Not Allowed", "Only Admin and Developer", "error");
+      }
     }
   }
 };

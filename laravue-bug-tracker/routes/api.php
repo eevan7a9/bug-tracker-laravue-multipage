@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Auth;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
+
+/--------------------------------------------------------------------------
+| api_web_session Routes
+|--------------------------------------------------------------------------
+|
+| Here  use web sessiom with Api in your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group.
  */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -34,15 +42,15 @@ Route::prefix('v1')->group(function () {
 
     Route::group(['middleware' => ['auth:web']], function () {
         Route::post('bugs', 'Api\BugController@store')->middleware('role:tester,admin')->name('bugs.store');
-        Route::post('bugs/{id}', 'Api\BugController@update')->name('bugs.update');
-        Route::post('bugs/status/{id}', 'Api\BugController@changeStatus')->name('bugs.changeStatus');
+        Route::post('bugs/{id}', 'Api\BugController@update')->middleware('role:tester,admin')->name('bugs.update');
+        Route::post('bugs/status/{id}', 'Api\BugController@changeStatus')->middleware('role:developer,admin')->name('bugs.changeStatus');
 
-        Route::post('projects', 'Api\ProjectController@store')->name('projects.store');
-        Route::post('projects/{id}', 'Api\ProjectController@update')->name('projects.update');
+        Route::post('projects', 'Api\ProjectController@store')->middleware('role:developer,admin')->name('projects.store');
+        Route::post('projects/{id}', 'Api\ProjectController@update')->middleware('role:developer,admin')->name('projects.update');
 
-        Route::post('developer', 'Api\DeveloperController@store')->name('developer.store');
+        Route::post('developer', 'Api\DeveloperController@store')->middleware('role:admin')->name('developer.store');
 
-        Route::post('testers', 'Api\TesterController@store')->name('testers.store');
+        Route::post('testers', 'Api\TesterController@store')->middleware('role:admin')->name('testers.store');
 
         Route::post('comments', 'Api\CommentController@store')->name('comment.store');
         Route::delete('comments/{id}', 'Api\CommentController@destroy')->name('comment.destroy');

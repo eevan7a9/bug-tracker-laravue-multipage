@@ -116,7 +116,7 @@ const actions = {
             commit("setBugDetails", result.data);
         } catch (error) {
             // console.log(error);
-            alert(error)
+            throw error
         }
     },
     addBugComment: async ({ commit }, comment) => {

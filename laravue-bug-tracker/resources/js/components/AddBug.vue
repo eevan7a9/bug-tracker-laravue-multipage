@@ -1,11 +1,12 @@
 <template>
   <div>
+    <p class="text-danger mb-0" v-if="restriction">*Admin & Tester only</p>
     <b-button
       :class="visible ? null : 'collapsed'"
       :aria-expanded="visible ? 'true' : 'false'"
       aria-controls="collapse-1"
       @click="visibleForm"
-      :variant="user.developer ? 'secondary' : 'success'"
+      :variant="!user.admin && !user.tester ? 'secondary' : 'success'"
     >
       New Bug
       <span>
@@ -263,6 +264,7 @@ export default {
   data() {
     return {
       visible: false,
+      restriction: false,
       bug: {
         developer: 0,
         image: null
@@ -273,10 +275,11 @@ export default {
   methods: {
     ...mapActions(["newBug", "getProjects", "getDevelopers"]),
     visibleForm() {
-      if (this.user.developer) {
-        this.$swal.fire("Not Allowed", "Only Admin & Testers", "error");
-      } else {
+      if (this.user.admin || this.user.tester) {
         this.visible = !this.visible;
+      } else {
+        this.restriction = true;
+        this.$swal.fire("Not Allowed", "Only Admin & Testers", "error");
       }
     },
     onImageChange(e) {
