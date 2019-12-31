@@ -1,15 +1,17 @@
 <template>
   <div>
-    <div v-if="hideDetails">
-      <AddBug />
-      <hr />
-      <TableDataBugs @toggleDetails="hideDetails=false" />
-    </div>
-    <div v-if="!hideDetails">
-      <EditBug />
-      <hr />
-      <DetailsBug @toggleDetails="hideDetails=true" />
-    </div>
+    <transition name="fade" mode="out-in">
+      <div v-if="hideDetails" key="1">
+        <AddBug />
+        <hr />
+        <TableDataBugs @toggleDetails="hideDetails=false" />
+      </div>
+      <div v-if="!hideDetails" key="2">
+        <EditBug />
+        <hr />
+        <DetailsBug @toggleDetails="hideDetails=true" />
+      </div>
+    </transition>
   </div>
 </template>
 

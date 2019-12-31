@@ -273,6 +273,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -802,35 +804,44 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm.hideDetails
-        ? _c(
-            "div",
-            [
-              _c("AddTester"),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c("TableDataTesters", {
+      _c(
+        "transition",
+        { attrs: { name: "fade", mode: "out-in" } },
+        [
+          _vm.hideDetails
+            ? _c(
+                "div",
+                { key: "1" },
+                [
+                  _c("AddTester"),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("TableDataTesters", {
+                    on: {
+                      toggleDetails: function($event) {
+                        _vm.hideDetails = false
+                      }
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.hideDetails
+            ? _c("DetailsTester", {
+                key: "2",
                 on: {
                   toggleDetails: function($event) {
-                    _vm.hideDetails = false
+                    _vm.hideDetails = true
                   }
                 }
               })
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      !_vm.hideDetails
-        ? _c("DetailsTester", {
-            on: {
-              toggleDetails: function($event) {
-                _vm.hideDetails = true
-              }
-            }
-          })
-        : _vm._e()
+            : _vm._e()
+        ],
+        1
+      )
     ],
     1
   )

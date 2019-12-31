@@ -747,6 +747,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -2582,47 +2584,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.hideDetails
-      ? _c(
-          "div",
-          [
-            _c("AddProject"),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("TableDataProject", {
-              on: {
-                toggleDetails: function($event) {
-                  _vm.hideDetails = false
-                }
-              }
-            })
-          ],
-          1
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    !_vm.hideDetails
-      ? _c(
-          "div",
-          [
-            _c("EditProject"),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("DetailsProject", {
-              on: {
-                toggleDetails: function($event) {
-                  _vm.hideDetails = true
-                }
-              }
-            })
-          ],
-          1
-        )
-      : _vm._e()
-  ])
+  return _c(
+    "div",
+    [
+      _c("transition", { attrs: { name: "fade", mode: "out-in" } }, [
+        _vm.hideDetails
+          ? _c(
+              "div",
+              { key: "1" },
+              [
+                _c("AddProject"),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("TableDataProject", {
+                  on: {
+                    toggleDetails: function($event) {
+                      _vm.hideDetails = false
+                    }
+                  }
+                })
+              ],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        !_vm.hideDetails
+          ? _c(
+              "div",
+              { key: "2" },
+              [
+                _c("EditProject"),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("DetailsProject", {
+                  on: {
+                    toggleDetails: function($event) {
+                      _vm.hideDetails = true
+                    }
+                  }
+                })
+              ],
+              1
+            )
+          : _vm._e()
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -1199,6 +1199,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -3918,47 +3920,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.hideDetails
-      ? _c(
-          "div",
-          [
-            _c("AddBug"),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("TableDataBugs", {
-              on: {
-                toggleDetails: function($event) {
-                  _vm.hideDetails = false
-                }
-              }
-            })
-          ],
-          1
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    !_vm.hideDetails
-      ? _c(
-          "div",
-          [
-            _c("EditBug"),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("DetailsBug", {
-              on: {
-                toggleDetails: function($event) {
-                  _vm.hideDetails = true
-                }
-              }
-            })
-          ],
-          1
-        )
-      : _vm._e()
-  ])
+  return _c(
+    "div",
+    [
+      _c("transition", { attrs: { name: "fade", mode: "out-in" } }, [
+        _vm.hideDetails
+          ? _c(
+              "div",
+              { key: "1" },
+              [
+                _c("AddBug"),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("TableDataBugs", {
+                  on: {
+                    toggleDetails: function($event) {
+                      _vm.hideDetails = false
+                    }
+                  }
+                })
+              ],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        !_vm.hideDetails
+          ? _c(
+              "div",
+              { key: "2" },
+              [
+                _c("EditBug"),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("DetailsBug", {
+                  on: {
+                    toggleDetails: function($event) {
+                      _vm.hideDetails = true
+                    }
+                  }
+                })
+              ],
+              1
+            )
+          : _vm._e()
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

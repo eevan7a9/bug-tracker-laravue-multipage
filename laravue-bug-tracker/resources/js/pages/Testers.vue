@@ -1,11 +1,13 @@
 <template>
   <div>
-    <div v-if="hideDetails">
-      <AddTester />
-      <hr />
-      <TableDataTesters @toggleDetails="hideDetails=false" />
-    </div>
-    <DetailsTester v-if="!hideDetails" @toggleDetails="hideDetails=true" />
+    <transition name="fade" mode="out-in">
+      <div v-if="hideDetails" key="1">
+        <AddTester />
+        <hr />
+        <TableDataTesters @toggleDetails="hideDetails=false" />
+      </div>
+      <DetailsTester v-if="!hideDetails" @toggleDetails="hideDetails=true" key="2" />
+    </transition>
   </div>
 </template>
 
