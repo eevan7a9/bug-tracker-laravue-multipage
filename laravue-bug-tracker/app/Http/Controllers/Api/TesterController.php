@@ -43,4 +43,15 @@ class TesterController extends Controller
         $tester = User::with('bugsAdded')->with('roles')->findOrFail($id);
         return response()->json($tester, 200);
     }
+
+    public function destroy($id)
+    {
+
+        $role = Role::where('name', 'tester')->first();
+
+        $user = User::findOrFail($id);
+
+        $user->roles()->detach($role);
+        return response()->json("success", 200);
+    }
 }

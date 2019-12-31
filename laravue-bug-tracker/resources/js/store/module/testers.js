@@ -40,13 +40,23 @@ const actions = {
             alert(error);
             // console.log(error.response);
         }
-    }
+    },
+    deleteTester: async ({ commit }, id) => {
+        try {
+            await axios.delete(`api_web_session/v1/testers/${id}`);
+            commit("removeTester", id);
+        } catch (error) {
+            // console.log(error.response);
+            throw error
+        }
+    },
 }
 
 const mutations = {
     setTesters: (state, testers) => state.testers = testers,
     insertTester: (state, tester) => state.testers.unshift(tester),
-    setTesterDetails: (state, tester) => state.tester_details = tester
+    setTesterDetails: (state, tester) => state.tester_details = tester,
+    removeTester: (state, id) => state.testers = state.testers.filter(tester => tester.id !== id)
 }
 
 export default {

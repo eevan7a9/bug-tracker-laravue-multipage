@@ -88939,6 +88939,44 @@ var actions = {
     }
 
     return getTesterDetails;
+  }(),
+  deleteTester: function () {
+    var _deleteTester = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4, id) {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref4.commit;
+              _context4.prev = 1;
+              _context4.next = 4;
+              return axios["delete"]("api_web_session/v1/testers/".concat(id));
+
+            case 4:
+              commit("removeTester", id);
+              _context4.next = 10;
+              break;
+
+            case 7:
+              _context4.prev = 7;
+              _context4.t0 = _context4["catch"](1);
+              throw _context4.t0;
+
+            case 10:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[1, 7]]);
+    }));
+
+    function deleteTester(_x6, _x7) {
+      return _deleteTester.apply(this, arguments);
+    }
+
+    return deleteTester;
   }()
 };
 var mutations = {
@@ -88950,6 +88988,11 @@ var mutations = {
   },
   setTesterDetails: function setTesterDetails(state, tester) {
     return state.tester_details = tester;
+  },
+  removeTester: function removeTester(state, id) {
+    return state.testers = state.testers.filter(function (tester) {
+      return tester.id !== id;
+    });
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

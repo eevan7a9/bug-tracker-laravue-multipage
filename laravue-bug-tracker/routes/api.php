@@ -54,6 +54,7 @@ Route::prefix('v1')->group(function () {
         Route::delete('developers/{id}', 'Api\DeveloperController@destroy')->middleware('role:admin')->name('developer.destroy');
 
         Route::post('testers', 'Api\TesterController@store')->middleware('role:admin')->name('testers.store');
+        Route::delete('testers/{id}', 'Api\TesterController@destroy')->middleware('role:admin')->name('testers.destroy');
 
         Route::post('comments', 'Api\CommentController@store')->name('comment.store');
         Route::delete('comments/{id}', 'Api\CommentController@destroy')->name('comment.destroy');
