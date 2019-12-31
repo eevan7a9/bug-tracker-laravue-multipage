@@ -97,5 +97,12 @@ class ProjectController extends Controller
 
         return response()->json($project, 200);
     }
+    public function destroy($id)
+    {
+        $bug = Project::findOrFail($id);
+        $bug->delete();
+
+        return response()->json("success Project deleted", 200);
+    }
 
 }

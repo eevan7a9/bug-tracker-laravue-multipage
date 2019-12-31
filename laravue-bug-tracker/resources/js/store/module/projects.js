@@ -48,6 +48,14 @@ const actions = {
             // console.log(error.response);
         }
     },
+    deleteProject: async ({ commit }, id) => {
+        try {
+            await axios.delete(`api_web_session/v1/projects/${id}`);
+            commit("removeProject", id);
+        } catch (error) {
+            throw error
+        }
+    },
     getProjectDetails: async ({ commit }, id) => {
         try {
             const result = await axios.get(`api_web_session/v1/projects/${id}`);
@@ -80,13 +88,14 @@ const actions = {
             throw error
             // console.log(error.response);
         }
-    }
+    },
 }
 const mutations = {
     setProjects: (state, projects) => state.projects = projects,
     insertProject: (state, project) => state.projects.unshift(project),
     setProjectDetails: (state, project) => state.project_details = project,
-    removeProjectDetails: state => state.project_details = { bugs: [] }
+    removeProjectDetails: state => state.project_details = { bugs: [] },
+    removeProject: (state, id) => state.projects = state.projects.filter(project => project.id != id)
 }
 
 export default {

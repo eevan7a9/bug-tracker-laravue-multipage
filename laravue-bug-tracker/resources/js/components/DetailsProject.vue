@@ -2,8 +2,32 @@
   <div class="row justify-content-center">
     <div class="col-md-10">
       <div class="card border-primary">
-        <div class="card-header border-primary">
+        <div class="card-header border-primary d-flex justify-content-between align-items-center">
           <button class="btn btn-outline-primary" @click="hideDetails">Back</button>
+          <button
+            class="btn"
+            :class="!user.admin && !user.developer ? 'btn-secondary': 'btn-danger'"
+            @click="removeProject(project_details.id)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="3 6 5 6 21 6" />
+              <path
+                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+              />
+              <line x1="10" y1="11" x2="10" y2="17" />
+              <line x1="14" y1="11" x2="14" y2="17" />
+            </svg>
+          </button>
         </div>
         <div class="card-body">
           <div class="text-center">
@@ -132,7 +156,7 @@ export default {
       visible_screenshot: false
     };
   },
-  computed: mapGetters(["project_details"]),
+  computed: mapGetters(["project_details", "user"]),
   filters: {
     getFixedBugs: function(bugs) {
       if (bugs.length < 1) {
@@ -150,10 +174,46 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["clearProjectDetails"]),
+    ...mapActions(["clearProjectDetails", "deleteProject"]),
     hideDetails() {
       this.clearProjectDetails();
       this.$emit("toggleDetails");
+    },
+    removeProject(id) {
+      if (this.user.admin || this.user.developer) {
+        this.$swal
+          .fire({
+            title: "Remove this Project?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Delete"
+          })
+          .then(result => {
+            if (result.value) {
+              this.deleteProject(id)
+                .then(() => {
+                  this.$swal.fire(
+                    "Success!",
+                    "The Project is now Deleted.",
+                    "success"
+                  );
+                  this.$emit("toggleDetails");
+                })
+                .catch(() => {
+                  this.$swal.fire(
+                    "Not allowed!",
+                    "Only Admin and developer",
+                    "error"
+                  );
+                });
+            }
+          });
+      } else {
+        this.$swal.fire("Not allowed!", "Only Admin and Developer", "info");
+      }
     }
   }
 };
@@ -163,5 +223,8 @@ export default {
 img {
   max-height: 100%;
   max-width: 100%;
+}
+button.btn-secondary {
+  cursor: not-allowed;
 }
 </style>

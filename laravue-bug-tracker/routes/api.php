@@ -48,6 +48,7 @@ Route::prefix('v1')->group(function () {
 
         Route::post('projects', 'Api\ProjectController@store')->middleware('role:developer,admin')->name('projects.store');
         Route::post('projects/{id}', 'Api\ProjectController@update')->middleware('role:developer,admin')->name('projects.update');
+        Route::delete('projects/{id}', 'Api\ProjectController@destroy')->middleware('role:developer,admin')->name('projects.destroy');
 
         Route::post('developer', 'Api\DeveloperController@store')->middleware('role:admin')->name('developer.store');
 

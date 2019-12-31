@@ -387,6 +387,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -394,7 +418,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       visible_screenshot: false
     };
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["project_details"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["project_details", "user"]),
   filters: {
     getFixedBugs: function getFixedBugs(bugs) {
       if (bugs.length < 1) {
@@ -417,10 +441,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return fixed.length;
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["clearProjectDetails"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["clearProjectDetails", "deleteProject"]), {
     hideDetails: function hideDetails() {
       this.clearProjectDetails();
       this.$emit("toggleDetails");
+    },
+    removeProject: function removeProject(id) {
+      var _this = this;
+
+      if (this.user.admin || this.user.developer) {
+        this.$swal.fire({
+          title: "Remove this Project?",
+          text: "You won't be able to revert this!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#3085d6",
+          confirmButtonText: "Delete"
+        }).then(function (result) {
+          if (result.value) {
+            _this.deleteProject(id).then(function () {
+              _this.$swal.fire("Success!", "The Project is now Deleted.", "success");
+
+              _this.$emit("toggleDetails");
+            })["catch"](function () {
+              _this.$swal.fire("Not allowed!", "Only Admin and developer", "error");
+            });
+          }
+        });
+      } else {
+        this.$swal.fire("Not allowed!", "Only Admin and Developer", "info");
+      }
     }
   })
 });
@@ -805,7 +856,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nimg[data-v-2f64cbbc] {\n  max-height: 100%;\n  max-width: 100%;\n}\n", ""]);
+exports.push([module.i, "\nimg[data-v-2f64cbbc] {\n  max-height: 100%;\n  max-width: 100%;\n}\nbutton.btn-secondary[data-v-2f64cbbc] {\n  cursor: not-allowed;\n}\n", ""]);
 
 // exports
 
@@ -1590,16 +1641,75 @@ var render = function() {
   return _c("div", { staticClass: "row justify-content-center" }, [
     _c("div", { staticClass: "col-md-10" }, [
       _c("div", { staticClass: "card border-primary" }, [
-        _c("div", { staticClass: "card-header border-primary" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-primary",
-              on: { click: _vm.hideDetails }
-            },
-            [_vm._v("Back")]
-          )
-        ]),
+        _c(
+          "div",
+          {
+            staticClass:
+              "card-header border-primary d-flex justify-content-between align-items-center"
+          },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-primary",
+                on: { click: _vm.hideDetails }
+              },
+              [_vm._v("Back")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn",
+                class:
+                  !_vm.user.admin && !_vm.user.developer
+                    ? "btn-secondary"
+                    : "btn-danger",
+                on: {
+                  click: function($event) {
+                    return _vm.removeProject(_vm.project_details.id)
+                  }
+                }
+              },
+              [
+                _c(
+                  "svg",
+                  {
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "18",
+                      height: "18",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("polyline", { attrs: { points: "3 6 5 6 21 6" } }),
+                    _vm._v(" "),
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("line", {
+                      attrs: { x1: "10", y1: "11", x2: "10", y2: "17" }
+                    }),
+                    _vm._v(" "),
+                    _c("line", {
+                      attrs: { x1: "14", y1: "11", x2: "14", y2: "17" }
+                    })
+                  ]
+                )
+              ]
+            )
+          ]
+        ),
         _vm._v(" "),
         _c(
           "div",
