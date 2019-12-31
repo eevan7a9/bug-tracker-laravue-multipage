@@ -491,6 +491,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -504,6 +509,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {};
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["user"])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(["deleteBugComment"]), {
     removeComment: function removeComment(id) {
       var _this = this;
@@ -1253,7 +1259,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.bg-custom-light[data-v-6dd4fec5] {\n  background-color: #d5dbe1 !important;\n}\n", ""]);
+exports.push([module.i, "\n.bg-custom-light[data-v-6dd4fec5] {\n  background-color: #d5dbe1 !important;\n}\nbutton.btn-secondary[data-v-6dd4fec5] {\n  cursor: not-allowed;\n}\n", ""]);
 
 // exports
 
@@ -2444,7 +2450,12 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn",
+                      class:
+                        _vm.user.id === comment.user.id
+                          ? "btn-danger"
+                          : "btn-secondary",
+                      attrs: { disabled: _vm.user.id !== comment.user.id },
                       on: {
                         click: function($event) {
                           return _vm.removeComment(comment.id)
@@ -2649,7 +2660,7 @@ var render = function() {
                         attrs: {
                           src: _vm.bug_details.image_src
                             ? _vm.bug_details.image_src
-                            : "https://via.placeholder.com/750",
+                            : "https://via.placeholder.com/950x450",
                           alt: "Screenshot"
                         }
                       })

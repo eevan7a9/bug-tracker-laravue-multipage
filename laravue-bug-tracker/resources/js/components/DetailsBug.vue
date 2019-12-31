@@ -36,7 +36,7 @@
             <b-card>
               <div class="text-center w-100">
                 <img
-                  :src="bug_details.image_src ?  bug_details.image_src : 'https://via.placeholder.com/750'"
+                  :src="bug_details.image_src ?  bug_details.image_src : 'https://via.placeholder.com/950x450'"
                   alt="Screenshot"
                 />
               </div>

@@ -88530,7 +88530,7 @@ var actions = {
             case 17:
               _context2.prev = 17;
               _context2.t0 = _context2["catch"](10);
-              alert(_context2.t0); // console.log(error.response);
+              throw _context2.t0;
 
             case 20:
             case "end":
@@ -88621,7 +88621,7 @@ var actions = {
             case 9:
               _context4.prev = 9;
               _context4.t0 = _context4["catch"](2);
-              alert(_context4.t0); // console.log(error.response);
+              throw _context4.t0;
 
             case 12:
             case "end":
@@ -88877,6 +88877,7 @@ var actions = {
 
             case 5:
               result = _context.sent;
+              user.id = result.data.id;
               user.name = result.data.name;
               user.email = result.data.email;
               result.data.roles.forEach(function (role) {
@@ -88884,20 +88885,20 @@ var actions = {
               }); // console.log(user)
 
               commit("setUser", user);
-              _context.next = 15;
+              _context.next = 16;
               break;
 
-            case 12:
-              _context.prev = 12;
+            case 13:
+              _context.prev = 13;
               _context.t0 = _context["catch"](2);
               alert(_context.t0); // console.log(error.response)
 
-            case 15:
+            case 16:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 12]]);
+      }, _callee, null, [[2, 13]]);
     }));
 
     function getUser(_x) {

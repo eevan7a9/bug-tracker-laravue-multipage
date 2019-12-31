@@ -12,6 +12,7 @@ const actions = {
         const user = {}
         try {
             const result = await axios.get("api_web_session/v1/user");
+            user.id = result.data.id;
             user.name = result.data.name;
             user.email = result.data.email;
             result.data.roles.forEach(role => {

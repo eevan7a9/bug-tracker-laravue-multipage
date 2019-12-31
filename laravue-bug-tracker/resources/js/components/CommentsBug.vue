@@ -7,7 +7,12 @@
       <div class="card border-secondary mt-3" v-for="comment in comments" :key="comment.id">
         <div class="card-header border-secondary d-flex justify-content-between align-items-center">
           <h5>{{comment.user.email }}</h5>
-          <button class="btn btn-danger" @click="removeComment(comment.id)">
+          <button
+            class="btn"
+            :class="user.id === comment.user.id ? 'btn-danger' : 'btn-secondary'"
+            :disabled="user.id !== comment.user.id"
+            @click="removeComment(comment.id)"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -43,7 +48,7 @@
 </template>
 <script>
 import AddCommentBug from "./AddCommentBug";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     AddCommentBug
@@ -54,6 +59,9 @@ export default {
   },
   data() {
     return {};
+  },
+  computed: {
+    ...mapGetters(["user"])
   },
   methods: {
     ...mapActions(["deleteBugComment"]),
@@ -86,5 +94,8 @@ export default {
 <style scoped>
 .bg-custom-light {
   background-color: #d5dbe1 !important;
+}
+button.btn-secondary {
+  cursor: not-allowed;
 }
 </style>

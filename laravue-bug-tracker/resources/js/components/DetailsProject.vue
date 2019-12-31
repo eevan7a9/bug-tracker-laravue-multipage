@@ -36,7 +36,7 @@
             <b-card>
               <div class="image-container text-center w-100">
                 <img
-                  :src="project_details.image_src ?  project_details.image_src : 'https://via.placeholder.com/750'"
+                  :src="project_details.image_src ?  project_details.image_src : 'https://via.placeholder.com/950x450'"
                   alt="Cover image"
                 />
               </div>

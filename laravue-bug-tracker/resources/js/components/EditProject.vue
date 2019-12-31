@@ -191,16 +191,18 @@ export default {
       if (this.project.cover_image) {
         formData.append("image", this.project.cover_image);
       }
-      this.editProjectDetails({ project: formData, id: this.project.id }).then(
-        () => {
+      this.editProjectDetails({ project: formData, id: this.project.id })
+        .then(() => {
           this.$swal.fire(
             "Project Edited!",
             "A project is successfuly Edited",
             "success"
           );
           this.visible = false;
-        }
-      );
+        })
+        .catch(() => {
+          this.$swal.fire("Not Allowed", "Only Admin & Developer", "error");
+        });
     }
   },
   mounted() {

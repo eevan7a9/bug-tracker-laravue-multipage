@@ -21,7 +21,7 @@ class ProjectSeeder extends Seeder
             "description" => "online shop for kois",
             "development_start" => "2019-10-08",
             "release_date" => "2019-12-10",
-            "image_src" => "",
+            "image_src" => "https://images2.imgbox.com/77/74/vRtFNXge_o.jpg",
             "created_at" => "2019-10-22 04:55:45",
             "updated_at" => now(),
         ]);
@@ -35,7 +35,7 @@ class ProjectSeeder extends Seeder
             "description" => "System that helps manage the number of books, transactions between librarian and a user.",
             "development_start" => "2018-10-24",
             "release_date" => "2019-11-20",
-            "image_src" => "",
+            "image_src" => "https://images2.imgbox.com/f6/23/TSzykTCM_o.png",
             "created_at" => "2019-11-22 04:55:45",
             "updated_at" => "2019-12-22 04:55:45",
         ]);
@@ -49,7 +49,7 @@ class ProjectSeeder extends Seeder
             "description" => "Social media are interactive computer-mediated technologies that facilitate the creation and sharing of information, ideas, career interests and other forms of expression via virtual communities and networks.",
             "development_start" => "2019-9-11",
             "release_date" => "2019-10-10",
-            "image_src" => "",
+            "image_src" => "https://images2.imgbox.com/c9/a2/mApOb7kj_o.jpg",
             "created_at" => "2019-11-23 04:55:45",
             "updated_at" => now(),
         ]);
@@ -63,7 +63,7 @@ class ProjectSeeder extends Seeder
             "description" => "Laravel vue js application that enables users to create surveys and allow users to vote. a method used for collecting data on certain topics that gets you the insights you need.",
             "development_start" => "2019-10-08",
             "release_date" => "2019-12-10",
-            "image_src" => "",
+            "image_src" => "https://images.imgbox.com/8b/56/QyoiEjQ1_o.png",
             "created_at" => "2019-12-22 04:55:45",
             "updated_at" => now(),
         ]);

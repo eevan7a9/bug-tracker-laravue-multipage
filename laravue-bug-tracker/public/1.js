@@ -222,6 +222,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   _this.$refs["imageUpload"].reset();
 
                   _this.visible = false;
+                })["catch"](function () {
+                  _this.$swal.fire("Not Allowed", "Only Admin & Developer", "error");
                 });
 
               case 1:
@@ -642,6 +644,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.$swal.fire("Project Edited!", "A project is successfuly Edited", "success");
 
         _this.visible = false;
+      })["catch"](function () {
+        _this.$swal.fire("Not Allowed", "Only Admin & Developer", "error");
       });
     }
   }),
@@ -1689,7 +1693,7 @@ var render = function() {
                         attrs: {
                           src: _vm.project_details.image_src
                             ? _vm.project_details.image_src
-                            : "https://via.placeholder.com/750",
+                            : "https://via.placeholder.com/950x450",
                           alt: "Cover image"
                         }
                       })

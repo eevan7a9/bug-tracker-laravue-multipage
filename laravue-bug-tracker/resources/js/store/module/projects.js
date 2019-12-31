@@ -44,7 +44,7 @@ const actions = {
             // alert(`${result.statusText}, A project is successfuly added.`);
             // console.log(result);
         } catch (error) {
-            alert(error);
+            throw error
             // console.log(error.response);
         }
     },
@@ -77,7 +77,7 @@ const actions = {
             // alert(`A project is successfuly Edited.`);
             // console.log(result);
         } catch (error) {
-            alert(error);
+            throw error
             // console.log(error.response);
         }
     }
