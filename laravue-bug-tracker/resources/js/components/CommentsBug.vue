@@ -9,9 +9,8 @@
           <h5>{{comment.user.email }}</h5>
           <button
             class="btn"
-            :class="user.id === comment.user.id ? 'btn-danger' : 'btn-secondary'"
-            :disabled="user.id !== comment.user.id"
-            @click="removeComment(comment.id)"
+            :class="user.id === comment.user.id || user.admin ? 'btn-danger' : 'btn-secondary'"
+            @click="removeComment(comment)"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -65,28 +64,40 @@ export default {
   },
   methods: {
     ...mapActions(["deleteBugComment"]),
-    removeComment(id) {
-      this.$swal
-        .fire({
-          title: "Remove this comment?",
-          text: "You won't be able to revert this!",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#d33",
-          cancelButtonColor: "#3085d6",
-          confirmButtonText: "Delete"
-        })
-        .then(result => {
-          if (result.value) {
-            this.deleteBugComment(id).then(() => {
-              this.$swal.fire(
-                "Success!",
-                "The comment is now Deleted.",
-                "success"
-              );
-            });
-          }
-        });
+    removeComment(comment) {
+      if (this.user.id === comment.user.id || this.user.admin) {
+        this.$swal
+          .fire({
+            title: "Remove this comment?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Delete"
+          })
+          .then(result => {
+            if (result.value) {
+              this.deleteBugComment(comment.id)
+                .then(() => {
+                  this.$swal.fire(
+                    "Success!",
+                    "The comment is now Deleted.",
+                    "success"
+                  );
+                })
+                .catch(() => {
+                  this.$swal.fire(
+                    "Failed!",
+                    "The comment is not Deleted.",
+                    "error"
+                  );
+                });
+            }
+          });
+      } else {
+        this.$swal.fire("Not Allowed!", "The comment is not yours.", "info");
+      }
     }
   }
 };

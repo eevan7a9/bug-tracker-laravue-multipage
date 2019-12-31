@@ -495,7 +495,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -511,24 +510,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["user"])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(["deleteBugComment"]), {
-    removeComment: function removeComment(id) {
+    removeComment: function removeComment(comment) {
       var _this = this;
 
-      this.$swal.fire({
-        title: "Remove this comment?",
-        text: "You won't be able to revert this!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Delete"
-      }).then(function (result) {
-        if (result.value) {
-          _this.deleteBugComment(id).then(function () {
-            _this.$swal.fire("Success!", "The comment is now Deleted.", "success");
-          });
-        }
-      });
+      if (this.user.id === comment.user.id || this.user.admin) {
+        this.$swal.fire({
+          title: "Remove this comment?",
+          text: "You won't be able to revert this!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#3085d6",
+          confirmButtonText: "Delete"
+        }).then(function (result) {
+          if (result.value) {
+            _this.deleteBugComment(comment.id).then(function () {
+              _this.$swal.fire("Success!", "The comment is now Deleted.", "success");
+            })["catch"](function () {
+              _this.$swal.fire("Failed!", "The comment is not Deleted.", "error");
+            });
+          }
+        });
+      } else {
+        this.$swal.fire("Not Allowed!", "The comment is not yours.", "info");
+      }
     }
   })
 });
@@ -2500,13 +2505,12 @@ var render = function() {
                     {
                       staticClass: "btn",
                       class:
-                        _vm.user.id === comment.user.id
+                        _vm.user.id === comment.user.id || _vm.user.admin
                           ? "btn-danger"
                           : "btn-secondary",
-                      attrs: { disabled: _vm.user.id !== comment.user.id },
                       on: {
                         click: function($event) {
-                          return _vm.removeComment(comment.id)
+                          return _vm.removeComment(comment)
                         }
                       }
                     },

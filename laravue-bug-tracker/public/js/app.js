@@ -87959,16 +87959,15 @@ var actions = {
               commit("insertBug", result.data); // alert(`${result.statusText},a Bug is successfuly added.`);
               // console.log(result);
 
-              _context2.next = 23;
+              _context2.next = 22;
               break;
 
             case 19:
               _context2.prev = 19;
               _context2.t0 = _context2["catch"](12);
-              console.log(_context2.t0.response);
               throw _context2.t0;
 
-            case 23:
+            case 22:
             case "end":
               return _context2.stop();
           }
@@ -88235,7 +88234,7 @@ var actions = {
             case 7:
               _context8.prev = 7;
               _context8.t0 = _context8["catch"](1);
-              alert(_context8.t0); // console.log(error.response);
+              throw _context8.t0;
 
             case 10:
             case "end":
