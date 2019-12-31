@@ -17,7 +17,7 @@ const actions = {
             result.data.roles.forEach(role => {
                 user[`${role.name}`] = true;
             });
-            console.log(user)
+            // console.log(user)
             commit("setUser", user);
         } catch (error) {
             alert(error);

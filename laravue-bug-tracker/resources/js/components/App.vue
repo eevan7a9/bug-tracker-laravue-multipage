@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Navbar />
-    <router-view class="mt-5"></router-view>
+    <router-view class="mt-3"></router-view>
   </div>
 </template>
 
@@ -22,5 +22,5 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 </style>

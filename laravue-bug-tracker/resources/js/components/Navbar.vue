@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mt-5">
     <!-- <a class="navbar-brand" href="#">Dashboard</a> -->
     <button
       class="navbar-toggler"
@@ -26,7 +26,7 @@
         <li class="nav-item">
           <router-link class="nav-link" to="/testers">TESTERS</router-link>
         </li>
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
             href="#"
@@ -41,7 +41,7 @@
             <a class="dropdown-item" href="#">Another action</a>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
-        </li>
+        </li>-->
       </ul>
     </div>
   </nav>
@@ -57,5 +57,10 @@ export default {
 a.router-link-exact-active {
   color: aliceblue !important;
   font-weight: 900;
+}
+nav {
+  top: 0;
+  position: sticky;
+  z-index: 11;
 }
 </style>

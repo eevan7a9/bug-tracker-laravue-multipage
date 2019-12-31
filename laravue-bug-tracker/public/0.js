@@ -1151,6 +1151,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["bugs"]),
@@ -3825,19 +3826,9 @@ var render = function() {
                 }
               },
               [
-                _c("th", { attrs: { scope: "row" } }, [
-                  _vm._v(_vm._s(index + 1))
-                ]),
-                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(bug.title))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(bug.project.name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(bug.browser))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(bug.os))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(bug.severity))]),
                 _vm._v(" "),
                 _c("td", [
                   _vm._v(
@@ -3846,6 +3837,23 @@ var render = function() {
                     )
                   )
                 ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-capitalize font-weight-bold" }, [
+                  _vm._v(_vm._s(bug.priority))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-capitalize font-weight-bold" }, [
+                  _vm._v(_vm._s(bug.severity))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    staticClass: "font-weight-bold",
+                    class: bug.is_fixed ? "text-success" : "text-danger"
+                  },
+                  [_vm._v(_vm._s(bug.is_fixed ? "Fixed" : "Active"))]
+                ),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(bug.created_at))])
               ]
@@ -3871,21 +3879,19 @@ var staticRenderFns = [
       { staticClass: "thead-light", attrs: { id: "tableHead" } },
       [
         _c("tr", [
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-          _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
           _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Project")]),
           _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Browser")]),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Assigned")]),
           _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("OS")]),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Priority")]),
           _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Severity")]),
           _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Assigned")]),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
           _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Created at")])
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Reported at")])
         ])
       ]
     )

@@ -738,7 +738,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(tester.email))]),
                 _vm._v(" "),
-                _c("td", [_vm._v("23")]),
+                _c("td", [_vm._v(_vm._s(tester.bugs_added.length))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(tester.created_at))])
               ]

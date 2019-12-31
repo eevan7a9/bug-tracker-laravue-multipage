@@ -16,7 +16,7 @@
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ tester.name }}</td>
             <td>{{ tester.email }}</td>
-            <td>23</td>
+            <td>{{ tester.bugs_added.length }}</td>
             <td>{{ tester.created_at }}</td>
           </tr>
         </tbody>

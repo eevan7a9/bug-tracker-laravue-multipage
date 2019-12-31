@@ -35306,7 +35306,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na.router-link-exact-active[data-v-6dde423b] {\n  color: aliceblue !important;\n  font-weight: 900;\n}\n", ""]);
+exports.push([module.i, "\na.router-link-exact-active[data-v-6dde423b] {\n  color: aliceblue !important;\n  font-weight: 900;\n}\nnav[data-v-6dde423b] {\n  top: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  z-index: 11;\n}\n", ""]);
 
 // exports
 
@@ -71138,7 +71138,7 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container" },
-    [_c("Navbar"), _vm._v(" "), _c("router-view", { staticClass: "mt-5" })],
+    [_c("Navbar"), _vm._v(" "), _c("router-view", { staticClass: "mt-3" })],
     1
   )
 }
@@ -71166,7 +71166,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "nav",
-    { staticClass: "navbar navbar-expand-lg navbar-dark bg-primary" },
+    { staticClass: "navbar navbar-expand-lg navbar-dark bg-primary mt-5" },
     [
       _vm._m(0),
       _vm._v(" "),
@@ -71228,9 +71228,7 @@ var render = function() {
                 )
               ],
               1
-            ),
-            _vm._v(" "),
-            _vm._m(1)
+            )
           ])
         ]
       )
@@ -71257,49 +71255,6 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item dropdown" }, [
-      _c(
-        "a",
-        {
-          staticClass: "nav-link dropdown-toggle",
-          attrs: {
-            href: "#",
-            id: "navbarDropdownMenuLink",
-            role: "button",
-            "data-toggle": "dropdown",
-            "aria-haspopup": "true",
-            "aria-expanded": "false"
-          }
-        },
-        [_vm._v("Dropdown link")]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "dropdown-menu",
-          attrs: { "aria-labelledby": "navbarDropdownMenuLink" }
-        },
-        [
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _vm._v("Action")
-          ]),
-          _vm._v(" "),
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _vm._v("Another action")
-          ]),
-          _vm._v(" "),
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _vm._v("Something else here")
-          ])
-        ]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -88848,23 +88803,23 @@ var actions = {
               user.email = result.data.email;
               result.data.roles.forEach(function (role) {
                 user["".concat(role.name)] = true;
-              });
-              console.log(user);
+              }); // console.log(user)
+
               commit("setUser", user);
-              _context.next = 16;
+              _context.next = 15;
               break;
 
-            case 13:
-              _context.prev = 13;
+            case 12:
+              _context.prev = 12;
               _context.t0 = _context["catch"](2);
               alert(_context.t0); // console.log(error.response)
 
-            case 16:
+            case 15:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 13]]);
+      }, _callee, null, [[2, 12]]);
     }));
 
     function getUser(_x) {
