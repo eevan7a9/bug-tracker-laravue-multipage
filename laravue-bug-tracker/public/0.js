@@ -284,6 +284,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -424,6 +439,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         message: this.message
       }).then(function () {
         _this.$swal.fire("Comment Submited!!!", "Success new comment is added", "success");
+
+        _this.message = "";
       });
     }
   })
@@ -1672,7 +1689,8 @@ var render = function() {
                                 type: "text",
                                 name: "title",
                                 "aria-describedby": "helpId",
-                                placeholder: "Navbar error"
+                                placeholder: "Navbar error",
+                                required: ""
                               },
                               domProps: { value: _vm.bug.title },
                               on: {
@@ -1723,7 +1741,11 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { name: "project", id: "project" },
+                                attrs: {
+                                  name: "project",
+                                  id: "project",
+                                  required: ""
+                                },
                                 on: {
                                   change: function($event) {
                                     var $$selectedVal = Array.prototype.filter
@@ -1784,7 +1806,8 @@ var render = function() {
                           attrs: {
                             name: "description",
                             id: "description",
-                            rows: "3"
+                            rows: "3",
+                            required: ""
                           },
                           domProps: { value: _vm.bug.description },
                           on: {
@@ -1826,7 +1849,11 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { name: "browser", id: "browser" },
+                                attrs: {
+                                  name: "browser",
+                                  id: "browser",
+                                  required: ""
+                                },
                                 on: {
                                   change: function($event) {
                                     var $$selectedVal = Array.prototype.filter
@@ -1890,7 +1917,8 @@ var render = function() {
                                 staticClass: "form-control",
                                 attrs: {
                                   name: "operating_system",
-                                  id: "operating_system"
+                                  id: "operating_system",
+                                  required: ""
                                 },
                                 on: {
                                   change: function($event) {
@@ -1951,7 +1979,11 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { name: "type", id: "type" },
+                                attrs: {
+                                  name: "type",
+                                  id: "type",
+                                  required: ""
+                                },
                                 on: {
                                   change: function($event) {
                                     var $$selectedVal = Array.prototype.filter

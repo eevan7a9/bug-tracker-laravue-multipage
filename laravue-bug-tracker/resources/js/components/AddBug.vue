@@ -50,6 +50,7 @@
                       name="title"
                       aria-describedby="helpId"
                       placeholder="Navbar error"
+                      required
                     />
                     <small id="helpId" class="form-text text-muted">name that describe the bug</small>
                   </div>
@@ -57,7 +58,13 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="project" class="font-weight-bold">Project Name</label>
-                    <select class="form-control" v-model="bug.project" name="project" id="project">
+                    <select
+                      class="form-control"
+                      v-model="bug.project"
+                      name="project"
+                      id="project"
+                      required
+                    >
                       <option
                         v-for="project in projects"
                         :key="project.id"
@@ -76,13 +83,20 @@
                   name="description"
                   id="description"
                   rows="3"
+                  required
                 ></textarea>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="browser" class="font-weight-bold">Browser</label>
-                    <select class="form-control" v-model="bug.browser" name="browser" id="browser">
+                    <select
+                      class="form-control"
+                      v-model="bug.browser"
+                      name="browser"
+                      id="browser"
+                      required
+                    >
                       <option>Chrome</option>
                       <option>Firefox</option>
                       <option>Opera</option>
@@ -100,6 +114,7 @@
                       v-model="bug.os"
                       name="operating_system"
                       id="operating_system"
+                      required
                     >
                       <option>Mac Os</option>
                       <option>Windows 10</option>
@@ -112,7 +127,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="type" class="font-weight-bold">Bug Type</label>
-                    <select class="form-control" v-model="bug.type" name="type" id="type">
+                    <select class="form-control" v-model="bug.type" name="type" id="type" required>
                       <option>New Feature</option>
                       <option>Frontend/Design</option>
                       <option>Functional Bugs</option>

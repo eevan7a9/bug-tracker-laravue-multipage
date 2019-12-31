@@ -177,6 +177,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1165,7 +1168,8 @@ var render = function() {
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
-                              placeholder: "Name Generator...Weather app..."
+                              placeholder: "Name Generator...Weather app...",
+                              required: ""
                             },
                             domProps: { value: _vm.project.name },
                             on: {
@@ -1222,7 +1226,8 @@ var render = function() {
                                   type: "text",
                                   name: "version",
                                   id: "version",
-                                  placeholder: "1.0.0"
+                                  placeholder: "1.0.0",
+                                  required: ""
                                 },
                                 domProps: { value: _vm.project.version },
                                 on: {
@@ -1268,6 +1273,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "custom-select",
+                                  attrs: { required: "" },
                                   on: {
                                     change: function($event) {
                                       var $$selectedVal = Array.prototype.filter
@@ -1350,7 +1356,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "custom-select",
-                                attrs: { name: "os", id: "os" },
+                                attrs: { name: "os", id: "os", required: "" },
                                 on: {
                                   change: function($event) {
                                     var $$selectedVal = Array.prototype.filter
@@ -1423,7 +1429,11 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: { id: "description", rows: "3" },
+                            attrs: {
+                              id: "description",
+                              rows: "3",
+                              required: ""
+                            },
                             domProps: { value: _vm.project.description },
                             on: {
                               input: function($event) {
@@ -1457,7 +1467,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { type: "date" },
+                                attrs: { type: "date", required: "" },
                                 domProps: { value: _vm.project.started },
                                 on: {
                                   input: function($event) {
@@ -1497,7 +1507,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { type: "date" },
+                                attrs: { type: "date", required: "" },
                                 domProps: { value: _vm.project.released },
                                 on: {
                                   input: function($event) {

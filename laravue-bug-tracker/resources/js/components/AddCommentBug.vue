@@ -36,6 +36,7 @@ export default {
           "Success new comment is added",
           "success"
         );
+        this.message = "";
       });
     }
   }

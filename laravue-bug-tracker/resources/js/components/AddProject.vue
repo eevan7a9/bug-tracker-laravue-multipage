@@ -45,6 +45,7 @@
                   class="form-control"
                   v-model.trim="project.name"
                   placeholder="Name Generator...Weather app..."
+                  required
                 />
                 <small id="helpId" class="form-text text-muted">Name of the Project</small>
               </div>
@@ -59,6 +60,7 @@
                       id="version"
                       v-model.trim="project.version"
                       placeholder="1.0.0"
+                      required
                     />
                     <small class="form-text text-muted">Version of the Project</small>
                   </div>
@@ -66,7 +68,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="font-weight-bold">Environment</label>
-                    <select class="custom-select" v-model="project.environment">
+                    <select class="custom-select" v-model="project.environment" required>
                       <option selected>Web</option>
                       <option value="mobile">Mobile</option>
                       <option value="desktop">Desktop</option>
@@ -80,7 +82,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="os" class="font-weight-bold">Operating System</label>
-                  <select class="custom-select" v-model="project.os" name="os" id="os">
+                  <select class="custom-select" v-model="project.os" name="os" id="os" required>
                     <option value="cross platform">Cross Platform</option>
                     <option value="mac os">Mac OS</option>
                     <option value="windows">Windows</option>
@@ -97,20 +99,21 @@
                   v-model="project.description"
                   id="description"
                   rows="3"
+                  required
                 ></textarea>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="font-weight-bold">Development Date</label>
-                    <input type="date" class="form-control" v-model="project.started" />
+                    <input type="date" class="form-control" v-model="project.started" required />
                     <small class="form-text text-muted">Date Development Started</small>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="font-weight-bold">Released Dated</label>
-                    <input type="date" class="form-control" v-model="project.released" />
+                    <input type="date" class="form-control" v-model="project.released" required />
                     <small class="form-text text-muted">Date Development Started</small>
                   </div>
                 </div>
