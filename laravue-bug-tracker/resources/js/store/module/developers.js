@@ -19,7 +19,7 @@ const actions = {
     },
     addDeveloper: async ({ commit }, email) => {
         try {
-            const result = await axios.post("api_web_session/v1/developer", {
+            const result = await axios.post("api_web_session/v1/developers", {
                 email: email
             });
             commit("insertDeveloper", result.data);
@@ -38,12 +38,22 @@ const actions = {
             alert(error);
             // console.log(error.response);
         }
-    }
+    },
+    deleteDeveloper: async ({ commit }, id) => {
+        try {
+            await axios.delete(`api_web_session/v1/developers/${id}`);
+            commit("removeDeveloper", id);
+        } catch (error) {
+            // console.log(error.response);
+            throw error
+        }
+    },
 }
 const mutations = {
     setDevelopers: (state, developers) => state.developers = developers,
     insertDeveloper: (state, developer) => state.developers.unshift(developer),
-    setDeveloperDetails: (state, developer) => state.developer_details = developer
+    setDeveloperDetails: (state, developer) => state.developer_details = developer,
+    removeDeveloper: (state, id) => state.developers = state.developers.filter(developer => developer.id !== id)
 }
 
 export default {

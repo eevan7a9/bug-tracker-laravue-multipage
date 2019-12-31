@@ -2,8 +2,34 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card border-primary">
-        <div class="card-header bg-light border-primary">
+        <div
+          class="card-header bg-light border-primary d-flex justify-content-between align-items-center"
+        >
           <button class="btn btn-outline-primary" @click="$emit('toggleDetails')">Back</button>
+          <button
+            class="btn"
+            :class="!user.admin ? 'btn-secondary': 'btn-danger'"
+            @click="removeDeveloper(developer_details.id)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="3 6 5 6 21 6" />
+              <path
+                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+              />
+              <line x1="10" y1="11" x2="10" y2="17" />
+              <line x1="14" y1="11" x2="14" y2="17" />
+            </svg>
+          </button>
         </div>
         <div class="card-body">
           <div class="mb-2">
@@ -87,9 +113,9 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
-  computed: mapGetters(["developer_details"]),
+  computed: mapGetters(["developer_details", "user"]),
   filters: {
     getFixedBugs: function(bugs) {
       if (bugs.length < 1) {
@@ -105,9 +131,51 @@ export default {
       const fixed = bugs.filter(bug => bug.is_fixed != 1);
       return fixed.length;
     }
+  },
+  methods: {
+    ...mapActions(["deleteDeveloper"]),
+    removeDeveloper(id) {
+      if (this.user.admin) {
+        this.$swal
+          .fire({
+            title: "Remove this Developer?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Delete"
+          })
+          .then(result => {
+            if (result.value) {
+              this.deleteDeveloper(id)
+                .then(() => {
+                  this.$swal.fire(
+                    "Success!",
+                    "The Developer is now Deleted.",
+                    "success"
+                  );
+                  this.$emit("toggleDetails");
+                })
+                .catch(() => {
+                  this.$swal.fire("Not allowed!", "Only Admin", "error");
+                });
+            }
+          });
+      } else {
+        this.$swal.fire(
+          "Not allowed!",
+          "Only Admin can perform this action",
+          "info"
+        );
+      }
+    }
   }
 };
 </script>
 
-<style>
+<style scoped>
+button.btn-secondary {
+  cursor: not-allowed;
+}
 </style>

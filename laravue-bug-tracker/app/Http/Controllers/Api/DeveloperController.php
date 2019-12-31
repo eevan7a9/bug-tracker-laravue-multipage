@@ -25,7 +25,13 @@ class DeveloperController extends Controller
         if (!$user) {
             return response()->json("Cannot find user.", 400);
         }
-        $role = Role::find(2); // get role for developer
+
+        $role = Role::where('name', 'developer')->first();
+
+        if (!$role) {
+            return response()->json("error", 400);
+        }
+
         $user->roles()->sync($role); // attach user the role of developer
         $user->roles;
         return response()->json($user, 201);
@@ -35,5 +41,16 @@ class DeveloperController extends Controller
     {
         $developer = User::with('bugsAssigned')->with('roles')->findOrFail($id);
         return response()->json($developer, 200);
+    }
+
+    public function destroy($id)
+    {
+
+        $role = Role::where('name', 'developer')->first();
+
+        $user = User::findOrFail($id);
+
+        $user->roles()->detach($role);
+        return response()->json("success", 200);
     }
 }

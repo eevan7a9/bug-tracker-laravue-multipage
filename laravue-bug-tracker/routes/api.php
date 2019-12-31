@@ -50,7 +50,8 @@ Route::prefix('v1')->group(function () {
         Route::post('projects/{id}', 'Api\ProjectController@update')->middleware('role:developer,admin')->name('projects.update');
         Route::delete('projects/{id}', 'Api\ProjectController@destroy')->middleware('role:developer,admin')->name('projects.destroy');
 
-        Route::post('developer', 'Api\DeveloperController@store')->middleware('role:admin')->name('developer.store');
+        Route::post('developers', 'Api\DeveloperController@store')->middleware('role:admin')->name('developer.store');
+        Route::delete('developers/{id}', 'Api\DeveloperController@destroy')->middleware('role:admin')->name('developer.destroy');
 
         Route::post('testers', 'Api\TesterController@store')->middleware('role:admin')->name('testers.store');
 
