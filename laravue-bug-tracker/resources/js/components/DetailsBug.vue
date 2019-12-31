@@ -7,7 +7,6 @@
           <button
             class="btn"
             :class="!user.admin && !user.tester ? 'btn-secondary': 'btn-danger'"
-            :disabled="!user.admin && !user.tester"
             @click="removeBug(bug_details.id)"
           >
             <svg
@@ -241,36 +240,40 @@ export default {
       }
     },
     removeBug(id) {
-      this.$swal
-        .fire({
-          title: "Remove this Bug?",
-          text: "You won't be able to revert this!",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#d33",
-          cancelButtonColor: "#3085d6",
-          confirmButtonText: "Delete"
-        })
-        .then(result => {
-          if (result.value) {
-            this.deleteBug(id)
-              .then(() => {
-                this.$swal.fire(
-                  "Success!",
-                  "The Bug is now Deleted.",
-                  "success"
-                );
-                this.$emit("toggleDetails");
-              })
-              .catch(() => {
-                this.$swal.fire(
-                  "Not allowed!",
-                  "Only Admin and Tester",
-                  "error"
-                );
-              });
-          }
-        });
+      if (this.user.admin || this.user.tester) {
+        this.$swal
+          .fire({
+            title: "Remove this Bug?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Delete"
+          })
+          .then(result => {
+            if (result.value) {
+              this.deleteBug(id)
+                .then(() => {
+                  this.$swal.fire(
+                    "Success!",
+                    "The Bug is now Deleted.",
+                    "success"
+                  );
+                  this.$emit("toggleDetails");
+                })
+                .catch(() => {
+                  this.$swal.fire(
+                    "Not allowed!",
+                    "Only Admin and Tester",
+                    "error"
+                  );
+                });
+            }
+          });
+      } else {
+        this.$swal.fire("Not allowed!", "Only Admin and Tester", "info");
+      }
     }
   }
 };

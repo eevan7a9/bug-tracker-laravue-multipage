@@ -752,7 +752,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -796,25 +795,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     removeBug: function removeBug(id) {
       var _this2 = this;
 
-      this.$swal.fire({
-        title: "Remove this Bug?",
-        text: "You won't be able to revert this!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Delete"
-      }).then(function (result) {
-        if (result.value) {
-          _this2.deleteBug(id).then(function () {
-            _this2.$swal.fire("Success!", "The Bug is now Deleted.", "success");
+      if (this.user.admin || this.user.tester) {
+        this.$swal.fire({
+          title: "Remove this Bug?",
+          text: "You won't be able to revert this!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#3085d6",
+          confirmButtonText: "Delete"
+        }).then(function (result) {
+          if (result.value) {
+            _this2.deleteBug(id).then(function () {
+              _this2.$swal.fire("Success!", "The Bug is now Deleted.", "success");
 
-            _this2.$emit("toggleDetails");
-          })["catch"](function () {
-            _this2.$swal.fire("Not allowed!", "Only Admin and Tester", "error");
-          });
-        }
-      });
+              _this2.$emit("toggleDetails");
+            })["catch"](function () {
+              _this2.$swal.fire("Not allowed!", "Only Admin and Tester", "error");
+            });
+          }
+        });
+      } else {
+        this.$swal.fire("Not allowed!", "Only Admin and Tester", "info");
+      }
     }
   })
 });
@@ -2636,7 +2639,6 @@ var render = function() {
                     !_vm.user.admin && !_vm.user.tester
                       ? "btn-secondary"
                       : "btn-danger",
-                  attrs: { disabled: !_vm.user.admin && !_vm.user.tester },
                   on: {
                     click: function($event) {
                       return _vm.removeBug(_vm.bug_details.id)
