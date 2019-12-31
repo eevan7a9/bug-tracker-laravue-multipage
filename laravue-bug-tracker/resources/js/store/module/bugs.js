@@ -119,6 +119,14 @@ const actions = {
             throw error
         }
     },
+    deleteBug: async ({ commit }, id) => {
+        try {
+            await axios.delete(`api_web_session/v1/bugs/${id}`);
+            commit("removeBug", id);
+        } catch (error) {
+            throw error
+        }
+    },
     addBugComment: async ({ commit }, comment) => {
         try {
             const result = await axios.post('api_web_session/v1/comments', {
@@ -134,7 +142,7 @@ const actions = {
     },
     deleteBugComment: async ({ commit }, id) => {
         try {
-            const result = await axios.delete(`api_web_session/v1/comments/${id}`);
+            await axios.delete(`api_web_session/v1/comments/${id}`);
             // console.log(result);
             commit("removeBugComment", id);
         } catch (error) {
@@ -146,6 +154,7 @@ const actions = {
 const mutations = {
     setBugs: (state, bugs) => (state.bugs = bugs),
     insertBug: (state, bug) => state.bugs.unshift(bug),
+    removeBug: (state, id) => state.bugs = state.bugs.filter(bug => bug.id != id),
     setBugDetails: (state, bug_details) => (state.bug_details = bug_details),
     removeBugDetails: state =>
         (state.bug_details = {
@@ -155,7 +164,7 @@ const mutations = {
             comments: [],
         }),
     insertBugComment: (state, comment) => state.bug_details.comments.unshift(comment),
-    removeBugComment: (state, id) => state.bug_details.comments = state.bug_details.comments.filter((comment) => comment.id != id)
+    removeBugComment: (state, id) => state.bug_details.comments = state.bug_details.comments.filter((comment) => comment.id != id),
 
 };
 

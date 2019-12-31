@@ -124,4 +124,12 @@ class BugController extends Controller
 
         return response()->json($bug, 201);
     }
+
+    public function destroy($id)
+    {
+        $bug = Bug::findOrFail($id);
+        $bug->delete();
+
+        return response()->json("success bug deleted", 200);
+    }
 }

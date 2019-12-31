@@ -44,6 +44,7 @@ Route::prefix('v1')->group(function () {
         Route::post('bugs', 'Api\BugController@store')->middleware('role:tester,admin')->name('bugs.store');
         Route::post('bugs/{id}', 'Api\BugController@update')->middleware('role:tester,admin')->name('bugs.update');
         Route::post('bugs/status/{id}', 'Api\BugController@changeStatus')->middleware('role:developer,admin')->name('bugs.changeStatus');
+        Route::delete('bugs/{id}', 'Api\BugController@destroy')->middleware('role:tester,admin')->name('bugs.destroy');
 
         Route::post('projects', 'Api\ProjectController@store')->middleware('role:developer,admin')->name('projects.store');
         Route::post('projects/{id}', 'Api\ProjectController@update')->middleware('role:developer,admin')->name('projects.update');

@@ -88131,11 +88131,11 @@ var actions = {
 
     return changeBugStatus;
   }(),
-  addBugComment: function () {
-    var _addBugComment = _asyncToGenerator(
+  deleteBug: function () {
+    var _deleteBug = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(_ref7, comment) {
-      var commit, result;
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(_ref7, id) {
+      var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
         while (1) {
           switch (_context6.prev = _context6.next) {
@@ -88143,41 +88143,36 @@ var actions = {
               commit = _ref7.commit;
               _context6.prev = 1;
               _context6.next = 4;
-              return axios.post('api_web_session/v1/comments', {
-                bug_id: comment.bug_id,
-                message: comment.message
-              });
+              return axios["delete"]("api_web_session/v1/bugs/".concat(id));
 
             case 4:
-              result = _context6.sent;
-              // console.log(result);
-              commit("insertBugComment", result.data);
-              _context6.next = 11;
+              commit("removeBug", id);
+              _context6.next = 10;
               break;
 
-            case 8:
-              _context6.prev = 8;
+            case 7:
+              _context6.prev = 7;
               _context6.t0 = _context6["catch"](1);
-              alert(_context6.t0); // console.log(error.response);
+              throw _context6.t0;
 
-            case 11:
+            case 10:
             case "end":
               return _context6.stop();
           }
         }
-      }, _callee6, null, [[1, 8]]);
+      }, _callee6, null, [[1, 7]]);
     }));
 
-    function addBugComment(_x10, _x11) {
-      return _addBugComment.apply(this, arguments);
+    function deleteBug(_x10, _x11) {
+      return _deleteBug.apply(this, arguments);
     }
 
-    return addBugComment;
+    return deleteBug;
   }(),
-  deleteBugComment: function () {
-    var _deleteBugComment = _asyncToGenerator(
+  addBugComment: function () {
+    var _addBugComment = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref8, id) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref8, comment) {
       var commit, result;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
         while (1) {
@@ -88186,12 +88181,15 @@ var actions = {
               commit = _ref8.commit;
               _context7.prev = 1;
               _context7.next = 4;
-              return axios["delete"]("api_web_session/v1/comments/".concat(id));
+              return axios.post('api_web_session/v1/comments', {
+                bug_id: comment.bug_id,
+                message: comment.message
+              });
 
             case 4:
               result = _context7.sent;
               // console.log(result);
-              commit("removeBugComment", id);
+              commit("insertBugComment", result.data);
               _context7.next = 11;
               break;
 
@@ -88208,7 +88206,46 @@ var actions = {
       }, _callee7, null, [[1, 8]]);
     }));
 
-    function deleteBugComment(_x12, _x13) {
+    function addBugComment(_x12, _x13) {
+      return _addBugComment.apply(this, arguments);
+    }
+
+    return addBugComment;
+  }(),
+  deleteBugComment: function () {
+    var _deleteBugComment = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref9, id) {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              commit = _ref9.commit;
+              _context8.prev = 1;
+              _context8.next = 4;
+              return axios["delete"]("api_web_session/v1/comments/".concat(id));
+
+            case 4:
+              // console.log(result);
+              commit("removeBugComment", id);
+              _context8.next = 10;
+              break;
+
+            case 7:
+              _context8.prev = 7;
+              _context8.t0 = _context8["catch"](1);
+              alert(_context8.t0); // console.log(error.response);
+
+            case 10:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8, null, [[1, 7]]);
+    }));
+
+    function deleteBugComment(_x14, _x15) {
       return _deleteBugComment.apply(this, arguments);
     }
 
@@ -88221,6 +88258,11 @@ var mutations = {
   },
   insertBug: function insertBug(state, bug) {
     return state.bugs.unshift(bug);
+  },
+  removeBug: function removeBug(state, id) {
+    return state.bugs = state.bugs.filter(function (bug) {
+      return bug.id != id;
+    });
   },
   setBugDetails: function setBugDetails(state, bug_details) {
     return state.bug_details = bug_details;
