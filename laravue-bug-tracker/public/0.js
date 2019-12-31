@@ -303,7 +303,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.visible = !this.visible;
       } else {
         this.restriction = true;
-        this.$swal.fire("Not Allowed", "Only Admin & Testers", "error");
+        this.$swal.fire("Not Allowed", "Only Admin & Testers", "info");
       }
     },
     onImageChange: function onImageChange(e) {
@@ -1112,7 +1112,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.visible = !this.visible;
       } else {
         this.restriction = true;
-        this.$swal.fire("Not Allowed", "Only Admin & Tester", "error");
+        this.$swal.fire("Not Allowed", "Only Admin & Tester", "info");
       }
     },
     onImageChange: function onImageChange(e) {

@@ -279,7 +279,7 @@ export default {
         this.visible = !this.visible;
       } else {
         this.restriction = true;
-        this.$swal.fire("Not Allowed", "Only Admin & Testers", "error");
+        this.$swal.fire("Not Allowed", "Only Admin & Testers", "info");
       }
     },
     onImageChange(e) {

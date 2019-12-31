@@ -78,7 +78,7 @@ export default {
         this.visible = !this.visible;
       } else {
         this.restriction = true;
-        this.$swal.fire("Not Allowed", "Only Admin is allowed", "error");
+        this.$swal.fire("Not Allowed", "Only Admin is allowed", "info");
       }
     },
     submit() {
