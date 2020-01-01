@@ -292,7 +292,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["projects", "developers", "user"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["newBug"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["newBug", "toggleLoader"]), {
     visibleForm: function visibleForm() {
       if (this.user.admin || this.user.tester) {
         this.visible = !this.visible;
@@ -308,7 +308,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submit: function submit() {
       var _this = this;
 
-      // submit new bug
+      this.toggleLoader(); // submit new bug
+
       this.newBug(this.bug).then(function () {
         _this.$swal.fire("New Bug", "Success new Bug is added", "success"); //   clear and close form
 
@@ -321,8 +322,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
         _this.visible = false;
+
+        _this.toggleLoader();
       })["catch"](function () {
         _this.$swal.fire("Not Allowed", "Only Admin and Tester", "error");
+
+        _this.toggleLoader();
       });
     }
   })
@@ -371,14 +376,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       message: ""
     };
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["addBugComment"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["addBugComment", "toggleLoader"]), {
     submit: function submit() {
       var _this = this;
 
+      this.toggleLoader();
       this.addBugComment({
         bug_id: this.bug_id,
         message: this.message
       }).then(function () {
+        _this.toggleLoader();
+
         _this.$swal.fire("Comment Submited!!!", "Success new comment is added", "success");
 
         _this.message = "";
@@ -722,7 +730,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["bug_details", "user"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(["clearBugDetails", "changeBugStatus", "deleteBug"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(["clearBugDetails", "changeBugStatus", "deleteBug", "toggleLoader"]), {
     hideDetails: function hideDetails() {
       this.clearBugDetails();
       this.$emit("toggleDetails");
@@ -741,8 +749,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           confirmButtonText: "Bug is Fixed"
         }).then(function (result) {
           if (result.value) {
+            _this.toggleLoader();
+
             _this.changeBugStatus(_this.bug_details.id).then(function () {
               _this.$swal.fire("Fixed!", 'This Bug is now set as "Fixed"', "success");
+
+              _this.toggleLoader();
             });
           }
         });
@@ -764,12 +776,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           confirmButtonText: "Delete"
         }).then(function (result) {
           if (result.value) {
+            _this2.toggleLoader();
+
             _this2.deleteBug(id).then(function () {
               _this2.$swal.fire("Success!", "The Bug is now Deleted.", "success");
 
               _this2.$emit("toggleDetails");
+
+              _this2.toggleLoader();
             })["catch"](function () {
               _this2.$swal.fire("Not allowed!", "Only Admin and Tester", "error");
+
+              _this2.toggleLoader();
             });
           }
         });

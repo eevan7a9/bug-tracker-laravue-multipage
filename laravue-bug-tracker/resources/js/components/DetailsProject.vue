@@ -174,7 +174,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["clearProjectDetails", "deleteProject"]),
+    ...mapActions(["clearProjectDetails", "deleteProject", "toggleLoader"]),
     hideDetails() {
       this.clearProjectDetails();
       this.$emit("toggleDetails");
@@ -193,6 +193,7 @@ export default {
           })
           .then(result => {
             if (result.value) {
+              this.toggleLoader();
               this.deleteProject(id)
                 .then(() => {
                   this.$swal.fire(
@@ -201,6 +202,7 @@ export default {
                     "success"
                   );
                   this.$emit("toggleDetails");
+                  this.toggleLoader();
                 })
                 .catch(() => {
                   this.$swal.fire(
@@ -208,6 +210,7 @@ export default {
                     "Only Admin and developer",
                     "error"
                   );
+                  this.toggleLoader();
                 });
             }
           });

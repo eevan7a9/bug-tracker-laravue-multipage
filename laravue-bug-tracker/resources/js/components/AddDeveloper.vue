@@ -72,7 +72,7 @@ export default {
     ...mapGetters(["user"])
   },
   methods: {
-    ...mapActions(["addDeveloper"]),
+    ...mapActions(["addDeveloper", "toggleLoader"]),
     visibleForm() {
       if (this.user.admin) {
         this.visible = !this.visible;
@@ -82,6 +82,7 @@ export default {
       }
     },
     submit() {
+      this.toggleLoader();
       this.addDeveloper(this.email)
         .then(res => {
           this.$swal.fire(
@@ -91,6 +92,7 @@ export default {
           );
           this.email = "";
           this.visible = false;
+          this.toggleLoader();
         })
         .catch(() => {
           this.$swal.fire(
@@ -98,6 +100,7 @@ export default {
             "Failed, unregistered E-mail.",
             "error"
           );
+          this.toggleLoader();
         });
     }
   }

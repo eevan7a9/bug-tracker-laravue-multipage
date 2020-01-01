@@ -133,7 +133,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["deleteDeveloper"]),
+    ...mapActions(["deleteDeveloper", "toggleLoader"]),
     removeDeveloper(id) {
       if (this.user.admin) {
         this.$swal
@@ -148,6 +148,7 @@ export default {
           })
           .then(result => {
             if (result.value) {
+              this.toggleLoader();
               this.deleteDeveloper(id)
                 .then(() => {
                   this.$swal.fire(
@@ -156,6 +157,7 @@ export default {
                     "success"
                   );
                   this.$emit("toggleDetails");
+                  this.toggleLoader();
                 })
                 .catch(() => {
                   this.$swal.fire("Not allowed!", "Only Admin", "error");

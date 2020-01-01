@@ -25,12 +25,14 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["addBugComment"]),
+    ...mapActions(["addBugComment", "toggleLoader"]),
     submit() {
+      this.toggleLoader();
       this.addBugComment({
         bug_id: this.bug_id,
         message: this.message
       }).then(() => {
+        this.toggleLoader();
         this.$swal.fire(
           "Comment Submited!!!",
           "Success new comment is added",

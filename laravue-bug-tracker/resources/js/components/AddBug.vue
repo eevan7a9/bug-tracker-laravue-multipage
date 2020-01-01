@@ -276,7 +276,7 @@ export default {
   },
   computed: mapGetters(["projects", "developers", "user"]),
   methods: {
-    ...mapActions(["newBug"]),
+    ...mapActions(["newBug", "toggleLoader"]),
     visibleForm() {
       if (this.user.admin || this.user.tester) {
         this.visible = !this.visible;
@@ -290,6 +290,7 @@ export default {
       this.bug.image = e.target.files[0];
     },
     submit() {
+      this.toggleLoader();
       // submit new bug
       this.newBug(this.bug)
         .then(() => {
@@ -301,9 +302,11 @@ export default {
           this.$refs["imageUpload"].reset();
           // this.$refs.imageUpload.value = null; // we clear the value of upload image
           this.visible = false;
+          this.toggleLoader();
         })
         .catch(() => {
           this.$swal.fire("Not Allowed", "Only Admin and Tester", "error");
+          this.toggleLoader();
         });
     }
   }

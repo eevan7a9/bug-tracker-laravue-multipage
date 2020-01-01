@@ -83,7 +83,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   computed: mapGetters(["tester_details", "user"]),
   methods: {
-    ...mapActions(["deleteTester"]),
+    ...mapActions(["deleteTester", "toggleLoader"]),
     removeTester(id) {
       if (this.user.admin) {
         this.$swal
@@ -98,6 +98,7 @@ export default {
           })
           .then(result => {
             if (result.value) {
+              this.toggleLoader();
               this.deleteTester(id)
                 .then(() => {
                   this.$swal.fire(
@@ -106,9 +107,11 @@ export default {
                     "success"
                   );
                   this.$emit("toggleDetails");
+                  this.toggleLoader();
                 })
                 .catch(() => {
                   this.$swal.fire("Not allowed!", "Only Admin", "error");
+                  this.toggleLoader();
                 });
             }
           });

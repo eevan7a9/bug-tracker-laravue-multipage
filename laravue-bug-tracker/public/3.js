@@ -86,7 +86,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["user"])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["addTester"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["addTester", "toggleLoader"]), {
     visibleForm: function visibleForm() {
       if (this.user.admin) {
         this.visible = !this.visible;
@@ -98,13 +98,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submit: function submit() {
       var _this = this;
 
+      this.toggleLoader();
       this.addTester(this.email).then(function (res) {
         _this.$swal.fire("Tester Added!", res, "success");
 
         _this.email = "";
         _this.visible = false;
+
+        _this.toggleLoader();
       })["catch"](function () {
         _this.$swal.fire("Unknown Email!", "Failed, unregistered E-mail.", "error");
+
+        _this.toggleLoader();
       });
     }
   })
@@ -211,7 +216,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["tester_details", "user"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["deleteTester"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["deleteTester", "toggleLoader"]), {
     removeTester: function removeTester(id) {
       var _this = this;
 
@@ -226,12 +231,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           confirmButtonText: "Delete"
         }).then(function (result) {
           if (result.value) {
+            _this.toggleLoader();
+
             _this.deleteTester(id).then(function () {
               _this.$swal.fire("Success!", "The Tester is now Deleted.", "success");
 
               _this.$emit("toggleDetails");
+
+              _this.toggleLoader();
             })["catch"](function () {
               _this.$swal.fire("Not allowed!", "Only Admin", "error");
+
+              _this.toggleLoader();
             });
           }
         });

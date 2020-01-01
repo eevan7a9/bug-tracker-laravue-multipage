@@ -86,7 +86,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["user"])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["addDeveloper"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["addDeveloper", "toggleLoader"]), {
     visibleForm: function visibleForm() {
       if (this.user.admin) {
         this.visible = !this.visible;
@@ -98,13 +98,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submit: function submit() {
       var _this = this;
 
+      this.toggleLoader();
       this.addDeveloper(this.email).then(function (res) {
         _this.$swal.fire("Developer Added!", "Success, we have new developer", "success");
 
         _this.email = "";
         _this.visible = false;
+
+        _this.toggleLoader();
       })["catch"](function () {
         _this.$swal.fire("Unknown Email!", "Failed, unregistered E-mail.", "error");
+
+        _this.toggleLoader();
       });
     }
   })
@@ -267,7 +272,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return fixed.length;
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["deleteDeveloper"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["deleteDeveloper", "toggleLoader"]), {
     removeDeveloper: function removeDeveloper(id) {
       var _this = this;
 
@@ -282,10 +287,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           confirmButtonText: "Delete"
         }).then(function (result) {
           if (result.value) {
+            _this.toggleLoader();
+
             _this.deleteDeveloper(id).then(function () {
               _this.$swal.fire("Success!", "The Developer is now Deleted.", "success");
 
               _this.$emit("toggleDetails");
+
+              _this.toggleLoader();
             })["catch"](function () {
               _this.$swal.fire("Not allowed!", "Only Admin", "error");
             });

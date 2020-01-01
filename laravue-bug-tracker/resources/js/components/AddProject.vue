@@ -170,7 +170,7 @@ export default {
     ...mapGetters(["user"])
   },
   methods: {
-    ...mapActions(["addProject"]),
+    ...mapActions(["addProject", "toggleLoader"]),
     visibleForm() {
       if (this.user.admin || this.user.developer) {
         this.visible = !this.visible;
@@ -184,7 +184,8 @@ export default {
       //   console.log(e.target.files[0]);
       this.project.image = e.target.files[0];
     },
-    async publish() {
+    publish() {
+      this.toggleLoader();
       this.addProject(this.project)
         .then(() => {
           this.$swal.fire(
@@ -196,9 +197,11 @@ export default {
           this.project.image = null;
           this.$refs["imageUpload"].reset();
           this.visible = false;
+          this.toggleLoader();
         })
         .catch(() => {
           this.$swal.fire("Not Allowed", "Only Admin & Developer", "error");
+          this.toggleLoader();
         });
     }
   }

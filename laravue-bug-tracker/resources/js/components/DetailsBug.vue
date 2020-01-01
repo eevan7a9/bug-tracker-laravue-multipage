@@ -207,7 +207,12 @@ export default {
   },
   computed: mapGetters(["bug_details", "user"]),
   methods: {
-    ...mapActions(["clearBugDetails", "changeBugStatus", "deleteBug"]),
+    ...mapActions([
+      "clearBugDetails",
+      "changeBugStatus",
+      "deleteBug",
+      "toggleLoader"
+    ]),
     hideDetails() {
       this.clearBugDetails();
       this.$emit("toggleDetails");
@@ -226,12 +231,14 @@ export default {
           })
           .then(result => {
             if (result.value) {
+              this.toggleLoader();
               this.changeBugStatus(this.bug_details.id).then(() => {
                 this.$swal.fire(
                   "Fixed!",
                   'This Bug is now set as "Fixed"',
                   "success"
                 );
+                this.toggleLoader();
               });
             }
           });
@@ -253,6 +260,7 @@ export default {
           })
           .then(result => {
             if (result.value) {
+              this.toggleLoader();
               this.deleteBug(id)
                 .then(() => {
                   this.$swal.fire(
@@ -261,6 +269,7 @@ export default {
                     "success"
                   );
                   this.$emit("toggleDetails");
+                  this.toggleLoader();
                 })
                 .catch(() => {
                   this.$swal.fire(
@@ -268,6 +277,7 @@ export default {
                     "Only Admin and Tester",
                     "error"
                   );
+                  this.toggleLoader();
                 });
             }
           });
