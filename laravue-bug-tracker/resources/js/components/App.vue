@@ -26,10 +26,28 @@ export default {
     ...mapGetters(["overlay_Loader"])
   },
   methods: {
-    ...mapActions(["getUser"])
+    ...mapActions([
+      "getUser",
+      "getBugs",
+      "getProjects",
+      "getDevelopers",
+      "getTesters",
+      "toggleLoader"
+    ])
   },
   async created() {
-    this.getUser();
+    this.toggleLoader();
+    await this.getUser();
+    console.log("getting user..");
+    await this.getBugs();
+    console.log("getting bugs..");
+    await this.getProjects();
+    console.log("getting projects..");
+    await this.getDevelopers();
+    console.log("getting developers..");
+    await this.getTesters();
+    console.log("getting testers..");
+    this.toggleLoader();
   }
 };
 </script>

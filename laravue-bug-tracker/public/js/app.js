@@ -2006,7 +2006,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     AppLoader: _AppLoader__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["overlay_Loader"])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapActions"])(["getUser"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapActions"])(["getUser", "getBugs", "getProjects", "getDevelopers", "getTesters", "toggleLoader"])),
   created: function () {
     var _created = _asyncToGenerator(
     /*#__PURE__*/
@@ -2015,9 +2015,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              this.getUser();
+              this.toggleLoader();
+              _context.next = 3;
+              return this.getUser();
 
-            case 1:
+            case 3:
+              console.log("getting user..");
+              _context.next = 6;
+              return this.getBugs();
+
+            case 6:
+              console.log("getting bugs..");
+              _context.next = 9;
+              return this.getProjects();
+
+            case 9:
+              console.log("getting projects..");
+              _context.next = 12;
+              return this.getDevelopers();
+
+            case 12:
+              console.log("getting developers..");
+              _context.next = 15;
+              return this.getTesters();
+
+            case 15:
+              console.log("getting testers..");
+              this.toggleLoader();
+
+            case 17:
             case "end":
               return _context.stop();
           }
@@ -88326,23 +88352,23 @@ var actions = {
 
             case 16:
               result = _context4.sent;
-              commit("setBugDetails", result.data); // console.log(result);
-
-              _context4.next = 24;
+              commit("setBugDetails", result.data);
+              commit("updateBug", result.data);
+              _context4.next = 25;
               break;
 
-            case 20:
-              _context4.prev = 20;
+            case 21:
+              _context4.prev = 21;
               _context4.t0 = _context4["catch"](13);
               console.log(_context4.t0.response);
               alert(_context4.t0);
 
-            case 24:
+            case 25:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[13, 20]]);
+      }, _callee4, null, [[13, 21]]);
     }));
 
     function editBugDetails(_x6, _x7) {
@@ -88371,20 +88397,21 @@ var actions = {
               result = _context5.sent;
               // console.log(result)
               commit("setBugDetails", result.data);
-              _context5.next = 11;
+              commit("updateBug", result.data);
+              _context5.next = 12;
               break;
 
-            case 8:
-              _context5.prev = 8;
+            case 9:
+              _context5.prev = 9;
               _context5.t0 = _context5["catch"](1);
               throw _context5.t0;
 
-            case 11:
+            case 12:
             case "end":
               return _context5.stop();
           }
         }
-      }, _callee5, null, [[1, 8]]);
+      }, _callee5, null, [[1, 9]]);
     }));
 
     function changeBugStatus(_x8, _x9) {
@@ -88527,7 +88554,22 @@ var mutations = {
     });
   },
   setBugDetails: function setBugDetails(state, bug_details) {
-    return state.bug_details = bug_details;
+    state.bug_details = bug_details;
+  },
+  updateBug: function updateBug(state, updated_bug) {
+    var found_bug = state.bugs.find(function (bug) {
+      return bug.id === updated_bug.id;
+    });
+
+    if (found_bug) {
+      found_bug.title = updated_bug.title;
+      found_bug.project.name = updated_bug.project.name;
+      found_bug.assigned_to = updated_bug.assigned_to;
+      found_bug.priority = updated_bug.priority;
+      found_bug.severity = updated_bug.severity;
+      found_bug.is_fixed = updated_bug.is_fixed;
+      found_bug.created_at = updated_bug.created_at;
+    }
   },
   removeBugDetails: function removeBugDetails(state) {
     return state.bug_details = {
@@ -88779,7 +88821,7 @@ var mutations = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  overlay_Loader: 1
+  overlay_Loader: 0
 };
 var getters = {
   overlay_Loader: function overlay_Loader(state) {
@@ -89034,23 +89076,24 @@ var actions = {
 
             case 5:
               result = _context5.sent;
+              commit("updateProject", result.data);
               commit("setProjectDetails", result.data); // alert(`A project is successfuly Edited.`);
               // console.log(result);
 
-              _context5.next = 12;
+              _context5.next = 13;
               break;
 
-            case 9:
-              _context5.prev = 9;
+            case 10:
+              _context5.prev = 10;
               _context5.t0 = _context5["catch"](2);
               throw _context5.t0;
 
-            case 12:
+            case 13:
             case "end":
               return _context5.stop();
           }
         }
-      }, _callee5, null, [[2, 9]]);
+      }, _callee5, null, [[2, 10]]);
     }));
 
     function editProjectDetails(_x8, _x9) {
@@ -89069,6 +89112,19 @@ var mutations = {
   },
   setProjectDetails: function setProjectDetails(state, project) {
     return state.project_details = project;
+  },
+  updateProject: function updateProject(state, project) {
+    // update the projects for dataTable
+    var found_project = state.projects.find(function (proj) {
+      return proj.id === project.id;
+    });
+
+    if (found_project) {
+      found_project.name = project.name;
+      found_project.version = project.version;
+      found_project.environment = project.environment;
+      found_project.release_date = project.release_date;
+    }
   },
   removeProjectDetails: function removeProjectDetails(state) {
     return state.project_details = {

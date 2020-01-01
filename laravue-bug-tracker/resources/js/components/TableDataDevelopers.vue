@@ -37,16 +37,11 @@ export default {
   },
   computed: mapGetters(["developers"]),
   methods: {
-    ...mapActions(["getDevelopers", "getDeveloperDetails"]),
+    ...mapActions(["getDeveloperDetails"]),
     showDetails(id) {
       this.getDeveloperDetails(id).then(() => {
         this.$emit("toggleDetails");
       });
-    }
-  },
-  created() {
-    if (this.developers.length < 1) {
-      this.getDevelopers();
     }
   }
 };

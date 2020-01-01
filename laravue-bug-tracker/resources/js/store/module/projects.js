@@ -81,6 +81,7 @@ const actions = {
                     }
                 }
             );
+            commit("updateProject", result.data);
             commit("setProjectDetails", result.data);
             // alert(`A project is successfuly Edited.`);
             // console.log(result);
@@ -94,6 +95,16 @@ const mutations = {
     setProjects: (state, projects) => state.projects = projects,
     insertProject: (state, project) => state.projects.unshift(project),
     setProjectDetails: (state, project) => state.project_details = project,
+    updateProject: (state, project) => {
+        // update the projects for dataTable
+        const found_project = state.projects.find(proj => proj.id === project.id);
+        if (found_project) {
+            found_project.name = project.name;
+            found_project.version = project.version;
+            found_project.environment = project.environment;
+            found_project.release_date = project.release_date;
+        }
+    },
     removeProjectDetails: state => state.project_details = { bugs: [] },
     removeProject: (state, id) => state.projects = state.projects.filter(project => project.id != id)
 }

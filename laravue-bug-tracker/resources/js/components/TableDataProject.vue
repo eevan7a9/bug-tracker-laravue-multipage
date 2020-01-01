@@ -33,16 +33,11 @@ export default {
   },
   computed: mapGetters(["projects"]),
   methods: {
-    ...mapActions(["getProjects", "getProjectDetails"]),
+    ...mapActions(["getProjectDetails"]),
     showDetails(id) {
       this.getProjectDetails(id).then(() => {
         this.$emit("toggleDetails");
       });
-    }
-  },
-  created() {
-    if (this.projects.length < 1) {
-      this.getProjects();
     }
   }
 };

@@ -68,7 +68,7 @@ class ProjectController extends Controller
             "released" => "required|date",
         ]);
 
-        $project = Project::findOrFail($id);
+        $project = Project::with('bugs')->findOrFail($id);
 
         $project->name != $validated['name'] ? $project->name = $validated['name'] : '';
         $project->version != $validated['version'] ? $project->version = $validated['version'] : '';

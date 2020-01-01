@@ -101,7 +101,7 @@ const actions = {
                 }
             );
             commit("setBugDetails", result.data);
-            // console.log(result);
+            commit("updateBug", result.data);
         } catch (error) {
             console.log(error.response);
             alert(error);
@@ -114,6 +114,7 @@ const actions = {
             });
             // console.log(result)
             commit("setBugDetails", result.data);
+            commit("updateBug", result.data);
         } catch (error) {
             // console.log(error);
             throw error
@@ -156,7 +157,22 @@ const mutations = {
     setBugs: (state, bugs) => (state.bugs = bugs),
     insertBug: (state, bug) => state.bugs.unshift(bug),
     removeBug: (state, id) => state.bugs = state.bugs.filter(bug => bug.id != id),
-    setBugDetails: (state, bug_details) => (state.bug_details = bug_details),
+    setBugDetails: (state, bug_details) => {
+        state.bug_details = bug_details;
+    },
+    updateBug: (state, updated_bug) => {
+        const found_bug = state.bugs.find(bug => bug.id === updated_bug.id);
+        if (found_bug) {
+            found_bug.title = updated_bug.title;
+            found_bug.project.name = updated_bug.project.name;
+            found_bug.assigned_to = updated_bug.assigned_to;
+            found_bug.priority = updated_bug.priority;
+            found_bug.severity = updated_bug.severity;
+            found_bug.is_fixed = updated_bug.is_fixed;
+            found_bug.created_at = updated_bug.created_at;
+        }
+
+    },
     removeBugDetails: state =>
         (state.bug_details = {
             project: {},

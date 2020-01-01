@@ -759,7 +759,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {};
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["projects"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getProjects", "getProjectDetails"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getProjectDetails"]), {
     showDetails: function showDetails(id) {
       var _this = this;
 
@@ -767,12 +767,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.$emit("toggleDetails");
       });
     }
-  }),
-  created: function created() {
-    if (this.projects.length < 1) {
-      this.getProjects();
-    }
-  }
+  })
 });
 
 /***/ }),

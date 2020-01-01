@@ -33,16 +33,11 @@ export default {
   },
   computed: mapGetters(["testers"]),
   methods: {
-    ...mapActions(["getTesters", "getTesterDetails"]),
+    ...mapActions(["getTesterDetails"]),
     showDetails(id) {
       this.getTesterDetails(id).then(() => {
         this.$emit("toggleDetails");
       });
-    }
-  },
-  created() {
-    if (this.testers.length < 1) {
-      this.getTesters();
     }
   }
 };

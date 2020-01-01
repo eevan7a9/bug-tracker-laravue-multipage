@@ -276,7 +276,7 @@ export default {
   },
   computed: mapGetters(["projects", "developers", "user"]),
   methods: {
-    ...mapActions(["newBug", "getProjects", "getDevelopers"]),
+    ...mapActions(["newBug"]),
     visibleForm() {
       if (this.user.admin || this.user.tester) {
         this.visible = !this.visible;
@@ -305,14 +305,6 @@ export default {
         .catch(() => {
           this.$swal.fire("Not Allowed", "Only Admin and Tester", "error");
         });
-    }
-  },
-  async created() {
-    if (this.projects.length < 1) {
-      await this.getProjects();
-    }
-    if (this.developers.length < 1) {
-      await this.getDevelopers();
     }
   }
 };
