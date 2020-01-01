@@ -7,7 +7,7 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
-            <th scope="col">Bugs Reported</th>
+            <!-- <th scope="col">Bugs Reported</th> -->
             <th scope="col">Joined</th>
           </tr>
         </thead>
@@ -16,7 +16,7 @@
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ tester.name }}</td>
             <td>{{ tester.email }}</td>
-            <td>{{ tester.bugs_added.length }}</td>
+            <!-- <td>{{ tester.bugs_added.length }}</td> -->
             <td>{{ tester.created_at }}</td>
           </tr>
         </tbody>

@@ -906,8 +906,6 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(tester.email))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(tester.bugs_added.length))]),
-                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(tester.created_at))])
               ]
             )
@@ -937,8 +935,6 @@ var staticRenderFns = [
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
           _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Bugs Reported")]),
           _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Joined")])
         ])
