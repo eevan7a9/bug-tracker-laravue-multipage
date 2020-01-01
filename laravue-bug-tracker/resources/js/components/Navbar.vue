@@ -61,6 +61,6 @@ a.router-link-exact-active {
 nav {
   top: 0;
   position: sticky;
-  z-index: 11;
+  z-index: 3;
 }
 </style>
