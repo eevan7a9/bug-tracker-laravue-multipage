@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <div class="card border-primary">
+      <div class="card border-primary mt-5">
         <div
           class="card-header bg-light border-primary d-flex justify-content-between align-items-center"
         >

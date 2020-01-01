@@ -287,18 +287,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1849,11 +1837,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: {
-                                  name: "browser",
-                                  id: "browser",
-                                  required: ""
-                                },
+                                attrs: { name: "browser", id: "browser" },
                                 on: {
                                   change: function($event) {
                                     var $$selectedVal = Array.prototype.filter
@@ -2040,11 +2024,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-check-input",
-                                  attrs: {
-                                    type: "radio",
-                                    id: "high",
-                                    value: "high"
-                                  },
+                                  attrs: { type: "radio", value: "high" },
                                   domProps: {
                                     checked: _vm._q(_vm.bug.priority, "high")
                                   },
@@ -2076,11 +2056,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-check-input",
-                                  attrs: {
-                                    type: "radio",
-                                    id: "mid",
-                                    value: "mid"
-                                  },
+                                  attrs: { type: "radio", value: "mid" },
                                   domProps: {
                                     checked: _vm._q(_vm.bug.priority, "mid")
                                   },
@@ -2112,11 +2088,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-check-input",
-                                  attrs: {
-                                    type: "radio",
-                                    id: "low",
-                                    value: "low"
-                                  },
+                                  attrs: { type: "radio", value: "low" },
                                   domProps: {
                                     checked: _vm._q(_vm.bug.priority, "low")
                                   },
@@ -2156,11 +2128,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-check-input",
-                                  attrs: {
-                                    type: "radio",
-                                    id: "high",
-                                    value: "high"
-                                  },
+                                  attrs: { type: "radio", value: "high" },
                                   domProps: {
                                     checked: _vm._q(_vm.bug.severity, "high")
                                   },
@@ -2192,11 +2160,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-check-input",
-                                  attrs: {
-                                    type: "radio",
-                                    id: "mid",
-                                    value: "mid"
-                                  },
+                                  attrs: { type: "radio", value: "mid" },
                                   domProps: {
                                     checked: _vm._q(_vm.bug.severity, "mid")
                                   },
@@ -2228,11 +2192,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-check-input",
-                                  attrs: {
-                                    type: "radio",
-                                    id: "low",
-                                    value: "low"
-                                  },
+                                  attrs: { type: "radio", value: "low" },
                                   domProps: {
                                     checked: _vm._q(_vm.bug.severity, "low")
                                   },
@@ -2914,7 +2874,7 @@ var render = function() {
                           "header-bg-variant": "primary",
                           "header-text-variant": "white",
                           "text-variant": "dark",
-                          header: "Severity"
+                          header: "Priority"
                         }
                       },
                       [
@@ -2922,7 +2882,7 @@ var render = function() {
                           _c(
                             "span",
                             { staticClass: "font-weight-bold text-capitalize" },
-                            [_vm._v(_vm._s(_vm.bug_details.severity))]
+                            [_vm._v(_vm._s(_vm.bug_details.priority))]
                           )
                         ])
                       ],
@@ -2946,7 +2906,7 @@ var render = function() {
                           "header-bg-variant": "primary",
                           "header-text-variant": "white",
                           "text-variant": "dark",
-                          header: "Priority"
+                          header: "Severity"
                         }
                       },
                       [
@@ -2954,7 +2914,7 @@ var render = function() {
                           _c(
                             "span",
                             { staticClass: "font-weight-bold text-capitalize" },
-                            [_vm._v(_vm._s(_vm.bug_details.priority))]
+                            [_vm._v(_vm._s(_vm.bug_details.severity))]
                           )
                         ])
                       ],

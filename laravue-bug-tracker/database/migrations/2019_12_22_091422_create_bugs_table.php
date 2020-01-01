@@ -19,7 +19,7 @@ class CreateBugsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->longText('description');
-            $table->string('browser');
+            $table->string('browser')->nullable();
             $table->string('os');
             $table->string('bug_type');
             $table->string('severity')->nullable();

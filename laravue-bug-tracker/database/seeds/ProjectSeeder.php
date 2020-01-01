@@ -18,7 +18,7 @@ class ProjectSeeder extends Seeder
             "version" => "1.0.0",
             "environment" => "Web",
             "os" => "cross platform",
-            "description" => "online shop for kois",
+            "description" => "Online-store with Stripe that facilitate online transactions of koi(s) and services through means of the transfer of information and funds over the Internet.",
             "development_start" => "2019-10-08",
             "release_date" => "2019-12-10",
             "image_src" => "https://images2.imgbox.com/77/74/vRtFNXge_o.jpg",
@@ -28,6 +28,20 @@ class ProjectSeeder extends Seeder
 
         DB::table('projects')->insert([
             "id" => 2,
+            "name" => "Note Storage",
+            "version" => "1.0.0",
+            "environment" => "Desktop",
+            "os" => "cross platform",
+            "description" => "Simple Desktop app that can manage and encrypt written Notes(password,url links, etc) only to be viewd by it's owner",
+            "development_start" => "2019-10-08",
+            "release_date" => "2019-12-10",
+            "image_src" => "https://images.imgbox.com/da/7e/dGFCTUDM_o.png",
+            "created_at" => "2019-10-22 04:55:45",
+            "updated_at" => now(),
+        ]);
+
+        DB::table('projects')->insert([
+            "id" => 3,
             "name" => "Library-MS",
             "version" => "1.3.0",
             "environment" => "Web",
@@ -41,7 +55,7 @@ class ProjectSeeder extends Seeder
         ]);
 
         DB::table('projects')->insert([
-            "id" => 3,
+            "id" => 4,
             "name" => "Social Media App",
             "version" => "2.1.0",
             "environment" => "Web",
@@ -55,7 +69,7 @@ class ProjectSeeder extends Seeder
         ]);
 
         DB::table('projects')->insert([
-            "id" => 4,
+            "id" => 5,
             "name" => "Survey Voting System",
             "version" => "1.3.0",
             "environment" => "Web",
@@ -69,7 +83,7 @@ class ProjectSeeder extends Seeder
         ]);
 
         DB::table('projects')->insert([
-            "id" => 5,
+            "id" => 6,
             "name" => "Current Weather App",
             "version" => "1.1.0",
             "environment" => "Web",

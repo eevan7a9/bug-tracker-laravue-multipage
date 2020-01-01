@@ -90,13 +90,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="browser" class="font-weight-bold">Browser</label>
-                    <select
-                      class="form-control"
-                      v-model="bug.browser"
-                      name="browser"
-                      id="browser"
-                      required
-                    >
+                    <select class="form-control" v-model="bug.browser" name="browser" id="browser">
                       <option>Chrome</option>
                       <option>Firefox</option>
                       <option>Opera</option>
@@ -146,7 +140,6 @@
                           type="radio"
                           class="form-check-input"
                           v-model="bug.priority"
-                          id="high"
                           value="high"
                         />
                         High
@@ -158,7 +151,6 @@
                           type="radio"
                           class="form-check-input"
                           v-model="bug.priority"
-                          id="mid"
                           value="mid"
                         />
                         Mid
@@ -170,7 +162,6 @@
                           type="radio"
                           class="form-check-input"
                           v-model="bug.priority"
-                          id="low"
                           value="low"
                         />
                         Low
@@ -187,7 +178,6 @@
                           type="radio"
                           class="form-check-input"
                           v-model="bug.severity"
-                          id="high"
                           value="high"
                         />
                         High
@@ -199,7 +189,6 @@
                           type="radio"
                           class="form-check-input"
                           v-model="bug.severity"
-                          id="mid"
                           value="mid"
                         />
                         Mid
@@ -211,7 +200,6 @@
                           type="radio"
                           class="form-check-input"
                           v-model="bug.severity"
-                          id="low"
                           value="low"
                         />
                         Low

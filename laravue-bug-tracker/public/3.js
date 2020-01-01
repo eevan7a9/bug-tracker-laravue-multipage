@@ -701,7 +701,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row justify-content-center" }, [
     _c("div", { staticClass: "col-md-8" }, [
-      _c("div", { staticClass: "card border-primary" }, [
+      _c("div", { staticClass: "card border-primary mt-5" }, [
         _c(
           "div",
           {

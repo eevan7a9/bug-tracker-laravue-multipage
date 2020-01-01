@@ -107,11 +107,11 @@
                 header-bg-variant="primary"
                 header-text-variant="white"
                 text-variant="dark"
-                header="Severity"
+                header="Priority"
                 class="text-center"
               >
                 <b-card-text>
-                  <span class="font-weight-bold text-capitalize">{{ bug_details.severity }}</span>
+                  <span class="font-weight-bold text-capitalize">{{ bug_details.priority }}</span>
                 </b-card-text>
               </b-card>
             </div>
@@ -122,11 +122,11 @@
                 header-bg-variant="primary"
                 header-text-variant="white"
                 text-variant="dark"
-                header="Priority"
+                header="Severity"
                 class="text-center"
               >
                 <b-card-text>
-                  <span class="font-weight-bold text-capitalize">{{ bug_details.priority }}</span>
+                  <span class="font-weight-bold text-capitalize">{{ bug_details.severity }}</span>
                 </b-card-text>
               </b-card>
             </div>

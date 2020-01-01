@@ -172,5 +172,41 @@ class CommentSeeder extends Seeder
             "updated_at" => "2019-12-25 06:25:45",
         ]);
 
+        DB::table('comments')->insert([
+            "id" => 19,
+            "user_id" => 7,
+            "bug_id" => 11,
+            "message" => "Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Vestibulum ante ipsum primis in faucibus orci. Sed aliquet risus et leo cursus.",
+            "created_at" => now(),
+            "updated_at" => now(),
+        ]);
+
+        DB::table('comments')->insert([
+            "id" => 20,
+            "user_id" => 8,
+            "bug_id" => 11,
+            "message" => "Aldus PageMaker including versions of Lorem Ipsum. Vestibulum ante ipsum primis in faucibus orci. Sed aliquet risus et leo cursus.",
+            "created_at" => now(),
+            "updated_at" => now(),
+        ]);
+
+        DB::table('comments')->insert([
+            "id" => 21,
+            "user_id" => 2,
+            "bug_id" => 10,
+            "message" => "Suspendisse at neque ac massa fermentum rhoncus nec id arcu. Sed condimentum, urna vel posuere molestie, augue metus congue neque, vitae eleifend dolor turpis ut eros.",
+            "created_at" => now(),
+            "updated_at" => now(),
+        ]);
+
+        DB::table('comments')->insert([
+            "id" => 22,
+            "user_id" => 8,
+            "bug_id" => 10,
+            "message" => "Maecenas lacinia vestibulum dolor at posuere. Proin pharetra ut mauris vitae viverra. Integer iaculis purus vitae sem lobortis, eu lobortis elit ornare. Vivamus dui nisl, mollis in elit a, ullamcorper finibus orci. Phasellus ut tincidunt ex, quis condimentum dolor. Nullam fermentum eros urna augue metus congue neque, vitae eleifend dolor turpis ut eros.",
+            "created_at" => now(),
+            "updated_at" => now(),
+        ]);
+
     }
 }
