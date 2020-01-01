@@ -37,10 +37,12 @@ export default {
   },
   computed: mapGetters(["developers"]),
   methods: {
-    ...mapActions(["getDeveloperDetails"]),
+    ...mapActions(["getDeveloperDetails", "toggleLoader"]),
     showDetails(id) {
+      this.toggleLoader();
       this.getDeveloperDetails(id).then(() => {
         this.$emit("toggleDetails");
+        this.toggleLoader();
       });
     }
   }

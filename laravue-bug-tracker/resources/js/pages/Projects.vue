@@ -1,17 +1,15 @@
 <template>
   <div>
-    <transition name="fade" mode="out-in">
-      <div v-if="hideDetails" key="1">
-        <AddProject />
-        <hr />
-        <TableDataProject @toggleDetails="hideDetails=false" />
-      </div>
-      <div v-if="!hideDetails" key="2">
-        <EditProject />
-        <hr />
-        <DetailsProject @toggleDetails="hideDetails=true" />
-      </div>
-    </transition>
+    <div v-if="hideDetails">
+      <AddProject />
+      <hr />
+      <TableDataProject @toggleDetails="hideDetails=false" />
+    </div>
+    <div v-if="!hideDetails">
+      <EditProject />
+      <hr />
+      <DetailsProject @toggleDetails="hideDetails=true" />
+    </div>
   </div>
 </template>
 

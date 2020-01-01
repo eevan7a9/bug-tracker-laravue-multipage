@@ -353,12 +353,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {};
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["developers"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getDeveloperDetails"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getDeveloperDetails", "toggleLoader"]), {
     showDetails: function showDetails(id) {
       var _this = this;
 
+      this.toggleLoader();
       this.getDeveloperDetails(id).then(function () {
         _this.$emit("toggleDetails");
+
+        _this.toggleLoader();
       });
     }
   })
@@ -378,8 +381,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AddDeveloper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/AddDeveloper */ "./resources/js/components/AddDeveloper.vue");
 /* harmony import */ var _components_TableDataDevelopers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/TableDataDevelopers */ "./resources/js/components/TableDataDevelopers.vue");
 /* harmony import */ var _components_DetailsDeveloper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/DetailsDeveloper */ "./resources/js/components/DetailsDeveloper.vue");
-//
-//
 //
 //
 //
@@ -1095,44 +1096,35 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "transition",
-        { attrs: { name: "fade", mode: "out-in" } },
-        [
-          _vm.hideDetails
-            ? _c(
-                "div",
-                { key: "1" },
-                [
-                  _c("AddDeveloper"),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("TableDataDevelopers", {
-                    on: {
-                      toggleDetails: function($event) {
-                        _vm.hideDetails = false
-                      }
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          !_vm.hideDetails
-            ? _c("DetailsDeveloper", {
-                key: "2",
+      _vm.hideDetails
+        ? _c(
+            "div",
+            [
+              _c("AddDeveloper"),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c("TableDataDevelopers", {
                 on: {
                   toggleDetails: function($event) {
-                    _vm.hideDetails = true
+                    _vm.hideDetails = false
                   }
                 }
               })
-            : _vm._e()
-        ],
-        1
-      )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.hideDetails
+        ? _c("DetailsDeveloper", {
+            on: {
+              toggleDetails: function($event) {
+                _vm.hideDetails = true
+              }
+            }
+          })
+        : _vm._e()
     ],
     1
   )

@@ -38,10 +38,12 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   computed: mapGetters(["bugs"]),
   methods: {
-    ...mapActions(["getBugDetails"]),
+    ...mapActions(["getBugDetails", "toggleLoader"]),
     showDetails(id) {
+      this.toggleLoader();
       this.getBugDetails(id).then(() => {
         this.$emit("toggleDetails");
+        this.toggleLoader();
       });
     }
   }

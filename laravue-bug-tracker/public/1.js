@@ -759,12 +759,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {};
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["projects"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getProjectDetails"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getProjectDetails", "toggleLoader"]), {
     showDetails: function showDetails(id) {
       var _this = this;
 
+      this.toggleLoader();
       this.getProjectDetails(id).then(function () {
         _this.$emit("toggleDetails");
+
+        _this.toggleLoader();
       });
     }
   })
@@ -785,8 +788,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_TableDataProject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/TableDataProject */ "./resources/js/components/TableDataProject.vue");
 /* harmony import */ var _components_DetailsProject__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/DetailsProject */ "./resources/js/components/DetailsProject.vue");
 /* harmony import */ var _components_EditProject__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/EditProject */ "./resources/js/components/EditProject.vue");
-//
-//
 //
 //
 //
@@ -2703,55 +2704,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("transition", { attrs: { name: "fade", mode: "out-in" } }, [
-        _vm.hideDetails
-          ? _c(
-              "div",
-              { key: "1" },
-              [
-                _c("AddProject"),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c("TableDataProject", {
-                  on: {
-                    toggleDetails: function($event) {
-                      _vm.hideDetails = false
-                    }
-                  }
-                })
-              ],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        !_vm.hideDetails
-          ? _c(
-              "div",
-              { key: "2" },
-              [
-                _c("EditProject"),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c("DetailsProject", {
-                  on: {
-                    toggleDetails: function($event) {
-                      _vm.hideDetails = true
-                    }
-                  }
-                })
-              ],
-              1
-            )
-          : _vm._e()
-      ])
-    ],
-    1
-  )
+  return _c("div", [
+    _vm.hideDetails
+      ? _c(
+          "div",
+          [
+            _c("AddProject"),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("TableDataProject", {
+              on: {
+                toggleDetails: function($event) {
+                  _vm.hideDetails = false
+                }
+              }
+            })
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.hideDetails
+      ? _c(
+          "div",
+          [
+            _c("EditProject"),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("DetailsProject", {
+              on: {
+                toggleDetails: function($event) {
+                  _vm.hideDetails = true
+                }
+              }
+            })
+          ],
+          1
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -293,12 +293,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {};
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["testers"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getTesterDetails"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getTesterDetails", "toggleLoader"]), {
     showDetails: function showDetails(id) {
       var _this = this;
 
+      this.toggleLoader();
       this.getTesterDetails(id).then(function () {
         _this.$emit("toggleDetails");
+
+        _this.toggleLoader();
       });
     }
   })
@@ -318,8 +321,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AddTester__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/AddTester */ "./resources/js/components/AddTester.vue");
 /* harmony import */ var _components_TableDataTesters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/TableDataTesters */ "./resources/js/components/TableDataTesters.vue");
 /* harmony import */ var _components_DetailsTester__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/DetailsTester */ "./resources/js/components/DetailsTester.vue");
-//
-//
 //
 //
 //
@@ -961,44 +962,35 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "transition",
-        { attrs: { name: "fade", mode: "out-in" } },
-        [
-          _vm.hideDetails
-            ? _c(
-                "div",
-                { key: "1" },
-                [
-                  _c("AddTester"),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("TableDataTesters", {
-                    on: {
-                      toggleDetails: function($event) {
-                        _vm.hideDetails = false
-                      }
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          !_vm.hideDetails
-            ? _c("DetailsTester", {
-                key: "2",
+      _vm.hideDetails
+        ? _c(
+            "div",
+            [
+              _c("AddTester"),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c("TableDataTesters", {
                 on: {
                   toggleDetails: function($event) {
-                    _vm.hideDetails = true
+                    _vm.hideDetails = false
                   }
                 }
               })
-            : _vm._e()
-        ],
-        1
-      )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.hideDetails
+        ? _c("DetailsTester", {
+            on: {
+              toggleDetails: function($event) {
+                _vm.hideDetails = true
+              }
+            }
+          })
+        : _vm._e()
     ],
     1
   )

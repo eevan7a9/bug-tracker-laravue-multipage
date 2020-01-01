@@ -1175,12 +1175,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["bugs"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getBugDetails"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getBugDetails", "toggleLoader"]), {
     showDetails: function showDetails(id) {
       var _this = this;
 
+      this.toggleLoader();
       this.getBugDetails(id).then(function () {
         _this.$emit("toggleDetails");
+
+        _this.toggleLoader();
       });
     }
   })
@@ -1201,8 +1204,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_TableDataBugs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/TableDataBugs */ "./resources/js/components/TableDataBugs.vue");
 /* harmony import */ var _components_DetailsBug__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/DetailsBug */ "./resources/js/components/DetailsBug.vue");
 /* harmony import */ var _components_EditBug__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/EditBug */ "./resources/js/components/EditBug.vue");
-//
-//
 //
 //
 //
@@ -3987,55 +3988,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("transition", { attrs: { name: "fade", mode: "out-in" } }, [
-        _vm.hideDetails
-          ? _c(
-              "div",
-              { key: "1" },
-              [
-                _c("AddBug"),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c("TableDataBugs", {
-                  on: {
-                    toggleDetails: function($event) {
-                      _vm.hideDetails = false
-                    }
-                  }
-                })
-              ],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        !_vm.hideDetails
-          ? _c(
-              "div",
-              { key: "2" },
-              [
-                _c("EditBug"),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c("DetailsBug", {
-                  on: {
-                    toggleDetails: function($event) {
-                      _vm.hideDetails = true
-                    }
-                  }
-                })
-              ],
-              1
-            )
-          : _vm._e()
-      ])
-    ],
-    1
-  )
+  return _c("div", [
+    _vm.hideDetails
+      ? _c(
+          "div",
+          [
+            _c("AddBug"),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("TableDataBugs", {
+              on: {
+                toggleDetails: function($event) {
+                  _vm.hideDetails = false
+                }
+              }
+            })
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.hideDetails
+      ? _c(
+          "div",
+          [
+            _c("EditBug"),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("DetailsBug", {
+              on: {
+                toggleDetails: function($event) {
+                  _vm.hideDetails = true
+                }
+              }
+            })
+          ],
+          1
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
