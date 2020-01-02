@@ -145,12 +145,17 @@
         </div>
       </div>
     </div>
+    <DetailsProjectBugs :bugs="project_details.bugs" />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import DetailsProjectBugs from "./DetailsProjectBugs";
 export default {
+  components: {
+    DetailsProjectBugs
+  },
   data() {
     return {
       visible_screenshot: false

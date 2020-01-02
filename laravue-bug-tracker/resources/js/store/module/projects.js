@@ -59,7 +59,7 @@ const actions = {
     getProjectDetails: async ({ commit }, id) => {
         try {
             const result = await axios.get(`api_web_session/v1/projects/${id}`);
-            // console.log(result);
+            console.log(result);
             commit("setProjectDetails", result.data);
         } catch (error) {
             alert(error);

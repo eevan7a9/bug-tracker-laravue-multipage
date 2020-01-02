@@ -89026,22 +89026,22 @@ var actions = {
 
             case 4:
               result = _context4.sent;
-              // console.log(result);
+              console.log(result);
               commit("setProjectDetails", result.data);
-              _context4.next = 11;
+              _context4.next = 12;
               break;
 
-            case 8:
-              _context4.prev = 8;
+            case 9:
+              _context4.prev = 9;
               _context4.t0 = _context4["catch"](1);
               alert(_context4.t0); // console.log(error.response);
 
-            case 11:
+            case 12:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[1, 8]]);
+      }, _callee4, null, [[1, 9]]);
     }));
 
     function getProjectDetails(_x6, _x7) {
