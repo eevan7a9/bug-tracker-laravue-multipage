@@ -38,7 +38,6 @@ export default {
     if (this.ShowDetails) {
       this.hideDetails = false;
     }
-    console.log(this.ShowDetails);
   }
 };
 </script>

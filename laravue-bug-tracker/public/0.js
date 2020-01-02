@@ -738,21 +738,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     changeStatus: function changeStatus() {
       var _this = this;
 
+      var title;
+      var text;
+      var success;
+      var message;
+      var confirm_btn;
+
       if (this.user.admin || this.user.developer) {
+        if (!this.bug_details.is_fixed) {
+          title = "The bug is fixed?";
+          text = "are you sure the bug is fixed!";
+          success = "Fixed!";
+          message = 'This Bug is now set as "Fixed"';
+          confirm_btn = "Bug is Fixed";
+        } else {
+          title = "The bug is Not fixed?";
+          text = "are you sure the bug is not fixed!";
+          success = "Not Fixed!";
+          message = 'This Bug is now set as "Not Fixed"';
+          confirm_btn = "Not Fixed";
+        }
+
         this.$swal.fire({
-          title: "The bug is fixed?",
-          text: "You won't be able to revert this!",
+          title: title,
+          text: text,
           type: "question",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Bug is Fixed"
+          confirmButtonText: confirm_btn
         }).then(function (result) {
           if (result.value) {
             _this.toggleLoader();
 
             _this.changeBugStatus(_this.bug_details.id).then(function () {
-              _this.$swal.fire("Fixed!", 'This Bug is now set as "Fixed"', "success");
+              _this.$swal.fire(success, message, "success");
 
               _this.toggleLoader();
             });
@@ -1261,8 +1281,6 @@ __webpack_require__.r(__webpack_exports__);
     if (this.ShowDetails) {
       this.hideDetails = false;
     }
-
-    console.log(this.ShowDetails);
   }
 });
 
@@ -2948,10 +2966,10 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        "card bg-light font-weight-bold d-flex flex-row justify-content-between align-items-center",
+                        "card bg-light font-weight-bold d-flex flex-row justify-content-between align-items-center pl-2",
                       class: _vm.bug_details.is_fixed
-                        ? "text-success  p-2"
-                        : "text-danger pl-2"
+                        ? "text-success"
+                        : "text-danger"
                     },
                     [
                       _vm._v(
@@ -2961,45 +2979,46 @@ var render = function() {
                           ) +
                           "\n              "
                       ),
-                      !_vm.bug_details.is_fixed
-                        ? _c(
-                            "button",
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn",
+                          class: _vm.bug_details.is_fixed
+                            ? "btn-danger"
+                            : "btn-success",
+                          on: { click: _vm.changeStatus }
+                        },
+                        [
+                          _c(
+                            "svg",
                             {
-                              staticClass: "btn btn-primary",
-                              on: { click: _vm.changeStatus }
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                width: "24",
+                                height: "24",
+                                viewBox: "0 0 24 24",
+                                fill: "none",
+                                stroke: "currentColor",
+                                "stroke-width": "2",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round"
+                              }
                             },
                             [
-                              _c(
-                                "svg",
-                                {
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    width: "24",
-                                    height: "24",
-                                    viewBox: "0 0 24 24",
-                                    fill: "none",
-                                    stroke: "currentColor",
-                                    "stroke-width": "2",
-                                    "stroke-linecap": "round",
-                                    "stroke-linejoin": "round"
-                                  }
-                                },
-                                [
-                                  _c("circle", {
-                                    attrs: { cx: "12", cy: "12", r: "3" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("path", {
-                                    attrs: {
-                                      d:
-                                        "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
-                                    }
-                                  })
-                                ]
-                              )
+                              _c("circle", {
+                                attrs: { cx: "12", cy: "12", r: "3" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+                                }
+                              })
                             ]
                           )
-                        : _vm._e()
+                        ]
+                      )
                     ]
                   ),
                   _vm._v(" "),

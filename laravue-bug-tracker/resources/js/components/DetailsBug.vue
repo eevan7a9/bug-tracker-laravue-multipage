@@ -150,14 +150,14 @@
             <div class="col-md-4 mt-3">
               <label class="font-weight-bold mt-2">Status</label>
               <div
-                class="card bg-light font-weight-bold d-flex flex-row justify-content-between align-items-center"
-                :class="bug_details.is_fixed ? 'text-success  p-2' : 'text-danger pl-2'"
+                class="card bg-light font-weight-bold d-flex flex-row justify-content-between align-items-center pl-2"
+                :class="bug_details.is_fixed ? 'text-success' : 'text-danger'"
               >
                 {{ bug_details.is_fixed != 1 ? 'Active' : 'Fixed' }}
                 <button
-                  class="btn btn-primary"
+                  class="btn"
+                  :class="bug_details.is_fixed ? 'btn-danger' : 'btn-success'"
                   @click="changeStatus"
-                  v-if="!bug_details.is_fixed"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -218,26 +218,40 @@ export default {
       this.$emit("toggleDetails");
     },
     changeStatus() {
+      let title;
+      let text;
+      let success;
+      let message;
+      let confirm_btn;
       if (this.user.admin || this.user.developer) {
+        if (!this.bug_details.is_fixed) {
+          title = "The bug is fixed?";
+          text = "are you sure the bug is fixed!";
+          success = "Fixed!";
+          message = 'This Bug is now set as "Fixed"';
+          confirm_btn = "Bug is Fixed";
+        } else {
+          title = "The bug is Not fixed?";
+          text = "are you sure the bug is not fixed!";
+          success = "Not Fixed!";
+          message = 'This Bug is now set as "Not Fixed"';
+          confirm_btn = "Not Fixed";
+        }
         this.$swal
           .fire({
-            title: "The bug is fixed?",
-            text: "You won't be able to revert this!",
+            title: title,
+            text: text,
             type: "question",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Bug is Fixed"
+            confirmButtonText: confirm_btn
           })
           .then(result => {
             if (result.value) {
               this.toggleLoader();
               this.changeBugStatus(this.bug_details.id).then(() => {
-                this.$swal.fire(
-                  "Fixed!",
-                  'This Bug is now set as "Fixed"',
-                  "success"
-                );
+                this.$swal.fire(success, message, "success");
                 this.toggleLoader();
               });
             }

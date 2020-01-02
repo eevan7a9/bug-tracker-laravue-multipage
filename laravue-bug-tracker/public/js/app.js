@@ -88732,22 +88732,22 @@ var actions = {
 
             case 4:
               result = _context3.sent;
-              console.log(result.data);
+              // console.log(result);
               commit("setDeveloperDetails", result.data);
-              _context3.next = 12;
+              _context3.next = 11;
               break;
 
-            case 9:
-              _context3.prev = 9;
+            case 8:
+              _context3.prev = 8;
               _context3.t0 = _context3["catch"](1);
               alert(_context3.t0); // console.log(error.response);
 
-            case 12:
+            case 11:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 9]]);
+      }, _callee3, null, [[1, 8]]);
     }));
 
     function getDeveloperDetails(_x4, _x5) {
