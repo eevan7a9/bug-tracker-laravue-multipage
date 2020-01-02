@@ -1,49 +1,39 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mt-5">
-    <!-- <a class="navbar-brand" href="#">Dashboard</a> -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <router-link class="nav-link" to="/">BUGS</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/projects">PROJECTS</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/developers">DEVELOPERS</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/testers">TESTERS</router-link>
-        </li>
-        <!-- <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdownMenuLink"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >Dropdown link</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>-->
-      </ul>
-    </div>
+  <nav class="nav-bar">
+    <ul class="items-wrapper">
+      <li class="nav-item">
+        <router-link class="nav-link" to="/">
+          <span>
+            <img src="/asset_images/bug-icons.svg" alt srcset />
+          </span>
+          BUGS
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/projects">
+          <span>
+            <img src="/asset_images/project-icons.svg" alt srcset />
+          </span>
+          PROJECTS
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/developers">
+          <span>
+            <img src="/asset_images/code-icons.svg" alt srcset />
+          </span>
+          DEVELOPERS
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/testers">
+          <span>
+            <img src="/asset_images/test-icons.svg" alt srcset />
+          </span>
+          TESTERS
+        </router-link>
+      </li>
+    </ul>
   </nav>
 </template>
 
@@ -55,12 +45,61 @@ export default {
 
 <style scoped>
 a.router-link-exact-active {
-  color: aliceblue !important;
+  color: aliceblue;
   font-weight: 900;
+  background: #3490dc;
+  width: 100%;
 }
 nav {
   top: 0;
   position: sticky;
   z-index: 3;
+  width: 350px;
+  background: #333;
+}
+ul.items-wrapper {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  line-height: 3rem;
+  padding: 0;
+  top: 0;
+  position: sticky;
+  border-top: 5px solid #343a40;
+}
+.nav-link {
+  color: whitesmoke;
+  padding-left: 90px;
+}
+@media (max-width: 1170px) {
+  nav {
+    width: 280px;
+  }
+}
+@media (max-width: 1100px) {
+  nav {
+    width: 230px;
+  }
+}
+@media (max-width: 900px) {
+  nav {
+    width: 100%;
+    background: none;
+  }
+  ul.items-wrapper {
+    flex-direction: row;
+    border-top: 0;
+    justify-content: center;
+    align-items: center;
+    background: #333;
+  }
+  .nav-link {
+    color: whitesmoke;
+    padding-left: 5px;
+  }
+  a.router-link-exact-active {
+    background: none;
+    width: 100%;
+  }
 }
 </style>

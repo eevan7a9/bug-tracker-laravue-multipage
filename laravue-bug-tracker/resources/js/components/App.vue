@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <div v-show="!overlay_Loader">
-      <Navbar class="container mb-5" />
-      <transition name="fade" mode="out-in">
-        <router-view class="container"></router-view>
-      </transition>
+    <div v-show="!overlay_Loader" class="app-wrapper">
+      <Navbar class="side-bar" />
+      <div class="main-view">
+        <transition name="fade" mode="out-in">
+          <router-view class="container"></router-view>
+        </transition>
+      </div>
     </div>
     <div v-show="overlay_Loader">
       <AppLoader class="loader-overlay" />
@@ -59,5 +61,19 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+.app-wrapper {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: auto 1fr;
+}
+.main-view {
+  padding-top: 50px;
+}
+@media (max-width: 900px) {
+  .app-wrapper {
+    min-height: 100%;
+    grid-template-columns: 1fr;
+  }
 }
 </style>
