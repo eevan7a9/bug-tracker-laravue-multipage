@@ -1249,10 +1249,20 @@ __webpack_require__.r(__webpack_exports__);
     DetailsBug: _components_DetailsBug__WEBPACK_IMPORTED_MODULE_2__["default"],
     EditBug: _components_EditBug__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  props: {
+    ShowDetails: Boolean
+  },
   data: function data() {
     return {
       hideDetails: true
     };
+  },
+  created: function created() {
+    if (this.ShowDetails) {
+      this.hideDetails = false;
+    }
+
+    console.log(this.ShowDetails);
   }
 });
 

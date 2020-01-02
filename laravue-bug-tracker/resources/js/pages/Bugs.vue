@@ -26,10 +26,19 @@ export default {
     DetailsBug,
     EditBug
   },
+  props: {
+    ShowDetails: Boolean
+  },
   data() {
     return {
       hideDetails: true
     };
+  },
+  created() {
+    if (this.ShowDetails) {
+      this.hideDetails = false;
+    }
+    console.log(this.ShowDetails);
   }
 };
 </script>

@@ -88061,33 +88061,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
-/* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  routes: [{
-    path: '/',
-    name: 'bugs',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../pages/Bugs.vue */ "./resources/js/pages/Bugs.vue"));
-    }
-  }, {
-    path: '/projects',
-    name: 'projects',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../pages/Projects.vue */ "./resources/js/pages/Projects.vue"));
-    }
-  }, {
-    path: '/developers',
-    name: 'developers',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../pages/Developers.vue */ "./resources/js/pages/Developers.vue"));
-    }
-  }, {
-    path: '/testers',
-    name: 'testers',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../pages/Testers.vue */ "./resources/js/pages/Testers.vue"));
-    }
-  }]
-}));
+var routes = [{
+  path: '/',
+  name: 'bugs',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../pages/Bugs.vue */ "./resources/js/pages/Bugs.vue"));
+  },
+  props: true
+}, {
+  path: '/projects',
+  name: 'projects',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../pages/Projects.vue */ "./resources/js/pages/Projects.vue"));
+  }
+}, {
+  path: '/developers',
+  name: 'developers',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../pages/Developers.vue */ "./resources/js/pages/Developers.vue"));
+  }
+}, {
+  path: '/testers',
+  name: 'testers',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../pages/Testers.vue */ "./resources/js/pages/Testers.vue"));
+  }
+}];
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  scrollBehavior: function scrollBehavior() {
+    return {
+      x: 0,
+      y: 0
+    };
+  },
+  routes: routes
+});
+/* harmony default export */ __webpack_exports__["default"] = (router);
 
 /***/ }),
 

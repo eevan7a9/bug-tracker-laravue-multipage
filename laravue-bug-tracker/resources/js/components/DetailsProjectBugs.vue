@@ -23,13 +23,19 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   props: {
     bugs: Array
   },
   methods: {
+    ...mapActions(["getBugDetails", "toggleLoader"]),
     showBug(id) {
-      console.log(id);
+      this.toggleLoader();
+      this.getBugDetails(id).then(() => {
+        this.$router.push({ name: "bugs", params: { ShowDetails: true } });
+        this.toggleLoader();
+      });
     }
   }
 };
