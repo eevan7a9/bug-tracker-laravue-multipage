@@ -144,17 +144,19 @@
           <div>Added at: {{ project_details.created_at }}</div>
         </div>
       </div>
+      <hr />
+      <h1 class="mt-5 font-weight-bold">Bug Reports :</h1>
     </div>
-    <DetailsProjectBugs :bugs="project_details.bugs" />
+    <BugsCardLists :bugs="project_details.bugs" />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import DetailsProjectBugs from "./DetailsProjectBugs";
+import BugsCardLists from "./BugsCardLists";
 export default {
   components: {
-    DetailsProjectBugs
+    BugsCardLists
   },
   data() {
     return {

@@ -37,16 +37,16 @@ export default {
   },
   async created() {
     this.toggleLoader();
-    await this.getUser();
     console.log("getting user..");
-    await this.getBugs();
+    await this.getUser();
     console.log("getting bugs..");
-    await this.getProjects();
+    await this.getBugs();
     console.log("getting projects..");
-    await this.getDevelopers();
+    await this.getProjects();
     console.log("getting developers..");
-    await this.getTesters();
+    await this.getDevelopers();
     console.log("getting testers..");
+    await this.getTesters();
     this.toggleLoader();
   }
 };

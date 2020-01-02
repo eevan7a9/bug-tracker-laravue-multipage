@@ -2016,31 +2016,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           switch (_context.prev = _context.next) {
             case 0:
               this.toggleLoader();
-              _context.next = 3;
+              console.log("getting user..");
+              _context.next = 4;
               return this.getUser();
 
-            case 3:
-              console.log("getting user..");
-              _context.next = 6;
+            case 4:
+              console.log("getting bugs..");
+              _context.next = 7;
               return this.getBugs();
 
-            case 6:
-              console.log("getting bugs..");
-              _context.next = 9;
+            case 7:
+              console.log("getting projects..");
+              _context.next = 10;
               return this.getProjects();
 
-            case 9:
-              console.log("getting projects..");
-              _context.next = 12;
+            case 10:
+              console.log("getting developers..");
+              _context.next = 13;
               return this.getDevelopers();
 
-            case 12:
-              console.log("getting developers..");
-              _context.next = 15;
+            case 13:
+              console.log("getting testers..");
+              _context.next = 16;
               return this.getTesters();
 
-            case 15:
-              console.log("getting testers..");
+            case 16:
               this.toggleLoader();
 
             case 17:
@@ -88732,22 +88732,22 @@ var actions = {
 
             case 4:
               result = _context3.sent;
-              // console.log(result);
+              console.log(result.data);
               commit("setDeveloperDetails", result.data);
-              _context3.next = 11;
+              _context3.next = 12;
               break;
 
-            case 8:
-              _context3.prev = 8;
+            case 9:
+              _context3.prev = 9;
               _context3.t0 = _context3["catch"](1);
               alert(_context3.t0); // console.log(error.response);
 
-            case 11:
+            case 12:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 8]]);
+      }, _callee3, null, [[1, 9]]);
     }));
 
     function getDeveloperDetails(_x4, _x5) {
@@ -89035,22 +89035,22 @@ var actions = {
 
             case 4:
               result = _context4.sent;
-              console.log(result);
+              // console.log(result);
               commit("setProjectDetails", result.data);
-              _context4.next = 12;
+              _context4.next = 11;
               break;
 
-            case 9:
-              _context4.prev = 9;
+            case 8:
+              _context4.prev = 8;
               _context4.t0 = _context4["catch"](1);
               alert(_context4.t0); // console.log(error.response);
 
-            case 12:
+            case 11:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[1, 9]]);
+      }, _callee4, null, [[1, 8]]);
     }));
 
     function getProjectDetails(_x6, _x7) {

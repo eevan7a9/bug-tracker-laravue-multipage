@@ -1,7 +1,8 @@
 <template>
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <div class="card border-primary mt-5">
+      <hr />
+      <div class="card border-primary mt-3">
         <div
           class="card-header bg-light border-primary d-flex justify-content-between align-items-center"
         >
@@ -74,13 +75,20 @@
           <!-- <p>Footer</p> -->
         </div>
       </div>
+      <hr />
+      <h3 class="mt-4 font-weight-bold">Reported Bugs :</h3>
     </div>
+    <BugsCardLists :bugs="tester_details.bugs_added" />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import BugsCardLists from "./BugsCardLists";
 export default {
+  components: {
+    BugsCardLists
+  },
   computed: mapGetters(["tester_details", "user"]),
   methods: {
     ...mapActions(["deleteTester", "toggleLoader"]),

@@ -1,13 +1,12 @@
 <template>
   <div class="wrapper-bugs col-md-8 mt-3 pb-3">
-    <h1 class="mt-3 font-weight-bold">Bug Reports :</h1>
-    <hr />
-    <div class="card bug-card mt-3" v-for="bug in bugs" :key="bug.id" @click="showBug(bug.id)">
+    <div class="card bug-card mt-4" v-for="bug in bugs" :key="bug.id" @click="showBug(bug.id)">
       <div class="card-header p-2" :class="bug.is_fixed ? 'bg-success' : 'bg-danger'">
         <h6 class="text-light mb-0 font-weight-bold">{{ bug.is_fixed ? "Fixed" : "Active" }}</h6>
       </div>
       <div class="card-body pb-0">
         <h5 class="font-weight-bold">{{ bug.title }}</h5>
+        <hr />
         <small>{{ bug.bug_type }}</small>
         <p class="text-right">{{ bug.created_at }}</p>
       </div>
@@ -16,7 +15,7 @@
       <div class="card-header bg-secondary"></div>
       <div class="card-body">
         <h3 class="font-weight-bold">Empty :)</h3>
-        <p>As bugs of this project are reported, they’ll appear here</p>
+        <p>Bugs associated to this, they’ll appear here</p>
       </div>
     </div>
   </div>
