@@ -15,7 +15,7 @@
         </thead>
         <tbody>
           <tr v-for="(bug, index) in bugs" :key="index" @click="showDetails(bug.id)">
-            <td>{{ bug.title }}</td>
+            <td class="text-primary font-weight-bold">{{ bug.title }}</td>
             <td>{{ bug.project.name }}</td>
             <td>{{ bug.assigned_to ? bug.assigned_to.email: "Unassigned" }}</td>
             <td class="text-capitalize font-weight-bold">{{ bug.priority }}</td>
@@ -61,5 +61,12 @@ export default {
 }
 table tr {
   cursor: pointer;
+}
+table tr:hover {
+  transition: 0.6s;
+  -webkit-box-shadow: -4px 8px 14px 6px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: -4px 8px 14px 6px rgba(0, 0, 0, 0.58);
+  box-shadow: -4px 8px 14px 6px rgba(0, 0, 0, 0.58);
+  background: #fff;
 }
 </style>

@@ -1996,8 +1996,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 
@@ -35365,7 +35363,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n  -webkit-transition: opacity 0.5s;\n  transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n.app-wrapper {\n  display: grid;\n  min-height: 100vh;\n  grid-template-columns: auto 1fr;\n}\n.main-view {\n  padding-top: 50px;\n}\n@media (max-width: 900px) {\n.app-wrapper {\n    min-height: 100%;\n    grid-template-columns: 1fr;\n}\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n  -webkit-transition: opacity 0.5s;\n  transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -35403,7 +35401,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na.router-link-exact-active[data-v-6dde423b] {\n  color: aliceblue;\n  font-weight: 900;\n  background: #3490dc;\n  width: 100%;\n}\nnav[data-v-6dde423b] {\n  top: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  z-index: 3;\n  width: 350px;\n  background: #333;\n}\nul.items-wrapper[data-v-6dde423b] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  list-style: none;\n  line-height: 3rem;\n  padding: 0;\n  top: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  border-top: 5px solid #343a40;\n}\n.nav-link[data-v-6dde423b] {\n  color: whitesmoke;\n  padding-left: 90px;\n}\n@media (max-width: 1170px) {\nnav[data-v-6dde423b] {\n    width: 280px;\n}\n}\n@media (max-width: 1100px) {\nnav[data-v-6dde423b] {\n    width: 230px;\n}\n}\n@media (max-width: 900px) {\nnav[data-v-6dde423b] {\n    width: 100%;\n    background: none;\n}\nul.items-wrapper[data-v-6dde423b] {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n            flex-direction: row;\n    border-top: 0;\n    -webkit-box-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n            align-items: center;\n    background: #333;\n}\n.nav-link[data-v-6dde423b] {\n    color: whitesmoke;\n    padding-left: 5px;\n}\na.router-link-exact-active[data-v-6dde423b] {\n    background: none;\n    width: 100%;\n}\n}\n", ""]);
+exports.push([module.i, "\na.router-link-exact-active[data-v-6dde423b] {\n  color: aliceblue;\n  font-weight: 900;\n  width: 100%;\n}\nnav[data-v-6dde423b] {\n  top: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  z-index: 3;\n  width: 100%;\n}\nul.items-wrapper[data-v-6dde423b] {\n  display: -webkit-box;\n  display: flex;\n\n  list-style: none;\n  line-height: 3rem;\n  padding: 0;\n  top: 0;\n  position: -webkit-sticky;\n  position: sticky;\n\n  border-top: 0;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  background: #333;\n}\n.nav-link[data-v-6dde423b] {\n  color: rgb(201, 198, 198);\n  padding-left: 90px;\n}\n", ""]);
 
 // exports
 
@@ -71310,16 +71308,9 @@ var render = function() {
         _c("Navbar", { staticClass: "side-bar" }),
         _vm._v(" "),
         _c(
-          "div",
-          { staticClass: "main-view" },
-          [
-            _c(
-              "transition",
-              { attrs: { name: "fade", mode: "out-in" } },
-              [_c("router-view", { staticClass: "container" })],
-              1
-            )
-          ],
+          "transition",
+          { attrs: { name: "fade", mode: "out-in" } },
+          [_c("router-view", { staticClass: "container" })],
           1
         )
       ],

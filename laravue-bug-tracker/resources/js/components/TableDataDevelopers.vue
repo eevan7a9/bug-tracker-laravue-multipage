@@ -60,4 +60,11 @@ export default {
 tr {
   cursor: pointer;
 }
+table tr:hover {
+  transition: 0.6s;
+  -webkit-box-shadow: -4px 8px 14px 6px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: -4px 8px 14px 6px rgba(0, 0, 0, 0.58);
+  box-shadow: -4px 8px 14px 6px rgba(0, 0, 0, 0.58);
+  background: #fff;
+}
 </style>

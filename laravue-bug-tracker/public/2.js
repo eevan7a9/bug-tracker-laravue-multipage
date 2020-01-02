@@ -563,7 +563,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.table-container[data-v-7bb13e06] {\n  max-height: 600px;\n  overflow-y: scroll;\n}\n#tableHead[data-v-7bb13e06] {\n  top: 0 !important;\n  position: -webkit-sticky !important;\n  position: sticky !important;\n}\ntr[data-v-7bb13e06] {\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.table-container[data-v-7bb13e06] {\n  max-height: 600px;\n  overflow-y: scroll;\n}\n#tableHead[data-v-7bb13e06] {\n  top: 0 !important;\n  position: -webkit-sticky !important;\n  position: sticky !important;\n}\ntr[data-v-7bb13e06] {\n  cursor: pointer;\n}\ntable tr[data-v-7bb13e06]:hover {\n  -webkit-transition: 0.6s;\n  transition: 0.6s;\n  box-shadow: -4px 8px 14px 6px rgba(0, 0, 0, 0.58);\n  background: #fff;\n}\n", ""]);
 
 // exports
 

@@ -967,7 +967,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.table-container[data-v-066c794c] {\n  max-height: 600px;\n  overflow-y: scroll;\n}\n#tableHead[data-v-066c794c] {\n  top: 0 !important;\n  position: -webkit-sticky !important;\n  position: sticky !important;\n}\ntr[data-v-066c794c] {\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.table-container[data-v-066c794c] {\n  max-height: 600px;\n  overflow-y: scroll;\n}\n#tableHead[data-v-066c794c] {\n  top: 0 !important;\n  position: -webkit-sticky !important;\n  position: sticky !important;\n}\ntr[data-v-066c794c] {\n  cursor: pointer;\n}\ntable tr[data-v-066c794c]:hover {\n  -webkit-transition: 0.6s;\n  transition: 0.6s;\n  box-shadow: -4px 8px 14px 6px rgba(0, 0, 0, 0.58);\n  background: #fff;\n}\n", ""]);
 
 // exports
 
@@ -2849,7 +2849,9 @@ var render = function() {
                   _vm._v(_vm._s(index + 1))
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(project.name))]),
+                _c("td", { staticClass: "text-primary font-weight-bold" }, [
+                  _vm._v(_vm._s(project.name))
+                ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(project.version))]),
                 _vm._v(" "),

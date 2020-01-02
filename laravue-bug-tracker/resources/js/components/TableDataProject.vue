@@ -14,7 +14,7 @@
         <tbody>
           <tr v-for="(project, index) in projects" :key="index" @click="showDetails(project.id)">
             <th scope="row">{{ index + 1 }}</th>
-            <td>{{ project.name }}</td>
+            <td class="text-primary font-weight-bold">{{ project.name }}</td>
             <td>{{ project.version }}</td>
             <td>{{ project.environment }}</td>
             <td>{{ project.release_date }}</td>
@@ -55,5 +55,12 @@ export default {
 }
 tr {
   cursor: pointer;
+}
+table tr:hover {
+  transition: 0.6s;
+  -webkit-box-shadow: -4px 8px 14px 6px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: -4px 8px 14px 6px rgba(0, 0, 0, 0.58);
+  box-shadow: -4px 8px 14px 6px rgba(0, 0, 0, 0.58);
+  background: #fff;
 }
 </style>
