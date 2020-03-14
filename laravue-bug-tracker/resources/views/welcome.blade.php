@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Laravel</title>
     <!-- Styles -->
     <style>
@@ -43,7 +43,7 @@
 
         .content {
             text-align: center;
-            height: 95%;
+            /* height: 95%; */
             width: 100%;
         }
 
@@ -51,15 +51,27 @@
             font-size: 84px;
         }
 
-        .links>a {
-            color: aliceblue;
-            padding: 0 25px;
+        .links>a>button {
+            color: #2c6ea8;
+            padding: 15px 25px;
             font-size: 20px;
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-decoration: none;
             text-transform: uppercase;
             font-family: 'Roboto Condensed', sans-serif;
+            background: #8dbdf0;
+            border-radius: 8px;
+            border: 3px solid #2c6ea8;
+            -webkit-box-shadow: -1px 9px 10px -5px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: -1px 9px 10px -5px rgba(0, 0, 0, 0.75);
+            box-shadow: -1px 9px 10px -5px rgba(0, 0, 0, 0.75);
+            width: 200px;
+        }
+
+        .links>a>button:hover {
+            background: #adcef1;
+            transition: .5s;
         }
 
         .m-b-md {
@@ -99,19 +111,16 @@
         }
 
         img.bug {
-            height: 200px;
+            height: 150px;
             width: 171px;
-            margin-right: -50px;
-            margin-bottom: -50px;
+
         }
 
         span.bug-container {
-            background: white;
             display: inline-block;
             width: 200px;
             border-radius: 100%;
             margin-right: -50px;
-            margin-bottom: -50px;
             -webkit-animation: color-change 1.5s infinite;
             -moz-animation: color-change 1.5s infinite;
             -o-animation: color-change 1.5s infinite;
@@ -205,26 +214,25 @@
 
 <body>
     <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-            <a href="{{ url('/dashboard/') }}">Home</a>
-            @else
-            <a href="{{ route('login') }}">Login</a>
-
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}">Register</a>
-            @endif
-            @endauth
-        </div>
-        @endif
-
         <div class="content">
             <div class="title m-b-md">
                 <img class="showcase-image" src="{{ url("/asset_images/bug_fixed.svg") }}" alt="" srcset="">
                 <h1 class="showcase-title"><span class="bug-container"><img class="bug"
                             src="https://images2.imgbox.com/6d/a4/DCCvciwF_o.png" /></span> Tracker</h1>
             </div>
+            @if (Route::has('login'))
+            <div class="links mt-5">
+                @auth
+                <a href="{{ url('/dashboard/') }}"><button class="">Home</button></a>
+                @else
+                <a href="{{ route('login') }}"><button class="">Login</button></a>
+
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}"><button class=" ml-3">Register</button></a>
+                @endif
+                @endauth
+            </div>
+            @endif
         </div>
     </div>
 </body>
