@@ -2217,6 +2217,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "navbar"
 });
@@ -43542,7 +43556,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na.router-link-exact-active[data-v-6dde423b] {\n  color: aliceblue;\n  font-weight: 900;\n  width: 100%;\n}\nnav[data-v-6dde423b] {\n  top: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  z-index: 3;\n  width: 100%;\n}\nul.items-wrapper[data-v-6dde423b] {\n  display: -webkit-box;\n  display: flex;\n\n  list-style: none;\n  line-height: 3rem;\n  padding: 0;\n  top: 0;\n  position: -webkit-sticky;\n  position: sticky;\n\n  border-top: 0;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  background: #333;\n}\n.nav-link[data-v-6dde423b] {\n  color: rgb(201, 198, 198);\n  padding-left: 90px;\n}\n", ""]);
+exports.push([module.i, "\na.router-link-exact-active[data-v-6dde423b] {\n  color: aliceblue;\n  font-weight: 900;\n  width: 100%;\n}\nnav[data-v-6dde423b] {\n  top: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  z-index: 3;\n  width: 100%;\n  background: #333;\n  margin-bottom: 20px;\n}\ndiv.items-wrapper[data-v-6dde423b] {\n  list-style: none;\n  line-height: 3rem;\n  padding: 0;\n  top: 0;\n  position: -webkit-sticky;\n  position: sticky;\n\n  border-top: 0;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  background: #333;\n}\n.nav-link[data-v-6dde423b] {\n  color: rgb(201, 198, 198);\n}\n", ""]);
 
 // exports
 
@@ -79534,98 +79548,120 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("nav", { staticClass: "nav-bar" }, [
-    _c("ul", { staticClass: "items-wrapper" }, [
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c("router-link", { staticClass: "nav-link", attrs: { to: "/" } }, [
-            _c("span", [
-              _c("img", {
-                attrs: {
-                  src: "/asset_images/bug-icons.svg",
-                  alt: "",
-                  srcset: ""
-                }
-              })
-            ]),
-            _vm._v("\n        BUGS\n      ")
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/projects" } },
-            [
-              _c("span", [
-                _c("img", {
-                  attrs: {
-                    src: "/asset_images/project-icons.svg",
-                    alt: "",
-                    srcset: ""
-                  }
-                })
-              ]),
-              _vm._v("\n        PROJECTS\n      ")
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/developers" } },
-            [
-              _c("span", [
-                _c("img", {
-                  attrs: {
-                    src: "/asset_images/code-icons.svg",
-                    alt: "",
-                    srcset: ""
-                  }
-                })
-              ]),
-              _vm._v("\n        DEVELOPERS\n      ")
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/testers" } },
-            [
-              _c("span", [
-                _c("img", {
-                  attrs: {
-                    src: "/asset_images/test-icons.svg",
-                    alt: "",
-                    srcset: ""
-                  }
-                })
-              ]),
-              _vm._v("\n        TESTERS\n      ")
-            ]
-          )
-        ],
-        1
-      )
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "items-wrapper row" }, [
+        _c(
+          "div",
+          { staticClass: "col-3" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass:
+                  "nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center",
+                attrs: { to: "/" }
+              },
+              [
+                _c("span", [
+                  _c("img", {
+                    attrs: {
+                      src: "/asset_images/bug-icons.svg",
+                      alt: "",
+                      srcset: ""
+                    }
+                  })
+                ]),
+                _vm._v("\n          BUGS\n        ")
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-3" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass:
+                  "nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center",
+                attrs: { to: "/projects" }
+              },
+              [
+                _c("span", [
+                  _c("img", {
+                    attrs: {
+                      src: "/asset_images/project-icons.svg",
+                      alt: "",
+                      srcset: ""
+                    }
+                  })
+                ]),
+                _vm._v("\n          PROJECTS\n        ")
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-3" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass:
+                  "nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center",
+                attrs: { to: "/developers" }
+              },
+              [
+                _c("span", [
+                  _c("img", {
+                    attrs: {
+                      src: "/asset_images/code-icons.svg",
+                      alt: "",
+                      srcset: ""
+                    }
+                  })
+                ]),
+                _vm._v("\n          DEVELOPERS\n        ")
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-3" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass:
+                  "nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center",
+                attrs: { to: "/testers" }
+              },
+              [
+                _c("span", [
+                  _c("img", {
+                    attrs: {
+                      src: "/asset_images/test-icons.svg",
+                      alt: "",
+                      srcset: ""
+                    }
+                  })
+                ]),
+                _vm._v("\n          TESTERS\n        ")
+              ]
+            )
+          ],
+          1
+        )
+      ])
     ])
   ])
 }

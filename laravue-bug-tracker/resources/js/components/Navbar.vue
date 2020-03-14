@@ -1,39 +1,53 @@
 <template>
   <nav class="nav-bar">
-    <ul class="items-wrapper">
-      <li class="nav-item">
-        <router-link class="nav-link" to="/">
-          <span>
-            <img src="/asset_images/bug-icons.svg" alt srcset />
-          </span>
-          BUGS
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" to="/projects">
-          <span>
-            <img src="/asset_images/project-icons.svg" alt srcset />
-          </span>
-          PROJECTS
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" to="/developers">
-          <span>
-            <img src="/asset_images/code-icons.svg" alt srcset />
-          </span>
-          DEVELOPERS
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" to="/testers">
-          <span>
-            <img src="/asset_images/test-icons.svg" alt srcset />
-          </span>
-          TESTERS
-        </router-link>
-      </li>
-    </ul>
+    <div class="container">
+      <div class="items-wrapper row">
+        <div class="col-3">
+          <router-link
+            class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
+            to="/"
+          >
+            <span>
+              <img src="/asset_images/bug-icons.svg" alt srcset />
+            </span>
+            BUGS
+          </router-link>
+        </div>
+        <div class="col-3">
+          <router-link
+            class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
+            to="/projects"
+          >
+            <span>
+              <img src="/asset_images/project-icons.svg" alt srcset />
+            </span>
+            PROJECTS
+          </router-link>
+        </div>
+        <div class="col-3">
+          <router-link
+            class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
+            to="/developers"
+          >
+            <span>
+              <img src="/asset_images/code-icons.svg" alt srcset />
+            </span>
+            DEVELOPERS
+          </router-link>
+        </div>
+        <div class="col-3">
+          <router-link
+            class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
+            to="/testers"
+          >
+            <span>
+              <img src="/asset_images/test-icons.svg" alt srcset />
+            </span>
+            TESTERS
+          </router-link>
+        </div>
+      </div>
+    </div>
   </nav>
 </template>
 
@@ -54,10 +68,10 @@ nav {
   position: sticky;
   z-index: 3;
   width: 100%;
+  background: #333;
+  margin-bottom: 20px;
 }
-ul.items-wrapper {
-  display: flex;
-
+div.items-wrapper {
   list-style: none;
   line-height: 3rem;
   padding: 0;
@@ -71,6 +85,5 @@ ul.items-wrapper {
 }
 .nav-link {
   color: rgb(201, 198, 198);
-  padding-left: 90px;
 }
 </style>
