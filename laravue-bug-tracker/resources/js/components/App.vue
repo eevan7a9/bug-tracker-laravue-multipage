@@ -23,7 +23,7 @@ export default {
     AppLoader
   },
   computed: {
-    ...mapGetters(["overlay_Loader"])
+    ...mapGetters(["overlay_Loader", "user"])
   },
   methods: {
     ...mapActions([
@@ -48,6 +48,16 @@ export default {
     console.log("getting testers..");
     await this.getTesters();
     this.toggleLoader();
+    // Notify if user is unassigned
+    if (!this.user.admin && !this.user.developer && !this.user.tester) {
+      setTimeout(() => {
+        this.$swal.fire(
+          "You are Unassigned!",
+          "Admin haven't assigned you a role.",
+          "info"
+        );
+      }, 2000);
+    }
   }
 };
 </script>

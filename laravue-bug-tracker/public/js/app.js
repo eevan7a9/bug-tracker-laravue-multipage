@@ -2075,12 +2075,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Navbar: _Navbar__WEBPACK_IMPORTED_MODULE_1__["default"],
     AppLoader: _AppLoader__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["overlay_Loader"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["overlay_Loader", "user"])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapActions"])(["getUser", "getBugs", "getProjects", "getDevelopers", "getTesters", "toggleLoader"])),
   created: function () {
     var _created = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var _this = this;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -2111,9 +2113,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return this.getTesters();
 
             case 16:
-              this.toggleLoader();
+              this.toggleLoader(); // Notify if user is unassigned
 
-            case 17:
+              if (!this.user.admin && !this.user.developer && !this.user.tester) {
+                setTimeout(function () {
+                  _this.$swal.fire("You are Unassigned!", "Admin haven't assigned you a role.", "info");
+                }, 2000);
+              }
+
+            case 18:
             case "end":
               return _context.stop();
           }
