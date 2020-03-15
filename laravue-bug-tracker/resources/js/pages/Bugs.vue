@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import AddBug from "../components/AddBug";
-import TableDataBugs from "../components/TableDataBugs";
-import DetailsBug from "../components/DetailsBug";
-import EditBug from "../components/EditBug";
+import AddBug from "../components/bugs/AddBug";
+import TableDataBugs from "../components/bugs/TableDataBugs";
+import DetailsBug from "../components/bugs/DetailsBug";
+import EditBug from "../components/bugs/EditBug";
 export default {
   name: "bugs",
   components: {
