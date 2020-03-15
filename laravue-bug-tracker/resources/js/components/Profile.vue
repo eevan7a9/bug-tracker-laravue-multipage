@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import AccountInfo from "./AccountInfo.vue";
+import AccountInfo from "./account/AccountInfo";
 export default {
   name: "Profile",
   components: {
