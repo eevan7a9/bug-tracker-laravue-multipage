@@ -2200,7 +2200,10 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("BugsCardLists", { attrs: { bugs: _vm.project_details.bugs } })
+      _c("BugsCardLists", {
+        staticClass: "col-md-8",
+        attrs: { bugs: _vm.project_details.bugs }
+      })
     ],
     1
   )

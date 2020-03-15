@@ -147,7 +147,7 @@
       <hr />
       <h1 class="mt-5 font-weight-bold">Bug Reports :</h1>
     </div>
-    <BugsCardLists :bugs="project_details.bugs" />
+    <BugsCardLists class="col-md-8" :bugs="project_details.bugs" />
   </div>
 </template>
 
