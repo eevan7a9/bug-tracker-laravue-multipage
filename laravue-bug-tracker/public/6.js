@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/User.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************!*\
@@ -10,6 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_developers_DetailsDeveloper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/developers/DetailsDeveloper */ "./resources/js/components/developers/DetailsDeveloper.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -25,10 +26,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
- // import DetailsDeveloper from "../components/developers/DetailsDeveloper";
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "user",
@@ -38,13 +36,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["user", "developer_details"]),
-  components: {// DetailsDeveloper
+  components: {
+    DetailsDeveloper: _components_developers_DetailsDeveloper__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getDeveloperDetails"])),
+  created: function created() {
+    var _this = this;
+
+    if (this.user.developer) {
+      if (this.user.id === this.developer_details.id) {
+        this.showDeveloper = true;
+      } else {
+        this.getDeveloperDetails(this.user.id).then(function () {
+          _this.showDeveloper = true;
+        });
+      }
+    }
+  },
   watch: {
     user: function user() {
+      var _this2 = this;
+
       if (this.user.developer) {
-        this.getDeveloperDetails(this.user.id);
+        this.getDeveloperDetails(this.user.id).then(function () {
+          _this2.showDeveloper = true;
+        });
       }
     }
   }
@@ -67,13 +83,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.user.developer
-      ? _c("div", [_vm._v("\n    " + _vm._s(_vm.developer_details) + "\n  ")])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.user.tester ? _c("div", [_c("h1", [_vm._v("Tester")])]) : _vm._e()
-  ])
+  return _c(
+    "div",
+    [
+      _vm.showDeveloper && _vm.user.developer
+        ? _c("DetailsDeveloper")
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.user.tester ? _c("div", [_c("h1", [_vm._v("Tester")])]) : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
