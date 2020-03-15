@@ -17,4 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('{any}', 'AppController@index')->where('any','.*');
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
+Route::get('/app', function () {
+    return view('app');
+})->name('app');
+Route::get('{any}', 'AppController@index')->where('any', '.*');

@@ -223,7 +223,7 @@
             @if (Route::has('login'))
             <div class="links mt-5">
                 @auth
-                <a href="{{ url('/dashboard/') }}"><button class="">Home</button></a>
+                <a href="{{ route('app') }}"><button class="">Home</button></a>
                 @else
                 <a href="{{ route('login') }}"><button class="">Login</button></a>
 

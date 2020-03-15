@@ -13,6 +13,7 @@ Vue.use(VueSweetalert2);
 Vue.use(BootstrapVue);
 
 Vue.component('app-component', require('./components/App.vue').default);
+Vue.component('profile-component', require('./components/Profile.vue').default);
 
 axios.defaults.baseURL = 'http://localhost:8000/';
 
