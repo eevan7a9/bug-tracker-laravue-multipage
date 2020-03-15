@@ -153,7 +153,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import BugsCardLists from "./BugsCardLists";
+import BugsCardLists from "./bugs/BugsCardLists";
 export default {
   components: {
     BugsCardLists
