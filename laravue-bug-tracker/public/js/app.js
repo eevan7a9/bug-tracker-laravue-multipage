@@ -96651,32 +96651,32 @@ var routes = [{
   path: '/',
   name: 'bugs',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../pages/Bugs.vue */ "./resources/js/pages/Bugs.vue"));
+    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../pages/Bugs.vue */ "./resources/js/pages/Bugs.vue"));
   },
   props: true
 }, {
   path: '/projects',
   name: 'projects',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../pages/Projects.vue */ "./resources/js/pages/Projects.vue"));
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../pages/Projects.vue */ "./resources/js/pages/Projects.vue"));
   }
 }, {
   path: '/developers',
   name: 'developers',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../pages/Developers.vue */ "./resources/js/pages/Developers.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../pages/Developers.vue */ "./resources/js/pages/Developers.vue"));
   }
 }, {
   path: '/testers',
   name: 'testers',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../pages/Testers.vue */ "./resources/js/pages/Testers.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../pages/Testers.vue */ "./resources/js/pages/Testers.vue"));
   }
 }, {
   path: '/user',
   name: 'user',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../pages/User.vue */ "./resources/js/pages/User.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../pages/User.vue */ "./resources/js/pages/User.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

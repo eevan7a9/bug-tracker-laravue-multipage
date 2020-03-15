@@ -11,6 +11,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_developers_DetailsDeveloper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/developers/DetailsDeveloper */ "./resources/js/components/developers/DetailsDeveloper.vue");
+/* harmony import */ var _components_testers_DetailsTester__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/testers/DetailsTester */ "./resources/js/components/testers/DetailsTester.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -24,31 +25,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "user",
+  components: {
+    DetailsDeveloper: _components_developers_DetailsDeveloper__WEBPACK_IMPORTED_MODULE_1__["default"],
+    DetailsTester: _components_testers_DetailsTester__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   data: function data() {
     return {
-      showDeveloper: false
+      showDetails: ""
     };
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["user", "developer_details"]),
-  components: {
-    DetailsDeveloper: _components_developers_DetailsDeveloper__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getDeveloperDetails"])),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["user", "developer_details", "tester_details"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getDeveloperDetails", "getTesterDetails"])),
   created: function created() {
     var _this = this;
 
     if (this.user.developer) {
       if (this.user.id === this.developer_details.id) {
-        this.showDeveloper = true;
+        this.showDetails = "developer";
       } else {
         this.getDeveloperDetails(this.user.id).then(function () {
-          _this.showDeveloper = true;
+          _this.showDetails = "developer";
+        });
+      }
+    } else if (this.user.tester) {
+      if (this.user.id === this.tester_details.id) {
+        this.showDetails = "tester";
+      } else {
+        this.getTesterDetails(this.user.id).then(function () {
+          _this.showDetails = "tester";
         });
       }
     }
@@ -59,7 +68,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.user.developer) {
         this.getDeveloperDetails(this.user.id).then(function () {
-          _this2.showDeveloper = true;
+          _this2.showDetails = "developer";
+        });
+      } else if (this.user.tester) {
+        this.getTesterDetails(this.user.id).then(function () {
+          _this2.showDetails = "tester";
         });
       }
     }
@@ -86,11 +99,13 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm.showDeveloper && _vm.user.developer
+      _vm.showDetails == "developer" && _vm.user.developer
         ? _c("DetailsDeveloper")
         : _vm._e(),
       _vm._v(" "),
-      _vm.user.tester ? _c("div", [_c("h1", [_vm._v("Tester")])]) : _vm._e()
+      _vm.showDetails == "tester" && _vm.user.tester
+        ? _c("DetailsTester")
+        : _vm._e()
     ],
     1
   )
