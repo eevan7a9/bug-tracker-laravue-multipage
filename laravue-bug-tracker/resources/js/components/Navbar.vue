@@ -2,7 +2,7 @@
   <nav class="nav-bar">
     <div class="container">
       <div class="items-wrapper d-flex justify-content-around">
-        <div class="">
+        <div class>
           <router-link
             class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
             to="/"
@@ -13,7 +13,7 @@
             BUGS
           </router-link>
         </div>
-        <div class="">
+        <div class>
           <router-link
             class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
             to="/projects"
@@ -24,7 +24,7 @@
             PROJECTS
           </router-link>
         </div>
-        <div class="" v-if="user.admin">
+        <div class v-if="user.admin">
           <router-link
             class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
             to="/developers"
@@ -35,7 +35,7 @@
             DEVELOPERS
           </router-link>
         </div>
-        <div class="" v-if="user.admin">
+        <div class v-if="user.admin">
           <router-link
             class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
             to="/testers"
@@ -46,13 +46,24 @@
             TESTERS
           </router-link>
         </div>
+        <div class v-if="!user.admin">
+          <router-link
+            class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
+            to="/user"
+          >
+            <span>
+              <img src="/asset_images/user-icons.svg" alt srcset />
+            </span>
+            USER
+          </router-link>
+        </div>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   name: "navbar",
   computed: mapGetters(["user"])

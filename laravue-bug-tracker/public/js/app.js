@@ -2232,6 +2232,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "navbar",
@@ -79736,6 +79747,36 @@ var render = function() {
                 ],
                 1
               )
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.user.admin
+            ? _c(
+                "div",
+                {},
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass:
+                        "nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center",
+                      attrs: { to: "/user" }
+                    },
+                    [
+                      _c("span", [
+                        _c("img", {
+                          attrs: {
+                            src: "/asset_images/user-icons.svg",
+                            alt: "",
+                            srcset: ""
+                          }
+                        })
+                      ]),
+                      _vm._v("\n          USER\n        ")
+                    ]
+                  )
+                ],
+                1
+              )
             : _vm._e()
         ]
       )
@@ -96630,6 +96671,12 @@ var routes = [{
   name: 'testers',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../pages/Testers.vue */ "./resources/js/pages/Testers.vue"));
+  }
+}, {
+  path: '/user',
+  name: 'user',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../pages/User.vue */ "./resources/js/pages/User.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

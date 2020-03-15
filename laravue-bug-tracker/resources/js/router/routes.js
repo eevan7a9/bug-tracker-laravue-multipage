@@ -4,8 +4,7 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 
-const routes = [
-    {
+const routes = [{
         path: '/',
         name: 'bugs',
         component: () => import("../pages/Bugs.vue"),
@@ -26,12 +25,20 @@ const routes = [
         name: 'testers',
         component: () => import("../pages/Testers.vue")
     },
+    {
+        path: '/user',
+        name: 'user',
+        component: () => import("../pages/User.vue")
+    },
 ]
 
 
 const router = new VueRouter({
     scrollBehavior() {
-        return { x: 0, y: 0 };
+        return {
+            x: 0,
+            y: 0
+        };
     },
     routes
 })
