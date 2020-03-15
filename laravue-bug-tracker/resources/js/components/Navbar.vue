@@ -1,8 +1,8 @@
 <template>
   <nav class="nav-bar">
     <div class="container">
-      <div class="items-wrapper row">
-        <div class="col-3">
+      <div class="items-wrapper d-flex justify-content-around">
+        <div class="">
           <router-link
             class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
             to="/"
@@ -13,7 +13,7 @@
             BUGS
           </router-link>
         </div>
-        <div class="col-3">
+        <div class="">
           <router-link
             class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
             to="/projects"
@@ -24,7 +24,7 @@
             PROJECTS
           </router-link>
         </div>
-        <div class="col-3">
+        <div class="" v-if="user.admin">
           <router-link
             class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
             to="/developers"
@@ -35,7 +35,7 @@
             DEVELOPERS
           </router-link>
         </div>
-        <div class="col-3">
+        <div class="" v-if="user.admin">
           <router-link
             class="nav-link d-flex flex-column flex-sm-row justify-content-center align-items-center"
             to="/testers"
@@ -52,8 +52,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
-  name: "navbar"
+  name: "navbar",
+  computed: mapGetters(["user"])
 };
 </script>
 
