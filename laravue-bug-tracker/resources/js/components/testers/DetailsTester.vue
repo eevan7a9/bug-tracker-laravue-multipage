@@ -78,7 +78,7 @@
       <hr />
       <h3 class="mt-4 font-weight-bold">Reported Bugs :</h3>
     </div>
-    <BugsCardLists :bugs="tester_details.bugs_added" />
+    <BugsCardLists class="col-md-8" :bugs="tester_details.bugs_added" />
   </div>
 </template>
 

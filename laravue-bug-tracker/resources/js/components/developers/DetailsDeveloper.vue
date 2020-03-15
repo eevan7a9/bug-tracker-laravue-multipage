@@ -112,7 +112,7 @@
       <hr />
       <h3 class="mt-4 font-weight-bold">Assigned Bugs :</h3>
     </div>
-    <BugsCardLists :bugs="developer_details.bugs_assigned" />
+    <BugsCardLists class="col-md-8" :bugs="developer_details.bugs_assigned" />
   </div>
 </template>
 

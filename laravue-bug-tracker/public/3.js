@@ -448,7 +448,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.wrapper-bugs[data-v-0f655d81] {\n  background: #d5dbe1 !important;\n}\n.bug-card[data-v-0f655d81] {\n  cursor: pointer;\n}\n.bug-card[data-v-0f655d81]:hover {\n  background: aliceblue;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  box-shadow: -1px 13px 16px -10px rgba(0, 0, 0, 0.75);\n}\n", ""]);
+exports.push([module.i, "\n.bug-card[data-v-0f655d81] {\n  cursor: pointer;\n}\n.bug-card[data-v-0f655d81]:hover {\n  background: aliceblue;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  box-shadow: -1px 13px 16px -10px rgba(0, 0, 0, 0.75);\n}\n", ""]);
 
 // exports
 
@@ -649,7 +649,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "wrapper-bugs col-md-8 mt-3 pb-3" },
+    { staticClass: "wrapper-bugs mt-3 pb-3" },
     [
       _vm._l(_vm.bugs, function(bug) {
         return _c(
@@ -1092,7 +1092,10 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("BugsCardLists", { attrs: { bugs: _vm.tester_details.bugs_added } })
+      _c("BugsCardLists", {
+        staticClass: "col-md-8",
+        attrs: { bugs: _vm.tester_details.bugs_added }
+      })
     ],
     1
   )

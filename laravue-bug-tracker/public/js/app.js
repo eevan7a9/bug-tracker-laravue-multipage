@@ -79793,6 +79793,7 @@ var render = function() {
         {
           attrs: {
             "border-variant": "primary",
+            "header-bg-variant": "primary",
             "header-border-variant": "primary"
           },
           scopedSlots: _vm._u([
@@ -79800,7 +79801,7 @@ var render = function() {
               key: "header",
               fn: function() {
                 return [
-                  _c("span", { staticClass: "font-weight-bold" }, [
+                  _c("span", { staticClass: "font-weight-bold text-light" }, [
                     _vm._v("Account Info")
                   ])
                 ]
@@ -97953,20 +97954,19 @@ var actions = {
               }); // console.log(user)
 
               commit("setUser", user);
-              _context.next = 16;
-              break;
+              return _context.abrupt("return", user);
 
-            case 13:
-              _context.prev = 13;
+            case 14:
+              _context.prev = 14;
               _context.t0 = _context["catch"](2);
               alert(_context.t0); // console.log(error.response)
 
-            case 16:
+            case 17:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 13]]);
+      }, _callee, null, [[2, 14]]);
     }));
 
     function getUser(_x) {

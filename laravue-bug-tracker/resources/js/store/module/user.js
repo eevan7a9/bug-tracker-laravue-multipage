@@ -8,7 +8,9 @@ const getters = {
 }
 
 const actions = {
-    getUser: async ({ commit }) => {
+    getUser: async ({
+        commit
+    }) => {
         const user = {}
         try {
             const result = await axios.get("api_web_session/v1/user");
@@ -20,6 +22,7 @@ const actions = {
             });
             // console.log(user)
             commit("setUser", user);
+            return user
         } catch (error) {
             alert(error);
             // console.log(error.response)

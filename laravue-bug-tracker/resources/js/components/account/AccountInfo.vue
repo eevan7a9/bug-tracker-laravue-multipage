@@ -1,8 +1,8 @@
 <template>
   <div class="col-sm-8 mt-5">
-    <b-card border-variant="primary" header-border-variant="primary">
+    <b-card border-variant="primary" header-bg-variant="primary" header-border-variant="primary">
       <template v-slot:header>
-        <span class="font-weight-bold">Account Info</span>
+        <span class="font-weight-bold text-light">Account Info</span>
       </template>
       <div class="row">
         <div class="col-md-4">

@@ -8,6 +8,7 @@
 
 <script>
 import AccountInfo from "./account/AccountInfo";
+
 export default {
   name: "Profile",
   components: {

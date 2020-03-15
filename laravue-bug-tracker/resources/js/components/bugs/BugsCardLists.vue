@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper-bugs col-md-8 mt-3 pb-3">
+  <div class="wrapper-bugs mt-3 pb-3">
     <div class="card bug-card mt-4" v-for="bug in bugs" :key="bug.id" @click="showBug(bug.id)">
       <div class="card-header p-2" :class="bug.is_fixed ? 'bg-success' : 'bg-danger'">
         <h6 class="text-light mb-0 font-weight-bold">{{ bug.is_fixed ? "Fixed" : "Active" }}</h6>
@@ -41,9 +41,6 @@ export default {
 </script>
 
 <style scoped>
-.wrapper-bugs {
-  background: #d5dbe1 !important;
-}
 .bug-card {
   cursor: pointer;
 }
