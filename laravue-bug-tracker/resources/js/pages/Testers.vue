@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import AddTester from "../components/AddTester";
-import TableDataTesters from "../components/TableDataTesters";
-import DetailsTester from "../components/DetailsTester";
+import AddTester from "../components/testers/AddTester";
+import TableDataTesters from "../components/testers/TableDataTesters";
+import DetailsTester from "../components/testers/DetailsTester";
 export default {
   name: "projects",
   components: {
