@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import AddDeveloper from "../components/AddDeveloper";
-import TableDataDevelopers from "../components/TableDataDevelopers";
-import DetailsDeveloper from "../components/DetailsDeveloper";
+import AddDeveloper from "../components/developers/AddDeveloper";
+import TableDataDevelopers from "../components/developers/TableDataDevelopers";
+import DetailsDeveloper from "../components/developers/DetailsDeveloper";
 export default {
   name: "projects",
   components: {
