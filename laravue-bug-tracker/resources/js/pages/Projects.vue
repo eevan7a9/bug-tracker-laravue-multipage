@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import AddProject from "../components/AddProject";
-import TableDataProject from "../components/TableDataProject";
-import DetailsProject from "../components/DetailsProject";
-import EditProject from "../components/EditProject";
+import AddProject from "../components/projects/AddProject";
+import TableDataProject from "../components/projects/TableDataProject";
+import DetailsProject from "../components/projects/DetailsProject";
+import EditProject from "../components/projects/EditProject";
 export default {
   name: "projects",
   components: {
