@@ -18,12 +18,18 @@ const routes = [{
     {
         path: '/developers',
         name: 'developers',
-        component: () => import("../pages/Developers.vue")
+        component: () => import("../pages/Developers.vue"),
+        meta: {
+            requiresAdmin: true
+        }
     },
     {
         path: '/testers',
         name: 'testers',
-        component: () => import("../pages/Testers.vue")
+        component: () => import("../pages/Testers.vue"),
+        meta: {
+            requiresAdmin: true
+        }
     },
     {
         path: '/user',

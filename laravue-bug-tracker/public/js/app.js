@@ -96169,6 +96169,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+__webpack_require__(/*! ./router/guards */ "./resources/js/router/guards.js");
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -96632,6 +96634,51 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/router/guards.js":
+/*!***************************************!*\
+  !*** ./resources/js/router/guards.js ***!
+  \***************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes */ "./resources/js/router/routes.js");
+/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/index */ "./resources/js/store/index.js");
+
+
+_routes__WEBPACK_IMPORTED_MODULE_0__["default"].beforeEach(function (to, from, next) {
+  if (to.matched.some(function (record) {
+    return record.meta.requiresAdmin;
+  })) {
+    if (!_store_index__WEBPACK_IMPORTED_MODULE_1__["default"].state.user.user.id) {
+      _store_index__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch("getUser").then(function () {
+        if (_store_index__WEBPACK_IMPORTED_MODULE_1__["default"].state.user.user.admin) {
+          next();
+          console.log("is admin");
+        } else {
+          console.log("not Admin");
+          next({
+            name: 'bugs'
+          });
+        }
+      });
+    } else if (_store_index__WEBPACK_IMPORTED_MODULE_1__["default"].state.user.user.admin) {
+      next();
+      console.log("is admin");
+    } else {
+      next({
+        name: 'bugs'
+      });
+      console.log("not admin");
+    }
+  } else {
+    next(); // make sure to always call next()!
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/router/routes.js":
 /*!***************************************!*\
   !*** ./resources/js/router/routes.js ***!
@@ -96665,12 +96712,18 @@ var routes = [{
   name: 'developers',
   component: function component() {
     return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../pages/Developers.vue */ "./resources/js/pages/Developers.vue"));
+  },
+  meta: {
+    requiresAdmin: true
   }
 }, {
   path: '/testers',
   name: 'testers',
   component: function component() {
     return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../pages/Testers.vue */ "./resources/js/pages/Testers.vue"));
+  },
+  meta: {
+    requiresAdmin: true
   }
 }, {
   path: '/user',

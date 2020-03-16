@@ -2,6 +2,7 @@ import Vue from 'vue'
 import router from './router/routes';
 import axios from 'axios';
 import store from "./store/index";
+require('./router/guards')
 require('./bootstrap');
 import BootstrapVue from 'bootstrap-vue';
 import VueSweetalert2 from 'vue-sweetalert2';
