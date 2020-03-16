@@ -39,6 +39,6 @@ class LoginController extends Controller
     }
     public function redirectTo()
     {
-        return redirect()->route('app');
+        return 'app';
     }
 }

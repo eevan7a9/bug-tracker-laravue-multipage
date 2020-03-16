@@ -23,4 +23,4 @@ Route::get('/profile', function () {
 Route::get('/app', function () {
     return view('app');
 })->name('app');
-Route::get('{any}', 'AppController@index')->where('any', '.*');
+Route::get('/app/{any}', 'AppController@index')->where('any', '.*');
