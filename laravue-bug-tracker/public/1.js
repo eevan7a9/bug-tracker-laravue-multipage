@@ -101,6 +101,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -226,67 +231,71 @@ var render = function() {
                 "card-header bg-light border-primary d-flex justify-content-between align-items-center"
             },
             [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-primary",
-                  on: {
-                    click: function($event) {
-                      return _vm.$emit("toggleDetails")
-                    }
-                  }
-                },
-                [_vm._v("Back")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn",
-                  class: !_vm.user.admin ? "btn-secondary" : "btn-danger",
-                  on: {
-                    click: function($event) {
-                      return _vm.removeTester(_vm.tester_details.id)
-                    }
-                  }
-                },
-                [
-                  _c(
-                    "svg",
+              _vm.user.admin
+                ? _c(
+                    "button",
                     {
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        width: "18",
-                        height: "18",
-                        viewBox: "0 0 24 24",
-                        fill: "none",
-                        stroke: "currentColor",
-                        "stroke-width": "2",
-                        "stroke-linecap": "round",
-                        "stroke-linejoin": "round"
+                      staticClass: "btn btn-outline-primary",
+                      on: {
+                        click: function($event) {
+                          return _vm.$emit("toggleDetails")
+                        }
+                      }
+                    },
+                    [_vm._v("Back")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.admin
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn",
+                      class: !_vm.user.admin ? "btn-secondary" : "btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.removeTester(_vm.tester_details.id)
+                        }
                       }
                     },
                     [
-                      _c("polyline", { attrs: { points: "3 6 5 6 21 6" } }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          d:
-                            "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("line", {
-                        attrs: { x1: "10", y1: "11", x2: "10", y2: "17" }
-                      }),
-                      _vm._v(" "),
-                      _c("line", {
-                        attrs: { x1: "14", y1: "11", x2: "14", y2: "17" }
-                      })
+                      _c(
+                        "svg",
+                        {
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            width: "18",
+                            height: "18",
+                            viewBox: "0 0 24 24",
+                            fill: "none",
+                            stroke: "currentColor",
+                            "stroke-width": "2",
+                            "stroke-linecap": "round",
+                            "stroke-linejoin": "round"
+                          }
+                        },
+                        [
+                          _c("polyline", { attrs: { points: "3 6 5 6 21 6" } }),
+                          _vm._v(" "),
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("line", {
+                            attrs: { x1: "10", y1: "11", x2: "10", y2: "17" }
+                          }),
+                          _vm._v(" "),
+                          _c("line", {
+                            attrs: { x1: "14", y1: "11", x2: "14", y2: "17" }
+                          })
+                        ]
+                      )
                     ]
                   )
-                ]
-              )
+                : _vm._e()
             ]
           ),
           _vm._v(" "),

@@ -6,8 +6,13 @@
         <div
           class="card-header bg-light border-primary d-flex justify-content-between align-items-center"
         >
-          <button class="btn btn-outline-primary" @click="$emit('toggleDetails')">Back</button>
           <button
+            v-if="user.admin"
+            class="btn btn-outline-primary"
+            @click="$emit('toggleDetails')"
+          >Back</button>
+          <button
+            v-if="user.admin"
             class="btn"
             :class="!user.admin ? 'btn-secondary': 'btn-danger'"
             @click="removeTester(tester_details.id)"
