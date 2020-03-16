@@ -3592,6 +3592,13 @@ var BCalendar = _utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
       type: Boolean,
       default: false
     },
+    initialDate: {
+      // This specifies the calendar year/month/day that will be shown when
+      // first opening the datepicker if no v-model value is provided
+      // Default is the current date (or `min`/`max`)
+      type: [String, Date],
+      default: null
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -3770,7 +3777,7 @@ var BCalendar = _utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
       // Selected date
       selectedYMD: selected,
       // Date in calendar grid that has `tabindex` of `0`
-      activeYMD: selected || Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["formatYMD"])(this.getToday()),
+      activeYMD: selected || Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["formatYMD"])(Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["constrainDate"])(this.initialDate || this.getToday()), this.min, this.max),
       // Will be true if the calendar grid has/contains focus
       gridHasFocus: false,
       // Flag to enable the `aria-live` region(s) after mount
@@ -3924,6 +3931,7 @@ var BCalendar = _utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
         day: '2-digit'
       }, this.dateFormatOptions, {
         // Ensure hours/minutes/seconds are not shown
+        // As we do not support the time portion (yet)
         hour: undefined,
         minute: undefined,
         second: undefined,
@@ -4068,7 +4076,7 @@ var BCalendar = _utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
     },
     hidden: function hidden(newVal) {
       // Reset the active focused day when hidden
-      this.activeYMD = this.selectedYMD || Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["formatYMD"])(this.value) || Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["formatYMD"])(this.getToday()); // Enable/disable the live regions
+      this.activeYMD = this.selectedYMD || Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["formatYMD"])(this.value || this.constrainDate(this.initialDate || this.getToday())); // Enable/disable the live regions
 
       this.setLive(!newVal);
     }
@@ -4130,10 +4138,7 @@ var BCalendar = _utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
     constrainDate: function constrainDate(date) {
       // Constrains a date between min and max
       // returns a new `Date` object instance
-      date = Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["parseYMD"])(date);
-      var min = this.computedMin || date;
-      var max = this.computedMax || date;
-      return Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["createDate"])(date < min ? min : date > max ? max : date);
+      return Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["constrainDate"])(date, this.computedMin, this.computedMax);
     },
     emitSelected: function emitSelected(date) {
       var _this4 = this;
@@ -4166,6 +4171,7 @@ var BCalendar = _utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
       var activeDate = Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["createDate"])(this.activeDate);
       var checkDate = Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["createDate"])(this.activeDate);
       var day = activeDate.getDate();
+      var constrainedToday = this.constrainDate(this.getToday());
       var isRTL = this.isRTL;
 
       if (keyCode === PAGEUP) {
@@ -4199,11 +4205,11 @@ var BCalendar = _utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
         checkDate = activeDate;
       } else if (keyCode === HOME) {
         // HOME - Today
-        activeDate = this.getToday();
+        activeDate = constrainedToday;
         checkDate = activeDate;
       } else if (keyCode === END) {
         // END - Selected date, or today if no selected date
-        activeDate = Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["parseYMD"])(this.selectedDate) || this.getToday();
+        activeDate = Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["parseYMD"])(this.selectedDate) || constrainedToday;
         checkDate = activeDate;
       }
 
@@ -4261,7 +4267,7 @@ var BCalendar = _utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
     },
     gotoCurrentMonth: function gotoCurrentMonth() {
       // TODO: Maybe this goto date should be configurable?
-      this.activeYMD = Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["formatYMD"])(this.getToday());
+      this.activeYMD = Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["formatYMD"])(this.constrainDate(this.getToday()));
     },
     gotoNextMonth: function gotoNextMonth() {
       this.activeYMD = Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["formatYMD"])(this.constrainDate(Object(_utils_date__WEBPACK_IMPORTED_MODULE_6__["oneMonthAhead"])(this.activeDate)));
@@ -4292,7 +4298,7 @@ var BCalendar = _utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
     var safeId = this.safeId; // Flag for making the `aria-live` regions live
 
     var isLive = this.isLive; // Pre-compute some IDs
-    // Thes should be computed props
+    // This should be computed props
 
     var idValue = safeId();
     var idWidget = safeId('_calendar-wrapper_');
@@ -7839,6 +7845,14 @@ var propsMixin = {
       type: [String, Date],
       default: ''
     },
+    initialDate: {
+      // This specifies the calendar year/month/day that will be shown when
+      // first opening the datepicker if no v-model value is provided
+      // Default is the current date (or `min`/`max`)
+      // Passed directly to <b-calendar>
+      type: [String, Date],
+      default: null
+    },
     placeholder: {
       type: String,
       // Defaults to `labelNoDateSelected` from calendar context
@@ -7907,6 +7921,15 @@ var propsMixin = {
     direction: {
       type: String,
       default: null
+    },
+    buttonOnly: {
+      type: Boolean,
+      default: false
+    },
+    buttonVariant: {
+      // Applicable in button only mode
+      type: String,
+      default: 'secondary'
     },
     calendarWidth: {
       // Width of the calendar dropdown
@@ -8076,13 +8099,13 @@ var BFormDatepicker = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["defa
     return {
       // We always use `YYYY-MM-DD` value internally
       localYMD: Object(_utils_date__WEBPACK_IMPORTED_MODULE_3__["formatYMD"])(this.value) || '',
+      // If the popup is open
+      isVisible: false,
       // Context data from BCalendar
       localLocale: null,
       isRTL: false,
       formattedValue: '',
-      activeYMD: '',
-      // If the popup is open
-      isVisible: false
+      activeYMD: ''
     };
   },
   computed: {
@@ -8100,6 +8123,7 @@ var BFormDatepicker = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["defa
         value: self.localYMD,
         min: self.min,
         max: self.max,
+        initialDate: self.initialDate,
         readonly: self.readonly,
         disabled: self.disabled,
         locale: self.locale,
@@ -8128,7 +8152,7 @@ var BFormDatepicker = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["defa
       return (this.localLocale || '').replace(/-u-.*$/i, '') || null;
     },
     computedResetValue: function computedResetValue() {
-      return Object(_utils_date__WEBPACK_IMPORTED_MODULE_3__["formatYMD"])(this.resetValue) || '';
+      return Object(_utils_date__WEBPACK_IMPORTED_MODULE_3__["formatYMD"])(Object(_utils_date__WEBPACK_IMPORTED_MODULE_3__["constrainDate"])(this.resetValue)) || '';
     }
   },
   watch: {
@@ -8136,7 +8160,10 @@ var BFormDatepicker = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["defa
       this.localYMD = Object(_utils_date__WEBPACK_IMPORTED_MODULE_3__["formatYMD"])(newVal) || '';
     },
     localYMD: function localYMD(newVal) {
-      this.$emit('input', this.valueAsDate ? Object(_utils_date__WEBPACK_IMPORTED_MODULE_3__["parseYMD"])(newVal) || null : newVal || '');
+      // We only update the v-model when the datepicker is open
+      if (this.isVisible) {
+        this.$emit('input', this.valueAsDate ? Object(_utils_date__WEBPACK_IMPORTED_MODULE_3__["parseYMD"])(newVal) || null : newVal || '');
+      }
     },
     calendarYM: function calendarYM(newVal, oldVal)
     /* istanbul ignore next */
@@ -8206,7 +8233,8 @@ var BFormDatepicker = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["defa
       this.$emit('context', ctx);
     },
     onTodayButton: function onTodayButton() {
-      this.setAndClose(Object(_utils_date__WEBPACK_IMPORTED_MODULE_3__["formatYMD"])(Object(_utils_date__WEBPACK_IMPORTED_MODULE_3__["createDate"])()));
+      // Set to today (or min/max if today is out of range)
+      this.setAndClose(Object(_utils_date__WEBPACK_IMPORTED_MODULE_3__["formatYMD"])(Object(_utils_date__WEBPACK_IMPORTED_MODULE_3__["constrainDate"])(Object(_utils_date__WEBPACK_IMPORTED_MODULE_3__["createDate"])(), this.min, this.max)));
     },
     onResetButton: function onResetButton() {
       this.setAndClose(this.computedResetValue);
@@ -8421,9 +8449,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+ // --- Constants ---
 
 var NAME = 'BFormFile';
-var VALUE_EMPTY_DEPRECATED_MSG = 'Setting "value"/"v-model" to an empty string for reset is deprecated. Set to "null" instead.'; // @vue/component
+var VALUE_EMPTY_DEPRECATED_MSG = 'Setting "value"/"v-model" to an empty string for reset is deprecated. Set to "null" instead.'; // --- Helper methods ---
+
+var isValidValue = function isValidValue(value) {
+  return Object(_utils_inspect__WEBPACK_IMPORTED_MODULE_4__["isFile"])(value) || Object(_utils_array__WEBPACK_IMPORTED_MODULE_2__["isArray"])(value) && value.every(function (v) {
+    return isValidValue(v);
+  });
+}; // @vue/component
+
 
 var BFormFile = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
   name: NAME,
@@ -8443,14 +8479,14 @@ var BFormFile = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].
     value: {
       type: [_utils_safe_types__WEBPACK_IMPORTED_MODULE_5__["File"], Array],
       default: null,
-      validator: function validator(val) {
+      validator: function validator(value) {
         /* istanbul ignore next */
-        if (val === '') {
+        if (value === '') {
           Object(_utils_warn__WEBPACK_IMPORTED_MODULE_7__["warn"])(VALUE_EMPTY_DEPRECATED_MSG, NAME);
           return true;
         }
 
-        return Object(_utils_inspect__WEBPACK_IMPORTED_MODULE_4__["isUndefinedOrNull"])(val) || Object(_utils_inspect__WEBPACK_IMPORTED_MODULE_4__["isFile"])(val) || Object(_utils_array__WEBPACK_IMPORTED_MODULE_2__["isArray"])(val) && (val.length === 0 || val.every(_utils_inspect__WEBPACK_IMPORTED_MODULE_4__["isFile"]));
+        return Object(_utils_inspect__WEBPACK_IMPORTED_MODULE_4__["isUndefinedOrNull"])(value) || isValidValue(value);
       }
     },
     accept: {
@@ -8576,16 +8612,17 @@ var BFormFile = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].
       }
     },
     reset: function reset() {
+      // IE 11 doesn't support setting `$input.value` to `''` or `null`
+      // So we use this little extra hack to reset the value, just in case
+      // This also appears to work on modern browsers as well
+      // Wrapped in try in case IE 11 or mobile Safari crap out
       try {
-        // Wrapped in try in case IE 11 craps out
-        this.$refs.input.value = '';
-      } catch (e) {} // IE 11 doesn't support setting `input.value` to '' or null
-      // So we use this little extra hack to reset the value, just in case.
-      // This also appears to work on modern browsers as well.
+        var $input = this.$refs.input;
+        $input.value = '';
+        $input.type = '';
+        $input.type = 'file';
+      } catch (e) {}
 
-
-      this.$refs.input.type = '';
-      this.$refs.input.type = 'file';
       this.selectedFile = this.multiple ? [] : null;
     },
     onFileChange: function onFileChange(evt) {
@@ -12075,6 +12112,15 @@ var propsMixin = {
       type: [Number, String],
       default: 1
     },
+    buttonOnly: {
+      type: Boolean,
+      default: false
+    },
+    buttonVariant: {
+      // Applicable in button only mode
+      type: String,
+      default: 'secondary'
+    },
     nowButton: {
       type: Boolean,
       default: false
@@ -12248,7 +12294,12 @@ var BFormTimepicker = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["defa
       this.localHMS = newVal || '';
     },
     localHMS: function localHMS(newVal) {
-      this.$emit('input', newVal || '');
+      // We only update hte v-model value when the timepicker
+      // is open, to prevent cursor jumps when bound to a
+      // text input in button only mode
+      if (this.isVisible) {
+        this.$emit('input', newVal || '');
+      }
     }
   },
   methods: {
@@ -13337,17 +13388,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./modal */ "./node_modules/bootstrap-vue/esm/components/modal/index.js");
 /* harmony import */ var _nav__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./nav */ "./node_modules/bootstrap-vue/esm/components/nav/index.js");
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./navbar */ "./node_modules/bootstrap-vue/esm/components/navbar/index.js");
-/* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./pagination */ "./node_modules/bootstrap-vue/esm/components/pagination/index.js");
-/* harmony import */ var _pagination_nav__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./pagination-nav */ "./node_modules/bootstrap-vue/esm/components/pagination-nav/index.js");
-/* harmony import */ var _popover__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./popover */ "./node_modules/bootstrap-vue/esm/components/popover/index.js");
-/* harmony import */ var _progress__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./progress */ "./node_modules/bootstrap-vue/esm/components/progress/index.js");
-/* harmony import */ var _spinner__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./spinner */ "./node_modules/bootstrap-vue/esm/components/spinner/index.js");
-/* harmony import */ var _table__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./table */ "./node_modules/bootstrap-vue/esm/components/table/index.js");
-/* harmony import */ var _tabs__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./tabs */ "./node_modules/bootstrap-vue/esm/components/tabs/index.js");
-/* harmony import */ var _time__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./time */ "./node_modules/bootstrap-vue/esm/components/time/index.js");
-/* harmony import */ var _toast__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./toast */ "./node_modules/bootstrap-vue/esm/components/toast/index.js");
-/* harmony import */ var _tooltip__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./tooltip */ "./node_modules/bootstrap-vue/esm/components/tooltip/index.js");
+/* harmony import */ var _overlay__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./overlay */ "./node_modules/bootstrap-vue/esm/components/overlay/index.js");
+/* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./pagination */ "./node_modules/bootstrap-vue/esm/components/pagination/index.js");
+/* harmony import */ var _pagination_nav__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./pagination-nav */ "./node_modules/bootstrap-vue/esm/components/pagination-nav/index.js");
+/* harmony import */ var _popover__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./popover */ "./node_modules/bootstrap-vue/esm/components/popover/index.js");
+/* harmony import */ var _progress__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./progress */ "./node_modules/bootstrap-vue/esm/components/progress/index.js");
+/* harmony import */ var _spinner__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./spinner */ "./node_modules/bootstrap-vue/esm/components/spinner/index.js");
+/* harmony import */ var _table__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./table */ "./node_modules/bootstrap-vue/esm/components/table/index.js");
+/* harmony import */ var _tabs__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./tabs */ "./node_modules/bootstrap-vue/esm/components/tabs/index.js");
+/* harmony import */ var _time__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./time */ "./node_modules/bootstrap-vue/esm/components/time/index.js");
+/* harmony import */ var _toast__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./toast */ "./node_modules/bootstrap-vue/esm/components/toast/index.js");
+/* harmony import */ var _tooltip__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./tooltip */ "./node_modules/bootstrap-vue/esm/components/tooltip/index.js");
  // Component group plugins
+
 
 
 
@@ -13431,16 +13484,17 @@ var componentsPlugin = /*#__PURE__*/Object(_utils_plugins__WEBPACK_IMPORTED_MODU
     ModalPlugin: _modal__WEBPACK_IMPORTED_MODULE_32__["ModalPlugin"],
     NavPlugin: _nav__WEBPACK_IMPORTED_MODULE_33__["NavPlugin"],
     NavbarPlugin: _navbar__WEBPACK_IMPORTED_MODULE_34__["NavbarPlugin"],
-    PaginationPlugin: _pagination__WEBPACK_IMPORTED_MODULE_35__["PaginationPlugin"],
-    PaginationNavPlugin: _pagination_nav__WEBPACK_IMPORTED_MODULE_36__["PaginationNavPlugin"],
-    PopoverPlugin: _popover__WEBPACK_IMPORTED_MODULE_37__["PopoverPlugin"],
-    ProgressPlugin: _progress__WEBPACK_IMPORTED_MODULE_38__["ProgressPlugin"],
-    SpinnerPlugin: _spinner__WEBPACK_IMPORTED_MODULE_39__["SpinnerPlugin"],
-    TablePlugin: _table__WEBPACK_IMPORTED_MODULE_40__["TablePlugin"],
-    TabsPlugin: _tabs__WEBPACK_IMPORTED_MODULE_41__["TabsPlugin"],
-    TimePlugin: _time__WEBPACK_IMPORTED_MODULE_42__["TimePlugin"],
-    ToastPlugin: _toast__WEBPACK_IMPORTED_MODULE_43__["ToastPlugin"],
-    TooltipPlugin: _tooltip__WEBPACK_IMPORTED_MODULE_44__["TooltipPlugin"]
+    OverlayPlugin: _overlay__WEBPACK_IMPORTED_MODULE_35__["OverlayPlugin"],
+    PaginationPlugin: _pagination__WEBPACK_IMPORTED_MODULE_36__["PaginationPlugin"],
+    PaginationNavPlugin: _pagination_nav__WEBPACK_IMPORTED_MODULE_37__["PaginationNavPlugin"],
+    PopoverPlugin: _popover__WEBPACK_IMPORTED_MODULE_38__["PopoverPlugin"],
+    ProgressPlugin: _progress__WEBPACK_IMPORTED_MODULE_39__["ProgressPlugin"],
+    SpinnerPlugin: _spinner__WEBPACK_IMPORTED_MODULE_40__["SpinnerPlugin"],
+    TablePlugin: _table__WEBPACK_IMPORTED_MODULE_41__["TablePlugin"],
+    TabsPlugin: _tabs__WEBPACK_IMPORTED_MODULE_42__["TabsPlugin"],
+    TimePlugin: _time__WEBPACK_IMPORTED_MODULE_43__["TimePlugin"],
+    ToastPlugin: _toast__WEBPACK_IMPORTED_MODULE_44__["ToastPlugin"],
+    TooltipPlugin: _tooltip__WEBPACK_IMPORTED_MODULE_45__["TooltipPlugin"]
   }
 });
 
@@ -17664,6 +17718,241 @@ var BNavbar = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].ex
         role: this.tag === 'nav' ? null : 'navigation'
       }
     }, [this.normalizeSlot('default')]);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/esm/components/overlay/index.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/bootstrap-vue/esm/components/overlay/index.js ***!
+  \********************************************************************/
+/*! exports provided: OverlayPlugin, BOverlay */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OverlayPlugin", function() { return OverlayPlugin; });
+/* harmony import */ var _overlay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./overlay */ "./node_modules/bootstrap-vue/esm/components/overlay/overlay.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BOverlay", function() { return _overlay__WEBPACK_IMPORTED_MODULE_0__["BOverlay"]; });
+
+/* harmony import */ var _utils_plugins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/esm/utils/plugins.js");
+
+
+var OverlayPlugin = /*#__PURE__*/Object(_utils_plugins__WEBPACK_IMPORTED_MODULE_1__["pluginFactory"])({
+  components: {
+    BOverlay: _overlay__WEBPACK_IMPORTED_MODULE_0__["BOverlay"]
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/esm/components/overlay/overlay.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/bootstrap-vue/esm/components/overlay/overlay.js ***!
+  \**********************************************************************/
+/*! exports provided: BOverlay */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BOverlay", function() { return BOverlay; });
+/* harmony import */ var _utils_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/vue */ "./node_modules/bootstrap-vue/esm/utils/vue.js");
+/* harmony import */ var _utils_bv_transition__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/bv-transition */ "./node_modules/bootstrap-vue/esm/utils/bv-transition.js");
+/* harmony import */ var _utils_number__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/number */ "./node_modules/bootstrap-vue/esm/utils/number.js");
+/* harmony import */ var _mixins_normalize_slot__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/normalize-slot */ "./node_modules/bootstrap-vue/esm/mixins/normalize-slot.js");
+/* harmony import */ var _spinner_spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../spinner/spinner */ "./node_modules/bootstrap-vue/esm/components/spinner/spinner.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var positionCover = {
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0
+};
+var BOverlay = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+  name: 'BOverlay',
+  mixins: [_mixins_normalize_slot__WEBPACK_IMPORTED_MODULE_3__["default"]],
+  props: {
+    show: {
+      type: Boolean,
+      default: false
+    },
+    variant: {
+      type: String,
+      default: 'light'
+    },
+    bgColor: {
+      // Alternative to variant, allowing a specific
+      // CSS color to be applied to the overlay
+      type: String,
+      default: null
+    },
+    opacity: {
+      type: [Number, String],
+      default: 0.85,
+      validator: function validator(value) {
+        var number = Object(_utils_number__WEBPACK_IMPORTED_MODULE_2__["toFloat"])(value);
+        return number >= 0 && number <= 1;
+      }
+    },
+    blur: {
+      type: String,
+      default: '2px'
+    },
+    rounded: {
+      type: [Boolean, String],
+      default: false
+    },
+    noCenter: {
+      type: Boolean,
+      default: false
+    },
+    noFade: {
+      type: Boolean,
+      default: false
+    },
+    spinnerType: {
+      type: String,
+      default: 'border'
+    },
+    spinnerVariant: {
+      type: String,
+      default: null
+    },
+    spinnerSmall: {
+      type: Boolean,
+      default: false
+    },
+    overlayTag: {
+      type: String,
+      default: 'div'
+    },
+    wrapTag: {
+      type: String,
+      default: 'div'
+    },
+    noWrap: {
+      // If set, does not render the default slot
+      // and switches to absolute positioning
+      type: Boolean,
+      default: false
+    },
+    fixed: {
+      type: Boolean,
+      default: false
+    },
+    zIndex: {
+      type: [Number, String],
+      default: 10
+    }
+  },
+  computed: {
+    computedRounded: function computedRounded() {
+      var rounded = this.rounded;
+      return rounded === true || rounded === '' ? 'rounded' : !rounded ? '' : "rounded-".concat(rounded);
+    },
+    computedVariant: function computedVariant() {
+      return this.variant && !this.bgColor ? "bg-".concat(this.variant) : '';
+    },
+    overlayScope: function overlayScope() {
+      return {
+        spinnerType: this.spinnerType,
+        spinnerVariant: this.spinnerVariant || null,
+        spinnerSmall: this.spinnerSmall
+      };
+    }
+  },
+  methods: {
+    defaultOverlayFn: function defaultOverlayFn(_ref) {
+      var spinnerType = _ref.spinnerType,
+          spinnerVariant = _ref.spinnerVariant,
+          spinnerSmall = _ref.spinnerSmall;
+      return this.$createElement(_spinner_spinner__WEBPACK_IMPORTED_MODULE_4__["BSpinner"], {
+        props: {
+          type: spinnerType,
+          variant: spinnerVariant,
+          small: spinnerSmall
+        }
+      });
+    }
+  },
+  render: function render(h) {
+    var _this = this;
+
+    var $overlay = h();
+
+    if (this.show) {
+      var scope = this.overlayScope; // Overlay backdrop
+
+      var $background = h('div', {
+        staticClass: 'position-absolute',
+        class: [this.computedVariant, this.computedRounded],
+        style: _objectSpread({}, positionCover, {
+          opacity: this.opacity,
+          backgroundColor: this.bgColor || null,
+          backdropFilter: this.blur ? "blur(".concat(this.blur, ")") : null
+        })
+      }); // Overlay content
+
+      var $content = h('div', {
+        staticClass: 'position-absolute',
+        style: this.noCenter ? _objectSpread({}, positionCover) : {
+          top: '50%',
+          left: '50%',
+          transform: 'translateX(-50%) translateY(-50%)'
+        }
+      }, [this.normalizeSlot('overlay', scope) || this.defaultOverlayFn(scope)]); // Overlay positioning
+
+      $overlay = h(this.overlayTag, {
+        key: 'overlay',
+        staticClass: 'b-overlay',
+        class: {
+          'position-absolute': !this.noWrap || this.noWrap && !this.fixed,
+          'position-fixed': this.noWrap && this.fixed
+        },
+        style: _objectSpread({}, positionCover, {
+          zIndex: this.zIndex || 10
+        })
+      }, [$background, $content]);
+    } // Wrap in a fade transition
+
+
+    $overlay = h(_utils_bv_transition__WEBPACK_IMPORTED_MODULE_1__["BVTransition"], {
+      props: {
+        noFade: this.noFade,
+        appear: true
+      },
+      on: {
+        'after-enter': function afterEnter() {
+          return _this.$emit('shown');
+        },
+        'after-leave': function afterLeave() {
+          return _this.$emit('hidden');
+        }
+      }
+    }, [$overlay]);
+
+    if (this.noWrap) {
+      return $overlay;
+    }
+
+    return h(this.wrapTag, {
+      staticClass: 'b-overlay-wrap position-relative',
+      attrs: {
+        'aria-busy': this.show ? 'true' : null
+      }
+    }, this.noWrap ? [$overlay] : [this.normalizeSlot('default'), $overlay]);
   }
 });
 
@@ -29547,6 +29836,10 @@ var commonIconProps = {
   shiftV: {
     type: [Number, String],
     default: 0
+  },
+  animation: {
+    type: String,
+    default: null
   }
 }; // Base attributes needed on all icons
 
@@ -29573,6 +29866,8 @@ var BVIconBase = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
     }
   }, commonIconProps),
   render: function render(h, _ref) {
+    var _class;
+
     var data = _ref.data,
         props = _ref.props,
         children = _ref.children;
@@ -29582,7 +29877,8 @@ var BVIconBase = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
     var shiftH = Object(_utils_number__WEBPACK_IMPORTED_MODULE_4__["toFloat"])(props.shiftH) || 0;
     var shiftV = Object(_utils_number__WEBPACK_IMPORTED_MODULE_4__["toFloat"])(props.shiftV) || 0;
     var flipH = props.flipH;
-    var flipV = props.flipV; // Compute the transforms
+    var flipV = props.flipV;
+    var animation = props.animation; // Compute the transforms
     // Note that order is important as SVG transforms are applied in order from
     // left to right and we want flipping/scale to occur before rotation
     // Note shifting is applied separately
@@ -29613,9 +29909,15 @@ var BVIconBase = /*#__PURE__*/_utils_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
       }, [$inner]);
     }
 
+    if (isStacked) {
+      // Wrap in an additional `<g>` for proper
+      // animation handling if stacked
+      $inner = h('g', {}, [$inner]);
+    }
+
     return h('svg', Object(vue_functional_data_merge__WEBPACK_IMPORTED_MODULE_1__["mergeData"])({
       staticClass: 'b-icon bi',
-      class: _defineProperty({}, "text-".concat(props.variant), !!props.variant),
+      class: (_class = {}, _defineProperty(_class, "text-".concat(props.variant), !!props.variant), _defineProperty(_class, "b-icon-animation-".concat(animation), !!animation), _class),
       attrs: baseAttrs,
       style: isStacked ? {} : {
         fontSize: fontScale === 1 ? null : "".concat(fontScale * 100, "%")
@@ -30098,7 +30400,7 @@ __webpack_require__.r(__webpack_exports__);
 // --- BEGIN AUTO-GENERATED FILE ---
 //
 // @IconsVersion: 1.0.0-alpha2
-// @Generated: 2020-03-06T23:22:51.454Z
+// @Generated: 2020-03-14T14:07:22.334Z
 //
 // This file is generated on each build. Do not edit this file!
 
@@ -30492,7 +30794,7 @@ __webpack_require__.r(__webpack_exports__);
 // --- BEGIN AUTO-GENERATED FILE ---
 //
 // @IconsVersion: 1.0.0-alpha2
-// @Generated: 2020-03-06T23:22:51.454Z
+// @Generated: 2020-03-14T14:07:22.334Z
 //
 // This file is generated on each build. Do not edit this file!
  // Icon helper component
@@ -30848,7 +31150,7 @@ var BootstrapVueIcons = /*#__PURE__*/Object(_utils_plugins__WEBPACK_IMPORTED_MOD
 /*!*************************************************!*\
   !*** ./node_modules/bootstrap-vue/esm/index.js ***!
   \*************************************************/
-/*! exports provided: install, NAME, BVConfigPlugin, BVConfig, BootstrapVue, BVModalPlugin, BVToastPlugin, IconsPlugin, BootstrapVueIcons, BIcon, BIconstack, BIconBlank, BIconAlarm, BIconAlarmFill, BIconAlertCircle, BIconAlertCircleFill, BIconAlertOctagon, BIconAlertOctagonFill, BIconAlertSquare, BIconAlertSquareFill, BIconAlertTriangle, BIconAlertTriangleFill, BIconArchive, BIconArchiveFill, BIconArrowBarBottom, BIconArrowBarLeft, BIconArrowBarRight, BIconArrowBarUp, BIconArrowClockwise, BIconArrowCounterclockwise, BIconArrowDown, BIconArrowDownLeft, BIconArrowDownRight, BIconArrowDownShort, BIconArrowLeft, BIconArrowLeftRight, BIconArrowLeftShort, BIconArrowRepeat, BIconArrowRight, BIconArrowRightShort, BIconArrowUp, BIconArrowUpDown, BIconArrowUpLeft, BIconArrowUpRight, BIconArrowUpShort, BIconArrowsAngleContract, BIconArrowsAngleExpand, BIconArrowsCollapse, BIconArrowsExpand, BIconArrowsFullscreen, BIconAt, BIconAward, BIconBackspace, BIconBackspaceFill, BIconBackspaceReverse, BIconBackspaceReverseFill, BIconBarChart, BIconBarChartFill, BIconBattery, BIconBatteryCharging, BIconBatteryFull, BIconBell, BIconBellFill, BIconBlockquoteLeft, BIconBlockquoteRight, BIconBook, BIconBookHalfFill, BIconBookmark, BIconBookmarkFill, BIconBootstrap, BIconBootstrapFill, BIconBootstrapReboot, BIconBoxArrowBottomLeft, BIconBoxArrowBottomRight, BIconBoxArrowDown, BIconBoxArrowLeft, BIconBoxArrowRight, BIconBoxArrowUp, BIconBoxArrowUpLeft, BIconBoxArrowUpRight, BIconBraces, BIconBrightnessFillHigh, BIconBrightnessFillLow, BIconBrightnessHigh, BIconBrightnessLow, BIconBrush, BIconBucket, BIconBucketFill, BIconBuilding, BIconBullseye, BIconCalendar, BIconCalendarFill, BIconCamera, BIconCameraVideo, BIconCameraVideoFill, BIconCapslock, BIconCapslockFill, BIconChat, BIconChatFill, BIconCheck, BIconCheckBox, BIconCheckCircle, BIconChevronCompactDown, BIconChevronCompactLeft, BIconChevronCompactRight, BIconChevronCompactUp, BIconChevronDown, BIconChevronLeft, BIconChevronRight, BIconChevronUp, BIconCircle, BIconCircleFill, BIconCircleHalf, BIconCircleSlash, BIconClock, BIconClockFill, BIconCloud, BIconCloudDownload, BIconCloudFill, BIconCloudUpload, BIconCode, BIconCodeSlash, BIconColumns, BIconColumnsGutters, BIconCommand, BIconCompass, BIconCone, BIconConeStriped, BIconController, BIconCreditCard, BIconCursor, BIconCursorFill, BIconDash, BIconDiamond, BIconDiamondHalf, BIconDisplay, BIconDisplayFill, BIconDocument, BIconDocumentCode, BIconDocumentDiff, BIconDocumentRichtext, BIconDocumentSpreadsheet, BIconDocumentText, BIconDocuments, BIconDocumentsAlt, BIconDot, BIconDownload, BIconEggFried, BIconEject, BIconEjectFill, BIconEnvelope, BIconEnvelopeFill, BIconEnvelopeOpen, BIconEnvelopeOpenFill, BIconEye, BIconEyeFill, BIconEyeSlash, BIconEyeSlashFill, BIconFilter, BIconFlag, BIconFlagFill, BIconFolder, BIconFolderFill, BIconFolderSymlink, BIconFolderSymlinkFill, BIconFonts, BIconForward, BIconForwardFill, BIconGear, BIconGearFill, BIconGearWide, BIconGearWideConnected, BIconGeo, BIconGraphDown, BIconGraphUp, BIconGrid, BIconGridFill, BIconHammer, BIconHash, BIconHeart, BIconHeartFill, BIconHouse, BIconHouseFill, BIconImage, BIconImageAlt, BIconImageFill, BIconImages, BIconInbox, BIconInboxFill, BIconInboxes, BIconInboxesFill, BIconInfo, BIconInfoFill, BIconInfoSquare, BIconInfoSquareFill, BIconJustify, BIconJustifyLeft, BIconJustifyRight, BIconKanban, BIconKanbanFill, BIconLaptop, BIconLayoutSidebar, BIconLayoutSidebarReverse, BIconLayoutSplit, BIconList, BIconListCheck, BIconListOl, BIconListTask, BIconListUl, BIconLock, BIconLockFill, BIconMap, BIconMic, BIconMoon, BIconMusicPlayer, BIconMusicPlayerFill, BIconOption, BIconOutlet, BIconPause, BIconPauseFill, BIconPen, BIconPencil, BIconPeople, BIconPeopleFill, BIconPerson, BIconPersonFill, BIconPhone, BIconPhoneLandscape, BIconPieChart, BIconPieChartFill, BIconPlay, BIconPlayFill, BIconPlug, BIconPlus, BIconPower, BIconQuestion, BIconQuestionFill, BIconQuestionSquare, BIconQuestionSquareFill, BIconReply, BIconReplyAll, BIconReplyAllFill, BIconReplyFill, BIconScrewdriver, BIconSearch, BIconShield, BIconShieldFill, BIconShieldLock, BIconShieldLockFill, BIconShieldShaded, BIconShift, BIconShiftFill, BIconSkipBackward, BIconSkipBackwardFill, BIconSkipEnd, BIconSkipEndFill, BIconSkipForward, BIconSkipForwardFill, BIconSkipStart, BIconSkipStartFill, BIconSpeaker, BIconSquare, BIconSquareFill, BIconSquareHalf, BIconStar, BIconStarFill, BIconStarHalf, BIconStop, BIconStopFill, BIconStopwatch, BIconStopwatchFill, BIconSun, BIconTable, BIconTablet, BIconTabletLandscape, BIconTag, BIconTagFill, BIconTerminal, BIconTerminalFill, BIconTextCenter, BIconTextIndentLeft, BIconTextIndentRight, BIconTextLeft, BIconTextRight, BIconThreeDots, BIconThreeDotsVertical, BIconToggleOff, BIconToggleOn, BIconToggles, BIconTools, BIconTrash, BIconTrashFill, BIconTriangle, BIconTriangleFill, BIconTriangleHalf, BIconTrophy, BIconTv, BIconTvFill, BIconType, BIconTypeBold, BIconTypeH1, BIconTypeH2, BIconTypeH3, BIconTypeItalic, BIconTypeStrikethrough, BIconTypeUnderline, BIconUnlock, BIconUnlockFill, BIconUpload, BIconVolumeDown, BIconVolumeDownFill, BIconVolumeMute, BIconVolumeMuteFill, BIconVolumeUp, BIconVolumeUpFill, BIconWallet, BIconWatch, BIconWifi, BIconWindow, BIconWrench, BIconX, BIconXCircle, BIconXCircleFill, BIconXOctagon, BIconXOctagonFill, BIconXSquare, BIconXSquareFill, AlertPlugin, BAlert, BadgePlugin, BBadge, BreadcrumbPlugin, BBreadcrumb, BBreadcrumbItem, ButtonPlugin, BButton, BButtonClose, ButtonGroupPlugin, BButtonGroup, ButtonToolbarPlugin, BButtonToolbar, CalendarPlugin, BCalendar, CardPlugin, BCard, BCardBody, BCardFooter, BCardGroup, BCardHeader, BCardImg, BCardImgLazy, BCardSubTitle, BCardText, BCardTitle, CarouselPlugin, BCarousel, BCarouselSlide, CollapsePlugin, BCollapse, DropdownPlugin, BDropdown, BDropdownItem, BDropdownItemButton, BDropdownDivider, BDropdownForm, BDropdownGroup, BDropdownHeader, BDropdownText, EmbedPlugin, BEmbed, FormPlugin, BForm, BFormDatalist, BFormText, BFormInvalidFeedback, BFormValidFeedback, FormCheckboxPlugin, BFormCheckbox, BFormCheckboxGroup, FormDatepickerPlugin, BFormDatepicker, FormFilePlugin, BFormFile, FormGroupPlugin, BFormGroup, FormInputPlugin, BFormInput, FormRadioPlugin, BFormRadio, BFormRadioGroup, FormTagsPlugin, BFormTags, BFormTag, FormSelectPlugin, BFormSelect, BFormSelectOption, BFormSelectOptionGroup, FormSpinbuttonPlugin, BFormSpinbutton, FormTextareaPlugin, BFormTextarea, FormTimepickerPlugin, BFormTimepicker, ImagePlugin, BImg, BImgLazy, InputGroupPlugin, BInputGroup, BInputGroupAddon, BInputGroupAppend, BInputGroupPrepend, BInputGroupText, JumbotronPlugin, BJumbotron, LayoutPlugin, BContainer, BRow, BCol, BFormRow, LinkPlugin, BLink, ListGroupPlugin, BListGroup, BListGroupItem, MediaPlugin, BMedia, BMediaAside, BMediaBody, ModalPlugin, BModal, NavPlugin, BNav, BNavForm, BNavItem, BNavItemDropdown, BNavText, NavbarPlugin, BNavbar, BNavbarBrand, BNavbarNav, BNavbarToggle, PaginationPlugin, BPagination, PaginationNavPlugin, BPaginationNav, PopoverPlugin, BPopover, ProgressPlugin, BProgress, BProgressBar, SpinnerPlugin, BSpinner, TablePlugin, TableLitePlugin, TableSimplePlugin, BTable, BTableLite, BTableSimple, BTbody, BThead, BTfoot, BTr, BTh, BTd, TabsPlugin, BTabs, BTab, TimePlugin, BTime, ToastPlugin, BToast, BToaster, TooltipPlugin, BTooltip, VBHoverPlugin, VBHover, VBModalPlugin, VBModal, VBPopoverPlugin, VBPopover, VBScrollspyPlugin, VBScrollspy, VBTogglePlugin, VBToggle, VBTooltipPlugin, VBTooltip, VBVisiblePlugin, VBVisible, default */
+/*! exports provided: install, NAME, BVConfigPlugin, BVConfig, BootstrapVue, BVModalPlugin, BVToastPlugin, IconsPlugin, BootstrapVueIcons, BIcon, BIconstack, BIconBlank, BIconAlarm, BIconAlarmFill, BIconAlertCircle, BIconAlertCircleFill, BIconAlertOctagon, BIconAlertOctagonFill, BIconAlertSquare, BIconAlertSquareFill, BIconAlertTriangle, BIconAlertTriangleFill, BIconArchive, BIconArchiveFill, BIconArrowBarBottom, BIconArrowBarLeft, BIconArrowBarRight, BIconArrowBarUp, BIconArrowClockwise, BIconArrowCounterclockwise, BIconArrowDown, BIconArrowDownLeft, BIconArrowDownRight, BIconArrowDownShort, BIconArrowLeft, BIconArrowLeftRight, BIconArrowLeftShort, BIconArrowRepeat, BIconArrowRight, BIconArrowRightShort, BIconArrowUp, BIconArrowUpDown, BIconArrowUpLeft, BIconArrowUpRight, BIconArrowUpShort, BIconArrowsAngleContract, BIconArrowsAngleExpand, BIconArrowsCollapse, BIconArrowsExpand, BIconArrowsFullscreen, BIconAt, BIconAward, BIconBackspace, BIconBackspaceFill, BIconBackspaceReverse, BIconBackspaceReverseFill, BIconBarChart, BIconBarChartFill, BIconBattery, BIconBatteryCharging, BIconBatteryFull, BIconBell, BIconBellFill, BIconBlockquoteLeft, BIconBlockquoteRight, BIconBook, BIconBookHalfFill, BIconBookmark, BIconBookmarkFill, BIconBootstrap, BIconBootstrapFill, BIconBootstrapReboot, BIconBoxArrowBottomLeft, BIconBoxArrowBottomRight, BIconBoxArrowDown, BIconBoxArrowLeft, BIconBoxArrowRight, BIconBoxArrowUp, BIconBoxArrowUpLeft, BIconBoxArrowUpRight, BIconBraces, BIconBrightnessFillHigh, BIconBrightnessFillLow, BIconBrightnessHigh, BIconBrightnessLow, BIconBrush, BIconBucket, BIconBucketFill, BIconBuilding, BIconBullseye, BIconCalendar, BIconCalendarFill, BIconCamera, BIconCameraVideo, BIconCameraVideoFill, BIconCapslock, BIconCapslockFill, BIconChat, BIconChatFill, BIconCheck, BIconCheckBox, BIconCheckCircle, BIconChevronCompactDown, BIconChevronCompactLeft, BIconChevronCompactRight, BIconChevronCompactUp, BIconChevronDown, BIconChevronLeft, BIconChevronRight, BIconChevronUp, BIconCircle, BIconCircleFill, BIconCircleHalf, BIconCircleSlash, BIconClock, BIconClockFill, BIconCloud, BIconCloudDownload, BIconCloudFill, BIconCloudUpload, BIconCode, BIconCodeSlash, BIconColumns, BIconColumnsGutters, BIconCommand, BIconCompass, BIconCone, BIconConeStriped, BIconController, BIconCreditCard, BIconCursor, BIconCursorFill, BIconDash, BIconDiamond, BIconDiamondHalf, BIconDisplay, BIconDisplayFill, BIconDocument, BIconDocumentCode, BIconDocumentDiff, BIconDocumentRichtext, BIconDocumentSpreadsheet, BIconDocumentText, BIconDocuments, BIconDocumentsAlt, BIconDot, BIconDownload, BIconEggFried, BIconEject, BIconEjectFill, BIconEnvelope, BIconEnvelopeFill, BIconEnvelopeOpen, BIconEnvelopeOpenFill, BIconEye, BIconEyeFill, BIconEyeSlash, BIconEyeSlashFill, BIconFilter, BIconFlag, BIconFlagFill, BIconFolder, BIconFolderFill, BIconFolderSymlink, BIconFolderSymlinkFill, BIconFonts, BIconForward, BIconForwardFill, BIconGear, BIconGearFill, BIconGearWide, BIconGearWideConnected, BIconGeo, BIconGraphDown, BIconGraphUp, BIconGrid, BIconGridFill, BIconHammer, BIconHash, BIconHeart, BIconHeartFill, BIconHouse, BIconHouseFill, BIconImage, BIconImageAlt, BIconImageFill, BIconImages, BIconInbox, BIconInboxFill, BIconInboxes, BIconInboxesFill, BIconInfo, BIconInfoFill, BIconInfoSquare, BIconInfoSquareFill, BIconJustify, BIconJustifyLeft, BIconJustifyRight, BIconKanban, BIconKanbanFill, BIconLaptop, BIconLayoutSidebar, BIconLayoutSidebarReverse, BIconLayoutSplit, BIconList, BIconListCheck, BIconListOl, BIconListTask, BIconListUl, BIconLock, BIconLockFill, BIconMap, BIconMic, BIconMoon, BIconMusicPlayer, BIconMusicPlayerFill, BIconOption, BIconOutlet, BIconPause, BIconPauseFill, BIconPen, BIconPencil, BIconPeople, BIconPeopleFill, BIconPerson, BIconPersonFill, BIconPhone, BIconPhoneLandscape, BIconPieChart, BIconPieChartFill, BIconPlay, BIconPlayFill, BIconPlug, BIconPlus, BIconPower, BIconQuestion, BIconQuestionFill, BIconQuestionSquare, BIconQuestionSquareFill, BIconReply, BIconReplyAll, BIconReplyAllFill, BIconReplyFill, BIconScrewdriver, BIconSearch, BIconShield, BIconShieldFill, BIconShieldLock, BIconShieldLockFill, BIconShieldShaded, BIconShift, BIconShiftFill, BIconSkipBackward, BIconSkipBackwardFill, BIconSkipEnd, BIconSkipEndFill, BIconSkipForward, BIconSkipForwardFill, BIconSkipStart, BIconSkipStartFill, BIconSpeaker, BIconSquare, BIconSquareFill, BIconSquareHalf, BIconStar, BIconStarFill, BIconStarHalf, BIconStop, BIconStopFill, BIconStopwatch, BIconStopwatchFill, BIconSun, BIconTable, BIconTablet, BIconTabletLandscape, BIconTag, BIconTagFill, BIconTerminal, BIconTerminalFill, BIconTextCenter, BIconTextIndentLeft, BIconTextIndentRight, BIconTextLeft, BIconTextRight, BIconThreeDots, BIconThreeDotsVertical, BIconToggleOff, BIconToggleOn, BIconToggles, BIconTools, BIconTrash, BIconTrashFill, BIconTriangle, BIconTriangleFill, BIconTriangleHalf, BIconTrophy, BIconTv, BIconTvFill, BIconType, BIconTypeBold, BIconTypeH1, BIconTypeH2, BIconTypeH3, BIconTypeItalic, BIconTypeStrikethrough, BIconTypeUnderline, BIconUnlock, BIconUnlockFill, BIconUpload, BIconVolumeDown, BIconVolumeDownFill, BIconVolumeMute, BIconVolumeMuteFill, BIconVolumeUp, BIconVolumeUpFill, BIconWallet, BIconWatch, BIconWifi, BIconWindow, BIconWrench, BIconX, BIconXCircle, BIconXCircleFill, BIconXOctagon, BIconXOctagonFill, BIconXSquare, BIconXSquareFill, AlertPlugin, BAlert, BadgePlugin, BBadge, BreadcrumbPlugin, BBreadcrumb, BBreadcrumbItem, ButtonPlugin, BButton, BButtonClose, ButtonGroupPlugin, BButtonGroup, ButtonToolbarPlugin, BButtonToolbar, CalendarPlugin, BCalendar, CardPlugin, BCard, BCardBody, BCardFooter, BCardGroup, BCardHeader, BCardImg, BCardImgLazy, BCardSubTitle, BCardText, BCardTitle, CarouselPlugin, BCarousel, BCarouselSlide, CollapsePlugin, BCollapse, DropdownPlugin, BDropdown, BDropdownItem, BDropdownItemButton, BDropdownDivider, BDropdownForm, BDropdownGroup, BDropdownHeader, BDropdownText, EmbedPlugin, BEmbed, FormPlugin, BForm, BFormDatalist, BFormText, BFormInvalidFeedback, BFormValidFeedback, FormCheckboxPlugin, BFormCheckbox, BFormCheckboxGroup, FormDatepickerPlugin, BFormDatepicker, FormFilePlugin, BFormFile, FormGroupPlugin, BFormGroup, FormInputPlugin, BFormInput, FormRadioPlugin, BFormRadio, BFormRadioGroup, FormTagsPlugin, BFormTags, BFormTag, FormSelectPlugin, BFormSelect, BFormSelectOption, BFormSelectOptionGroup, FormSpinbuttonPlugin, BFormSpinbutton, FormTextareaPlugin, BFormTextarea, FormTimepickerPlugin, BFormTimepicker, ImagePlugin, BImg, BImgLazy, InputGroupPlugin, BInputGroup, BInputGroupAddon, BInputGroupAppend, BInputGroupPrepend, BInputGroupText, JumbotronPlugin, BJumbotron, LayoutPlugin, BContainer, BRow, BCol, BFormRow, LinkPlugin, BLink, ListGroupPlugin, BListGroup, BListGroupItem, MediaPlugin, BMedia, BMediaAside, BMediaBody, ModalPlugin, BModal, NavPlugin, BNav, BNavForm, BNavItem, BNavItemDropdown, BNavText, NavbarPlugin, BNavbar, BNavbarBrand, BNavbarNav, BNavbarToggle, OverlayPlugin, BOverlay, PaginationPlugin, BPagination, PaginationNavPlugin, BPaginationNav, PopoverPlugin, BPopover, ProgressPlugin, BProgress, BProgressBar, SpinnerPlugin, BSpinner, TablePlugin, TableLitePlugin, TableSimplePlugin, BTable, BTableLite, BTableSimple, BTbody, BThead, BTfoot, BTr, BTh, BTd, TabsPlugin, BTabs, BTab, TimePlugin, BTime, ToastPlugin, BToast, BToaster, TooltipPlugin, BTooltip, VBHoverPlugin, VBHover, VBModalPlugin, VBModal, VBPopoverPlugin, VBPopover, VBScrollspyPlugin, VBScrollspy, VBTogglePlugin, VBToggle, VBTooltipPlugin, VBTooltip, VBVisiblePlugin, VBVisible, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31856,147 +32158,153 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_navbar_navbar_toggle__WEBPACK_IMPORTED_MODULE_123__ = __webpack_require__(/*! ./components/navbar/navbar-toggle */ "./node_modules/bootstrap-vue/esm/components/navbar/navbar-toggle.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BNavbarToggle", function() { return _components_navbar_navbar_toggle__WEBPACK_IMPORTED_MODULE_123__["BNavbarToggle"]; });
 
-/* harmony import */ var _components_pagination__WEBPACK_IMPORTED_MODULE_124__ = __webpack_require__(/*! ./components/pagination */ "./node_modules/bootstrap-vue/esm/components/pagination/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PaginationPlugin", function() { return _components_pagination__WEBPACK_IMPORTED_MODULE_124__["PaginationPlugin"]; });
+/* harmony import */ var _components_overlay__WEBPACK_IMPORTED_MODULE_124__ = __webpack_require__(/*! ./components/overlay */ "./node_modules/bootstrap-vue/esm/components/overlay/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OverlayPlugin", function() { return _components_overlay__WEBPACK_IMPORTED_MODULE_124__["OverlayPlugin"]; });
 
-/* harmony import */ var _components_pagination_pagination__WEBPACK_IMPORTED_MODULE_125__ = __webpack_require__(/*! ./components/pagination/pagination */ "./node_modules/bootstrap-vue/esm/components/pagination/pagination.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BPagination", function() { return _components_pagination_pagination__WEBPACK_IMPORTED_MODULE_125__["BPagination"]; });
+/* harmony import */ var _components_overlay_overlay__WEBPACK_IMPORTED_MODULE_125__ = __webpack_require__(/*! ./components/overlay/overlay */ "./node_modules/bootstrap-vue/esm/components/overlay/overlay.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BOverlay", function() { return _components_overlay_overlay__WEBPACK_IMPORTED_MODULE_125__["BOverlay"]; });
 
-/* harmony import */ var _components_pagination_nav__WEBPACK_IMPORTED_MODULE_126__ = __webpack_require__(/*! ./components/pagination-nav */ "./node_modules/bootstrap-vue/esm/components/pagination-nav/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PaginationNavPlugin", function() { return _components_pagination_nav__WEBPACK_IMPORTED_MODULE_126__["PaginationNavPlugin"]; });
+/* harmony import */ var _components_pagination__WEBPACK_IMPORTED_MODULE_126__ = __webpack_require__(/*! ./components/pagination */ "./node_modules/bootstrap-vue/esm/components/pagination/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PaginationPlugin", function() { return _components_pagination__WEBPACK_IMPORTED_MODULE_126__["PaginationPlugin"]; });
 
-/* harmony import */ var _components_pagination_nav_pagination_nav__WEBPACK_IMPORTED_MODULE_127__ = __webpack_require__(/*! ./components/pagination-nav/pagination-nav */ "./node_modules/bootstrap-vue/esm/components/pagination-nav/pagination-nav.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BPaginationNav", function() { return _components_pagination_nav_pagination_nav__WEBPACK_IMPORTED_MODULE_127__["BPaginationNav"]; });
+/* harmony import */ var _components_pagination_pagination__WEBPACK_IMPORTED_MODULE_127__ = __webpack_require__(/*! ./components/pagination/pagination */ "./node_modules/bootstrap-vue/esm/components/pagination/pagination.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BPagination", function() { return _components_pagination_pagination__WEBPACK_IMPORTED_MODULE_127__["BPagination"]; });
 
-/* harmony import */ var _components_popover__WEBPACK_IMPORTED_MODULE_128__ = __webpack_require__(/*! ./components/popover */ "./node_modules/bootstrap-vue/esm/components/popover/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PopoverPlugin", function() { return _components_popover__WEBPACK_IMPORTED_MODULE_128__["PopoverPlugin"]; });
+/* harmony import */ var _components_pagination_nav__WEBPACK_IMPORTED_MODULE_128__ = __webpack_require__(/*! ./components/pagination-nav */ "./node_modules/bootstrap-vue/esm/components/pagination-nav/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PaginationNavPlugin", function() { return _components_pagination_nav__WEBPACK_IMPORTED_MODULE_128__["PaginationNavPlugin"]; });
 
-/* harmony import */ var _components_popover_popover__WEBPACK_IMPORTED_MODULE_129__ = __webpack_require__(/*! ./components/popover/popover */ "./node_modules/bootstrap-vue/esm/components/popover/popover.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BPopover", function() { return _components_popover_popover__WEBPACK_IMPORTED_MODULE_129__["BPopover"]; });
+/* harmony import */ var _components_pagination_nav_pagination_nav__WEBPACK_IMPORTED_MODULE_129__ = __webpack_require__(/*! ./components/pagination-nav/pagination-nav */ "./node_modules/bootstrap-vue/esm/components/pagination-nav/pagination-nav.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BPaginationNav", function() { return _components_pagination_nav_pagination_nav__WEBPACK_IMPORTED_MODULE_129__["BPaginationNav"]; });
 
-/* harmony import */ var _components_progress__WEBPACK_IMPORTED_MODULE_130__ = __webpack_require__(/*! ./components/progress */ "./node_modules/bootstrap-vue/esm/components/progress/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ProgressPlugin", function() { return _components_progress__WEBPACK_IMPORTED_MODULE_130__["ProgressPlugin"]; });
+/* harmony import */ var _components_popover__WEBPACK_IMPORTED_MODULE_130__ = __webpack_require__(/*! ./components/popover */ "./node_modules/bootstrap-vue/esm/components/popover/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PopoverPlugin", function() { return _components_popover__WEBPACK_IMPORTED_MODULE_130__["PopoverPlugin"]; });
 
-/* harmony import */ var _components_progress_progress__WEBPACK_IMPORTED_MODULE_131__ = __webpack_require__(/*! ./components/progress/progress */ "./node_modules/bootstrap-vue/esm/components/progress/progress.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BProgress", function() { return _components_progress_progress__WEBPACK_IMPORTED_MODULE_131__["BProgress"]; });
+/* harmony import */ var _components_popover_popover__WEBPACK_IMPORTED_MODULE_131__ = __webpack_require__(/*! ./components/popover/popover */ "./node_modules/bootstrap-vue/esm/components/popover/popover.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BPopover", function() { return _components_popover_popover__WEBPACK_IMPORTED_MODULE_131__["BPopover"]; });
 
-/* harmony import */ var _components_progress_progress_bar__WEBPACK_IMPORTED_MODULE_132__ = __webpack_require__(/*! ./components/progress/progress-bar */ "./node_modules/bootstrap-vue/esm/components/progress/progress-bar.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BProgressBar", function() { return _components_progress_progress_bar__WEBPACK_IMPORTED_MODULE_132__["BProgressBar"]; });
+/* harmony import */ var _components_progress__WEBPACK_IMPORTED_MODULE_132__ = __webpack_require__(/*! ./components/progress */ "./node_modules/bootstrap-vue/esm/components/progress/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ProgressPlugin", function() { return _components_progress__WEBPACK_IMPORTED_MODULE_132__["ProgressPlugin"]; });
 
-/* harmony import */ var _components_spinner__WEBPACK_IMPORTED_MODULE_133__ = __webpack_require__(/*! ./components/spinner */ "./node_modules/bootstrap-vue/esm/components/spinner/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SpinnerPlugin", function() { return _components_spinner__WEBPACK_IMPORTED_MODULE_133__["SpinnerPlugin"]; });
+/* harmony import */ var _components_progress_progress__WEBPACK_IMPORTED_MODULE_133__ = __webpack_require__(/*! ./components/progress/progress */ "./node_modules/bootstrap-vue/esm/components/progress/progress.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BProgress", function() { return _components_progress_progress__WEBPACK_IMPORTED_MODULE_133__["BProgress"]; });
 
-/* harmony import */ var _components_spinner_spinner__WEBPACK_IMPORTED_MODULE_134__ = __webpack_require__(/*! ./components/spinner/spinner */ "./node_modules/bootstrap-vue/esm/components/spinner/spinner.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BSpinner", function() { return _components_spinner_spinner__WEBPACK_IMPORTED_MODULE_134__["BSpinner"]; });
+/* harmony import */ var _components_progress_progress_bar__WEBPACK_IMPORTED_MODULE_134__ = __webpack_require__(/*! ./components/progress/progress-bar */ "./node_modules/bootstrap-vue/esm/components/progress/progress-bar.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BProgressBar", function() { return _components_progress_progress_bar__WEBPACK_IMPORTED_MODULE_134__["BProgressBar"]; });
 
-/* harmony import */ var _components_table__WEBPACK_IMPORTED_MODULE_135__ = __webpack_require__(/*! ./components/table */ "./node_modules/bootstrap-vue/esm/components/table/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TablePlugin", function() { return _components_table__WEBPACK_IMPORTED_MODULE_135__["TablePlugin"]; });
+/* harmony import */ var _components_spinner__WEBPACK_IMPORTED_MODULE_135__ = __webpack_require__(/*! ./components/spinner */ "./node_modules/bootstrap-vue/esm/components/spinner/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SpinnerPlugin", function() { return _components_spinner__WEBPACK_IMPORTED_MODULE_135__["SpinnerPlugin"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TableLitePlugin", function() { return _components_table__WEBPACK_IMPORTED_MODULE_135__["TableLitePlugin"]; });
+/* harmony import */ var _components_spinner_spinner__WEBPACK_IMPORTED_MODULE_136__ = __webpack_require__(/*! ./components/spinner/spinner */ "./node_modules/bootstrap-vue/esm/components/spinner/spinner.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BSpinner", function() { return _components_spinner_spinner__WEBPACK_IMPORTED_MODULE_136__["BSpinner"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TableSimplePlugin", function() { return _components_table__WEBPACK_IMPORTED_MODULE_135__["TableSimplePlugin"]; });
+/* harmony import */ var _components_table__WEBPACK_IMPORTED_MODULE_137__ = __webpack_require__(/*! ./components/table */ "./node_modules/bootstrap-vue/esm/components/table/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TablePlugin", function() { return _components_table__WEBPACK_IMPORTED_MODULE_137__["TablePlugin"]; });
 
-/* harmony import */ var _components_table_table__WEBPACK_IMPORTED_MODULE_136__ = __webpack_require__(/*! ./components/table/table */ "./node_modules/bootstrap-vue/esm/components/table/table.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTable", function() { return _components_table_table__WEBPACK_IMPORTED_MODULE_136__["BTable"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TableLitePlugin", function() { return _components_table__WEBPACK_IMPORTED_MODULE_137__["TableLitePlugin"]; });
 
-/* harmony import */ var _components_table_table_lite__WEBPACK_IMPORTED_MODULE_137__ = __webpack_require__(/*! ./components/table/table-lite */ "./node_modules/bootstrap-vue/esm/components/table/table-lite.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTableLite", function() { return _components_table_table_lite__WEBPACK_IMPORTED_MODULE_137__["BTableLite"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TableSimplePlugin", function() { return _components_table__WEBPACK_IMPORTED_MODULE_137__["TableSimplePlugin"]; });
 
-/* harmony import */ var _components_table_table_simple__WEBPACK_IMPORTED_MODULE_138__ = __webpack_require__(/*! ./components/table/table-simple */ "./node_modules/bootstrap-vue/esm/components/table/table-simple.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTableSimple", function() { return _components_table_table_simple__WEBPACK_IMPORTED_MODULE_138__["BTableSimple"]; });
+/* harmony import */ var _components_table_table__WEBPACK_IMPORTED_MODULE_138__ = __webpack_require__(/*! ./components/table/table */ "./node_modules/bootstrap-vue/esm/components/table/table.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTable", function() { return _components_table_table__WEBPACK_IMPORTED_MODULE_138__["BTable"]; });
 
-/* harmony import */ var _components_table_tbody__WEBPACK_IMPORTED_MODULE_139__ = __webpack_require__(/*! ./components/table/tbody */ "./node_modules/bootstrap-vue/esm/components/table/tbody.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTbody", function() { return _components_table_tbody__WEBPACK_IMPORTED_MODULE_139__["BTbody"]; });
+/* harmony import */ var _components_table_table_lite__WEBPACK_IMPORTED_MODULE_139__ = __webpack_require__(/*! ./components/table/table-lite */ "./node_modules/bootstrap-vue/esm/components/table/table-lite.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTableLite", function() { return _components_table_table_lite__WEBPACK_IMPORTED_MODULE_139__["BTableLite"]; });
 
-/* harmony import */ var _components_table_thead__WEBPACK_IMPORTED_MODULE_140__ = __webpack_require__(/*! ./components/table/thead */ "./node_modules/bootstrap-vue/esm/components/table/thead.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BThead", function() { return _components_table_thead__WEBPACK_IMPORTED_MODULE_140__["BThead"]; });
+/* harmony import */ var _components_table_table_simple__WEBPACK_IMPORTED_MODULE_140__ = __webpack_require__(/*! ./components/table/table-simple */ "./node_modules/bootstrap-vue/esm/components/table/table-simple.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTableSimple", function() { return _components_table_table_simple__WEBPACK_IMPORTED_MODULE_140__["BTableSimple"]; });
 
-/* harmony import */ var _components_table_tfoot__WEBPACK_IMPORTED_MODULE_141__ = __webpack_require__(/*! ./components/table/tfoot */ "./node_modules/bootstrap-vue/esm/components/table/tfoot.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTfoot", function() { return _components_table_tfoot__WEBPACK_IMPORTED_MODULE_141__["BTfoot"]; });
+/* harmony import */ var _components_table_tbody__WEBPACK_IMPORTED_MODULE_141__ = __webpack_require__(/*! ./components/table/tbody */ "./node_modules/bootstrap-vue/esm/components/table/tbody.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTbody", function() { return _components_table_tbody__WEBPACK_IMPORTED_MODULE_141__["BTbody"]; });
 
-/* harmony import */ var _components_table_tr__WEBPACK_IMPORTED_MODULE_142__ = __webpack_require__(/*! ./components/table/tr */ "./node_modules/bootstrap-vue/esm/components/table/tr.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTr", function() { return _components_table_tr__WEBPACK_IMPORTED_MODULE_142__["BTr"]; });
+/* harmony import */ var _components_table_thead__WEBPACK_IMPORTED_MODULE_142__ = __webpack_require__(/*! ./components/table/thead */ "./node_modules/bootstrap-vue/esm/components/table/thead.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BThead", function() { return _components_table_thead__WEBPACK_IMPORTED_MODULE_142__["BThead"]; });
 
-/* harmony import */ var _components_table_th__WEBPACK_IMPORTED_MODULE_143__ = __webpack_require__(/*! ./components/table/th */ "./node_modules/bootstrap-vue/esm/components/table/th.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTh", function() { return _components_table_th__WEBPACK_IMPORTED_MODULE_143__["BTh"]; });
+/* harmony import */ var _components_table_tfoot__WEBPACK_IMPORTED_MODULE_143__ = __webpack_require__(/*! ./components/table/tfoot */ "./node_modules/bootstrap-vue/esm/components/table/tfoot.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTfoot", function() { return _components_table_tfoot__WEBPACK_IMPORTED_MODULE_143__["BTfoot"]; });
 
-/* harmony import */ var _components_table_td__WEBPACK_IMPORTED_MODULE_144__ = __webpack_require__(/*! ./components/table/td */ "./node_modules/bootstrap-vue/esm/components/table/td.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTd", function() { return _components_table_td__WEBPACK_IMPORTED_MODULE_144__["BTd"]; });
+/* harmony import */ var _components_table_tr__WEBPACK_IMPORTED_MODULE_144__ = __webpack_require__(/*! ./components/table/tr */ "./node_modules/bootstrap-vue/esm/components/table/tr.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTr", function() { return _components_table_tr__WEBPACK_IMPORTED_MODULE_144__["BTr"]; });
 
-/* harmony import */ var _components_tabs__WEBPACK_IMPORTED_MODULE_145__ = __webpack_require__(/*! ./components/tabs */ "./node_modules/bootstrap-vue/esm/components/tabs/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TabsPlugin", function() { return _components_tabs__WEBPACK_IMPORTED_MODULE_145__["TabsPlugin"]; });
+/* harmony import */ var _components_table_th__WEBPACK_IMPORTED_MODULE_145__ = __webpack_require__(/*! ./components/table/th */ "./node_modules/bootstrap-vue/esm/components/table/th.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTh", function() { return _components_table_th__WEBPACK_IMPORTED_MODULE_145__["BTh"]; });
 
-/* harmony import */ var _components_tabs_tabs__WEBPACK_IMPORTED_MODULE_146__ = __webpack_require__(/*! ./components/tabs/tabs */ "./node_modules/bootstrap-vue/esm/components/tabs/tabs.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTabs", function() { return _components_tabs_tabs__WEBPACK_IMPORTED_MODULE_146__["BTabs"]; });
+/* harmony import */ var _components_table_td__WEBPACK_IMPORTED_MODULE_146__ = __webpack_require__(/*! ./components/table/td */ "./node_modules/bootstrap-vue/esm/components/table/td.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTd", function() { return _components_table_td__WEBPACK_IMPORTED_MODULE_146__["BTd"]; });
 
-/* harmony import */ var _components_tabs_tab__WEBPACK_IMPORTED_MODULE_147__ = __webpack_require__(/*! ./components/tabs/tab */ "./node_modules/bootstrap-vue/esm/components/tabs/tab.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTab", function() { return _components_tabs_tab__WEBPACK_IMPORTED_MODULE_147__["BTab"]; });
+/* harmony import */ var _components_tabs__WEBPACK_IMPORTED_MODULE_147__ = __webpack_require__(/*! ./components/tabs */ "./node_modules/bootstrap-vue/esm/components/tabs/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TabsPlugin", function() { return _components_tabs__WEBPACK_IMPORTED_MODULE_147__["TabsPlugin"]; });
 
-/* harmony import */ var _components_time__WEBPACK_IMPORTED_MODULE_148__ = __webpack_require__(/*! ./components/time */ "./node_modules/bootstrap-vue/esm/components/time/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TimePlugin", function() { return _components_time__WEBPACK_IMPORTED_MODULE_148__["TimePlugin"]; });
+/* harmony import */ var _components_tabs_tabs__WEBPACK_IMPORTED_MODULE_148__ = __webpack_require__(/*! ./components/tabs/tabs */ "./node_modules/bootstrap-vue/esm/components/tabs/tabs.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTabs", function() { return _components_tabs_tabs__WEBPACK_IMPORTED_MODULE_148__["BTabs"]; });
 
-/* harmony import */ var _components_time_time__WEBPACK_IMPORTED_MODULE_149__ = __webpack_require__(/*! ./components/time/time */ "./node_modules/bootstrap-vue/esm/components/time/time.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTime", function() { return _components_time_time__WEBPACK_IMPORTED_MODULE_149__["BTime"]; });
+/* harmony import */ var _components_tabs_tab__WEBPACK_IMPORTED_MODULE_149__ = __webpack_require__(/*! ./components/tabs/tab */ "./node_modules/bootstrap-vue/esm/components/tabs/tab.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTab", function() { return _components_tabs_tab__WEBPACK_IMPORTED_MODULE_149__["BTab"]; });
 
-/* harmony import */ var _components_toast__WEBPACK_IMPORTED_MODULE_150__ = __webpack_require__(/*! ./components/toast */ "./node_modules/bootstrap-vue/esm/components/toast/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ToastPlugin", function() { return _components_toast__WEBPACK_IMPORTED_MODULE_150__["ToastPlugin"]; });
+/* harmony import */ var _components_time__WEBPACK_IMPORTED_MODULE_150__ = __webpack_require__(/*! ./components/time */ "./node_modules/bootstrap-vue/esm/components/time/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TimePlugin", function() { return _components_time__WEBPACK_IMPORTED_MODULE_150__["TimePlugin"]; });
 
-/* harmony import */ var _components_toast_toast__WEBPACK_IMPORTED_MODULE_151__ = __webpack_require__(/*! ./components/toast/toast */ "./node_modules/bootstrap-vue/esm/components/toast/toast.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BToast", function() { return _components_toast_toast__WEBPACK_IMPORTED_MODULE_151__["BToast"]; });
+/* harmony import */ var _components_time_time__WEBPACK_IMPORTED_MODULE_151__ = __webpack_require__(/*! ./components/time/time */ "./node_modules/bootstrap-vue/esm/components/time/time.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTime", function() { return _components_time_time__WEBPACK_IMPORTED_MODULE_151__["BTime"]; });
 
-/* harmony import */ var _components_toast_toaster__WEBPACK_IMPORTED_MODULE_152__ = __webpack_require__(/*! ./components/toast/toaster */ "./node_modules/bootstrap-vue/esm/components/toast/toaster.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BToaster", function() { return _components_toast_toaster__WEBPACK_IMPORTED_MODULE_152__["BToaster"]; });
+/* harmony import */ var _components_toast__WEBPACK_IMPORTED_MODULE_152__ = __webpack_require__(/*! ./components/toast */ "./node_modules/bootstrap-vue/esm/components/toast/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ToastPlugin", function() { return _components_toast__WEBPACK_IMPORTED_MODULE_152__["ToastPlugin"]; });
 
-/* harmony import */ var _components_tooltip__WEBPACK_IMPORTED_MODULE_153__ = __webpack_require__(/*! ./components/tooltip */ "./node_modules/bootstrap-vue/esm/components/tooltip/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TooltipPlugin", function() { return _components_tooltip__WEBPACK_IMPORTED_MODULE_153__["TooltipPlugin"]; });
+/* harmony import */ var _components_toast_toast__WEBPACK_IMPORTED_MODULE_153__ = __webpack_require__(/*! ./components/toast/toast */ "./node_modules/bootstrap-vue/esm/components/toast/toast.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BToast", function() { return _components_toast_toast__WEBPACK_IMPORTED_MODULE_153__["BToast"]; });
 
-/* harmony import */ var _components_tooltip_tooltip__WEBPACK_IMPORTED_MODULE_154__ = __webpack_require__(/*! ./components/tooltip/tooltip */ "./node_modules/bootstrap-vue/esm/components/tooltip/tooltip.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTooltip", function() { return _components_tooltip_tooltip__WEBPACK_IMPORTED_MODULE_154__["BTooltip"]; });
+/* harmony import */ var _components_toast_toaster__WEBPACK_IMPORTED_MODULE_154__ = __webpack_require__(/*! ./components/toast/toaster */ "./node_modules/bootstrap-vue/esm/components/toast/toaster.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BToaster", function() { return _components_toast_toaster__WEBPACK_IMPORTED_MODULE_154__["BToaster"]; });
 
-/* harmony import */ var _directives_hover__WEBPACK_IMPORTED_MODULE_155__ = __webpack_require__(/*! ./directives/hover */ "./node_modules/bootstrap-vue/esm/directives/hover/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBHoverPlugin", function() { return _directives_hover__WEBPACK_IMPORTED_MODULE_155__["VBHoverPlugin"]; });
+/* harmony import */ var _components_tooltip__WEBPACK_IMPORTED_MODULE_155__ = __webpack_require__(/*! ./components/tooltip */ "./node_modules/bootstrap-vue/esm/components/tooltip/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TooltipPlugin", function() { return _components_tooltip__WEBPACK_IMPORTED_MODULE_155__["TooltipPlugin"]; });
 
-/* harmony import */ var _directives_hover_hover__WEBPACK_IMPORTED_MODULE_156__ = __webpack_require__(/*! ./directives/hover/hover */ "./node_modules/bootstrap-vue/esm/directives/hover/hover.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBHover", function() { return _directives_hover_hover__WEBPACK_IMPORTED_MODULE_156__["VBHover"]; });
+/* harmony import */ var _components_tooltip_tooltip__WEBPACK_IMPORTED_MODULE_156__ = __webpack_require__(/*! ./components/tooltip/tooltip */ "./node_modules/bootstrap-vue/esm/components/tooltip/tooltip.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BTooltip", function() { return _components_tooltip_tooltip__WEBPACK_IMPORTED_MODULE_156__["BTooltip"]; });
 
-/* harmony import */ var _directives_modal__WEBPACK_IMPORTED_MODULE_157__ = __webpack_require__(/*! ./directives/modal */ "./node_modules/bootstrap-vue/esm/directives/modal/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBModalPlugin", function() { return _directives_modal__WEBPACK_IMPORTED_MODULE_157__["VBModalPlugin"]; });
+/* harmony import */ var _directives_hover__WEBPACK_IMPORTED_MODULE_157__ = __webpack_require__(/*! ./directives/hover */ "./node_modules/bootstrap-vue/esm/directives/hover/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBHoverPlugin", function() { return _directives_hover__WEBPACK_IMPORTED_MODULE_157__["VBHoverPlugin"]; });
 
-/* harmony import */ var _directives_modal_modal__WEBPACK_IMPORTED_MODULE_158__ = __webpack_require__(/*! ./directives/modal/modal */ "./node_modules/bootstrap-vue/esm/directives/modal/modal.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBModal", function() { return _directives_modal_modal__WEBPACK_IMPORTED_MODULE_158__["VBModal"]; });
+/* harmony import */ var _directives_hover_hover__WEBPACK_IMPORTED_MODULE_158__ = __webpack_require__(/*! ./directives/hover/hover */ "./node_modules/bootstrap-vue/esm/directives/hover/hover.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBHover", function() { return _directives_hover_hover__WEBPACK_IMPORTED_MODULE_158__["VBHover"]; });
 
-/* harmony import */ var _directives_popover__WEBPACK_IMPORTED_MODULE_159__ = __webpack_require__(/*! ./directives/popover */ "./node_modules/bootstrap-vue/esm/directives/popover/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBPopoverPlugin", function() { return _directives_popover__WEBPACK_IMPORTED_MODULE_159__["VBPopoverPlugin"]; });
+/* harmony import */ var _directives_modal__WEBPACK_IMPORTED_MODULE_159__ = __webpack_require__(/*! ./directives/modal */ "./node_modules/bootstrap-vue/esm/directives/modal/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBModalPlugin", function() { return _directives_modal__WEBPACK_IMPORTED_MODULE_159__["VBModalPlugin"]; });
 
-/* harmony import */ var _directives_popover_popover__WEBPACK_IMPORTED_MODULE_160__ = __webpack_require__(/*! ./directives/popover/popover */ "./node_modules/bootstrap-vue/esm/directives/popover/popover.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBPopover", function() { return _directives_popover_popover__WEBPACK_IMPORTED_MODULE_160__["VBPopover"]; });
+/* harmony import */ var _directives_modal_modal__WEBPACK_IMPORTED_MODULE_160__ = __webpack_require__(/*! ./directives/modal/modal */ "./node_modules/bootstrap-vue/esm/directives/modal/modal.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBModal", function() { return _directives_modal_modal__WEBPACK_IMPORTED_MODULE_160__["VBModal"]; });
 
-/* harmony import */ var _directives_scrollspy__WEBPACK_IMPORTED_MODULE_161__ = __webpack_require__(/*! ./directives/scrollspy */ "./node_modules/bootstrap-vue/esm/directives/scrollspy/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBScrollspyPlugin", function() { return _directives_scrollspy__WEBPACK_IMPORTED_MODULE_161__["VBScrollspyPlugin"]; });
+/* harmony import */ var _directives_popover__WEBPACK_IMPORTED_MODULE_161__ = __webpack_require__(/*! ./directives/popover */ "./node_modules/bootstrap-vue/esm/directives/popover/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBPopoverPlugin", function() { return _directives_popover__WEBPACK_IMPORTED_MODULE_161__["VBPopoverPlugin"]; });
 
-/* harmony import */ var _directives_scrollspy_scrollspy__WEBPACK_IMPORTED_MODULE_162__ = __webpack_require__(/*! ./directives/scrollspy/scrollspy */ "./node_modules/bootstrap-vue/esm/directives/scrollspy/scrollspy.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBScrollspy", function() { return _directives_scrollspy_scrollspy__WEBPACK_IMPORTED_MODULE_162__["VBScrollspy"]; });
+/* harmony import */ var _directives_popover_popover__WEBPACK_IMPORTED_MODULE_162__ = __webpack_require__(/*! ./directives/popover/popover */ "./node_modules/bootstrap-vue/esm/directives/popover/popover.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBPopover", function() { return _directives_popover_popover__WEBPACK_IMPORTED_MODULE_162__["VBPopover"]; });
 
-/* harmony import */ var _directives_toggle__WEBPACK_IMPORTED_MODULE_163__ = __webpack_require__(/*! ./directives/toggle */ "./node_modules/bootstrap-vue/esm/directives/toggle/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBTogglePlugin", function() { return _directives_toggle__WEBPACK_IMPORTED_MODULE_163__["VBTogglePlugin"]; });
+/* harmony import */ var _directives_scrollspy__WEBPACK_IMPORTED_MODULE_163__ = __webpack_require__(/*! ./directives/scrollspy */ "./node_modules/bootstrap-vue/esm/directives/scrollspy/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBScrollspyPlugin", function() { return _directives_scrollspy__WEBPACK_IMPORTED_MODULE_163__["VBScrollspyPlugin"]; });
 
-/* harmony import */ var _directives_toggle_toggle__WEBPACK_IMPORTED_MODULE_164__ = __webpack_require__(/*! ./directives/toggle/toggle */ "./node_modules/bootstrap-vue/esm/directives/toggle/toggle.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBToggle", function() { return _directives_toggle_toggle__WEBPACK_IMPORTED_MODULE_164__["VBToggle"]; });
+/* harmony import */ var _directives_scrollspy_scrollspy__WEBPACK_IMPORTED_MODULE_164__ = __webpack_require__(/*! ./directives/scrollspy/scrollspy */ "./node_modules/bootstrap-vue/esm/directives/scrollspy/scrollspy.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBScrollspy", function() { return _directives_scrollspy_scrollspy__WEBPACK_IMPORTED_MODULE_164__["VBScrollspy"]; });
 
-/* harmony import */ var _directives_tooltip__WEBPACK_IMPORTED_MODULE_165__ = __webpack_require__(/*! ./directives/tooltip */ "./node_modules/bootstrap-vue/esm/directives/tooltip/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBTooltipPlugin", function() { return _directives_tooltip__WEBPACK_IMPORTED_MODULE_165__["VBTooltipPlugin"]; });
+/* harmony import */ var _directives_toggle__WEBPACK_IMPORTED_MODULE_165__ = __webpack_require__(/*! ./directives/toggle */ "./node_modules/bootstrap-vue/esm/directives/toggle/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBTogglePlugin", function() { return _directives_toggle__WEBPACK_IMPORTED_MODULE_165__["VBTogglePlugin"]; });
 
-/* harmony import */ var _directives_tooltip_tooltip__WEBPACK_IMPORTED_MODULE_166__ = __webpack_require__(/*! ./directives/tooltip/tooltip */ "./node_modules/bootstrap-vue/esm/directives/tooltip/tooltip.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBTooltip", function() { return _directives_tooltip_tooltip__WEBPACK_IMPORTED_MODULE_166__["VBTooltip"]; });
+/* harmony import */ var _directives_toggle_toggle__WEBPACK_IMPORTED_MODULE_166__ = __webpack_require__(/*! ./directives/toggle/toggle */ "./node_modules/bootstrap-vue/esm/directives/toggle/toggle.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBToggle", function() { return _directives_toggle_toggle__WEBPACK_IMPORTED_MODULE_166__["VBToggle"]; });
 
-/* harmony import */ var _directives_visible__WEBPACK_IMPORTED_MODULE_167__ = __webpack_require__(/*! ./directives/visible */ "./node_modules/bootstrap-vue/esm/directives/visible/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBVisiblePlugin", function() { return _directives_visible__WEBPACK_IMPORTED_MODULE_167__["VBVisiblePlugin"]; });
+/* harmony import */ var _directives_tooltip__WEBPACK_IMPORTED_MODULE_167__ = __webpack_require__(/*! ./directives/tooltip */ "./node_modules/bootstrap-vue/esm/directives/tooltip/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBTooltipPlugin", function() { return _directives_tooltip__WEBPACK_IMPORTED_MODULE_167__["VBTooltipPlugin"]; });
 
-/* harmony import */ var _directives_visible_visible__WEBPACK_IMPORTED_MODULE_168__ = __webpack_require__(/*! ./directives/visible/visible */ "./node_modules/bootstrap-vue/esm/directives/visible/visible.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBVisible", function() { return _directives_visible_visible__WEBPACK_IMPORTED_MODULE_168__["VBVisible"]; });
+/* harmony import */ var _directives_tooltip_tooltip__WEBPACK_IMPORTED_MODULE_168__ = __webpack_require__(/*! ./directives/tooltip/tooltip */ "./node_modules/bootstrap-vue/esm/directives/tooltip/tooltip.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBTooltip", function() { return _directives_tooltip_tooltip__WEBPACK_IMPORTED_MODULE_168__["VBTooltip"]; });
+
+/* harmony import */ var _directives_visible__WEBPACK_IMPORTED_MODULE_169__ = __webpack_require__(/*! ./directives/visible */ "./node_modules/bootstrap-vue/esm/directives/visible/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBVisiblePlugin", function() { return _directives_visible__WEBPACK_IMPORTED_MODULE_169__["VBVisiblePlugin"]; });
+
+/* harmony import */ var _directives_visible_visible__WEBPACK_IMPORTED_MODULE_170__ = __webpack_require__(/*! ./directives/visible/visible */ "./node_modules/bootstrap-vue/esm/directives/visible/visible.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBVisible", function() { return _directives_visible_visible__WEBPACK_IMPORTED_MODULE_170__["VBVisible"]; });
 
 /*!
- * BootstrapVue 2.6.1
+ * BootstrapVue 2.7.0
  *
  * @link https://bootstrap-vue.js.org
  * @source https://github.com/bootstrap-vue/bootstrap-vue
@@ -32189,6 +32497,9 @@ var BootstrapVue = /*#__PURE__*/{
 
 
 
+
+
+ // export * from './components/overlay'
 
 
  // export * from './components/pagination'
@@ -35496,6 +35807,16 @@ var BVFormBtnLabelControl = /*#__PURE__*/_vue__WEBPACK_IMPORTED_MODULE_0__["defa
       // Vue coerces `undefined` into Boolean `false`
       default: null
     },
+    buttonOnly: {
+      // When true, renders a btn-group wrapper and visually hides the label
+      type: Boolean,
+      default: false
+    },
+    buttonVariant: {
+      // Applicable in button mode only
+      type: String,
+      default: 'secondary'
+    },
     menuClass: {
       // Extra classes to apply to the `dropdown-menu` div
       type: [String, Array, Object] // default: null
@@ -35553,7 +35874,7 @@ var BVFormBtnLabelControl = /*#__PURE__*/_vue__WEBPACK_IMPORTED_MODULE_0__["defa
     }
   },
   render: function render(h) {
-    var _class2, _ref;
+    var _class, _class2, _ref;
 
     var idButton = this.idButton;
     var idLabel = this.idLabel;
@@ -35569,6 +35890,8 @@ var BVFormBtnLabelControl = /*#__PURE__*/_vue__WEBPACK_IMPORTED_MODULE_0__["defa
     var size = this.size;
     var value = Object(_string__WEBPACK_IMPORTED_MODULE_1__["toString"])(this.value) || '';
     var labelSelected = this.labelSelected;
+    var buttonOnly = !!this.buttonOnly;
+    var buttonVariant = this.buttonVariant;
     var btnScope = {
       isHovered: isHovered,
       hasFocus: hasFocus,
@@ -35577,8 +35900,8 @@ var BVFormBtnLabelControl = /*#__PURE__*/_vue__WEBPACK_IMPORTED_MODULE_0__["defa
     };
     var $button = h('button', {
       ref: 'toggle',
-      staticClass: 'btn border-0 h-auto py-0',
-      class: _defineProperty({}, "btn-".concat(size), !!size),
+      staticClass: 'btn',
+      class: (_class = {}, _defineProperty(_class, "btn-".concat(buttonVariant), buttonOnly), _defineProperty(_class, "btn-".concat(size), !!size), _defineProperty(_class, 'border-0', !buttonOnly), _defineProperty(_class, 'h-auto', !buttonOnly), _defineProperty(_class, 'py-0', !buttonOnly), _defineProperty(_class, 'dropdown-toggle', buttonOnly), _defineProperty(_class, 'dropdown-toggle-no-caret', buttonOnly), _class),
       attrs: {
         id: idButton,
         type: 'button',
@@ -35645,6 +35968,8 @@ var BVFormBtnLabelControl = /*#__PURE__*/_vue__WEBPACK_IMPORTED_MODULE_0__["defa
     var $label = h('label', {
       staticClass: 'form-control text-break text-wrap border-0 bg-transparent h-auto pl-1 m-0',
       class: (_class2 = {
+        // Hidden in button only mode
+        'sr-only': buttonOnly,
         // Mute the text if showing the placeholder
         'text-muted': !value
       }, _defineProperty(_class2, "form-control-".concat(size), !!size), _defineProperty(_class2, 'is-invalid', state === false), _defineProperty(_class2, 'is-valid', state === true), _class2),
@@ -35669,14 +35994,15 @@ var BVFormBtnLabelControl = /*#__PURE__*/_vue__WEBPACK_IMPORTED_MODULE_0__["defa
     }, labelSelected) : '']); // Return the custom form control wrapper
 
     return h('div', {
-      staticClass: 'b-form-btn-label-control form-control dropdown d-flex p-0 h-auto align-items-stretch',
+      staticClass: 'dropdown',
       class: [this.directionClass, (_ref = {
-        show: visible,
-        focus: hasFocus
-      }, _defineProperty(_ref, "form-control-".concat(size), !!size), _defineProperty(_ref, 'is-valid', state === true), _defineProperty(_ref, 'is-invalid', state === false), _ref)],
+        'btn-group': buttonOnly,
+        'b-form-btn-label-control': !buttonOnly,
+        'form-control': !buttonOnly
+      }, _defineProperty(_ref, "form-control-".concat(size), !!size && !buttonOnly), _defineProperty(_ref, 'd-flex', !buttonOnly), _defineProperty(_ref, 'p-0', !buttonOnly), _defineProperty(_ref, 'h-auto', !buttonOnly), _defineProperty(_ref, 'align-items-stretch', !buttonOnly), _defineProperty(_ref, "focus", hasFocus && !buttonOnly), _defineProperty(_ref, "show", visible), _defineProperty(_ref, 'is-valid', state === true), _defineProperty(_ref, 'is-invalid', state === false), _ref)],
       attrs: {
         id: idWrapper,
-        role: 'group',
+        role: buttonOnly ? null : 'group',
         lang: this.lang || null,
         dir: this.computedDir,
         'aria-disabled': disabled,
@@ -36437,7 +36763,7 @@ var copyProps = function copyProps(props) {
 /*!******************************************************!*\
   !*** ./node_modules/bootstrap-vue/esm/utils/date.js ***!
   \******************************************************/
-/*! exports provided: createDate, parseYMD, formatYMD, resolveLocale, createDateFormatter, datesEqual, firstDateOfMonth, lastDateOfMonth, oneMonthAgo, oneMonthAhead, oneYearAgo, oneYearAhead */
+/*! exports provided: createDate, parseYMD, formatYMD, resolveLocale, createDateFormatter, datesEqual, firstDateOfMonth, lastDateOfMonth, oneMonthAgo, oneMonthAhead, oneYearAgo, oneYearAhead, constrainDate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36454,6 +36780,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "oneMonthAhead", function() { return oneMonthAhead; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "oneYearAgo", function() { return oneYearAgo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "oneYearAhead", function() { return oneYearAhead; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "constrainDate", function() { return constrainDate; });
 /* harmony import */ var _identity__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./identity */ "./node_modules/bootstrap-vue/esm/utils/identity.js");
 /* harmony import */ var _array__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./array */ "./node_modules/bootstrap-vue/esm/utils/array.js");
 /* harmony import */ var _inspect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./inspect */ "./node_modules/bootstrap-vue/esm/utils/inspect.js");
@@ -36596,6 +36923,18 @@ var oneYearAhead = function oneYearAhead(date) {
   }
 
   return date;
+}; // Helper function to constrain a date between two values
+// Always returns a `Date` object or `null` if no date passed
+
+var constrainDate = function constrainDate(date) {
+  var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  // Ensure values are `Date` objects (or `null`)
+  date = parseYMD(date);
+  min = parseYMD(min) || date;
+  max = parseYMD(max) || date; // Return a new `Date` object (or `null`)
+
+  return date ? date < min ? min : date > max ? max : date : null;
 };
 
 /***/ }),
