@@ -62,15 +62,16 @@
             font-family: 'Roboto Condensed', sans-serif;
             background: #8dbdf0;
             border-radius: 8px;
-            border: 3px solid #2c6ea8;
-            -webkit-box-shadow: -1px 9px 10px -5px rgba(0, 0, 0, 0.75);
-            -moz-box-shadow: -1px 9px 10px -5px rgba(0, 0, 0, 0.75);
-            box-shadow: -1px 9px 10px -5px rgba(0, 0, 0, 0.75);
+            border: none;
+            -webkit-box-shadow: -1px 2px 36px 0px rgba(142, 199, 245, 1);
+            -moz-box-shadow: -1px 2px 36px 0px rgba(142, 199, 245, 1);
+            box-shadow: -1px 2px 36px 0px rgba(142, 199, 245, 1);
             width: 200px;
         }
 
         .links>a>button:hover {
-            background: #adcef1;
+            background: #3490dc;
+            color: aliceblue;
             transition: .5s;
         }
 
